@@ -61,6 +61,11 @@ public class Sound implements Runnable, PlayerListener, Constants {
 		// and then crashes the jvm when continuing to create more players.
 		// so the fallback to S40 method was introduced.
 		prefetch: {
+			String p = System.getProperty("microedition.platform");
+			if (p == null || p.indexOf("=S60") == -1) {
+				break prefetch;
+			}
+
 			if (PREFETCH_MUSIC) {
 				try {
 					loadMusic(MUSIC_THEME, "/theme.mid");
@@ -211,8 +216,8 @@ public class Sound implements Runnable, PlayerListener, Constants {
 								p.setMediaTime(0);
 							} catch (Exception ignored) {}
 							p.start();
+							lastMusicPlayer = p;
 						}
-						lastMusicPlayer = p;
 						continue;
 					}
 					if (!NO_SFX && o == EVENT_START_EFFECT) {
