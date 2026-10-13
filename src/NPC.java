@@ -3724,6 +3724,7 @@ class NPC implements Constants {
 			if (npc.health <= 0) {
 				// loot
 				map.inventoryOpen = npc;
+				map.lastSelectedInventory = map.selectedInventory;
 				Sound.playEffect(Sound.SFX_OPEN);
 			} else {
 				// open profile
