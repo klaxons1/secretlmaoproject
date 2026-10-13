@@ -1654,7 +1654,10 @@ class NPC implements Constants {
 
 				moveTowards(px * TILE_SIZE, py * TILE_SIZE, aiSpeed);
 
-				if (x / TILE_SIZE == px && ((y + 5) / TILE_SIZE) == py && n != 1) {
+				if (path[1] == 0 && n <= 8) {
+					correctPath = map.pathfind(x / TILE_SIZE, (y + 5) / TILE_SIZE, direction, pathX, pathY, inmate, path);
+					pathStep = 0;
+				} else if (x / TILE_SIZE == px && ((y + 5) / TILE_SIZE) == py && n != 2) {
 					++pathStep;
 				}
 			} else if (aiState == AI_ROAM) {
