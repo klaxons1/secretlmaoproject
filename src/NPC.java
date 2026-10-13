@@ -2260,7 +2260,8 @@ class NPC implements Constants {
 //			}
 		}
 
-		if (layer == LAYER_GROUND) {
+		if (layer == LAYER_GROUND && outfitItem != Items.GUARD_OUTFIT && (tick & 15) == 0) {
+			// attendance
 			int schedule = map.schedule;
 			switch (schedule) {
 			case SC_MORNING_ROLLCALL:

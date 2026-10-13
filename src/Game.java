@@ -8891,6 +8891,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 			}
 			// set result length
 			res[0] = (short) i;
+			// set continue flag
 			res[1] = (short) (finish ? 1 : 0);
 		}
 
