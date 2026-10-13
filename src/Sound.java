@@ -129,8 +129,8 @@ public class Sound implements Runnable, PlayerListener, Constants {
 								lastMusicPlayer.deallocate();
 								lastMusicPlayer.close();
 							}
-							lastMusicPlayer = null;
 						}
+						lastMusicPlayer = null;
 						if (PREFETCH_MUSIC && musicPrefetched) {
 							for (int i = 0; i < COUNT_MUSIC; ++i) {
 								Player p = music[i];
@@ -147,8 +147,8 @@ public class Sound implements Runnable, PlayerListener, Constants {
 								lastEffectPlayer.deallocate();
 								lastEffectPlayer.close();
 							}
-							lastEffectPlayer = null;
 						}
+						lastEffectPlayer = null;
 						if (PREFETCH_SFX && sfxPrefetched) {
 							for (int i = 0; i < COUNT_EFFECTS; ++i) {
 								Player p = effects[i];
@@ -291,6 +291,7 @@ public class Sound implements Runnable, PlayerListener, Constants {
 						lastEffectPlayer = p;
 //						continue;
 					}
+					Thread.yield();
 				}
 			}
 		} catch (Exception e) {
@@ -394,7 +395,7 @@ public class Sound implements Runnable, PlayerListener, Constants {
 		}
 		if (v != 0) {
 			if (currentMusicPlayer == null && lastMusic != -1) {
-				playMusic(lastMusic);
+				resumeMusic();
 			}
 		} else {
 			stopMusic();
@@ -413,8 +414,8 @@ public class Sound implements Runnable, PlayerListener, Constants {
 	synchronized static void stopMusic() {
 		if (PREFETCH_MUSIC && musicPrefetched) {
 			if (currentMusicPlayer == null) return;
-			currentMusicPlayer = null;
 		}
+		currentMusicPlayer = null;
 		queue.addElement(EVENT_STOP_MUSIC);
 		synchronized (queueLock) {
 			queueLock.notify();
