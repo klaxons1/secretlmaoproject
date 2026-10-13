@@ -1038,40 +1038,42 @@ class NPC implements Constants {
 
 		if (aiState == AI_ROAM) {
 			// roam: walk around points on the map
-			if (nextRoamPos) {
-				int idx;
-				short[] arr;
-				if (guard) {
-					arr = map.guardRoamPositions;
-					if ((idx = guardRoamPos++) >= arr[0]) {
-						idx = guardRoamPos = 0;
+			if (((tick + id) & 3) == 0) {
+				if (nextRoamPos) {
+					int idx;
+					short[] arr;
+					if (guard) {
+						arr = map.guardRoamPositions;
+						if ((idx = guardRoamPos++) >= arr[0]) {
+							idx = guardRoamPos = 0;
+						}
+					} else {
+						arr = map.roamPositions;
+						if ((idx = inmateRoamPos++) >= arr[0]) {
+							idx = inmateRoamPos = 0;
+						}
 					}
-				} else {
-					arr = map.roamPositions;
-					if ((idx = inmateRoamPos++) >= arr[0]) {
-						idx = inmateRoamPos = 0;
+					idx = (idx << 1) + 1;
+					pathX = arr[idx];
+					pathY = arr[idx + 1];
+					nextRoamPos = false;
+					if (map.pathfind(x / TILE_SIZE, (y + 5) / TILE_SIZE, direction, pathX, pathY, inmate, path)
+							// fallback
+							|| map.pathfind(x / TILE_SIZE, (y + 5) / TILE_SIZE, direction, pathX, pathY, false, path)) {
+						correctPath = true;
+						pathStep = 0;
+					} else {
+						if (LOGGING) Profiler.log(debugName() + " cannot pathfind to roam");
+						correctPath = false;
+						nextRoamPos = true;
+						this.targetReached = false;
 					}
-				}
-				idx = (idx << 1) + 1;
-				pathX = arr[idx];
-				pathY = arr[idx + 1];
-				nextRoamPos = false;
-				if (map.pathfind(x / TILE_SIZE, (y + 5) / TILE_SIZE, direction, pathX, pathY, inmate, path)
-						// fallback
-						|| map.pathfind(x / TILE_SIZE, (y + 5) / TILE_SIZE, direction, pathX, pathY, false, path)) {
-					correctPath = true;
-					pathStep = 0;
-				} else {
-					if (LOGGING) Profiler.log(debugName() + " cannot pathfind to roam");
-					correctPath = false;
+				} else if (targetReached) {
+					aiWaitTimer = TPS * 2;
 					nextRoamPos = true;
 					this.targetReached = false;
+					correctPath = false;
 				}
-			} else if (targetReached) {
-				aiWaitTimer = TPS * 2;
-				nextRoamPos = true;
-				this.targetReached = false;
-				correctPath = false;
 			}
 		} else if (aiState == AI_WAYPOINT) {
 			// waypoint: go to point, stay there
@@ -1187,138 +1189,144 @@ class NPC implements Constants {
 			}
 		} else if (aiState == AI_MEAL) {
 			// meal: go to serving table, take food, go to free seat
-			if (animation == ANIM_FOOD) {
-				if (!correctPath && !sitting) {
-					// find free seat
-					while (true) {
+			if (((tick + id) & 3) == 0) {
+				if (animation == ANIM_FOOD) {
+					if (!correctPath && !sitting) {
+						// find free seat
+						while (true) {
+							int pos;
+							if ((pos = canteenSeatPos++) >= map.canteenSeatsPositions[0]) {
+								pos = canteenSeatPos = 0;
+							}
+							pos = (pos << 1) + 1;
+							if (map.canteenSeatsPositions[pos + 1] != -1) {
+								continue;
+							}
+							pos = map.canteenSeatsPositions[pos];
+							pathX = pos & 0xFF;
+							pathY = (pos >> 8) & 0xFF;
+							break;
+						}
+						pathEndDir = map.solid[LAYER_GROUND][pathX + (pathY + 1) * map.width] == COLL_TABLE ? DIR_DOWN : DIR_UP;
+						aiWaitTimer = TPS >> 2;
+					}
+					if (x / TILE_SIZE == pathX && (y + 5) / TILE_SIZE == pathY) {
+						correctPath = false;
+
+						if (!sitting) {
+							int seat = map.getSeatIndex(map.canteenSeatsPositions, pathX, pathY);
+							if (map.canteenSeatsPositions[seat + 1] == -1) {
+								map.canteenSeatsPositions[seat + 1] = (short) id;
+								animateToX = pathX * TILE_SIZE;
+								animateToY = pathY * TILE_SIZE;
+								sitting = true;
+								direction = pathEndDir;
+							}
+						}
+					} else if (!correctPath) {
+						if (map.pathfind(x / TILE_SIZE, (y + 5) / TILE_SIZE, direction, pathX, pathY, false, path)) {
+							correctPath = true;
+							pathStep = 0;
+						} else if (LOGGING) {
+							Profiler.log(debugName() + " cannot pathfind to seat");
+						}
+					}
+				} else {
+					if (!correctPath) {
 						int pos;
-						if ((pos = canteenSeatPos++) >= map.canteenSeatsPositions[0]) {
-							pos = canteenSeatPos = 0;
+						if ((pos = canteenServingPos++) >= map.canteenServingPositions[0]) {
+							pos = canteenServingPos = 0;
 						}
 						pos = (pos << 1) + 1;
-						if (map.canteenSeatsPositions[pos + 1] != -1) {
-							continue;
+						pathX = map.canteenServingPositions[pos];
+						pathY = map.canteenServingPositions[pos + 1];
+					}
+					if (targetReached) {
+						animation = ANIM_FOOD;
+						correctPath = false;
+					} else if (!correctPath && ((tick + id) & 3) == 0) {
+						if (map.pathfind(x / TILE_SIZE, (y + 5) / TILE_SIZE, direction, pathX, pathY, false, path)) {
+							correctPath = true;
+							pathStep = 0;
+						} else if (LOGGING) {
+							Profiler.log(debugName() + " cannot pathfind to serving");
 						}
-						pos = map.canteenSeatsPositions[pos];
-						pathX = pos & 0xFF;
-						pathY = (pos >> 8) & 0xFF;
-						break;
-					}
-					pathEndDir = map.solid[LAYER_GROUND][pathX + (pathY + 1) * map.width] == COLL_TABLE ? DIR_DOWN : DIR_UP;
-					aiWaitTimer = TPS >> 2;
-				}
-				if (x / TILE_SIZE == pathX && (y + 5) / TILE_SIZE == pathY) {
-					correctPath = false;
-
-					if (!sitting) {
-						int seat = map.getSeatIndex(map.canteenSeatsPositions, pathX, pathY);
-						if (map.canteenSeatsPositions[seat + 1] == -1) {
-							map.canteenSeatsPositions[seat + 1] = (short) id;
-							animateToX = pathX * TILE_SIZE;
-							animateToY = pathY * TILE_SIZE;
-							sitting = true;
-							direction = pathEndDir;
-						}
-					}
-				} else if (!correctPath) {
-					if (map.pathfind(x / TILE_SIZE, (y + 5) / TILE_SIZE, direction, pathX, pathY, false, path)) {
-						correctPath = true;
-						pathStep = 0;
-					} else if (LOGGING) {
-						Profiler.log(debugName() + " cannot pathfind to seat");
-					}
-				}
-			} else {
-				if (!correctPath) {
-					int pos;
-					if ((pos = canteenServingPos++) >= map.canteenServingPositions[0]) {
-						pos = canteenServingPos = 0;
-					}
-					pos = (pos << 1) + 1;
-					pathX = map.canteenServingPositions[pos];
-					pathY = map.canteenServingPositions[pos + 1];
-				}
-				if (targetReached) {
-					animation = ANIM_FOOD;
-					correctPath = false;
-				} else if (!correctPath) {
-					if (map.pathfind(x / TILE_SIZE, (y + 5) / TILE_SIZE, direction, pathX, pathY, false, path)) {
-						correctPath = true;
-						pathStep = 0;
-					} else if (LOGGING) {
-						Profiler.log(debugName() + " cannot pathfind to serving");
 					}
 				}
 			}
 		} else if (aiState == AI_GYM) {
 			// gym: go to free object and start training animation
-			if (!correctPath && !training) {
-				// find free seat
-				while (true) {
-					int pos;
-					if ((pos = gymPos++) >= map.gymPositions[0]) {
-						pos = gymPos = 0;
-					}
-					pos = (pos << 1) + 1;
-					if (map.gymPositions[pos + 1] != -1) {
-						continue;
-					}
-					pos = map.gymPositions[pos];
-					pathX = pos & 0xFF;
-					pathY = (pos >> 8) & 0xFF;
-					break;
-				}
-
-				int idx = map.getObjectIdxAt(pathX, pathY, LAYER_GROUND);
-				int obj = map.objects[LAYER_GROUND][idx + 1];
-				gymObjectIdx = idx;
-				gymObject = obj;
-				if (obj == Objects.TRAINING_TREADMILL) {
-					pathEndDir = DIR_RIGHT;
-				} else {
-					pathEndDir = DIR_DOWN;
-				}
-			}
-			if (training && animation == ANIM_WEIGHT) {
-				if (rng.nextInt(2) == 0 && ++trainingFrame == 20) {
-					trainingFrame = 0;
-				}
-			} else if (x / TILE_SIZE == pathX && (y + 5) / TILE_SIZE == pathY) {
-				correctPath = false;
-
-				if (!training) {
-					int seat = map.getSeatIndex(map.gymPositions, pathX, pathY);
-					if (map.gymPositions[seat + 1] == -1) {
-						map.gymPositions[seat + 1] = (short) id;
-						animateToX = pathX * TILE_SIZE;
-						animateToY = pathY * TILE_SIZE;
-						if (pathEndDir == DIR_RIGHT) {
-							// treadmill
-							animateToX -= 4;
-							animateToY -= 4;
-						} else {
-							animation = ANIM_WEIGHT;
-							trainingFrame = 0;
+			if (((tick + id) & 3) == 0) {
+				if (!correctPath && !training) {
+					// find free seat
+					while (true) {
+						int pos;
+						if ((pos = gymPos++) >= map.gymPositions[0]) {
+							pos = gymPos = 0;
 						}
-						if (gymObjectIdx != -1 && gymObject == Objects.TRAINING_WEIGHT) {
-							int idx = gymObjectIdx;
-							map.objects[LAYER_GROUND][idx + 2] = (short) (13 | (map.objects[LAYER_GROUND][idx + 2] & 0xFF00));
+						pos = (pos << 1) + 1;
+						if (map.gymPositions[pos + 1] != -1) {
+							continue;
 						}
-						training = true;
-						direction = pathEndDir;
+						pos = map.gymPositions[pos];
+						pathX = pos & 0xFF;
+						pathY = (pos >> 8) & 0xFF;
+						break;
+					}
+
+					int idx = map.getObjectIdxAt(pathX, pathY, LAYER_GROUND);
+					int obj = map.objects[LAYER_GROUND][idx + 1];
+					gymObjectIdx = idx;
+					gymObject = obj;
+					if (obj == Objects.TRAINING_TREADMILL) {
+						pathEndDir = DIR_RIGHT;
+					} else {
+						pathEndDir = DIR_DOWN;
 					}
 				}
-			} else if (!correctPath && !training) {
-				if (map.pathfind(x / TILE_SIZE, (y + 5) / TILE_SIZE, direction, pathX, pathY, false, path)) {
-					correctPath = true;
-					pathStep = 0;
-				} else if (LOGGING) {
-					Profiler.log(debugName() + " cannot pathfind to gym");
+				if (training && animation == ANIM_WEIGHT) {
+					if (rng.nextInt(2) == 0 && ++trainingFrame == 20) {
+						trainingFrame = 0;
+					}
+				} else if (x / TILE_SIZE == pathX && (y + 5) / TILE_SIZE == pathY) {
+					correctPath = false;
+
+					if (!training) {
+						int seat = map.getSeatIndex(map.gymPositions, pathX, pathY);
+						if (map.gymPositions[seat + 1] == -1) {
+							map.gymPositions[seat + 1] = (short) id;
+							animateToX = pathX * TILE_SIZE;
+							animateToY = pathY * TILE_SIZE;
+							if (pathEndDir == DIR_RIGHT) {
+								// treadmill
+								animateToX -= 4;
+								animateToY -= 4;
+							} else {
+								animation = ANIM_WEIGHT;
+								trainingFrame = 0;
+							}
+							if (gymObjectIdx != -1 && gymObject == Objects.TRAINING_WEIGHT) {
+								int idx = gymObjectIdx;
+								map.objects[LAYER_GROUND][idx + 2] = (short) (13 | (map.objects[LAYER_GROUND][idx + 2] & 0xFF00));
+							}
+							training = true;
+							direction = pathEndDir;
+						}
+					}
+				} else if (!correctPath && !training) {
+					if (map.pathfind(x / TILE_SIZE, (y + 5) / TILE_SIZE, direction, pathX, pathY, false, path)) {
+						correctPath = true;
+						pathStep = 0;
+					} else if (LOGGING) {
+						Profiler.log(debugName() + " cannot pathfind to gym");
+					}
 				}
 			}
 		} else if (aiState == AI_WORK) {
 			work:
 			{
+				if (((tick + id) & 3) != 0) break work;
+
 				switch (job) {
 				case JOB_JANITOR:
 				case JOB_GARDENING: {
