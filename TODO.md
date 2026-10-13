@@ -73,6 +73,7 @@
 - [ ] Tying npcs
 - [ ] Guards picking up items
 - [ ] Jungle check point
+- [ ] Roof mechanics
 
 # Low priority
 
