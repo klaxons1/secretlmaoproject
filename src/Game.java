@@ -4093,6 +4093,9 @@ public class Game extends GameCanvas implements Runnable, Constants {
 //				for (int t = n - (npc.pathStep << 1) - 2; t > 2; t -= 2) {
 //					g.drawRect(npc.path[t] * TILE_SIZE - viewX, npc.path[t + 1] * TILE_SIZE - viewY, 15, 15);
 //				}
+//
+//				g.setColor(0x00FFFF);
+//				g.drawRect(npc.pathX * TILE_SIZE - viewX, npc.pathY * TILE_SIZE - viewY, 15, 15);
 //			}
 
 			if (x < -TILE_SIZE * 2 || y < -TILE_SIZE * 2 || x >= viewWidth || y >= viewHeight) {
@@ -8753,7 +8756,6 @@ public class Game extends GameCanvas implements Runnable, Constants {
 		int nx = cur - ny * width;
 		int g, h, dx, dy;
 		int dir = startDir;
-		boolean finish = false;
 
 		while (cur != -1) {
 			openRemove(cur);
@@ -8765,12 +8767,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 			nodeH[cur] = -1;
 
 			// finish
-			if (nx == targetX && ny == targetY) {
-				finish = true;
-				break;
-			}
-
-			if (res != null && visited > 500)
+			if (nx == targetX && ny == targetY)
 				break;
 
 			for (int i = 0; i < 8; ++i) { // for each direction
@@ -8876,7 +8873,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 			}
 
 			// traceback
-			int i = 2;
+			int i = 1;
 			while (cur != -1) {
 				// oob check
 				if (i >= res.length - 1) {
@@ -8891,8 +8888,6 @@ public class Game extends GameCanvas implements Runnable, Constants {
 			}
 			// set result length
 			res[0] = (short) i;
-			// set continue flag
-			res[1] = (short) (finish ? 1 : 0);
 		}
 
 		// cleanup
