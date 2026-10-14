@@ -2763,6 +2763,18 @@ public class Game extends GameCanvas implements Runnable, Constants {
 					}
 				}
 
+				// items
+				{
+					short num = in.readShort();
+
+					for (int i = 0; i < num; ++i) {
+						// TODO
+						in.readInt();
+						in.readByte();
+						in.readByte();
+					}
+				}
+
 				// schedule
 				{
 					for (int i = 0; i < 24; ++i) {

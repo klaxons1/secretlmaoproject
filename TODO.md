@@ -74,6 +74,7 @@
 - [ ] Tying npcs
 - [ ] Guards picking up items
 - [ ] Roof mechanics
+- [ ] Jeep
 
 # Low priority
 

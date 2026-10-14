@@ -82,6 +82,8 @@ public class MapCompiler implements Constants {
 		Vector<int[]> npc = new Vector<>();
 
 		Vector<int[]> containers = new Vector<>();
+
+		Vector<int[]> items = new Vector<>();
 		
 		byte[][] tiles = new byte[4][width * height];
 		
@@ -833,7 +835,7 @@ public class MapCompiler implements Constants {
 
 		try (DataOutputStream out = new DataOutputStream(Files.newOutputStream(outputPath))) {
 			// version
-			out.writeInt(4);
+			out.writeInt(5);
 
 			byte map = MAP_OTHER;
 			switch (inputPath.getFileName().toString()) {
@@ -1024,10 +1026,19 @@ public class MapCompiler implements Constants {
 				out.writeByte(arr[2]);
 			}
 
+			// containers
 			System.out.println(containers.size() + " containers");
 			out.writeShort(containers.size());
 			for (int[] arr : containers) {
 				out.writeShort(arr[0]);
+				out.writeByte(arr[1]);
+				out.writeByte(arr[2]);
+			}
+
+			// items
+			out.writeShort(items.size());
+			for (int[] arr : items) {
+				out.writeInt(arr[0]);
 				out.writeByte(arr[1]);
 				out.writeByte(arr[2]);
 			}
