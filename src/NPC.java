@@ -342,6 +342,12 @@ class NPC implements Constants {
 					// uncheck hide flag
 					map.objects[layer][lastDoor + 2] &= ~(1 << 12);
 					lastDoor = -1;
+
+					if (!ai && map.usedKeySlot != -1) {
+						// reduce key durability
+						reduceDurability(map.usedKeySlot);
+						map.usedKeySlot = -1;
+					}
 				}
 			}
 
@@ -1745,65 +1751,83 @@ class NPC implements Constants {
 			if (lastDoor == idx) {
 				return false;
 			}
-			if (!ai && map.carryingObject != -1) {
+			if (map.carryingObject != -1) {
 				return true;
-			}
-			if (obj == Objects.DOOR_CELL) {
-				return map.cellsClosed && !hasItem(Items.CELL_KEY);
-			}
-			if (obj == Objects.DOOR_OUTSIDE) {
-				return (map.time < 10 * 60 || map.time >= 22 * 60)
-						&& !hasItem(Items.ENTRANCE_KEY) && !hasItem(Items.PLASTIC_ENTRANCE_KEY);
 			}
 			if (obj == Objects.DOOR_PRISON_ENTRANCE) {
 				return !map.entranceOpen;
 			}
-			if (obj == Objects.DOOR_STAFF) {
-				return !hasItem(Items.STAFF_KEY) && !hasItem(Items.PLASTIC_STAFF_KEY);
+			int slot = -1;
+			boolean collide = false;
+			key: {
+				if (obj == Objects.DOOR_CELL) {
+					collide = map.cellsClosed
+							&& (slot = hasItem(Items.CELL_KEY)) == -1
+							&& (slot = hasItem(Items.PLASTIC_CELL_KEY)) == -1;
+					break key;
+				}
+				if (obj == Objects.DOOR_OUTSIDE) {
+					collide = (map.time < 10 * 60 || map.time >= 22 * 60)
+							&& (slot = hasItem(Items.ENTRANCE_KEY)) == -1
+							&& (slot = hasItem(Items.PLASTIC_ENTRANCE_KEY)) == -1;
+					break key;
+				}
+				if (obj == Objects.DOOR_STAFF) {
+					collide = (slot = hasItem(Items.STAFF_KEY)) == -1
+							&& (slot = hasItem(Items.PLASTIC_STAFF_KEY)) == -1;
+					break key;
+				}
+				if (obj == Objects.DOOR_UTILITY || obj == Objects.DOOR_UTILITY_VENT) {
+					collide = (slot = hasItem(Items.UTILITY_KEY)) == -1
+							&& (slot = hasItem(Items.PLASTIC_UTILITY_KEY)) == -1;
+					break key;
+				}
+				// job doors
+				switch (job) {
+				case JOB_LAUNDRY:
+					if (obj == Objects.DOOR_LAUNDRY)
+						return false;
+					break;
+				case JOB_KITCHEN:
+					if (obj == Objects.DOOR_KITCHEN)
+						return false;
+					break;
+				case JOB_WOODSHOP:
+					if (obj == Objects.DOOR_WOODSHOP)
+						return false;
+					break;
+				case JOB_METALSHOP:
+					if (obj == Objects.DOOR_METALSHOP)
+						return false;
+					break;
+				case JOB_TAILOR:
+					if (obj == Objects.DOOR_TAILORSHOP)
+						return false;
+					break;
+				case JOB_DELIVERIES:
+					if (obj == Objects.DOOR_DELIVERIES)
+						return false;
+					break;
+				case JOB_JANITOR:
+					if (obj == Objects.DOOR_JANITOR)
+						return false;
+					break;
+				case JOB_GARDENING:
+					if (obj == Objects.DOOR_GARDENING)
+						return false;
+					break;
+				case JOB_MAILMAN:
+					if (obj == Objects.DOOR_MAILROOM)
+						return false;
+					break;
+				}
+				collide = (slot = hasItem(Items.WORK_KEY)) == -1
+						&& (slot = hasItem(Items.PLASTIC_WORK_KEY)) == -1;
 			}
-			if (obj == Objects.DOOR_UTILITY || obj == Objects.DOOR_UTILITY_VENT) {
-				return !hasItem(Items.UTILITY_KEY) && !hasItem(Items.PLASTIC_UTILITY_KEY);
+			if (slot != -1 && map.usedKeySlot == -1) {
+				map.usedKeySlot = slot;
 			}
-			// job doors
-			switch (job) {
-			case JOB_LAUNDRY:
-				if (obj == Objects.DOOR_LAUNDRY)
-					return false;
-				break;
-			case JOB_KITCHEN:
-				if (obj == Objects.DOOR_KITCHEN)
-					return false;
-				break;
-			case JOB_WOODSHOP:
-				if (obj == Objects.DOOR_WOODSHOP)
-					return false;
-				break;
-			case JOB_METALSHOP:
-				if (obj == Objects.DOOR_METALSHOP)
-					return false;
-				break;
-			case JOB_TAILOR:
-				if (obj == Objects.DOOR_TAILORSHOP)
-					return false;
-				break;
-			case JOB_DELIVERIES:
-				if (obj == Objects.DOOR_DELIVERIES)
-					return false;
-				break;
-			case JOB_JANITOR:
-				if (obj == Objects.DOOR_JANITOR)
-					return false;
-				break;
-			case JOB_GARDENING:
-				if (obj == Objects.DOOR_GARDENING)
-					return false;
-				break;
-			case JOB_MAILMAN:
-				if (obj == Objects.DOOR_MAILROOM)
-					return false;
-				break;
-			}
-			return !hasItem(Items.WORK_KEY) && !hasItem(Items.PLASTIC_WORK_KEY);
+			return collide;
 		}
 		if (!climbed && (s == COLL_DESK || s == COLL_TABLE)) {
 			if (!wasTryingToMove && canClimb) {
@@ -1999,14 +2023,14 @@ class NPC implements Constants {
 		return false;
 	}
 
-	boolean hasItem(int item) {
+	int hasItem(int item) {
 		for (int i = 0; i < 6; ++i) {
 			if (inventory[i] != Items.ITEM_NULL
 					&& (inventory[i] & Items.ITEM_ID_MASK) == item) {
-				return true;
+				return i;
 			}
 		}
-		return false;
+		return -1;
 	}
 
 	void updateItems() {
@@ -2254,21 +2278,24 @@ class NPC implements Constants {
 				if (inventory[i] != Items.ITEM_NULL && Game.isIllegal(item)) {
 					if (item == Items.CONTRABAND_POUCH || item == Items.DURABLE_CONTRABAND_POUCH) {
 						pouch = i;
-						hasContraband = false;
-						break;
 					}
 					hasContraband = true;
 				}
 			}
+
 			if (hasContraband) {
-				// TODO animate detector object
-				map.heat = 100;
-				Sound.playEffect(Sound.SFX_HP);
+				if (pouch != -1) {
+					map.usedContrabandPouch = pouch;
+				} else {
+					// TODO animate detector object
+					map.heat = 100;
+					Sound.playEffect(Sound.SFX_HP);
+				}
 			}
-			// TODO reduce pouch durability
-//			if (pouch != -1) {
-//
-//			}
+		} else if (map.usedContrabandPouch != -1) {
+			// reduce pouch durability
+			reduceDurability(map.usedContrabandPouch);
+			map.usedContrabandPouch = -1;
 		}
 
 		if (layer == LAYER_GROUND && outfitItem != Items.GUARD_OUTFIT && (tick & 15) == 0) {

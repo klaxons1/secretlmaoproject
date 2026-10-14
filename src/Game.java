@@ -144,6 +144,9 @@ public class Game extends GameCanvas implements Runnable, Constants {
 	int actionTargetX, actionTargetY;
 	int actionParam;
 	int carryingObject = -1;
+	float undergroundLight = 1.1f;
+	int usedKeySlot = -1;
+	int usedContrabandPouch = -1;
 
 	boolean updateInteractFocus;
 	boolean hasInteractFocus;
@@ -2019,6 +2022,9 @@ public class Game extends GameCanvas implements Runnable, Constants {
 					player.inventory[0] = Items.MULTITOOL | Items.ITEM_DEFAULT_DURABILITY;
 
 					player.inventory[1] = Items.TIMBER_BRACE | Items.ITEM_DEFAULT_DURABILITY;
+
+					player.inventory[2] = Items.CONTRABAND_POUCH | Items.ITEM_DEFAULT_DURABILITY;
+					player.inventory[3] = Items.PLASTIC_CELL_KEY | Items.ITEM_DEFAULT_DURABILITY;
 
 //					player.inventory[2] = Items.ID_PAPERS;
 //					player.inventory[3] = Items.UNSIGNED_ID_PAPERS;
@@ -4217,7 +4223,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 					} else if (layer == LAYER_UNDERGROUND) {
 						t.setIdentity();
 						t.postTranslate(0, 0, 5);
-						float f = 1.1f + 0.04f * (float)Math.sin(ticks * 1.5f);
+						float f = undergroundLight + 0.04f * (float)Math.sin(ticks * 1.5f);
 						t.postScale(f, f, 1f);
 						graphics3D.render(lightVertexBuffer, lightStrip, undergroundAppearance, t);
 					}
