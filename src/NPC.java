@@ -2075,16 +2075,15 @@ class NPC implements Constants {
 		if (guard) {
 			key: {
 				int key;
-				// TODO check order in original game
 				switch (typedId) {
 				case 0:
 					key = Items.CELL_KEY | Items.ITEM_DEFAULT_DURABILITY;
 					break;
 				case 1:
-					key = Items.UTILITY_KEY | Items.ITEM_DEFAULT_DURABILITY;
+					key = Items.ENTRANCE_KEY | Items.ITEM_DEFAULT_DURABILITY;
 					break;
 				case 2:
-					key = Items.ENTRANCE_KEY | Items.ITEM_DEFAULT_DURABILITY;
+					key = Items.UTILITY_KEY | Items.ITEM_DEFAULT_DURABILITY;
 					break;
 				case 3:
 					key = Items.STAFF_KEY | Items.ITEM_DEFAULT_DURABILITY;
