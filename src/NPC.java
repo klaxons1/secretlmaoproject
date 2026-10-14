@@ -2270,7 +2270,7 @@ class NPC implements Constants {
 		if (statIntellect > 100)
 			statIntellect = 100;
 
-		if (map.heat < 99 && getCollision(8, 8, true) == COLL_DETECTOR) {
+		if ((tick & 3) == 0 && map.heat < 99 && getCollision(8, 8, true) == COLL_DETECTOR) {
 			boolean hasContraband = false;
 			int pouch = -1;
 			for (int i = 0; i < 6; ++i) {
@@ -2325,6 +2325,17 @@ class NPC implements Constants {
 					map.playerWasOnShowers = true;
 				}
 				break;
+			}
+		}
+
+		if (layer == LAYER_UNDERGROUND && (tick & 31) == 0) {
+			// TODO
+			if (hasItem(Items.FLASHLIGHT) != -1) {
+				map.undergroundLight = 3.1f;
+			} else if (hasItem(Items.CANDLE) != -1) {
+				map.undergroundLight = 2.1f;
+			} else {
+				map.undergroundLight = 1.1f;
 			}
 		}
 
