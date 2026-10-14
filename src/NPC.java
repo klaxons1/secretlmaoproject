@@ -2350,7 +2350,7 @@ class NPC implements Constants {
 				}
 				if ((tick & 63) == 0) {
 					damage(null, 20);
-					Sound.playEffect(Constants.SFX_RUMBLE); // TODO
+					Sound.playEffect(Constants.SFX_SHOOT);
 				}
 			} else if (heatTimer == 0 && outfitId == Textures.OUTFIT_GUARD) {
 				map.heat += 2;

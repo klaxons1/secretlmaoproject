@@ -882,6 +882,7 @@ public class ResourceBuilder implements Constants {
 				"lose.wav", "44100", null,
 				"throw.wav", "32000", null,
 				"hp.wav", "32000", null,
+				"shoot.wav", "32000", null,
 		};
 		for (int i = 0; i < sounds.length; i += 3) {
 			String file = sounds[i];

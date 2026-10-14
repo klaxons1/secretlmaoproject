@@ -100,6 +100,7 @@ public class Sound implements Runnable, PlayerListener, Constants {
 					loadEffect(SFX_LOSE, "/lose.wav");
 					loadEffect(SFX_THROW, "/throw.wav");
 					loadEffect(SFX_HP, "/hp.wav");
+					loadEffect(SFX_SHOOT, "/shoot.wav");
 					sfxPrefetched = true;
 				} catch (Exception e) {
 					unloadEffects();
