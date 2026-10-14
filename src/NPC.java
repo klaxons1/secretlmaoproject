@@ -917,7 +917,8 @@ class NPC implements Constants {
 						if (player.outfitId == Textures.OUTFIT_GUARD) {
 							// increase heat a little, if seeing player in disguise
 							map.heat += 2;
-							heatTimer = TPS;
+							map.heatTimer = TPS;
+							map.animateHeat = TPS >> 1;
 						} else if (player.climbed) {
 							// guard warns player if they're standing on desk or table
 							heat("Get off that table!", 10);
@@ -1940,6 +1941,7 @@ class NPC implements Constants {
 		if (map.heat > 99) map.heat = 99;
 
 		heatTimer = TPS * 3;
+		map.animateHeat = TPS >> 1;
 		if (dialog != null) {
 			this.dialog = dialog;
 			dialogTimer = TPS * 2;
@@ -2202,6 +2204,7 @@ class NPC implements Constants {
 		if (health <= 0 && animation != ANIM_STUNNED) {
 			// defeated
 			map.heat = 0;
+			map.animateHeat = 0;
 			animation = ANIM_STUNNED;
 			chaseTarget = null;
 			map.action = ACT_NONE;
@@ -2334,20 +2337,25 @@ class NPC implements Constants {
 			}
 		}
 
-		// sniper TODO
-		if (map.hasSnipers && (tick & 63) == 0 && health > 0
+		// snipers
+		if (map.hasSnipers && (tick & 31) == 0 && health > 0
 				&& (map.time >= 8 * 60 && map.time < 22 * 60)
 				&& (layer == LAYER_ROOF || (layer == LAYER_GROUND
 				&& getCollision(x, y, true) == COLL_NONE
 				&& !Game.isFloor(map.tiles[LAYER_GROUND][(x / TILE_SIZE) + ((y + 5) / TILE_SIZE) * map.width])))) {
-			if (heatTimer == 0 && outfitId == Textures.OUTFIT_GUARD) {
-				map.heat += 2;
-				heatTimer = TPS;
-			}
 			if (map.heat >= 90 || (layer == LAYER_ROOF && outfitId != Textures.OUTFIT_GUARD)) {
-				map.heat = 99;
-				damage(null, 20);
-				Sound.playEffect(Constants.SFX_RUMBLE); // TODO
+				if (map.heat < 99) {
+					map.heat = 99;
+					map.animateHeat = TPS >> 1;
+				}
+				if ((tick & 63) == 0) {
+					damage(null, 20);
+					Sound.playEffect(Constants.SFX_RUMBLE); // TODO
+				}
+			} else if (heatTimer == 0 && outfitId == Textures.OUTFIT_GUARD) {
+				map.heat += 2;
+				map.heatTimer = TPS;
+				map.animateHeat = TPS >> 1;
 			}
 		}
 

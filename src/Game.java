@@ -147,6 +147,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 	float undergroundLight = 1.1f;
 	int usedKeySlot = -1;
 	int usedContrabandPouch = -1;
+	int heatTimer;
 
 	boolean updateInteractFocus;
 	boolean hasInteractFocus;
@@ -169,6 +170,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 	NPC profileOpen;
 	int profileTab;
 	boolean outOfRange; // always false
+	int animateHeat;
 
 	boolean debugFreecam;
 
@@ -494,12 +496,32 @@ public class Game extends GameCanvas implements Runnable, Constants {
 				drawNumber(g, player.health, fontImg, 0, 11, 9, 11, 13, 14);
 
 				// heat
-				g.drawRegion(fontImg, 90, 22, 9, 11, 0, 3, 26, 0);
-				drawNumber(g, heat, fontImg, 0, 22, 9, 11, 13, 26);
+				{
+					n = intToCharBuffer(heat, 0);
+					int bounce = animateHeat;
+					int sx = 0, sy = 22, cw = 9, ch = 11, dx = 13, dy = 26;
+					for (int i = -1; i <= n; i++) {
+						int by = 0;
+						if (bounce != 0) {
+							by = (int) (Math.sin(bounce / 3.6f + (i + 1) * 1.5f) * 3);
+						}
+						if (i == -1) {
+							g.drawRegion(fontImg, 90, 22, 9, 11, 0, 3, 26 + by, 0);
+							continue;
+						}
+						if (i == n) {
+							g.drawRegion(fontImg, 101, 22, 9, 11, 0, dx, 26 + by, 0);
+							continue;
+						}
+						g.drawRegion(fontImg, sx + (s[i] - '0') * cw, sy, cw, ch, 0, dx, dy + by, 0);
+						dx += cw;
+					}
+				}
 
 				// fatigue
 				g.drawRegion(fontImg, 90, 33, 9, 11, 0, 3, 38, 0);
-				drawNumber(g, fatigue, fontImg, 0, 33, 9, 11, 13, 38);
+				x = drawNumber(g, fatigue, fontImg, 0, 33, 9, 11, 13, 38);
+				g.drawRegion(fontImg, 101, 33, 9, 11, 0, x, 38, 0);
 
 				// general debug
 				fontImg = Game.markersTexture;
@@ -3732,6 +3754,9 @@ public class Game extends GameCanvas implements Runnable, Constants {
 			}
 			--hitMarkers[(i << 2) | 1];
 		}
+
+		if (animateHeat != 0) --animateHeat;
+		if (heatTimer != 0) --heatTimer;
 
 		// tick characters
 
@@ -8600,13 +8625,14 @@ public class Game extends GameCanvas implements Runnable, Constants {
 		return drawText(g, text, (w - textWidth(text, font)) >> 1, y, font);
 	}
 
-	static void drawNumber(Graphics g, int v, Image img, int sx, int sy, int cw, int ch, int dx, int dy) {
+	static int drawNumber(Graphics g, int v, Image img, int sx, int sy, int cw, int ch, int dx, int dy) {
 		char[] s = charBuffer;
 		int n = intToCharBuffer(v, 0);
 		for (int i = 0; i < n; i++) {
 			g.drawRegion(img, sx + (s[i] - '0') * cw, sy, cw, ch, 0, dx, dy, 0);
 			dx += cw;
 		}
+		return dx;
 	}
 
 	// only accepts positive numbers
