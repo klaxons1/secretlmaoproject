@@ -889,7 +889,8 @@ class NPC implements Constants {
 						map.note = NOTE_SOLITARY;
 					}
 					if (map.heat >= 90 || map.lockdown || player.fighting != 0
-							|| map.action == ACT_CHIPPING
+							|| map.action == ACT_CHIPPING || map.action == ACT_CUTTING
+							|| map.action == ACT_CUTTING_VENT || map.action == ACT_UNSCREWING
 							|| (map.action == ACT_SEARCHING && player.job != JOB_MAILMAN && player.job != JOB_LIBRARY)) {
 						// guard attack player if they saw them stealing from others pocket
 						//  or is searching others desk, except their job is mailman,
@@ -899,12 +900,13 @@ class NPC implements Constants {
 						aiWaitTimer = 0;
 						map.playerSeenByGuards = true;
 
-						heat("Oi, " + player.name + '!', map.action == ACT_CHIPPING ? 99 : 30);
+						heat("Oi, " + player.name + '!',
+								map.action == ACT_CHIPPING || map.action == ACT_CUTTING
+								|| map.action == ACT_CUTTING_VENT || map.action == ACT_UNSCREWING ? 99 : 30);
 						if (map.lockdown && map.guardsDown < 3) {
 							map.lockdown = false;
 						}
-					} else if (map.action == ACT_DIGGING || map.action == ACT_CUTTING
-							|| map.action == ACT_CUTTING_VENT || map.action == ACT_UNSCREWING) {
+					} else if (map.action == ACT_DIGGING) {
 						map.note = NOTE_SOLITARY;
 					} else if (heatTimer == 0 && player.health > 0) {
 						if (player.outfitId == Textures.OUTFIT_GUARD) {

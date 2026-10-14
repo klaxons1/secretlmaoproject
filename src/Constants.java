@@ -206,7 +206,7 @@ public interface Constants {
 			JOB_LIBRARY = 10;
 
 	static final int NOTE_WELCOME = 0,
-			NOTE_JOB_LOST = 1,
+			NOTE_FIRED = 1,
 			NOTE_SOLITARY = 2,
 			NOTE_RIOT = 3;
 

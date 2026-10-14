@@ -760,7 +760,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 							break;
 						}
 						break;
-					case NOTE_JOB_LOST:
+					case NOTE_FIRED:
 						t = "Due to your sheer incompetence and inability to reach the quotas we've set, we've taken away your job.\n\nOnce you pull yourself together and decide to try harder you may reapply at the job board.";
 						break;
 					case NOTE_SOLITARY:
@@ -3628,7 +3628,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 							// fire player
 							jobs[player.job] &= ~JOB_OCCUPIED_BIT;
 							player.job = 0;
-							note = NOTE_JOB_LOST;
+							note = NOTE_FIRED;
 //				Sound.playEffect(Sound.SFX_OPEN);
 						}
 						break;
