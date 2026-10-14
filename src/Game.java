@@ -4847,7 +4847,8 @@ public class Game extends GameCanvas implements Runnable, Constants {
 				int w = npc.dialogW;
 				int h = npc.dialogH;
 				fontColor = FONT_COLOR_BLACK;
-				g.setColor(!npc.ai ? 0xFFFF57 : npc.bodyId == Textures.GUARD ? 0xA9E6FC : 0xFFFFFF);
+				g.setColor(!npc.ai ? 0xFFFF57 :
+						npc.bodyId == Textures.GUARD || npc.bodyId == Textures.CHECKPOINT_GUARD? 0xA9E6FC : 0xFFFFFF);
 				g.fillRect(x + 8 - (w >> 1) - 3, y - 3 - h, w + 6, h);
 				g.setColor(0);
 				g.drawRect(x + 8 - (w >> 1) - 3, y - 3 - h, w + 6, h);

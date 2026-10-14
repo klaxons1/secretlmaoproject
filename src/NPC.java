@@ -417,7 +417,7 @@ class NPC implements Constants {
 				animation = ANIM_PUNCH;
 				animationTimer = TPS >> 2;
 
-				fighting = 2;
+				fighting = 4;
 
 				if (visible) {
 					Sound.playEffect(Sound.SFX_ENHIT);
@@ -1538,15 +1538,19 @@ class NPC implements Constants {
 					int x = map.objects[LAYER_GROUND][obj + 3];
 					int y = map.objects[LAYER_GROUND][obj + 4];
 
-					for (int n = 0; n < 4; ++n) {
-						int ox = Game.PATH_DIR_POSITIONS[(3 - n) << 1];
-						int oy = Game.PATH_DIR_POSITIONS[((3 - n) << 1) + 1];
-						// FIXME aioob
-						if (map.solid[LAYER_GROUND][x + ox + (y + oy) * map.width] == 0) {
-							x += ox;
-							y += oy;
-							break;
+					try {
+						for (int n = 0; n < 4; ++n) {
+							int ox = Game.PATH_DIR_POSITIONS[(3 - n) << 1];
+							int oy = Game.PATH_DIR_POSITIONS[((3 - n) << 1) + 1];
+							// FIXME aioob
+							if (map.solid[LAYER_GROUND][x + ox + (y + oy) * map.width] == 0) {
+								x += ox;
+								y += oy;
+								break;
+							}
 						}
+					} catch (Exception e) {
+						break desk;
 					}
 
 					if (map.pathfind(this.x / TILE_SIZE, (this.y + 5) / TILE_SIZE, direction, pathX = x, pathY = y, false, path)) {
