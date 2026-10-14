@@ -426,13 +426,6 @@ class NPC implements Constants {
 					map.effects[i + 1] = 1;
 					map.effects[i + 2] = chaseTarget.x;
 					map.effects[i + 3] = chaseTarget.y;
-
-					if (map.effects[9] == 0) {
-						map.effects[8] = 224;
-						map.effects[9] = 2;
-						map.effects[10] = chaseTarget.x;
-						map.effects[11] = chaseTarget.y;
-					}
 				}
 
 				int damage = statStrength / 14;
@@ -1972,6 +1965,13 @@ class NPC implements Constants {
 
 		if (visible) {
 			map.addHitMarker((!ai && source == null) || source.ai ? -n : n, x, y - 5);
+
+			if (map.effects[9] == 0) {
+				map.effects[8] = 224;
+				map.effects[9] = 2;
+				map.effects[10] = chaseTarget.x;
+				map.effects[11] = chaseTarget.y;
+			}
 		}
 
 		health -= n;
@@ -2338,7 +2338,7 @@ class NPC implements Constants {
 		}
 
 		// snipers
-		if (map.hasSnipers && (tick & 31) == 0 && health > 0
+		if (map.hasSnipers && (tick & 31) == 0 && health > 0 && !map.lockdown
 				&& (map.time >= 8 * 60 && map.time < 22 * 60)
 				&& (layer == LAYER_ROOF || (layer == LAYER_GROUND
 				&& getCollision(x, y, true) == COLL_NONE
