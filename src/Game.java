@@ -2020,6 +2020,10 @@ public class Game extends GameCanvas implements Runnable, Constants {
 
 					player.inventory[1] = Items.TIMBER_BRACE | Items.ITEM_DEFAULT_DURABILITY;
 
+//					player.inventory[2] = Items.ID_PAPERS;
+//					player.inventory[3] = Items.UNSIGNED_ID_PAPERS;
+//					entranceOpen = true;
+
 //					player.inventory[1] = Items.POSTER | Items.ITEM_DEFAULT_DURABILITY;
 //					player.inventory[2] = Items.POWERED_SCREWDRIVER | Items.ITEM_DEFAULT_DURABILITY;
 //
@@ -2037,9 +2041,9 @@ public class Game extends GameCanvas implements Runnable, Constants {
 //					player.inventory[4] = Items.ENTRANCE_KEY | Items.ITEM_DEFAULT_DURABILITY;
 //					player.inventory[5] = Items.CELL_KEY | Items.ITEM_DEFAULT_DURABILITY;
 				}
-//				if (key == '7' && mapLoaded) {
-//					debugFreecam = !debugFreecam;
-//				}
+				if (key == '0' && mapLoaded) {
+					debugFreecam = !debugFreecam;
+				}
 			}
 		} catch (Exception ignored) {}
 	}
@@ -2454,6 +2458,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 
 	boolean cellsClosed = true;
 	boolean entranceOpen = false;
+	boolean checkpointOpen;
 	boolean lockdown;
 	boolean willLockdown;
 	boolean playerWasOnRollcall;
@@ -2696,6 +2701,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 							npc.bedY = y;
 							npc.x = npcSpawnX * TILE_SIZE;
 							npc.y = npcSpawnY * TILE_SIZE;
+							npc.targetReached = true;
 							npc.load(Textures.DOCTOR, -1);
 							break;
 						}
@@ -2706,6 +2712,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 							npc.bedY = y;
 							npc.x = npcSpawnX * TILE_SIZE;
 							npc.y = npcSpawnY * TILE_SIZE;
+							npc.targetReached = true;
 							npc.load(Textures.EMPLOYMENT_OFFICER, -1);
 							break;
 						}
@@ -2715,6 +2722,14 @@ public class Game extends GameCanvas implements Runnable, Constants {
 							npc.x = x * TILE_SIZE;
 							npc.y = y * TILE_SIZE;
 							npc.load(Textures.SNIPER, -1);
+							break;
+						}
+						case Objects.JUNGLE_CHECKPOINT_GUARD: {
+							NPC npc = chars[npcNum] = new NPC(this);
+							npc.id = npcNum++;
+							npc.x = x * TILE_SIZE;
+							npc.y = y * TILE_SIZE;
+							npc.load(Textures.CHECKPOINT_GUARD, -1);
 							break;
 						}
 						}
@@ -3405,7 +3420,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 				npc.yFloat = npc.y = npc.bedY * TILE_SIZE + 2;
 				npc.aiState = NPC.AI_RESET;
 				npc.selling = false;
-			} else if (npc.bodyId != Textures.SNIPER) {
+			} else if (npc.bodyId != Textures.SNIPER && npc.bodyId != Textures.CHECKPOINT_GUARD) {
 				npc.correctPath = false;
 				npc.xFloat = npc.x = npcSpawnX * TILE_SIZE;
 				npc.yFloat = npc.y = npcSpawnY * TILE_SIZE;
@@ -5550,6 +5565,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 		case Objects.SUN_LOUNGER:
 			return Game.COLL_SOLID_INTERACT;
 		case Objects.VENT_SLATS:
+		case Objects.DOOR_JUNGLE_ENTRANCE:
 			return Game.COLL_SOLID;
 		case Objects.DINING_TABLE:
 		case Objects.SERVING_TABLE:
@@ -5578,7 +5594,6 @@ public class Game extends GameCanvas implements Runnable, Constants {
 		case Objects.DOOR_MAILROOM:
 		case Objects.DOOR_GARDENING:
 		case Objects.DOOR_TAILORSHOP:
-		case Objects.DOOR_JUNGLE_ENTRANCE:
 		case Objects.DOOR_UTILITY_VENT:
 			return Game.COLL_DOOR_STAFF;
 		case Objects.SHOWER:
@@ -8126,7 +8141,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 
 	// region Textures
 
-	static Image[] sprites = new Image[18];
+	static Image[] sprites = new Image[19];
 
 	static Image tilesTexture;
 	static Image itemsTexture;
@@ -8176,6 +8191,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 			loadSpritesheet(Textures.WARDEN, "/warden.png");
 			loadSpritesheet(Textures.OUTFIT_INMATE, "/outfit0.png");
 			loadSpritesheet(Textures.OUTFIT_GUARD, "/outfit1.png");
+			sprites[Textures.CHECKPOINT_GUARD] = objectsTexture;
 			hudSymbolsTexture = loadTiles("/huds.png");
 			markersTexture = loadTiles("/markers.png");
 		} catch (Exception e) {
@@ -8627,34 +8643,32 @@ public class Game extends GameCanvas implements Runnable, Constants {
 			if (tw >= maxWidth) {
 				int i1 = 0;
 				int l = s.length();
-				for (int i2 = 0; i2 < l; i2++) {
-					if (substringWidth(s, i1, i2+1, font) >= maxWidth) {
-						space: {
-							for (int j = i2; j > i1; j--) {
-								char c = s.charAt(j);
-								if (c == ' ' || (c >= ',' && c <= '/')) {
-									String t = s.substring(i1, j + 1);
-									tw = textWidth(t, font);
-									if (tw > resWidth) resWidth = tw;
-									out[i] = t;
-									out = insert(out, i + 1, s.substring(j + 1));
-									count++;
-									i += 1;
-									i2 = i1 = j + 1;
-									break space;
-								}
-							}
-							i2 = i2 - 2;
-							String t = s.substring(i1, i2);
+				a: for (int i2 = 0; i2 < l; i2++) {
+					if (substringWidth(s, i1, i2+1, font) < maxWidth) continue;
+
+					for (int j = i2; j > i1; j--) {
+						char c = s.charAt(j);
+						if (c == ' ' || (c >= ',' && c <= '/')) {
+							String t = s.substring(i1, j + 1);
 							tw = textWidth(t, font);
 							if (tw > resWidth) resWidth = tw;
 							out[i] = t;
-							out = insert(out, i + 1, s.substring(i2));
+							out = insert(out, i + 1, s.substring(j + 1));
 							count++;
-							i2 = i1 = i2 + 1;
 							i += 1;
+							i2 = i1 = j + 1;
+							continue a;
 						}
 					}
+					i2 = i2 - 2;
+					String t = s.substring(i1, i2);
+					tw = textWidth(t, font);
+					if (tw > resWidth) resWidth = tw;
+					out[i] = t;
+					out = insert(out, i + 1, s.substring(i2));
+					count++;
+					i2 = i1 = i2 + 1;
+					i += 1;
 				}
 			} else if (tw > resWidth) {
 				resWidth = tw;

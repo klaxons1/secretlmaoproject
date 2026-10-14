@@ -40,6 +40,7 @@ public interface Textures {
 			DOCTOR = 14,
 			WARDEN = 15,
 			OUTFIT_INMATE = 16,
-			OUTFIT_GUARD = 17;
+			OUTFIT_GUARD = 17,
+			CHECKPOINT_GUARD = 18;
 	
 }

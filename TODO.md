@@ -54,6 +54,7 @@
 - [x] Timber braces
 - [x] Profile
 - [x] Shops
+- [x] Jungle check point
 - [ ] NPC interaction (WIP)
 - [ ] Cameras
 - [ ] Player jobs (WIP)
@@ -72,7 +73,6 @@
 - [ ] Molten chocolate
 - [ ] Tying npcs
 - [ ] Guards picking up items
-- [ ] Jungle check point
 - [ ] Roof mechanics
 
 # Low priority

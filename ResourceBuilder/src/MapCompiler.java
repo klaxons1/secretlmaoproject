@@ -579,6 +579,14 @@ public class MapCompiler implements Constants {
 								npc.add(new int[] { objectId, x, y });
 								break object;
 							}
+							case Objects.JUNGLE_CHECKPOINT_GUARD: {
+								npc.add(new int[] { objectId, x, y + 1 });
+								break object;
+							}
+							case Objects.DOOR_JUNGLE_ENTRANCE: {
+								sprite = 194;
+								break;
+							}
 							case Objects.LADDER_UP: {
 								checkNotLayer("ladder up", objectId, x, y, layer, LAYER_ROOF);
 								sprite = 18;

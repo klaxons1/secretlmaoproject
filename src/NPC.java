@@ -196,6 +196,10 @@ class NPC implements Constants {
 		outfitItem = (guard ? Items.GUARD_OUTFIT : Items.INMATE_OUTFIT) | Items.ITEM_DEFAULT_DURABILITY;
 		weapon = Items.ITEM_NULL;
 
+		if (bodyId == Textures.CHECKPOINT_GUARD) {
+			direction = 109;
+		}
+
 		(this.body = new Sprite(Game.sprites[bodyId], 16, 16))
 		.setRefPixelPosition(8, 8);
 
@@ -211,9 +215,7 @@ class NPC implements Constants {
 	}
 	
 	void paint(Graphics g, int x, int y) {
-		if (hidden)
-			return;
-		if (bodyId == Textures.SNIPER && (map.time < 8 * 60 || map.time > 22 * 60))
+		if (hidden || bodyId == Textures.SNIPER && (map.time < 8 * 60 || map.time > 22 * 60))
 			return;
 		int frame = inmate && ai ? animationFrame : Game.animationFrame & 1;
 		
@@ -481,11 +483,26 @@ class NPC implements Constants {
 			}
 			if (bodyId == Textures.SNIPER) return;
 
-			if (pathX == map.npcSpawnX && pathY == map.npcSpawnY) {
+			if (x / TILE_SIZE == map.npcSpawnX && y / TILE_SIZE == map.npcSpawnY) {
 				hidden = true;
 			} else {
 				// TODO say
 			}
+		}
+		if (bodyId == Textures.CHECKPOINT_GUARD) {
+			if (!visible || map.checkpointOpen || (tick & 15) != 0) return;
+			if (aiWaitTimer != 0 && --aiWaitTimer != 0)
+				return;
+
+			int dx = map.player.x - x, dy = map.player.y - y;
+			int dist = dx * dx + dy * dy;
+			if (dist < NPC_VIEW_DISTANCE) {
+				dialog = "Papers please!";
+				dialogTimer = TPS * 2;
+				aiWaitTimer = 10;
+			}
+
+			return;
 		}
 
 		if (inmate && ((tick + typedId) % ANIMATION_TICKS) == 0 && ++animationFrame > 1)
@@ -1452,17 +1469,13 @@ class NPC implements Constants {
 						int x, y;
 						if (obj == Objects.DESK) {
 							obj = map.containers[map.pickRandomNPC(false, false).desk];
-							if (obj == -1) break work;
-
-							x = map.objects[LAYER_GROUND][obj + 3];
-							y = map.objects[LAYER_GROUND][obj + 4];
 						} else {
 							obj = map.findObject(obj, LAYER_GROUND, 0);
-							if (obj == -1) break work;
-
-							x = map.objects[LAYER_GROUND][obj + 3];
-							y = map.objects[LAYER_GROUND][obj + 4];
 						}
+						if (obj == -1) break work;
+
+						x = map.objects[LAYER_GROUND][obj + 3];
+						y = map.objects[LAYER_GROUND][obj + 4];
 
 						solid: {
 							if (map.solid[LAYER_GROUND][x + y * map.width] != 0) {
@@ -1521,6 +1534,7 @@ class NPC implements Constants {
 					for (int n = 0; n < 4; ++n) {
 						int ox = Game.PATH_DIR_POSITIONS[(3 - n) << 1];
 						int oy = Game.PATH_DIR_POSITIONS[((3 - n) << 1) + 1];
+						// FIXME aioob
 						if (map.solid[LAYER_GROUND][x + ox + (y + oy) * map.width] == 0) {
 							x += ox;
 							y += oy;
@@ -3104,6 +3118,41 @@ class NPC implements Constants {
 					inventory[slot] = Items.ITEM_NULL;
 					return;
 				}
+			}
+
+			if (item == Items.UNSIGNED_ID_PAPERS || item == Items.ID_PAPERS) {
+				NPC npc = null;
+				int n = map.npcNum;
+				for (int i = 1; i < n; ++i) {
+					if (map.chars[i] != null && map.chars[i].bodyId == Textures.CHECKPOINT_GUARD) {
+						npc = map.chars[i];
+						break;
+					}
+				}
+
+				if (npc == null) return;
+				int dx = npc.x - x, dy = npc.y - y;
+				int dist = dx * dx + dy * dy;
+				if (dist < NPC_VIEW_DISTANCE) return;
+
+				npc.dialogTimer = TPS * 3;
+				if (item == Items.ID_PAPERS) {
+					int i = 0;
+					for (;;) {
+						i = map.findObject(Objects.DOOR_JUNGLE_ENTRANCE, LAYER_GROUND, i);
+						if (i == -1) break;
+						map.objects[layer][i + 2] |= 1 << 12;
+						map.solid[layer][map.objects[layer][i + 3] + map.objects[layer][i + 4] * map.width] = COLL_NONE;
+						++i;
+					}
+
+					map.checkpointOpen = true;
+					npc.dialog = "Seeya tomorrow!";
+					return;
+				}
+
+				npc.dialog = "Those papers aren't even signed!";
+				return;
 			}
 
 			if (Game.getItemAttack(item) != 0 && weapon == Items.ITEM_NULL) {

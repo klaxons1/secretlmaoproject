@@ -497,12 +497,15 @@ public class ResourceBuilder implements Constants {
 				"Dummies_0-0_0.png", 9, 10, // 1x2
 				"Truck_0-24_0.png", 10, 10, // 2x3
 				"Container - Gardening_0-0_0.png", 0, 12, // 2x1
+				"Checkpoint_0-0_0.png", 2, 12,
 				"Bed - Lounger_0-24_0.png", 3, 12, // 1x2
 				"Truck_0-16_0.png", 4, 12, // 3x2
 				"Truck_0-0_0.png", 7, 12, // 3x2
 				"Shower_0-0_0.png", 0, 13,
 				"Shower_0-0_1.png", 1, 13,
 				"Shower_0-0_2.png", 2, 13,
+				"Checkpoint - Guard_0-8_0.png", 10, 12, // 1x2
+				"Checkpoint - Guard_0-8_1.png", 11, 12, // 1x2
 				"container - mail_0-0_0.png", 0, 14, // 2x2
 				"Library 2_0-0_0.png", 2, 14, // 2x2
 				"POWER GEN_0-0_0.png", 4, 14, // 2x2
