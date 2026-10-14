@@ -2010,7 +2010,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 					fatigue = 0;
 					money += 50;
 					player.health = 50;
-					heat = 0;
+					heat = 99;
 
 					player.statSpeed = 100;
 					player.statStrength = 100;
@@ -2360,6 +2360,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 					Sound.playEffect(Sound.SFX_RUMBLE);
 
 					try {
+						mapLoaded = false;
 						if (loadMap()) {
 							mapLoaded = true;
 
@@ -2473,6 +2474,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 	boolean playerWasOnShowers;
 	int lockdownTimer;
 	boolean rollcallFace; // true if guards are above inmates
+	boolean hasSnipers;
 
 	int guardsDown;
 	int guards;
@@ -2728,6 +2730,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 							npc.x = x * TILE_SIZE;
 							npc.y = y * TILE_SIZE;
 							npc.load(Textures.SNIPER, -1);
+							hasSnipers = true;
 							break;
 						}
 						case Objects.JUNGLE_CHECKPOINT_GUARD: {
@@ -2768,10 +2771,12 @@ public class Game extends GameCanvas implements Runnable, Constants {
 					short num = in.readShort();
 
 					for (int i = 0; i < num; ++i) {
-						// TODO
-						in.readInt();
-						in.readByte();
-						in.readByte();
+						int item = in.readInt();
+						int x = in.readByte();
+						int y = in.readByte();
+						int layer = in.readByte();
+
+						if (newGame) dropItem(x, y, item, layer);
 					}
 				}
 
@@ -4895,7 +4900,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 			}
 		}
 
-//		// zones debug
+		// zones debug
 //		int[] zones = this.zones;
 //		int n = zones[0];
 //		for (int i = 0; i < n; ++i) {
@@ -5097,7 +5102,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 
 	int dropItem(int x, int y, int item, int layer) {
 		final int pos = x + y * width;
-		if (solid[layer][pos] != COLL_NONE)
+		if (mapLoaded && solid[layer][pos] != COLL_NONE)
 			return -2;
 		if (peekItem(x, y, layer) != Items.ITEM_NULL)
 			return -1;

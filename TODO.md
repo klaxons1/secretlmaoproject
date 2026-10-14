@@ -55,6 +55,7 @@
 - [x] Profile
 - [x] Shops
 - [x] Jungle check point
+- [x] Contraband pouch
 - [ ] NPC interaction (WIP)
 - [ ] Cameras
 - [ ] Player jobs (WIP)
@@ -69,12 +70,12 @@
 - [ ] Employment board
 - [ ] Stepladder
 - [ ] Crafting notes
-- [ ] Contraband pouch
 - [ ] Molten chocolate
 - [ ] Tying npcs
 - [ ] Guards picking up items
 - [ ] Roof mechanics
 - [ ] Jeep
+- [ ] More gym objects
 
 # Low priority
 

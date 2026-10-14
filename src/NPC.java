@@ -215,7 +215,7 @@ class NPC implements Constants {
 	}
 	
 	void paint(Graphics g, int x, int y) {
-		if (hidden || bodyId == Textures.SNIPER && (map.time < 8 * 60 || map.time > 22 * 60))
+		if (hidden || bodyId == Textures.SNIPER && (map.time < 8 * 60 || map.time >= 22 * 60))
 			return;
 		int frame = inmate && ai ? animationFrame : Game.animationFrame & 1;
 		
@@ -1969,7 +1969,7 @@ class NPC implements Constants {
 		if (n < 1) n = 1;
 
 		if (visible) {
-			map.addHitMarker(source.ai ? -n : n, x, y - 5);
+			map.addHitMarker((!ai && source == null) || source.ai ? -n : n, x, y - 5);
 		}
 
 		health -= n;
@@ -2304,7 +2304,7 @@ class NPC implements Constants {
 			map.usedContrabandPouch = -1;
 		}
 
-		if (layer == LAYER_GROUND && outfitItem != Items.GUARD_OUTFIT && (tick & 15) == 0) {
+		if (layer == LAYER_GROUND && (outfitItem & Items.ITEM_ID_MASK) != Items.GUARD_OUTFIT && (tick & 15) == 0) {
 			// attendance
 			int schedule = map.schedule;
 			switch (schedule) {
@@ -2331,6 +2331,23 @@ class NPC implements Constants {
 					map.playerWasOnShowers = true;
 				}
 				break;
+			}
+		}
+
+		// sniper TODO
+		if (map.hasSnipers && (tick & 63) == 0 && health > 0
+				&& (map.time >= 8 * 60 && map.time < 22 * 60)
+				&& (layer == LAYER_ROOF || (layer == LAYER_GROUND
+				&& getCollision(x, y, true) == COLL_NONE
+				&& !Game.isFloor(map.tiles[LAYER_GROUND][(x / TILE_SIZE) + ((y + 5) / TILE_SIZE) * map.width])))) {
+			if (heatTimer == 0 && outfitId == Textures.OUTFIT_GUARD) {
+				map.heat += 2;
+				heatTimer = TPS;
+			}
+			if (map.heat >= 90 || (layer == LAYER_ROOF && outfitId != Textures.OUTFIT_GUARD)) {
+				map.heat = 99;
+				damage(null, 20);
+				Sound.playEffect(Constants.SFX_RUMBLE); // TODO
 			}
 		}
 

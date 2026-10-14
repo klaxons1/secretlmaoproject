@@ -651,7 +651,14 @@ public class MapCompiler implements Constants {
 								type = ZONE_JANITOR;
 							} else if ("Gardening".equals(key)) {
 								type = ZONE_GARDENING;
+							} else if ("SHU".equals(key)) {
+								type = ZONE_SHU;
+							} else if ("Safe1".equals(key)) {
+								type = ZONE_SAFE;
+							} else if ("Safe2".equals(key)) {
+								type = ZONE_SAFE; // TODO what does it do?
 							} else {
+								System.out.println("Unrecognized zone: " + key);
 								break zone;
 							}
 
@@ -1041,6 +1048,7 @@ public class MapCompiler implements Constants {
 				out.writeInt(arr[0]);
 				out.writeByte(arr[1]);
 				out.writeByte(arr[2]);
+				out.writeByte(arr[3]);
 			}
 
 			// schedule

@@ -23,7 +23,9 @@ public interface Constants {
 			ZONE_TAILORSHOP = 11,
 			ZONE_DELIVERIES = 12,
 			ZONE_JANITOR = 13,
-			ZONE_GARDENING = 14;
+			ZONE_GARDENING = 14,
+			ZONE_SHU = 15,
+			ZONE_SAFE = 16;
 
 	// schedule enum
 	int SC_LIGHTSOUT = 1,
