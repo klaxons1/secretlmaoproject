@@ -839,9 +839,9 @@ public class MapCompiler implements Constants {
 		if (guardCanteenPositions.size() < 3) {
 			throw new Exception("not enough guard canteen positions");
 		}
-		if (guardGymPositions.size() < 3) {
-			throw new Exception("not enough guard gym positions");
-		}
+//		if (guardGymPositions.size() < 3) {
+//			throw new Exception("not enough guard gym positions");
+//		}
 		if (guardShowerPositions.size() < 3) {
 			throw new Exception("not enough guard shower positions");
 		}
@@ -1125,6 +1125,31 @@ public class MapCompiler implements Constants {
 				/* 20 */ out.writeByte(SC_LIGHTSOUT);
 				/* 21 */ out.writeByte(SC_LIGHTSOUT);
 				/* 22 */ out.writeByte(SC_LIGHTSOUT);
+				/* 23 */ out.writeByte(SC_LIGHTSOUT);
+			} else if ("Camp".equals(routineSet)) {
+				/*  0 */ out.writeByte(SC_LIGHTSOUT);
+				/*  1 */ out.writeByte(SC_LIGHTSOUT);
+				/*  2 */ out.writeByte(SC_LIGHTSOUT);
+				/*  3 */ out.writeByte(SC_LIGHTSOUT);
+				/*  4 */ out.writeByte(SC_LIGHTSOUT);
+				/*  5 */ out.writeByte(SC_LIGHTSOUT);
+				/*  6 */ out.writeByte(SC_LIGHTSOUT);
+				/*  7 */ out.writeByte(SC_LIGHTSOUT);
+				/*  8 */ out.writeByte(SC_MORNING_ROLLCALL);
+				/*  9 */ out.writeByte(SC_BREAKFAST);
+				/* 10 */ out.writeByte(SC_WORK_PERIOD);
+				/* 11 */ out.writeByte(SC_WORK_PERIOD);
+				/* 12 */ out.writeByte(SC_WORK_PERIOD);
+				/* 13 */ out.writeByte(SC_EXERCISE_PERIOD);
+				/* 14 */ out.writeByte(SC_FREE_PERIOD);
+				/* 15 */ out.writeByte(SC_FREE_PERIOD);
+				/* 16 */ out.writeByte(SC_FREE_PERIOD);
+				/* 17 */ out.writeByte(SC_EVENING_MEAL);
+				/* 18 */ out.writeByte(SC_WORK_PERIOD);
+				/* 19 */ out.writeByte(SC_WORK_PERIOD);
+				/* 20 */ out.writeByte(SC_WORK_PERIOD);
+				/* 21 */ out.writeByte(SC_SHOWER_BLOCK);
+				/* 22 */ out.writeByte(SC_EVENING_ROLLCALL);
 				/* 23 */ out.writeByte(SC_LIGHTSOUT);
 			} else /* if ("MedSec".equals(routineSet)) */ {
 				/*  0 */ out.writeByte(SC_LIGHTSOUT);

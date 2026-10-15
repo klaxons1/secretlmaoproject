@@ -744,9 +744,14 @@ class NPC implements Constants {
 						break;
 					case SC_EXERCISE_PERIOD:
 						// gym
-						aiState = AI_WAYPOINT;
-						pathX = map.guardGymPositions[pos];
-						pathY = map.guardGymPositions[pos + 1];
+						if (pos < map.guardGymPositions.length) {
+							aiState = AI_WAYPOINT;
+							pathX = map.guardGymPositions[pos];
+							pathY = map.guardGymPositions[pos + 1];
+						} else {
+							aiState = AI_ROAM;
+							nextRoamPos = true;
+						}
 						correctPath = false;
 						break;
 					case SC_SHOWER_BLOCK:
