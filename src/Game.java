@@ -1533,9 +1533,15 @@ public class Game extends GameCanvas implements Runnable, Constants {
 									craftingMessage = "Inventory full";
 								} else {
 									Sound.playEffect(Constants.SFX_ACCOLADE);
-									craftSlots[0] = Items.ITEM_NULL;
-									craftSlots[1] = Items.ITEM_NULL;
-									craftSlots[2] = Items.ITEM_NULL;
+									for (int i = 0; i < 3; ++i) {
+										int item = craftSlots[i] & Items.ITEM_ID_MASK;
+										if (item == Items.CELL_KEY || item == Items.STAFF_KEY
+												|| item == Items.ENTRANCE_KEY || item == Items.UTILITY_KEY
+												|| item == Items.WORK_KEY) {
+											continue;
+										}
+										craftSlots[i] = Items.ITEM_NULL;
+									}
 									craftingMessage = null;
 								}
 								break;
@@ -2032,7 +2038,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 					fatigue = 0;
 					money += 50;
 					player.health = 50;
-					heat = 99;
+					heat = 0;
 
 					player.statSpeed = 100;
 					player.statStrength = 100;
@@ -2045,8 +2051,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 
 					player.inventory[1] = Items.TIMBER_BRACE | Items.ITEM_DEFAULT_DURABILITY;
 
-					player.inventory[2] = Items.CONTRABAND_POUCH | Items.ITEM_DEFAULT_DURABILITY;
-					player.inventory[3] = Items.PLASTIC_CELL_KEY | Items.ITEM_DEFAULT_DURABILITY;
+					player.inventory[2] = Items.WORK_KEY | Items.ITEM_DEFAULT_DURABILITY;
 
 //					player.inventory[2] = Items.ID_PAPERS;
 //					player.inventory[3] = Items.UNSIGNED_ID_PAPERS;
