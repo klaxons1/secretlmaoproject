@@ -58,6 +58,7 @@
 - [x] Contraband pouch
 - [x] Snipers
 - [x] Bed dummy
+- [x] Molten chocolate
 - [ ] NPC interaction (WIP)
 - [ ] Cameras
 - [ ] Player jobs (WIP)
@@ -81,7 +82,6 @@
 - [ ] Employment board
 - [ ] Stepladder
 - [ ] Crafting notes
-- [ ] Molten chocolate
 - [ ] Tying npcs
 - [ ] Guards picking up items
 - [ ] Roof mechanics

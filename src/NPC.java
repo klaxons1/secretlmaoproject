@@ -1988,10 +1988,6 @@ class NPC implements Constants {
 			attackTimer = 0;
 			fighting = 0;
 			stealing = 0;
-			if (source == map.player) {
-				// TODO
-				statOpinion -= 10;
-			}
 			return;
 		}
 		if (!ai) {
@@ -2005,8 +2001,7 @@ class NPC implements Constants {
 			return;
 
 		if (source == map.player) {
-			// TODO
-			statOpinion -= 10;
+			statOpinion -= 15;
 			if (guard) {
 				map.heat += 25;
 				map.heatTimer = TPS >> 1;
@@ -2809,7 +2804,8 @@ class NPC implements Constants {
 			if (wasTryingToMove) map.updateInteractFocus = true;
 		}
 
-		if (climbed || map.selectedInventory != -1) {
+		if (climbed || (map.selectedInventory != -1
+				&& (inventory[map.selectedInventory] & Items.ITEM_ID_MASK) != Items.CUP_OF_MOLTEN_CHOCOLATE)) {
 			map.interactNPC = null;
 		} else if ((tick & 3) == 0 || wasTryingToMove) {
 			map.interactNPC = getInteractNPC();
@@ -2969,6 +2965,20 @@ class NPC implements Constants {
 		x = (this.x + x) / TILE_SIZE;
 		y = (this.y + y) / TILE_SIZE;
 		if (item != -1) {
+			if (item == Items.CUP_OF_MOLTEN_CHOCOLATE
+					&& map.interactNPC != null && (map.interactNPC.inmate || map.interactNPC.guard)) {
+				NPC npc = map.interactNPC;
+				int dx = npc.x - this.x;
+				int dy = npc.y - this.y;
+				int d = dx * dx + dy * dy;
+				if (d < TILE_SIZE * TILE_SIZE) {
+					Sound.playEffect(Constants.SFX_ENHIT);
+					npc.health = 0;
+					npc.statOpinion = 0;
+					return;
+				}
+			}
+
 			byte t = map.tiles[layer][y * map.width + x];
 			if (b == COLL_SOLID || b == COLL_SOLID_TRANSPARENT || b == COLL_NOT_SOLID_INTERACT) {
 				int objIdx = -1;
@@ -3575,7 +3585,7 @@ class NPC implements Constants {
 									// TODO
 									npc.aiState = AI_RESET;
 									npc.aiWaitTimer = TPS;
-									npc.statOpinion--;
+									npc.statOpinion -= 5;
 									break;
 								}
 							}
@@ -3784,7 +3794,7 @@ class NPC implements Constants {
 								// TODO
 								npc.aiState = AI_RESET;
 								npc.aiWaitTimer = TPS;
-								npc.statOpinion--;
+								npc.statOpinion -= 5;
 								break;
 							}
 						}
