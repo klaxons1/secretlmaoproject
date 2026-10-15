@@ -2794,11 +2794,11 @@ public class Game extends GameCanvas implements Runnable, Constants {
 
 					for (int i = 0; i < num; ++i) {
 						int item = in.readInt();
+						int layer = in.readByte();
 						int x = in.readByte();
 						int y = in.readByte();
-						int layer = in.readByte();
 
-						if (newGame) dropItem(x, y, item, layer);
+						if (newGame) addItem(x, y, item, layer);
 					}
 				}
 
@@ -4077,27 +4077,6 @@ public class Game extends GameCanvas implements Runnable, Constants {
 			}
 		}
 
-		// items
-		{
-			int[] items = this.droppedItems[layer];
-			Image itemsImg = itemsTexture;
-			for (int i = 0; i < items[0]; ++i) {
-				int item = items[(i << 1) + 1];
-				if (item == Items.ITEM_NULL) {
-					continue;
-				}
-
-				int pos = items[(i << 1) + 2];
-				int x = (pos & 0xFF) * TILE_SIZE - viewX;
-				int y = ((pos >> 8) & 0xFF) * TILE_SIZE - viewY;
-				if (x < -TILE_SIZE || y < -TILE_SIZE || x >= viewWidth + TILE_SIZE || y >= viewHeight + TILE_SIZE) {
-					continue;
-				}
-				item = item & Items.ITEM_ID_MASK;
-				g.drawRegion(itemsImg, (item % TILE_SIZE) * TILE_SIZE, (item / TILE_SIZE) * TILE_SIZE, TILE_SIZE, TILE_SIZE, 0, x, y, 0);
-			}
-		}
-
 		// objects
 		int ticks = tickCounter;
 		short[] objects = this.objects[layer];
@@ -4135,6 +4114,27 @@ public class Game extends GameCanvas implements Runnable, Constants {
 				int w = (sprite & (3 << 8)) >> 4, h = (sprite & (3 << 10)) >> 6;
 				sprite &= 0xFF;
 				g.drawRegion(objectsImg, ((sprite & 0xFF) % TILE_SIZE) * TILE_SIZE, (sprite / TILE_SIZE) * TILE_SIZE, w, h, 0, x, y - h + TILE_SIZE, 0);
+			}
+		}
+
+		// items
+		{
+			int[] items = this.droppedItems[layer];
+			Image itemsImg = itemsTexture;
+			for (int i = 0; i < items[0]; ++i) {
+				int item = items[(i << 1) + 1];
+				if (item == Items.ITEM_NULL) {
+					continue;
+				}
+
+				int pos = items[(i << 1) + 2];
+				int x = (pos & 0xFF) * TILE_SIZE - viewX;
+				int y = ((pos >> 8) & 0xFF) * TILE_SIZE - viewY;
+				if (x < -TILE_SIZE || y < -TILE_SIZE || x >= viewWidth + TILE_SIZE || y >= viewHeight + TILE_SIZE) {
+					continue;
+				}
+				item = item & Items.ITEM_ID_MASK;
+				g.drawRegion(itemsImg, (item % TILE_SIZE) * TILE_SIZE, (item / TILE_SIZE) * TILE_SIZE, TILE_SIZE, TILE_SIZE, 0, x, y, 0);
 			}
 		}
 
@@ -5125,13 +5125,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 
 	int[][] droppedItems; // {count, [item, pos], ...} for each layer
 
-	int dropItem(int x, int y, int item, int layer) {
-		final int pos = x + y * width;
-		if (mapLoaded && solid[layer][pos] != COLL_NONE)
-			return -2;
-		if (peekItem(x, y, layer) != Items.ITEM_NULL)
-			return -1;
-
+	void addItem(int x, int y, int item, int layer) {
 		int[] items = droppedItems[layer];
 
 		for (;;) {
@@ -5141,7 +5135,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 					items[(i << 1) + 1] = item;
 					if (items[(i << 1) + 2] != -1) items[0]++;
 					items[(i << 1) + 2] = (x & 0xFF) | ((y & 0xFF) << 8);
-					return 0;
+					return;
 				}
 			}
 

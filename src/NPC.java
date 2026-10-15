@@ -3837,12 +3837,12 @@ class NPC implements Constants {
 
 		// drop selected item
 		if (item != -1) {
-			int r = map.dropItem(x, y, inventory[slot], layer);
-			if (r == 0) {
+			if (map.peekItem(x, y, layer) != Items.ITEM_NULL || map.solid[layer][x + y * map.width] != COLL_NONE) {
+				Sound.playEffect(Sound.SFX_LOSE);
+			} else {
+				map.addItem(x, y, inventory[slot], layer);
 				Sound.playEffect(Sound.SFX_THROW);
 				inventory[slot] = Items.ITEM_NULL;
-			} else {
-				Sound.playEffect(Sound.SFX_LOSE);
 			}
 			return;
 		}

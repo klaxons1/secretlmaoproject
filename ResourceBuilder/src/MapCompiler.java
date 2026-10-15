@@ -833,10 +833,9 @@ public class MapCompiler implements Constants {
 		if (gymPositions.size() < inmates) {
 			throw new Exception("not enough gym objects");
 		}
-		// FIXME fails on san pancho
-//		if (showerPositions.size() < inmates) {
-//			throw new Exception("not enough shower positions");
-//		}
+		if (showerPositions.size() < 2) {
+			throw new Exception("not enough shower positions");
+		}
 		if (containers.size() < inmates) {
 			throw new Exception("not enough containers");
 		}
@@ -844,7 +843,7 @@ public class MapCompiler implements Constants {
 		// hard-coded map fixes
 
 		if ("jungle.map".equals(inputPath.getFileName().toString())) {
-			items.add(new int[] { Items.UNSIGNED_ID_PAPERS, LAYER_GROUND, 0, 0 }); // FIXME
+			items.add(new int[] { Items.UNSIGNED_ID_PAPERS | Items.ITEM_DEFAULT_DURABILITY, LAYER_GROUND, 45, 9 });
 		}
 
 		// write
