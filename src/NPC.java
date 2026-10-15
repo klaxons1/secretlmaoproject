@@ -216,7 +216,7 @@ class NPC implements Constants {
 	}
 	
 	void paint(Graphics g, int x, int y) {
-		if (hidden || bodyId == Textures.SNIPER && (map.time < 8 * 60 || map.time >= 23 * 60))
+		if (hidden || bodyId == Textures.SNIPER && (map.time < 6 * 60 || map.time >= 23 * 60))
 			return;
 		int frame = inmate && ai ? animationFrame : Game.animationFrame & 1;
 		
@@ -927,9 +927,9 @@ class NPC implements Constants {
 						map.note = NOTE_SOLITARY;
 						map.solitaryReason = REASON_TUNNEL;
 					} else if (heatTimer == 0 && player.health > 0) {
-						if (player.outfitId == Textures.OUTFIT_GUARD) {
+						if (player.outfitId == Textures.OUTFIT_GUARD && map.heatTimer == 0) {
 							// increase heat a little, if seeing player in disguise
-							map.heat += 2;
+							map.heat += 3;
 							map.heatTimer = TPS;
 							map.animateHeat = TPS >> 1;
 						} else if (player.climbed) {
@@ -2352,7 +2352,7 @@ class NPC implements Constants {
 
 		// snipers
 		if (map.hasSnipers && (tick & 31) == 0 && health > 0 && !map.entranceOpen
-				&& (map.time >= 8 * 60 && map.time < 23 * 60)
+				&& (map.time >= 6 * 60 && map.time < 23 * 60)
 				&& (layer == LAYER_ROOF || (layer == LAYER_GROUND && getCollision(x, y, true) == COLL_NONE
 				&& !Game.isFloor(map.tiles[LAYER_GROUND][(x / TILE_SIZE) + ((y + 5) / TILE_SIZE) * map.width])))) {
 			if (map.heat >= 90 || ((layer == LAYER_ROOF || map.mapType == MAP_TYPE_INSIDE_ONLY
@@ -2363,12 +2363,12 @@ class NPC implements Constants {
 					map.heat = 99;
 					map.animateHeat = TPS >> 1;
 				}
-				if ((tick & 63) == 0) {
+				if ((tick & 63) == 0 && carry == null) {
 					damage(null, 20);
 					Sound.playEffect(Constants.SFX_SHOOT);
 				}
-			} else if (heatTimer == 0 && outfitId == Textures.OUTFIT_GUARD) {
-				map.heat += 2;
+			} else if (map.heatTimer == 0 && outfitId == Textures.OUTFIT_GUARD) {
+				map.heat += 3;
 				map.heatTimer = TPS;
 				map.animateHeat = TPS >> 1;
 			}
@@ -3716,7 +3716,7 @@ class NPC implements Constants {
 							if ((jobQuota += (MAX_JOB_QUOTA / 10)) >= MAX_JOB_QUOTA) {
 								Sound.playEffect(Sound.SFX_HP);
 								jobQuota = MAX_JOB_QUOTA;
-								map.money += map.map == MAP_PERKS ? 35 : 30;
+								map.money += map.map == MAP_PERKS ? 40 : 30;
 							} else {
 								Sound.playEffect(Sound.SFX_BUY);
 							}
