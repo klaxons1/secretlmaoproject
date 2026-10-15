@@ -238,6 +238,7 @@ public interface Constants {
 	static final byte COLL_DETECTOR = 12;
 	static final byte COLL_ROOF = 13;
 	static final byte COLL_POSTER = 14 | COLL_BIT_SOLID_AI | COLL_BIT_CAST_SHADOW;
+	static final byte COLL_CHEST = 15 | COLL_BIT_AVOID_AI;
 
 	static final byte MAP_OTHER = 0,
 			MAP_PERKS = 1,

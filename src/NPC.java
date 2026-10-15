@@ -314,10 +314,10 @@ class NPC implements Constants {
 			byte s3 = getCollision(0, 15, false);
 			byte s4 = getCollision(15, 15, false);
 			if (climbed
-					&& s1 != COLL_TABLE && s1 != COLL_DESK
-					&& s2 != COLL_TABLE && s2 != COLL_DESK
-					&& s3 != COLL_TABLE && s3 != COLL_DESK
-					&& s4 != COLL_TABLE && s4 != COLL_DESK) {
+					&& s1 != COLL_TABLE && s1 != COLL_DESK && s1 != COLL_CHEST
+					&& s2 != COLL_TABLE && s2 != COLL_DESK && s2 != COLL_CHEST
+					&& s3 != COLL_TABLE && s3 != COLL_DESK && s3 != COLL_CHEST
+					&& s4 != COLL_TABLE && s4 != COLL_DESK && s4 != COLL_CHEST){
 				// got down from table
 				climbed = false;
 			} else if (climb && direction != NPC.DIR_DOWN) {
@@ -444,8 +444,6 @@ class NPC implements Constants {
 					damage -= 3;
 					break;
 				}
-
-				if (damage < 1) damage = 1;
 
 				chaseTarget.damage(this, damage);
 
@@ -1751,7 +1749,7 @@ class NPC implements Constants {
 			canClimb = false;
 			return true;
 		}
-		if (climbed && (s == COLL_DESK || s == COLL_TABLE)) {
+		if (climbed && (s == COLL_DESK || s == COLL_TABLE || s == COLL_CHEST)) {
 			return false;
 		}
 		if (s == COLL_GYM) {
@@ -1773,7 +1771,7 @@ class NPC implements Constants {
 				return !map.entranceOpen;
 			}
 			int slot = -1;
-			boolean collide = false;
+			boolean collide;
 			key: {
 				if (obj == Objects.DOOR_CELL) {
 					collide = map.cellsClosed
@@ -1844,7 +1842,7 @@ class NPC implements Constants {
 			}
 			return collide;
 		}
-		if (!climbed && (s == COLL_DESK || s == COLL_TABLE)) {
+		if (!climbed && (s == COLL_DESK || s == COLL_TABLE || s == COLL_CHEST)) {
 			if (!wasTryingToMove && canClimb) {
 				climb = true;
 				return false;
@@ -1962,6 +1960,8 @@ class NPC implements Constants {
 	}
 	
 	void damage(NPC source, int n) {
+		if (n < 1) n = 1;
+
 		if (visible) {
 			int i = map.effects[1] == 0 ? 0 : 4;
 			map.effects[i] = 192;
@@ -3579,31 +3579,10 @@ class NPC implements Constants {
 					sitting = true;
 					return;
 
-				case Objects.JOB_CLEANING_SUPPLIES:
-				case Objects.JOB_GARDENING_TOOLS:
 				case Objects.TOILET:
 					map.openContainer(idx);
 					return;
 
-				case Objects.JOB_DIRTY_LAUNDRY:
-					// take laundry
-					addItem((rng.nextInt(2) == 0 ? Items.DIRTY_GUARD_OUTFIT : Items.DIRTY_INMATE_OUTFIT)
-							| Items.ITEM_DEFAULT_DURABILITY, true);
-					return;
-				case Objects.JOB_RAW_METAL:
-					// take metal
-					addItem(Items.SHEET_OF_METAL | Items.ITEM_DEFAULT_DURABILITY, true);
-					return;
-				case Objects.JOB_RAW_WOOD:
-					// take wood
-					addItem(Items.TIMBER | Items.ITEM_DEFAULT_DURABILITY, true);
-					return;
-				case Objects.FREEZER:
-					addItem((map.map == MAP_SANPANCHO ? Items.UNCOOKED_BURRITO : Items.UNCOOKED_FOOD) | Items.ITEM_DEFAULT_DURABILITY, true);
-					return;
-				case Objects.JOB_FABRIC_CHEST:
-					addItem(Items.FABRIC | Items.ITEM_DEFAULT_DURABILITY, true);
-					return;
 				case Objects.JOB_DELIVERIES_TRUCK:
 					if (job == JOB_DELIVERIES) {
 						addItem(rng.nextInt(2) == 0 ?
@@ -3638,6 +3617,69 @@ class NPC implements Constants {
 					}
 					break;
 
+				case Objects.JOB_DELIVERIES_RED_BOX:
+				case Objects.JOB_DELIVERIES_BLUE_BOX:
+					if ((item == Items.PACKAGE_A && obj == Objects.JOB_DELIVERIES_BLUE_BOX)
+							|| (item == Items.PACKAGE_B && obj == Objects.JOB_DELIVERIES_RED_BOX)) {
+						inventory[slot] = Items.ITEM_NULL;
+						if (jobQuota < MAX_JOB_QUOTA && job == JOB_DELIVERIES
+								&& map.schedule == SC_WORK_PERIOD) {
+							if ((jobQuota += (MAX_JOB_QUOTA / 10)) >= MAX_JOB_QUOTA) {
+								// TODO
+								Sound.playEffect(Sound.SFX_HP);
+								jobQuota = MAX_JOB_QUOTA;
+								map.money += 55;
+							} else {
+								Sound.playEffect(Sound.SFX_BUY);
+							}
+						}
+						return;
+					}
+					break;
+
+				case Objects.STASH:
+					// open stash
+					//noinspection StatementWithEmptyBody
+					while (!Game.isIllegal(item = rng.nextInt(192)));
+					item |= Items.ITEM_DEFAULT_DURABILITY;
+					if (addItem(item, true)) {
+						// TODO animate
+						map.objects[layer][idx + 1] = -Objects.STASH;
+						map.objects[layer][idx + 2] |= 1 << 12;
+						map.solid[layer][y * map.width + x] = COLL_NONE;
+					} else {
+						dialog = "Inventory full";
+						dialogTimer = TPS * 2;
+					}
+					return;
+				}
+			}
+			if (b == COLL_CHEST) {
+				switch (obj) {
+				case Objects.JOB_CLEANING_SUPPLIES:
+				case Objects.JOB_GARDENING_TOOLS:
+					map.openContainer(idx);
+					return;
+
+				case Objects.JOB_DIRTY_LAUNDRY:
+					// take laundry
+					addItem((rng.nextInt(2) == 0 ? Items.DIRTY_GUARD_OUTFIT : Items.DIRTY_INMATE_OUTFIT)
+							| Items.ITEM_DEFAULT_DURABILITY, true);
+					return;
+				case Objects.JOB_RAW_METAL:
+					// take metal
+					addItem(Items.SHEET_OF_METAL | Items.ITEM_DEFAULT_DURABILITY, true);
+					return;
+				case Objects.JOB_RAW_WOOD:
+					// take wood
+					addItem(Items.TIMBER | Items.ITEM_DEFAULT_DURABILITY, true);
+					return;
+				case Objects.FREEZER:
+					addItem((map.map == MAP_SANPANCHO ? Items.UNCOOKED_BURRITO : Items.UNCOOKED_FOOD) | Items.ITEM_DEFAULT_DURABILITY, true);
+					return;
+				case Objects.JOB_FABRIC_CHEST:
+					addItem(Items.FABRIC | Items.ITEM_DEFAULT_DURABILITY, true);
+					return;
 				case Objects.JOB_CLEAN_LAUNDRY:
 					// put clean laundry
 					if (item == Items.INMATE_OUTFIT || item == Items.GUARD_OUTFIT) {
@@ -3689,41 +3731,6 @@ class NPC implements Constants {
 						return;
 					}
 					break;
-				case Objects.JOB_DELIVERIES_RED_BOX:
-				case Objects.JOB_DELIVERIES_BLUE_BOX:
-					if ((item == Items.PACKAGE_A && obj == Objects.JOB_DELIVERIES_BLUE_BOX)
-							|| (item == Items.PACKAGE_B && obj == Objects.JOB_DELIVERIES_RED_BOX)) {
-						inventory[slot] = Items.ITEM_NULL;
-						if (jobQuota < MAX_JOB_QUOTA && job == JOB_DELIVERIES
-								&& map.schedule == SC_WORK_PERIOD) {
-							if ((jobQuota += (MAX_JOB_QUOTA / 10)) >= MAX_JOB_QUOTA) {
-								// TODO
-								Sound.playEffect(Sound.SFX_HP);
-								jobQuota = MAX_JOB_QUOTA;
-								map.money += 55;
-							} else {
-								Sound.playEffect(Sound.SFX_BUY);
-							}
-						}
-						return;
-					}
-					break;
-
-				case Objects.STASH:
-					// open stash
-					//noinspection StatementWithEmptyBody
-					while (!Game.isIllegal(item = rng.nextInt(192)));
-					item |= Items.ITEM_DEFAULT_DURABILITY;
-					if (addItem(item, true)) {
-						// TODO animate
-						map.objects[layer][idx + 1] = -Objects.STASH;
-						map.objects[layer][idx + 2] |= 1 << 12;
-						map.solid[layer][y * map.width + x] = COLL_NONE;
-					} else {
-						dialog = "Inventory full";
-						dialogTimer = TPS * 2;
-					}
-					return;
 				}
 			}
 			if (b == COLL_GYM) {

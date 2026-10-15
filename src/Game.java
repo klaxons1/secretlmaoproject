@@ -5569,7 +5569,6 @@ public class Game extends GameCanvas implements Runnable, Constants {
 		case Objects.TOILET:
 		case Objects.CHAIR:
 		case Objects.CABINET:
-		case Objects.FREEZER:
 		case Objects.OVEN:
 		case Objects.BED:
 		case Objects.SIDEWAYS_PRISONER_BED:
@@ -5579,27 +5578,17 @@ public class Game extends GameCanvas implements Runnable, Constants {
 		case Objects.MEDICAL_BED:
 		case Objects.PAYPHONE:
 		case Objects.CABLE_TV:
-		case Objects.JOB_DIRTY_LAUNDRY:
-		case Objects.JOB_CLEAN_LAUNDRY:
 		case Objects.WASHING_MACHINE:
 		case Objects.STASH:
-		case Objects.JOB_RAW_METAL:
-		case Objects.JOB_PREPARED_METAL:
-		case Objects.JOB_RAW_WOOD:
-		case Objects.JOB_PREPARED_WOOD:
 		case Objects.JOB_SELECTION:
 		case Objects.SINK:
 		case Objects.GUARD_BED:
 		case Objects.TRAINING_BOOKSHELF:
 		case Objects.VISITATION_GUEST_SEAT:
 		case Objects.VISITATION_PLAYER_SEAT:
-		case Objects.JOB_GARDENING_TOOLS:
-		case Objects.JOB_CLEANING_SUPPLIES:
 		case Objects.MEDICAL_SUPPLIES:
 		case Objects.JOB_MAILROOM_FILE:
 		case Objects.JOB_METAL_TOOLS:
-		case Objects.JOB_FABRIC_CHEST:
-		case Objects.JOB_CLOTHING_STORAGE:
 		case Objects.JOB_DELIVERIES_BLUE_BOX:
 		case Objects.JOB_DELIVERIES_RED_BOX:
 		case Objects.JOB_DELIVERIES_TRUCK:
@@ -5607,6 +5596,18 @@ public class Game extends GameCanvas implements Runnable, Constants {
 		case Objects.GENERATOR:
 		case Objects.SUN_LOUNGER:
 			return Game.COLL_SOLID_INTERACT;
+		case Objects.FREEZER:
+		case Objects.JOB_DIRTY_LAUNDRY:
+		case Objects.JOB_CLEAN_LAUNDRY:
+		case Objects.JOB_RAW_METAL:
+		case Objects.JOB_PREPARED_METAL:
+		case Objects.JOB_RAW_WOOD:
+		case Objects.JOB_PREPARED_WOOD:
+		case Objects.JOB_GARDENING_TOOLS:
+		case Objects.JOB_CLEANING_SUPPLIES:
+		case Objects.JOB_FABRIC_CHEST:
+		case Objects.JOB_CLOTHING_STORAGE:
+			return Game.COLL_CHEST;
 		case Objects.VENT_SLATS:
 		case Objects.DOOR_JUNGLE_ENTRANCE:
 			return Game.COLL_SOLID;
