@@ -266,6 +266,9 @@ public class Sound implements Runnable, PlayerListener, Constants {
 							case SFX_HP:
 								res = "/hp.wav";
 								break;
+							case SFX_SHOOT:
+								res = "/shoot.wav";
+								break;
 							default:
 								continue;
 							}

@@ -935,6 +935,7 @@ class NPC implements Constants {
 							heat("Drop it!", 10);
 						} else if (player.isInZone(ZONE_INMATE_CELL) && !player.isInZone(ZONE_PLAYER_CELL)
 								&& !player.isInZone(ZONE_JANITOR) && !player.isInZone(ZONE_GARDENING)
+								&& !player.isInZone(ZONE_SHU)
 								&& player.job != JOB_MAILMAN && player.job != JOB_LIBRARY) {
 							// TODO this check still doesn't work well
 							// guard warns player if they're in wrong cell
