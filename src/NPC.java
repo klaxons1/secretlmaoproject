@@ -972,6 +972,8 @@ class NPC implements Constants {
 									break;
 								case SC_WORK_PERIOD: {
 									onJob: {
+										if (player.jobQuota < MAX_JOB_QUOTA) break onJob;
+
 										switch (player.job) {
 										case JOB_LAUNDRY:
 											if (player.isInZone(ZONE_LAUNDRY))
@@ -2328,22 +2330,26 @@ class NPC implements Constants {
 			case SC_AFTERNOON_ROLLCALL:
 			case SC_EVENING_ROLLCALL:
 				if (!map.playerWasOnRollcall && isInZone(ZONE_ROLLCALL)) {
+					if (map.scheduleHeatCooldown < 0) map.scheduleHeatCooldown = TPS;
 					map.playerWasOnRollcall = true;
 				}
 				break;
 			case SC_BREAKFAST:
 			case SC_EVENING_MEAL:
 				if (!map.playerWasOnMeal && isInZone(ZONE_CANTEEN)) {
+					if (map.scheduleHeatCooldown < 0) map.scheduleHeatCooldown = TPS;
 					map.playerWasOnMeal = true;
 				}
 				break;
 			case SC_EXERCISE_PERIOD:
 				if (!map.playerWasOnExcercise && isInZone(ZONE_GYM)) {
+					if (map.scheduleHeatCooldown < 0) map.scheduleHeatCooldown = TPS;
 					map.playerWasOnExcercise = true;
 				}
 				break;
 			case SC_SHOWER_BLOCK:
 				if (!map.playerWasOnShowers && isInZone(ZONE_SHOWER)) {
+					if (map.scheduleHeatCooldown < 0) map.scheduleHeatCooldown = TPS;
 					map.playerWasOnShowers = true;
 				}
 				break;
