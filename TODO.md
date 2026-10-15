@@ -57,6 +57,7 @@
 - [x] Jungle check point
 - [x] Contraband pouch
 - [x] Snipers
+- [x] Bed dummy
 - [ ] NPC interaction (WIP)
 - [ ] Cameras
 - [ ] Player jobs (WIP)
@@ -73,7 +74,7 @@
 - [ ] Favors, Journal
 - [ ] Characters setup screen
 - [ ] Mines (san pancho)
-- [ ] Guards reacting to holes in walls and floors
+- [ ] Guards reacting to holes in walls, floors and vents
 - [ ] Help
 - [ ] NPC opinions (WIP)
 - [ ] Recruiting
@@ -86,7 +87,7 @@
 - [ ] Roof mechanics
 - [ ] Jeep
 - [ ] More gym objects
-- [ ] Bed dummy
+- [ ] Guards check if player is in cell at lights out
 
 # Low priority
 
