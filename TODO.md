@@ -65,7 +65,7 @@
   - [x] Tailor
   - [x] Woodshop
   - [x] Deliveries
-  - [ ] Metalshop
+  - [x] Metalshop
   - [ ] Kitchen
   - [ ] Laundry
   - [ ] Mailman

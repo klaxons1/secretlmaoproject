@@ -2854,6 +2854,9 @@ public class Game extends GameCanvas implements Runnable, Constants {
 					jobs[1 + i] = saveData.readInt();
 				}
 
+				checkpointOpen = saveData.readBoolean();
+				if (checkpointOpen) openCheckpoint();
+
 				int[] containers = this.containers;
 				short[] groundObjects = this.objects[LAYER_GROUND];
 				int idx = 1;
@@ -3054,6 +3057,8 @@ public class Game extends GameCanvas implements Runnable, Constants {
 			for (int i = 0; i < jobs[0]; ++i) {
 				d.writeInt(jobs[1 + i]);
 			}
+
+			d.writeBoolean(checkpointOpen);
 
 			int[] containers = this.containers;
 			short[] groundObjects = this.objects[LAYER_GROUND];
@@ -3903,6 +3908,19 @@ public class Game extends GameCanvas implements Runnable, Constants {
 		if (USE_TILED_LAYER) {
 			tiledLayer[layer].setCell(x, y, 13);
 		}
+	}
+
+	void openCheckpoint() {
+		int i = 0;
+		for (;;) {
+			i = findObject(Objects.DOOR_JUNGLE_ENTRANCE, LAYER_GROUND, i);
+			if (i == -1) break;
+			objects[LAYER_GROUND][i + 2] |= 1 << 12;
+			solid[LAYER_GROUND][objects[LAYER_GROUND][i + 3] + objects[LAYER_GROUND][i + 4] * width] = COLL_NONE;
+			++i;
+		}
+
+		checkpointOpen = true;
 	}
 
 	// endregion Map

@@ -3211,16 +3211,7 @@ class NPC implements Constants {
 
 				npc.dialogTimer = TPS * 3;
 				if (item == Items.ID_PAPERS) {
-					int i = 0;
-					for (;;) {
-						i = map.findObject(Objects.DOOR_JUNGLE_ENTRANCE, LAYER_GROUND, i);
-						if (i == -1) break;
-						map.objects[layer][i + 2] |= 1 << 12;
-						map.solid[layer][map.objects[layer][i + 3] + map.objects[layer][i + 4] * map.width] = COLL_NONE;
-						++i;
-					}
-
-					map.checkpointOpen = true;
+					map.openCheckpoint();
 					npc.dialog = "Seeya tomorrow!";
 					return;
 				}
@@ -3594,6 +3585,7 @@ class NPC implements Constants {
 				case Objects.JOB_METAL_TOOLS:
 					if (item == Items.SHEET_OF_METAL) {
 						Sound.playEffect(Sound.SFX_RUMBLE);
+						// TODO animate
 						inventory[slot] = Items.LICENSE_PLATE;
 						return;
 					}
