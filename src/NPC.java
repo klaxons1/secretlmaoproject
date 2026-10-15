@@ -1383,7 +1383,7 @@ class NPC implements Constants {
 						this.targetReached = false;
 						correctPath = false;
 						map.updateDirt(0);
-						jobQuota++;
+						jobQuota += MAX_JOB_QUOTA / 10;
 					}
 					break;
 				}
@@ -1444,7 +1444,7 @@ class NPC implements Constants {
 					} else if (targetReached) {
 						if (++aiWorkState == 3) {
 							aiWorkState = 0;
-							jobQuota++;
+							jobQuota += MAX_JOB_QUOTA / 10;
 						}
 						aiWaitTimer = TPS * 2;
 						this.targetReached = false;
@@ -1518,7 +1518,7 @@ class NPC implements Constants {
 					} else if (targetReached) {
 						if (++aiWorkState == 2) {
 							aiWorkState = 0;
-							jobQuota++;
+							jobQuota += MAX_JOB_QUOTA / 10;
 						}
 						aiWaitTimer = TPS * 2;
 						this.targetReached = false;
@@ -2517,7 +2517,7 @@ class NPC implements Constants {
 							if ((jobQuota += (MAX_JOB_QUOTA / 5)) >= MAX_JOB_QUOTA) {
 								Sound.playEffect(Sound.SFX_HP);
 								jobQuota = MAX_JOB_QUOTA;
-								map.money += 20;
+								map.money += map.map == MAP_PERKS ? 30 : 20;
 							}
 						}
 						break;
@@ -3624,8 +3624,7 @@ class NPC implements Constants {
 						inventory[slot] = Items.ITEM_NULL;
 						if (jobQuota < MAX_JOB_QUOTA && job == JOB_DELIVERIES
 								&& map.schedule == SC_WORK_PERIOD) {
-							if ((jobQuota += (MAX_JOB_QUOTA / 10)) >= MAX_JOB_QUOTA) {
-								// TODO
+							if ((jobQuota += (MAX_JOB_QUOTA / 20)) >= MAX_JOB_QUOTA) {
 								Sound.playEffect(Sound.SFX_HP);
 								jobQuota = MAX_JOB_QUOTA;
 								map.money += 55;
@@ -3687,10 +3686,9 @@ class NPC implements Constants {
 						if (jobQuota < MAX_JOB_QUOTA && job == JOB_LAUNDRY
 								&& map.schedule == SC_WORK_PERIOD) {
 							if ((jobQuota += (MAX_JOB_QUOTA / 10)) >= MAX_JOB_QUOTA) {
-								// TODO
 								Sound.playEffect(Sound.SFX_HP);
 								jobQuota = MAX_JOB_QUOTA;
-								map.money += 40;
+								map.money += map.map == MAP_PERKS ? 35 : 30;
 							} else {
 								Sound.playEffect(Sound.SFX_BUY);
 							}
@@ -3720,7 +3718,6 @@ class NPC implements Constants {
 						if (jobQuota < MAX_JOB_QUOTA && job == JOB_WOODSHOP
 								&& map.schedule == SC_WORK_PERIOD) {
 							if ((jobQuota += (MAX_JOB_QUOTA / 10)) >= MAX_JOB_QUOTA) {
-								// TODO
 								Sound.playEffect(Sound.SFX_HP);
 								jobQuota = MAX_JOB_QUOTA;
 								map.money += 45;
@@ -3738,10 +3735,9 @@ class NPC implements Constants {
 						if (jobQuota < MAX_JOB_QUOTA && job == JOB_TAILOR
 								&& map.schedule == SC_WORK_PERIOD) {
 							if ((jobQuota += (MAX_JOB_QUOTA / 10)) >= MAX_JOB_QUOTA) {
-								// TODO
 								Sound.playEffect(Sound.SFX_HP);
 								jobQuota = MAX_JOB_QUOTA;
-								map.money += 45;
+								map.money += 25;
 							} else {
 								Sound.playEffect(Sound.SFX_BUY);
 							}

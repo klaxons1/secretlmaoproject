@@ -60,6 +60,16 @@
 - [ ] NPC interaction (WIP)
 - [ ] Cameras
 - [ ] Player jobs (WIP)
+  - [x] Janitor
+  - [x] Gardening
+  - [x] Tailor
+  - [x] Woodshop
+  - [x] Deliveries
+  - [ ] Metalshop
+  - [ ] Kitchen
+  - [ ] Laundry
+  - [ ] Mailman
+  - [ ] Librarian
 - [ ] Favors, Journal
 - [ ] Characters setup screen
 - [ ] Mines (san pancho)
@@ -96,19 +106,6 @@
 - [x] Work
 - [x] Escaped
 - [x] Lockdown
-
-# Jobs
-
-- [x] Janitor
-- [x] Gardening
-- [x] Tailor
-- [x] Woodshop
-- [x] Deliveries
-- [ ] Metalshop
-- [ ] Kitchen
-- [ ] Laundry
-- [ ] Mailman
-- [ ] Librarian
 
 # Misc
 
