@@ -97,6 +97,19 @@
 - [x] Escaped
 - [x] Lockdown
 
+# Jobs
+
+- [x] Janitor
+- [x] Gardening
+- [x] Tailor
+- [x] Woodshop
+- [x] Deliveries
+- [ ] Metalshop
+- [ ] Kitchen
+- [ ] Laundry
+- [ ] Mailman
+- [ ] Librarian
+
 # Misc
 
 - Use pngout for resources?
