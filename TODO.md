@@ -56,17 +56,17 @@
 - [x] Shops
 - [x] Jungle check point
 - [x] Contraband pouch
+- [x] Snipers
 - [ ] NPC interaction (WIP)
 - [ ] Cameras
 - [ ] Player jobs (WIP)
 - [ ] Favors, Journal
 - [ ] Characters setup screen
 - [ ] Mines (san pancho)
-- [ ] Recruiting
 - [ ] Guards reacting to holes in walls and floors
 - [ ] Help
-- [ ] Snipers
 - [ ] NPC opinions (WIP)
+- [ ] Recruiting
 - [ ] Employment board
 - [ ] Stepladder
 - [ ] Crafting notes
@@ -76,6 +76,7 @@
 - [ ] Roof mechanics
 - [ ] Jeep
 - [ ] More gym objects
+- [ ] Bed dummy
 
 # Low priority
 
