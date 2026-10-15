@@ -582,6 +582,13 @@ public class ResourceBuilder implements Constants {
 					"_10-0_1.png",
 					"_10-0_2.png",
 			};
+			if ("Inmate 4".equals(name)) {
+				names[2] = "_0-8_1.png";
+				names[3] = "_0-8_0.png";
+			} else if ("Outfit - Inmate".equals(name)) {
+				names[26] = "_10-0_2.png";
+				names[28] ="_10-0_0.png";
+			}
 		}
 		
 		for (int i = 0; i < names.length; ++i) {
@@ -596,7 +603,12 @@ public class ResourceBuilder implements Constants {
 			int x = 0, y = 0;
 			int w = tile.getWidth(), h = tile.getHeight();
 			if (h == 32) {
-				tile = tile.getSubimage(0, 16, 16, 16);
+				if (i == 12) {
+					tile = tile.getSubimage(0, 17, 16, 15);
+					y = 1;
+				} else {
+					tile = tile.getSubimage(0, 16, 16, 16);
+				}
 			} else if (h == 18) {
 				tile = tile.getSubimage(0, 2, 16, 16);
 			} else if (h < 16) {
