@@ -2492,7 +2492,6 @@ public class Game extends GameCanvas implements Runnable, Constants {
 
 	boolean cellsClosed = true;
 	boolean entranceOpen = false;
-	boolean checkpointOpen;
 	boolean lockdown;
 	boolean willLockdown;
 	boolean playerWasOnRollcall;
@@ -2502,6 +2501,8 @@ public class Game extends GameCanvas implements Runnable, Constants {
 	int lockdownTimer;
 	boolean rollcallFace; // true if guards are above inmates
 	boolean hasSnipers;
+	boolean checkpointOpen;
+	boolean bedDummyPlaced;
 
 	int guardsDown;
 	int guards;
@@ -2857,6 +2858,8 @@ public class Game extends GameCanvas implements Runnable, Constants {
 				checkpointOpen = saveData.readBoolean();
 				if (checkpointOpen) openCheckpoint();
 
+				bedDummyPlaced = saveData.readBoolean();
+
 				int[] containers = this.containers;
 				short[] groundObjects = this.objects[LAYER_GROUND];
 				int idx = 1;
@@ -3059,6 +3062,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 			}
 
 			d.writeBoolean(checkpointOpen);
+			d.writeBoolean(bedDummyPlaced);
 
 			int[] containers = this.containers;
 			short[] groundObjects = this.objects[LAYER_GROUND];
@@ -4137,6 +4141,10 @@ public class Game extends GameCanvas implements Runnable, Constants {
 				int w = (sprite & (3 << 8)) >> 4, h = (sprite & (3 << 10)) >> 6;
 				sprite &= 0xFF;
 				g.drawRegion(objectsImg, ((sprite & 0xFF) % TILE_SIZE) * TILE_SIZE, (sprite / TILE_SIZE) * TILE_SIZE, w, h, 0, x, y - h + TILE_SIZE, 0);
+
+				if (bedDummyPlaced && obj == Objects.PLAYER_BED) {
+					g.drawRegion(objectsImg, 144, 160, w, h, 0, x, y - h + TILE_SIZE, 0);
+				}
 			}
 		}
 

@@ -3522,6 +3522,16 @@ class NPC implements Constants {
 					Sound.playEffect(Sound.SFX_DOOR);
 					return;
 				case Objects.PLAYER_BED:
+					if (map.bedDummyPlaced) {
+						if (!addItem(Items.BED_DUMMY | Items.ITEM_DEFAULT_DURABILITY, true)) return;
+						map.bedDummyPlaced = false;
+						return;
+					}
+					if (item == Items.BED_DUMMY) {
+						map.bedDummyPlaced = true;
+						inventory[slot] = Items.ITEM_NULL;
+						return;
+					}
 					xFloat = this.x = bedX * TILE_SIZE;
 					yFloat = this.y = bedY * TILE_SIZE + 2;
 					animation = ANIM_LYING;
