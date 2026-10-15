@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/FontCompiler/FontCompiler.iml" filepath="$PROJECT_DIR$/FontCompiler/FontCompiler.iml" />
       <module fileurl="file://$PROJECT_DIR$/ResourceBuilder/ResourceBuilder.iml" filepath="$PROJECT_DIR$/ResourceBuilder/ResourceBuilder.iml" />
       <module fileurl="file://$PROJECT_DIR$/TE.iml" filepath="$PROJECT_DIR$/TE.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
     </modules>
   </component>
 </project>

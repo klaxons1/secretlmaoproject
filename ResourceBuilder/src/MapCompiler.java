@@ -743,6 +743,9 @@ public class MapCompiler implements Constants {
 					case "Jobs":
 						jobsSection = true;
 						break;
+					default:
+						System.out.println("Unrecognized section: " + section);
+						break;
 					}
 					continue;
 				}
@@ -836,6 +839,12 @@ public class MapCompiler implements Constants {
 //		}
 		if (containers.size() < inmates) {
 			throw new Exception("not enough containers");
+		}
+
+		// hard-coded map fixes
+
+		if ("jungle.map".equals(inputPath.getFileName().toString())) {
+			items.add(new int[] { Items.UNSIGNED_ID_PAPERS, LAYER_GROUND, 0, 0 }); // FIXME
 		}
 
 		// write
@@ -1069,7 +1078,7 @@ public class MapCompiler implements Constants {
 				/* 13 */ out.writeByte(SC_WORK_PERIOD);
 				/* 14 */ out.writeByte(SC_WORK_PERIOD);
 				/* 15 */ out.writeByte(SC_WORK_PERIOD);
-				/* 16 */ out.writeByte(SC_EXCERCISE_PERIOD);
+				/* 16 */ out.writeByte(SC_EXERCISE_PERIOD);
 				/* 17 */ out.writeByte(SC_SHOWER_BLOCK);
 				/* 18 */ out.writeByte(SC_EVENING_MEAL);
 				/* 19 */ out.writeByte(SC_EVENING_FREETIME);
@@ -1094,7 +1103,7 @@ public class MapCompiler implements Constants {
 				/* 13 */ out.writeByte(SC_WORK_PERIOD);
 				/* 14 */ out.writeByte(SC_AFTERNOON_ROLLCALL);
 				/* 15 */ out.writeByte(SC_FREE_PERIOD);
-				/* 16 */ out.writeByte(SC_EXCERCISE_PERIOD);
+				/* 16 */ out.writeByte(SC_EXERCISE_PERIOD);
 				/* 17 */ out.writeByte(SC_EVENING_MEAL);
 				/* 18 */ out.writeByte(SC_SHOWER_BLOCK);
 				/* 19 */ out.writeByte(SC_EVENING_ROLLCALL);
@@ -1120,7 +1129,7 @@ public class MapCompiler implements Constants {
 				/* 14 */ out.writeByte(SC_FREE_PERIOD);
 				/* 15 */ out.writeByte(SC_FREE_PERIOD);
 				/* 16 */ out.writeByte(SC_EVENING_MEAL);
-				/* 17 */ out.writeByte(SC_EXCERCISE_PERIOD);
+				/* 17 */ out.writeByte(SC_EXERCISE_PERIOD);
 				/* 18 */ out.writeByte(SC_SHOWER_BLOCK);
 				/* 19 */ out.writeByte(SC_EVENING_FREETIME);
 				/* 20 */ out.writeByte(SC_EVENING_FREETIME);

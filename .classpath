@@ -3,6 +3,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="res"/>
 	<classpathentry kind="src" path="orig_res"/>
-	<classpathentry kind="con" path="org.elipse.mtj.JavaMEContainer/KEmulator nnx64/KEmulator"/>
+	<classpathentry kind="src" path="common/src"/>
+	<classpathentry kind="con" path="org.elipse.mtj.JavaMEContainer/KEmulator nnmod/KEmulator"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
