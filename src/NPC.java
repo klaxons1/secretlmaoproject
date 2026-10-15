@@ -565,6 +565,7 @@ class NPC implements Constants {
 					}
 					if (!hasKey) {
 						map.note = NOTE_SOLITARY;
+						map.solitaryReason = REASON_KEY;
 					}
 				}
 				wakeupTimer = -1;
@@ -899,12 +900,12 @@ class NPC implements Constants {
 
 			if (player.layer == LAYER_GROUND && player.health > 0 && canSee(player)) {
 				if (guard) {
-					if (map.time < 8 * 60 && !map.lockdown && player.outfitId != Textures.OUTFIT_GUARD
+					if (map.time < 8 * 60 && !map.lockdown && (map.heat >= 90 || player.outfitId != Textures.OUTFIT_GUARD)
 							&& !player.isInZone(ZONE_PLAYER_CELL) && !map.sendToSolitary && !map.inSolitary) {
 						// send player to solitary if they're not in cell during lights out
 						map.note = NOTE_SOLITARY;
-					}
-					if (map.heat >= 90 || map.lockdown || player.fighting != 0 || player.stealing != 0
+						map.solitaryReason = REASON_OUT_OF_CELL;
+					} else if (map.heat >= 90 || map.lockdown || player.fighting != 0 || player.stealing != 0
 							|| map.action == ACT_CHIPPING || map.action == ACT_CUTTING
 							|| map.action == ACT_CUTTING_VENT || map.action == ACT_UNSCREWING
 							|| (map.action == ACT_SEARCHING && player.job != JOB_MAILMAN && player.job != JOB_LIBRARY)) {
@@ -924,6 +925,7 @@ class NPC implements Constants {
 						}
 					} else if (map.action == ACT_DIGGING) {
 						map.note = NOTE_SOLITARY;
+						map.solitaryReason = REASON_TUNNEL;
 					} else if (heatTimer == 0 && player.health > 0) {
 						if (player.outfitId == Textures.OUTFIT_GUARD) {
 							// increase heat a little, if seeing player in disguise
@@ -1574,6 +1576,7 @@ class NPC implements Constants {
 			} else if (targetReached) {
 				if (map.removeIllegalItems(aiWorkState) && aiWorkState == map.getContainerByOwner(0)) {
 					map.note = NOTE_SOLITARY;
+					map.solitaryReason = REASON_CONTRABAND;
 				}
 
 				aiWaitTimer = TPS * 2;
@@ -1658,9 +1661,6 @@ class NPC implements Constants {
 						}
 					}
 				} else if (!chaseTarget.ai && chaseTarget.layer != LAYER_GROUND) {
-					if (guard) {
-						map.note = NOTE_SOLITARY;
-					}
 					aiState = AI_RESET;
 					chaseTarget = null;
 					correctPath = false;
@@ -1906,15 +1906,18 @@ class NPC implements Constants {
 			return false;
 		}
 
+		return canSee((other.x + 7) / TILE_SIZE,  (other.y + 5) / TILE_SIZE);
+	}
+
+	boolean canSee(int x2, int y2) {
 		int x0, y0;
 		int x1 = x0 = (this.x + 7) / TILE_SIZE, y1 = y0 = (this.y + 5) / TILE_SIZE;
-		int x2 = (other.x + 7) / TILE_SIZE, y2 = (other.y + 5) / TILE_SIZE;
 		int w = map.width;
 		int h = map.height;
 		byte[] solid = map.solid[layer];
 
-		dx = Math.abs(x2 - x0);
-		dy = Math.abs(y2 - y0);
+		int dx = Math.abs(x2 - x0);
+		int dy = Math.abs(y2 - y0);
 
 		int sx = (x0 < x2) ? 1 : -1;
 		int sy = (y0 < y2) ? 1 : -1;
@@ -1929,6 +1932,11 @@ class NPC implements Constants {
 					&& x1 >= 0 && y1 >= 0 && x1 < w && y1 < h) {
 				byte s = solid[x1 + y1 * w];
 				if (s == COLL_SOLID || s == COLL_POSTER) {
+					return false;
+				}
+				if (guard && s == COLL_DIGGED_WALL) {
+					map.note = NOTE_SOLITARY;
+					map.solitaryReason = REASON_WALL;
 					return false;
 				}
 			}
@@ -2215,7 +2223,10 @@ class NPC implements Constants {
 
 			if (map.lockdown) {
 				map.lockdown = false;
-				if (!map.sendToSolitary) map.note = NOTE_SOLITARY;
+				if (!map.sendToSolitary) {
+					map.note = NOTE_SOLITARY;
+					map.solitaryReason = REASON_LOCKDOWN;
+				}
 			}
 			if (sitting) {
 				int seat = map.getSeatIndex(map.canteenSeatsPositions, (x + 7) / TILE_SIZE, (y + 7) / TILE_SIZE);

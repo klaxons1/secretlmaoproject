@@ -160,6 +160,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 	int containerOpen = -1;
 	NPC inventoryOpen;
 	int note = -1;
+	int solitaryReason;
 	boolean toilet;
 	String[] noteText;
 	int selectedSlot; // negative is player's inventory
@@ -773,7 +774,38 @@ public class Game extends GameCanvas implements Runnable, Constants {
 					case NOTE_SOLITARY:
 						Sound.playEffect(Sound.SFX_RUMBLE);
 						ingameFadeIn = Integer.MAX_VALUE;
-						t = "Nice try ".concat(player.name).concat("\n\nAs punishment I'm placing you in solitary for a few days, hopefully it'll teach you a hard lesson!");
+						StringBuffer sb = stringBuffer;
+						sb.setLength(0);
+						sb.append("Nice try ").append(player.name);
+
+						String s = null;
+						switch (solitaryReason) {
+						case REASON_OUT_OF_CELL:
+							s = "\n\nI'm not sure how you got out of your cell but it definitely won't happen again!";
+							break;
+						case REASON_WALL:
+							s = "\n\nMy boys found holes in the walls and we've linked it back to you.";
+							break;
+						case REASON_TUNNEL:
+							s = "\n\nMy boys found evidence of tunnelling and we've linked it back to you.";
+							break;
+						case REASON_CONTRABAND:
+							s = "\n\nOne of my boys found contraband stashed in your desk during a shakedown.";
+							break;
+						case REASON_KEY:
+							s = "\n\nA prison key's been reported stolen and we've linked it back to you.";
+							break;
+						case REASON_BACKUP:
+							s = "\n\nUnfortunately I had to bring in the cavalry to put an end to your shenanigans.";
+							break;
+						case REASON_LOCKDOWN:
+							s = "\n\nNot sure what you were trying to accomplish but it didn't work!";
+							break;
+						}
+						if (s != null) sb.append(s);
+
+						t = sb.append("\n\nAs punishment I'm placing you in solitary for a few days, hopefully it'll teach you a hard lesson!").toString();
+						sb.setLength(0);
 						break;
 					case NOTE_RIOT:
 						t = "Okay ".concat(player.name).concat(", you've made your point!\n\nThe main prison gate is now unlocked as requested, just please.. don't hurt anyone else!");
@@ -3822,6 +3854,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 		if (lockdown && tick % TPS == 0) {
 			if (lockdownTimer == 0) {
 				note = NOTE_SOLITARY;
+				solitaryReason = REASON_BACKUP;
 				return;
 			}
 			--lockdownTimer;

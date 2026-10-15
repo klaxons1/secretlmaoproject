@@ -205,10 +205,32 @@ public interface Constants {
 			JOB_MAILMAN = 9,
 			JOB_LIBRARY = 10;
 
+	// notes enum
 	static final int NOTE_WELCOME = 0,
 			NOTE_FIRED = 1,
 			NOTE_SOLITARY = 2,
 			NOTE_RIOT = 3;
+
+	// solitary reasons enum
+	static final int REASON_JEEP = 2,
+			REASON_MISSING = 3,
+			REASON_OUT_OF_CELL = 4,
+			REASON_FENCE = 5,
+			REASON_BARS = 6,
+			REASON_VENT = 7,
+			REASON_WALL = 8,
+			REASON_TUNNEL = 9,
+			REASON_DIRT = 10,
+			REASON_WALL_BLOCK = 11,
+			REASON_SNIPER_TUNNEL = 12,
+			REASON_SNIPER_FENCE = 13,
+			REASON_CONTRABAND = 14,
+			REASON_KEY = 15,
+			REASON_BACKUP = 16,
+			REASON_JEEP_TUNNEL = 17,
+			REASON_JEEP_EVIDENCE = 18,
+			REASON_SPOTLIGHTS = 19,
+			REASON_LOCKDOWN = 20;
 
 	static final int COUNT_JOBS = 11;
 
