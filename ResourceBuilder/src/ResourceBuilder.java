@@ -863,8 +863,7 @@ public class ResourceBuilder implements Constants {
 		tiles("tiles_" + map + ".gif", "tiles_" + map + ".png");
 		ground("ground_" + map + ".gif", "ground_" + map + ".png");
 
-		Path path = gameDir.resolve("Data").resolve("Maps").resolve(map + ".map");
-		MapCompiler.process(path, resDir.resolve(map));
+		MapCompiler.process(gameDir.resolve("Data").resolve("Maps").resolve(map + ".map"), resDir.resolve(map));
 	}
 
 	static void sounds() throws Exception {

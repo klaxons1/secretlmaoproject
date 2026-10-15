@@ -42,7 +42,8 @@ public class MapCompiler implements Constants {
 	}
 
 	public static void process(Path inputPath, Path outputPath) throws Exception {
-		System.out.println("Processing map: " + inputPath.getFileName().toString());
+		String filename = inputPath.getFileName().toString();
+		System.out.println("Processing map: " + filename);
 
 		int width = 96;
 		int height = 93;
@@ -96,11 +97,12 @@ public class MapCompiler implements Constants {
 		int beds = 0;
 
 		String tileset = "shanktonstatepen";
+		String floor = "shanktonstatepen";
 
 		// read
 		byte[] bytes = Files.readAllBytes(inputPath);
 
-		if (!inputPath.getFileName().toString().toLowerCase().endsWith(".cmap")) bytes = BlowfishCompatEncryption.decrypt(bytes);
+		if (!filename.toLowerCase().endsWith(".cmap")) bytes = BlowfishCompatEncryption.decrypt(bytes);
 
 		try (InputStreamReader r = new InputStreamReader(new ByteArrayInputStream(bytes))) {
 			int c;
@@ -453,7 +455,7 @@ public class MapCompiler implements Constants {
 							case Objects.JOB_DELIVERIES_TRUCK:
 								checkLayer("deliveries truck", objectId, x, y, layer, LAYER_GROUND);
 								// TODO
-								int side = inputPath.getFileName().toString().equals("sanpancho") ? 1 : 3;
+								int side = filename.equals("sanpancho.map") ? 1 : 3;
 								switch (side) {
 								case 0:
 									sprite = 195;
@@ -682,6 +684,8 @@ public class MapCompiler implements Constants {
 							routineSet = sb.toString();
 						} else if ("Tileset".equals(key)) {
 							tileset = sb.toString();
+						} else if ("Floor".equals(key)) {
+							floor = sb.toString();
 						} else if ("MapType".equals(key)) {
 							switch (sb.toString()) {
 							case "Outside":
@@ -694,7 +698,7 @@ public class MapCompiler implements Constants {
 								mapType = MAP_TYPE_INSIDE_ONLY;
 								break;
 							default:
-								System.out.println("Unkwnown map type: " + sb);
+								System.out.println("Unknown map type: " + sb);
 							}
 						} else {
 							System.out.println("Ignored property: " + key + "=" + sb.toString());
@@ -807,6 +811,8 @@ public class MapCompiler implements Constants {
 			}
 		}
 
+		// TODO need to backpatch objects rotation since objects section comes before tiles in custom maps
+
 		// checks
 
 		if (width == 0 || height == 0) {
@@ -860,7 +866,7 @@ public class MapCompiler implements Constants {
 
 		// hard-coded map fixes
 
-		if ("jungle.map".equals(inputPath.getFileName().toString())) {
+		if ("jungle.map".equals(filename)) {
 			items.add(new int[] { Items.UNSIGNED_ID_PAPERS | Items.ITEM_DEFAULT_DURABILITY, LAYER_GROUND, 45, 9 });
 		}
 
@@ -871,37 +877,42 @@ public class MapCompiler implements Constants {
 			out.writeInt(5);
 
 			byte map = MAP_OTHER;
-			switch (inputPath.getFileName().toString()) {
+			switch (filename) {
 			case "perks.map":
 				map = MAP_PERKS;
-				tileset = "perks";
+				floor = tileset = "perks";
 				break;
 			case "stalagflucht.map":
 				map = MAP_STALAGFLUCHT;
-				tileset = "stalagflucht";
+				floor = tileset = "stalagflucht";
 				break;
 			case "shanktonstatepen.map":
 				map = MAP_SHANKTONSTATEPEN;
-				tileset = "shanktonstatepen";
+				floor = tileset = "shanktonstatepen";
 				break;
 			case "jungle.map":
 				map = MAP_JUNGLE;
-				tileset = "jungle";
+				floor = tileset = "jungle";
 				break;
 			case "sanpancho.map":
 				map = MAP_SANPANCHO;
-				tileset = "sanpancho";
+				floor = tileset = "sanpancho";
 				break;
 			case "irongate.map":
 				map = MAP_IRONGATE;
-				tileset = "irongate";
+				floor = tileset = "irongate";
+				break;
+			default:
+				if (!filename.toLowerCase().endsWith(".cmap")) {
+					floor = tileset;
+				}
 				break;
 			}
 
 			out.writeByte(map);
 
 			out.writeUTF("/tiles_" + tileset + ".png");
-			out.writeUTF("/ground_" + tileset + ".png");
+			out.writeUTF("/ground_" + floor + ".png");
 
 			out.writeByte(npcLevel);
 			out.writeByte(fightFreq);
@@ -1273,17 +1284,18 @@ public class MapCompiler implements Constants {
 		case 40:
 		case 41:
 		case 42:
+		case 43:
 		case 45:
 		case 46:
+		case 47:
 		case 49:
 		case 50:
+		case 51:
 		case 52:
 		case 53:
-		case 54:
 		case 55:
 		case 56:
 		case 57:
-		case 58:
 		case 60:
 		case 61:
 		case 62:
@@ -1291,24 +1303,31 @@ public class MapCompiler implements Constants {
 		case 65:
 		case 66:
 		case 68:
-		case 77:
-		case 79:
-		case 81:
-		case 83:
 		case 85:
-		case 87:
 		case 89:
-		case 91:
 		case 93:
-		case 95:
 		case 96:
 		case 97:
 		case 99:
-		case 100:
 			return COLL_SOLID;
 		case 23:
 		case 34:
+		case 77:
+		case 81:
 			return COLL_SOLID_TRANSPARENT;
+		case 24:
+//		case 94:
+			// water
+		case 54:
+		case 58:
+		case 79:
+		case 83:
+		case 87:
+		case 90:
+		case 91:
+		case 95:
+		case 100:
+			return COLL_SOLID_NO_SHADOW;
 		}
 		return COLL_NONE;
 	}

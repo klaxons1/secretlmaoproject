@@ -418,6 +418,12 @@ public class Game extends GameCanvas implements Runnable, Constants {
 					case JOB_DELIVERIES:
 						zone = ZONE_DELIVERIES;
 						break;
+					case JOB_JANITOR:
+						zone = ZONE_JANITOR;
+						break;
+					case JOB_GARDENING:
+						zone = ZONE_GARDENING;
+						break;
 					default:
 						break arrow;
 					}
