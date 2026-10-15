@@ -98,8 +98,11 @@ public class MapCompiler implements Constants {
 		String tileset = "shanktonstatepen";
 
 		// read
-		byte[] decrypted = BlowfishCompatEncryption.decrypt(Files.readAllBytes(inputPath));
-		try (InputStreamReader r = new InputStreamReader(new ByteArrayInputStream(decrypted))) {
+		byte[] bytes = Files.readAllBytes(inputPath);
+
+		if (!inputPath.getFileName().toString().toLowerCase().endsWith(".cmap")) bytes = BlowfishCompatEncryption.decrypt(bytes);
+
+		try (InputStreamReader r = new InputStreamReader(new ByteArrayInputStream(bytes))) {
 			int c;
 			StringBuffer sb = new StringBuffer();
 			boolean sectionLine = false;
