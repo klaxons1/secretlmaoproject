@@ -6474,6 +6474,12 @@ public class Game extends GameCanvas implements Runnable, Constants {
 
 		if (items < 2) return -1;
 
+		if (items == 3 && (s[0] & Items.ITEM_ID_MASK) == Items.FABRIC
+				&& (s[1] & Items.ITEM_ID_MASK) == Items.FABRIC
+				&& (s[2] & Items.ITEM_ID_MASK) == Items.FABRIC) {
+			return Items.HAT + NPC.rng.nextInt(4);
+		}
+
 		int[] recipies = Game.recipies;
 		int l = recipies.length;
 		for (int i = 0; i < l; i += 5) {

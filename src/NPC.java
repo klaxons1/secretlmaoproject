@@ -3731,6 +3731,24 @@ class NPC implements Constants {
 						return;
 					}
 					break;
+				case Objects.JOB_CLOTHING_STORAGE:
+					if (item == Items.HAT || item == Items.VEST
+							|| item == Items.UNDERPANTS || item == Items.SHORTS) {
+						inventory[slot] = Items.ITEM_NULL;
+						if (jobQuota < MAX_JOB_QUOTA && job == JOB_TAILOR
+								&& map.schedule == SC_WORK_PERIOD) {
+							if ((jobQuota += (MAX_JOB_QUOTA / 10)) >= MAX_JOB_QUOTA) {
+								// TODO
+								Sound.playEffect(Sound.SFX_HP);
+								jobQuota = MAX_JOB_QUOTA;
+								map.money += 45;
+							} else {
+								Sound.playEffect(Sound.SFX_BUY);
+							}
+						}
+						return;
+					}
+					break;
 				}
 			}
 			if (b == COLL_GYM) {
