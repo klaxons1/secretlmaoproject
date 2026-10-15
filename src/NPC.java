@@ -420,7 +420,7 @@ class NPC implements Constants {
 				fighting = 4;
 
 				if (visible) {
-					Sound.playEffect(Sound.SFX_ENHIT);
+					Sound.playEffect(NPC.rng.nextInt(2) == 0 ? Sound.SFX_ENHIT : SFX_HIT1);
 				}
 
 				int damage = statStrength / 14;

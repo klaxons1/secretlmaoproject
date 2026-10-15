@@ -101,6 +101,7 @@ public class Sound implements Runnable, PlayerListener, Constants {
 					loadEffect(SFX_THROW, "/throw.wav");
 					loadEffect(SFX_HP, "/hp.wav");
 					loadEffect(SFX_SHOOT, "/shoot.wav");
+					loadEffect(SFX_HIT1, "/hit1.wav");
 					sfxPrefetched = true;
 				} catch (Exception e) {
 					unloadEffects();
@@ -268,6 +269,9 @@ public class Sound implements Runnable, PlayerListener, Constants {
 								break;
 							case SFX_SHOOT:
 								res = "/shoot.wav";
+								break;
+							case SFX_HIT1:
+								res = "/hit1.wav";
 								break;
 							default:
 								continue;

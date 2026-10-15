@@ -276,8 +276,9 @@ public interface Constants {
 			SFX_LOSE = 10,
 			SFX_THROW = 11,
 			SFX_HP = 12,
-			SFX_SHOOT = 13;
-	static final int COUNT_EFFECTS = 14;
+			SFX_SHOOT = 13,
+			SFX_HIT1 = 14;
+	static final int COUNT_EFFECTS = 15;
 
 // endregion Sound
 

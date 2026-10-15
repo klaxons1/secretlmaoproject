@@ -874,7 +874,7 @@ public class ResourceBuilder implements Constants {
 				"buy.wav", "32000", null,
 				"close.wav", "32000", null,
 				"door.wav", "44100", null,
-				"en_hit.wav", "44100", null,
+				"en_hit.wav", "32000", null,
 				"open.wav", "32000", null,
 				"pickup.wav", "44100", null,
 				"plip.wav", "32000", "adelay=3:all=1",
@@ -883,6 +883,7 @@ public class ResourceBuilder implements Constants {
 				"throw.wav", "32000", null,
 				"hp.wav", "32000", null,
 				"shoot.wav", "32000", null,
+				"hit1.wav", "32000", null,
 		};
 		for (int i = 0; i < sounds.length; i += 3) {
 			String file = sounds[i];
