@@ -421,11 +421,6 @@ class NPC implements Constants {
 
 				if (visible) {
 					Sound.playEffect(Sound.SFX_ENHIT);
-					int i = map.effects[1] == 0 ? 0 : 4;
-					map.effects[i] = 192;
-					map.effects[i + 1] = 1;
-					map.effects[i + 2] = chaseTarget.x;
-					map.effects[i + 3] = chaseTarget.y;
 				}
 
 				int damage = statStrength / 14;
@@ -433,6 +428,24 @@ class NPC implements Constants {
 				if (weapon != Items.ITEM_NULL) {
 					damage += Game.getItemAttack(weapon);
 				}
+
+				// defense
+				switch (chaseTarget.outfitItem & Items.ITEM_ID_MASK) {
+				case Items.GUARD_OUTFIT:
+				case Items.CUSHIONED_INMATE_OUTFIT:
+				case Items.CUSHIONED_POW_OUTFIT:
+					damage -= 1;
+				case Items.PADDED_INMATE_OUTFIT:
+				case Items.PADDED_POW_OUTFIT:
+					damage -= 2;
+					break;
+				case Items.PLATED_INMATE_OUTFIT:
+				case Items.PLATED_POW_OUTFIT:
+					damage -= 3;
+					break;
+				}
+
+				if (damage < 1) damage = 1;
 
 				chaseTarget.damage(this, damage);
 
@@ -1948,32 +1961,21 @@ class NPC implements Constants {
 	}
 	
 	void damage(NPC source, int n) {
-		// defense
-		switch (outfitItem & Items.ITEM_ID_MASK) {
-		case Items.GUARD_OUTFIT:
-		case Items.CUSHIONED_INMATE_OUTFIT:
-		case Items.CUSHIONED_POW_OUTFIT:
-			n -= 1;
-		case Items.PADDED_INMATE_OUTFIT:
-		case Items.PADDED_POW_OUTFIT:
-			n -= 2;
-			break;
-		case Items.PLATED_INMATE_OUTFIT:
-		case Items.PLATED_POW_OUTFIT:
-			n -= 3;
-			break;
-		}
-		if (n < 1) n = 1;
-
 		if (visible) {
-			map.addHitMarker((!ai && source == null) || source.ai ? -n : n, x, y - 5);
+			int i = map.effects[1] == 0 ? 0 : 4;
+			map.effects[i] = 192;
+			map.effects[i + 1] = 1;
+			map.effects[i + 2] = x;
+			map.effects[i + 3] = y;
 
 			if (map.effects[9] == 0) {
 				map.effects[8] = 224;
 				map.effects[9] = 2;
-				map.effects[10] = chaseTarget.x;
-				map.effects[11] = chaseTarget.y;
+				map.effects[10] = x;
+				map.effects[11] = y;
 			}
+
+			map.addHitMarker((!ai && source == null) || source.ai ? -n : n, x, y - 5);
 		}
 
 		health -= n;
