@@ -168,7 +168,7 @@ public class MapCompiler implements Constants {
 								checkLayer("toilet", objectId, x, y, layer, LAYER_GROUND);
 								containers.add(new int[] { objects[LAYER_GROUND].size(), objectId, 3 });
 								// rotate toilet depending on walls placement
-								sprite = isSolidTile(tiles[layer][x + 1 + y * width]) != COLL_NONE ? 17 : 16;
+								sprite = getTileCollision(tiles[layer][x + 1 + y * width]) != COLL_NONE ? 17 : 16;
 								break;
 							case Objects.CABLE_TV:
 								checkLayer("cable tv", objectId, x, y, layer, LAYER_GROUND);
@@ -282,7 +282,7 @@ public class MapCompiler implements Constants {
 							case Objects.VENT_SLATS:
 								checkLayer("vent slats", objectId, x, y, layer, LAYER_VENT);
 								// rotate vent depending on walls placement
-								if (isSolidTile(tiles[layer][x + 1 + y * width]) != COLL_NONE) {
+								if (getTileCollision(tiles[layer][x + 1 + y * width]) != COLL_NONE) {
 									sprite = 83;
 								} else {
 									sprite = 109;
@@ -497,7 +497,7 @@ public class MapCompiler implements Constants {
 							case Objects.CONTRABAND_DETECTOR: {
 								checkLayer("detector", objectId, x, y, layer, LAYER_GROUND);
 								// rotate metal detector depending on walls placement
-								if (isSolidTile(tiles[layer][x + (y - 1) * width]) != COLL_NONE) {
+								if (getTileCollision(tiles[layer][x + (y - 1) * width]) != COLL_NONE) {
 									sprite = 106;
 									h++;
 								} else {
@@ -1252,7 +1252,7 @@ public class MapCompiler implements Constants {
 	
 	
 
-	static byte isSolidTile(byte tile) {
+	static byte getTileCollision(byte tile) {
 		switch (tile) {
 		case 4:
 		case 6:

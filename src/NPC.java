@@ -140,6 +140,7 @@ class NPC implements Constants {
 	boolean talked;
 
 	int fighting;
+	int stealing;
 
 	// path
 	int pathX, pathY;
@@ -518,9 +519,8 @@ class NPC implements Constants {
 		if (inmate && ((tick + typedId) % ANIMATION_TICKS) == 0 && ++animationFrame > 1)
 			animationFrame = 0;
 
-		if (fighting != 0) {
-			fighting--;
-		}
+		if (fighting != 0) --fighting;
+		if (stealing != 0) --stealing;
 		if (health <= 0) {
 			// stunned
 			health = 0;
@@ -893,7 +893,7 @@ class NPC implements Constants {
 
 		NPC player = map.player;
 		npcVision: {
-			if (((tick + id) & 1) != 0) break npcVision;
+			if (((tick + id) & 3) != 0) break npcVision;
 			if (!inmate && !guard) break npcVision;
 			if (aiState == AI_ATTACK) break npcVision;
 
@@ -904,7 +904,7 @@ class NPC implements Constants {
 						// send player to solitary if they're not in cell during lights out
 						map.note = NOTE_SOLITARY;
 					}
-					if (map.heat >= 90 || map.lockdown || player.fighting != 0
+					if (map.heat >= 90 || map.lockdown || player.fighting != 0 || player.stealing != 0
 							|| map.action == ACT_CHIPPING || map.action == ACT_CUTTING
 							|| map.action == ACT_CUTTING_VENT || map.action == ACT_UNSCREWING
 							|| (map.action == ACT_SEARCHING && player.job != JOB_MAILMAN && player.job != JOB_LIBRARY)) {
@@ -943,7 +943,9 @@ class NPC implements Constants {
 							// TODO this check still doesn't work well
 							// guard warns player if they're in wrong cell
 							heat("Get out of that cell " + player.name + '!', 10);
-						} else if (map.time % 60 >= 25) {
+						} else if (player.outfitItem == Items.ITEM_NULL) {
+							heat("Get some clothes on " + player.name + '!', 10);
+						} else if (map.scheduleHeatCooldown == 0) {
 							// hurry up the player to scheduled place
 							onPlace: {
 								switch (map.schedule) {
@@ -966,50 +968,46 @@ class NPC implements Constants {
 									if (player.isInZone(ZONE_SHOWER))
 										break onPlace;
 									break;
+								case SC_WORK_PERIOD: {
+									onJob: {
+										switch (player.job) {
+										case JOB_LAUNDRY:
+											if (player.isInZone(ZONE_LAUNDRY))
+												break onJob;
+											break;
+										case JOB_KITCHEN:
+											if (player.isInZone(ZONE_KITCHEN))
+												break onJob;
+											break;
+										case JOB_WOODSHOP:
+											if (player.isInZone(ZONE_WOODSHOP))
+												break onJob;
+											break;
+										case JOB_METALSHOP:
+											if (player.isInZone(ZONE_METALSHOP))
+												break onJob;
+											break;
+										case JOB_TAILOR:
+											if (player.isInZone(ZONE_TAILORSHOP))
+												break onJob;
+											break;
+										case JOB_DELIVERIES:
+											if (player.isInZone(ZONE_DELIVERIES))
+												break onJob;
+											break;
+										default:
+											break onJob;
+										}
+
+										heat("Get to work  " + player.name + '!', 10);
+									}
+									break onPlace;
+								}
 								default:
 									break onPlace;
 								}
 
 								heat("Move it " + player.name, 10);
-							}
-						} else if (player.outfitItem == Items.ITEM_NULL) {
-							heat("Get some clothes on " + player.name + '!', 10);
-						} else if (map.schedule == SC_WORK_PERIOD && map.time % 60 > 25 /* TODO count hours */
-								&& player.job != JOB_UNEMPLOYED && player.jobQuota < MAX_JOB_QUOTA
-								&& player.job != JOB_JANITOR && player.job != JOB_GARDENING
-								&& player.job != JOB_MAILMAN && player.job != JOB_LIBRARY) {
-							// if player is employed, job quota is not completed, and not in work zone, hurry them up
-							onJob: {
-								switch (player.job) {
-								case JOB_LAUNDRY:
-									if (player.isInZone(ZONE_LAUNDRY))
-										break onJob;
-									break;
-								case JOB_KITCHEN:
-									if (player.isInZone(ZONE_KITCHEN))
-										break onJob;
-									break;
-								case JOB_WOODSHOP:
-									if (player.isInZone(ZONE_WOODSHOP))
-										break onJob;
-									break;
-								case JOB_METALSHOP:
-									if (player.isInZone(ZONE_METALSHOP))
-										break onJob;
-									break;
-								case JOB_TAILOR:
-									if (player.isInZone(ZONE_TAILORSHOP))
-										break onJob;
-									break;
-								case JOB_DELIVERIES:
-									if (player.isInZone(ZONE_DELIVERIES))
-										break onJob;
-									break;
-								default:
-									break onJob;
-								}
-
-								heat("Get to work  " + player.name + '!', 10);
 							}
 						}
 					}
@@ -1989,6 +1987,7 @@ class NPC implements Constants {
 			health = 0;
 			attackTimer = 0;
 			fighting = 0;
+			stealing = 0;
 			if (source == map.player) {
 				// TODO
 				statOpinion -= 10;
@@ -2008,18 +2007,15 @@ class NPC implements Constants {
 		if (source == map.player) {
 			// TODO
 			statOpinion -= 10;
+			if (guard) {
+				map.heat += 25;
+				map.heatTimer = TPS >> 1;
+			}
 		}
 
 		if (inmate) {
 			dialog = Game.getAttackedText(rng.nextInt(Game.TEXT_ATTACKED_COUNT));
 			dialogTimer = (TPS * 2);
-		} else if (guard) {
-			if (visible) {
-				Sound.playEffect(Sound.SFX_LOSE);
-			}
-			if (!source.ai) {
-				map.heat += 10;
-			}
 		}
 		aiState = AI_RESET;
 		chaseTarget = source;
@@ -3916,6 +3912,8 @@ class NPC implements Constants {
 		map.fatigue = 0;
 		map.heat = 0;
 		fighting = 0;
+		stealing = 0;
+		map.scheduleHeatCooldown = TPS * 10;
 		if (map.schedule == SC_LIGHTSOUT || map.lockdown) {
 			// send to cell bed
 			xFloat = x = bedX * TILE_SIZE;

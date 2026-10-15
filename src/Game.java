@@ -148,6 +148,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 	int usedKeySlot = -1;
 	int usedContrabandPouch = -1;
 	int heatTimer;
+	int scheduleHeatCooldown;
 
 	boolean updateInteractFocus;
 	boolean hasInteractFocus;
@@ -1320,6 +1321,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 						case FIRE:
 							if (selectedSlot == -1) {
 								if (inventoryOpen.addItem(player.inventory[selectedInventory], false)) {
+									player.stealing = 2;
 									player.inventory[selectedInventory] = Items.ITEM_NULL;
 								} else {
 									Sound.playEffect(SFX_LOSE);
@@ -1329,6 +1331,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 							if (selectedSlot == 6) {
 								// take weapon
 								if (player.addItem(inventoryOpen.weapon, true)) {
+									player.stealing = 2;
 									inventoryOpen.weapon = Items.ITEM_NULL;
 								}
 								break;
@@ -1336,12 +1339,14 @@ public class Game extends GameCanvas implements Runnable, Constants {
 							if (selectedSlot == 7) {
 								// take outfit
 								if (player.addItem(inventoryOpen.outfitItem, true)) {
+									player.stealing = 2;
 									inventoryOpen.outfitItem = Items.ITEM_NULL;
 									inventoryOpen.outfitId = -1;
 								}
 								break;
 							}
 							if (player.addItem(inventoryOpen.inventory[selectedSlot], true)) {
+								player.stealing = 2;
 								inventoryOpen.inventory[selectedSlot] = Items.ITEM_NULL;
 							}
 							break;
@@ -3716,6 +3721,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 						break routine;
 					}
 					this.schedule = schedule;
+					scheduleHeatCooldown = TPS * 20;
 					updateDoors();
 					Sound.stopEffect();
 					Sound.playEffect(Sound.SFX_BELL);
@@ -3780,6 +3786,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 
 		if (animateHeat != 0) --animateHeat;
 		if (heatTimer != 0) --heatTimer;
+		if (scheduleHeatCooldown != 0) --scheduleHeatCooldown;
 
 		// tick characters
 
