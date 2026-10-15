@@ -438,8 +438,8 @@ public class Game extends GameCanvas implements Runnable, Constants {
 					break arrow;
 				}
 				zone = findZone(zone);
-				if (player.x >= zones[zone] && player.x <= zones[zone + 2]
-						&& player.y >= zones[zone + 1] && player.y <= zones[zone + 3]) {
+				if (zone == -1 || (player.x >= zones[zone] && player.x <= zones[zone + 2]
+						&& player.y >= zones[zone + 1] && player.y <= zones[zone + 3])) {
 					break arrow;
 				}
 				int zx = (zones[zone] + zones[zone + 2]) / 2;
@@ -3722,7 +3722,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 					Sound.playMusic(music);
 				}
 			} else {
-				if (!cellsClosed && (time == 1 || (time >= 23 * 60 + 20 && player.isInZone(ZONE_PLAYER_CELL)))) {
+				if (!cellsClosed && (time == 1 || (time >= 23 * 60 + 20 && (bedDummyPlaced || player.isInZone(ZONE_PLAYER_CELL))))) {
 					cellsClosed = true;
 					updateDoors();
 					Sound.playEffect(Sound.SFX_RUMBLE);

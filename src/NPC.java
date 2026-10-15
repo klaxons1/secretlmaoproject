@@ -3915,7 +3915,7 @@ class NPC implements Constants {
 		map.fatigue = 0;
 		map.heat = 0;
 		fighting = 0;
-		if (map.schedule == SC_LIGHTSOUT) {
+		if (map.schedule == SC_LIGHTSOUT || map.lockdown) {
 			// send to cell bed
 			xFloat = x = bedX * TILE_SIZE;
 			yFloat = y = bedY * TILE_SIZE + 2;
