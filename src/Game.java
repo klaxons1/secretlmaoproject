@@ -2516,6 +2516,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 	int mapVersion;
 	byte npcLevel;
 	byte fightFreq;
+	byte mapType;
 
 	TiledLayer[] tiledLayer;
 
@@ -2570,6 +2571,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 
 				npcLevel = in.readByte();
 				fightFreq = in.readByte();
+				mapType = in.readByte();
 
 				int width = this.width = in.readByte() & 0xFF;
 				int height = this.height = in.readByte() & 0xFF;
@@ -3543,6 +3545,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 			heat = 0;
 			player.job = JOB_UNEMPLOYED;
 			player.layer = LAYER_GROUND;
+			player.fighting = 0;
 			
 			// reset map
 			int size = width * height;

@@ -55,6 +55,7 @@ public class MapCompiler implements Constants {
 		int npcLevel = 2;
 		int fightFreq = 2;
 		String routineSet = "MedSec";
+		int mapType = MAP_TYPE_OUTSIDE;
 		
 		Vector<int[]> zones = new Vector<>();
 
@@ -656,7 +657,7 @@ public class MapCompiler implements Constants {
 							} else if ("Safe1".equals(key)) {
 								type = ZONE_SAFE;
 							} else if ("Safe2".equals(key)) {
-								type = ZONE_SAFE; // TODO what does it do?
+								type = ZONE_SAFE;
 							} else {
 								System.out.println("Unrecognized zone: " + key);
 								break zone;
@@ -678,6 +679,20 @@ public class MapCompiler implements Constants {
 							routineSet = sb.toString();
 						} else if ("Tileset".equals(key)) {
 							tileset = sb.toString();
+						} else if ("MapType".equals(key)) {
+							switch (sb.toString()) {
+							case "Outside":
+								mapType = MAP_TYPE_OUTSIDE;
+								break;
+							case "Inside":
+								mapType = MAP_TYPE_INSIDE;
+								break;
+							case "InsideOnly":
+								mapType = MAP_TYPE_INSIDE_ONLY;
+								break;
+							default:
+								System.out.println("Unkwnown map type: " + sb);
+							}
 						} else {
 							System.out.println("Ignored property: " + key + "=" + sb.toString());
 						}
@@ -887,6 +902,7 @@ public class MapCompiler implements Constants {
 
 			out.writeByte(npcLevel);
 			out.writeByte(fightFreq);
+			out.writeByte(mapType);
 
 			out.writeByte(width);
 			out.writeByte(height);

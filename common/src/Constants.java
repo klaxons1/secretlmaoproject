@@ -248,6 +248,10 @@ public interface Constants {
 			MAP_SANPANCHO = 5,
 			MAP_IRONGATE = 6;
 
+	static final byte MAP_TYPE_OUTSIDE = 0,
+			MAP_TYPE_INSIDE = 1,
+			MAP_TYPE_INSIDE_ONLY = 2;
+
 // endregion Map
 
 // region Sound

@@ -215,7 +215,7 @@ class NPC implements Constants {
 	}
 	
 	void paint(Graphics g, int x, int y) {
-		if (hidden || bodyId == Textures.SNIPER && (map.time < 8 * 60 || map.time >= 22 * 60))
+		if (hidden || bodyId == Textures.SNIPER && (map.time < 8 * 60 || map.time >= 23 * 60))
 			return;
 		int frame = inmate && ai ? animationFrame : Game.animationFrame & 1;
 		
@@ -1983,6 +1983,7 @@ class NPC implements Constants {
 		if (health < 0) {
 			health = 0;
 			attackTimer = 0;
+			fighting = 0;
 			if (source == map.player) {
 				// TODO
 				statOpinion -= 10;
@@ -2343,12 +2344,14 @@ class NPC implements Constants {
 		}
 
 		// snipers
-		if (map.hasSnipers && (tick & 31) == 0 && health > 0 && !map.lockdown
-				&& (map.time >= 8 * 60 && map.time < 22 * 60)
-				&& (layer == LAYER_ROOF || (layer == LAYER_GROUND
-				&& getCollision(x, y, true) == COLL_NONE
+		if (map.hasSnipers && (tick & 31) == 0 && health > 0 && !map.entranceOpen
+				&& (map.time >= 8 * 60 && map.time < 23 * 60)
+				&& (layer == LAYER_ROOF || (layer == LAYER_GROUND && getCollision(x, y, true) == COLL_NONE
 				&& !Game.isFloor(map.tiles[LAYER_GROUND][(x / TILE_SIZE) + ((y + 5) / TILE_SIZE) * map.width])))) {
-			if (map.heat >= 90 || (layer == LAYER_ROOF && outfitId != Textures.OUTFIT_GUARD)) {
+			if (map.heat >= 90 || ((layer == LAYER_ROOF || map.mapType == MAP_TYPE_INSIDE_ONLY
+					|| (map.mapType == MAP_TYPE_INSIDE && !isInZone(ZONE_SAFE) && (map.time >= 10 * 60 && map.time < 22 * 60)))
+					&& outfitId != Textures.OUTFIT_GUARD)
+					|| map.action == ACT_CHIPPING || map.action == ACT_DIGGING || map.action == ACT_CUTTING) {
 				if (map.heat < 99) {
 					map.heat = 99;
 					map.animateHeat = TPS >> 1;
@@ -3906,6 +3909,7 @@ class NPC implements Constants {
 		health = statStrength / 3;
 		map.fatigue = 0;
 		map.heat = 0;
+		fighting = 0;
 		if (map.schedule == SC_LIGHTSOUT) {
 			// send to cell bed
 			xFloat = x = bedX * TILE_SIZE;
