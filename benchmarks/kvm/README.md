@@ -5,6 +5,10 @@ This change optimizes two sources of avoidable interpreter work in `src/Game.jav
 - **Render ordering in `tickMap()` → `sortRenderChars()`**: replace an unconditional bubble sort with a stable, allocation-free insertion sort. Already/nearly sorted character lists are the important case because the previous render order is retained between updates.
 - **Pathfinding's `openAdd()` / `openRemove()`**: cache array references and neighbor indices in locals, and consolidate list insertion. This reduces interpreted field/array loads without changing the linked-list algorithm, priority calculation, or FIFO ordering of equal-cost nodes.
 
+Standalone exports of the two production fixes are available in
+[`patches/`](../../patches/README.md). They apply independently to the baseline;
+the fixes are already included in this branch.
+
 These are **game-method optimizations, not modifications to the VM**. Every published timing runs both implementations on the exact same **unmodified Linux/i386 KVM 1.1 executable** supplied by [the CLDC repository](https://github.com/klaxons1/j2me_cldc-1_1-fcs-src-winunix). Its SHA-256 is:
 
 ```

@@ -1,6 +1,8 @@
 """Fast, offline tests for extraction and the published calculation pipeline."""
 import copy
 import csv
+import os
+import subprocess
 import tempfile
 import unittest
 from pathlib import Path
@@ -79,6 +81,41 @@ class SourceTests(unittest.TestCase):
         source = run.original_source()
         self.assertIn("while (i != -1)", run.method(source, "void openAdd("))
         self.assertIn("short[] next = openNodeNext", run.method((run.ROOT / "src/Game.java").read_text(), "void openRemove("))
+
+
+class PatchTests(unittest.TestCase):
+    def test_standalone_patches_and_both_application_orders(self):
+        original = run.original_source().encode()
+        current = (run.ROOT / "src/Game.java").read_bytes()
+        marker = b"\t// region Pathfinding\n"
+        old_prefix, old_path = original.split(marker)
+        new_prefix, new_path = current.split(marker)
+        render = run.ROOT / "patches/0001-optimize-render-sort.patch"
+        queue = run.ROOT / "patches/0002-optimize-pathfinding-queue.patch"
+        cases = [((render,), new_prefix + marker + old_path),
+                 ((queue,), old_prefix + marker + new_path),
+                 ((render, queue), current), ((queue, render), current)]
+        for patches, expected in cases:
+            with self.subTest(patches=[patch.name for patch in patches]), tempfile.TemporaryDirectory() as directory:
+                env = os.environ.copy()
+                env["GIT_INDEX_FILE"] = str(Path(directory) / "index")
+
+                def git(*args):
+                    return subprocess.check_output(["git"] + list(args), cwd=run.ROOT, env=env)
+
+                git("read-tree", run.BASELINE)
+                # --cached operates only on this temporary index, never the
+                # user's source files, real index, or current branch.
+                for patch in patches:
+                    git("apply", "--cached", "--check", str(patch))
+                    git("apply", "--cached", str(patch))
+                self.assertEqual(git("show", ":src/Game.java"), expected)
+                self.assertEqual(git("diff", "--cached", "--name-only", run.BASELINE), b"src/Game.java\n")
+                for patch in reversed(patches):
+                    git("apply", "--cached", "--reverse", "--check", str(patch))
+                    git("apply", "--cached", "--reverse", str(patch))
+                self.assertEqual(git("show", ":src/Game.java"), original)
+                self.assertEqual(git("diff", "--cached", "--name-only", run.BASELINE), b"")
 
 
 if __name__ == "__main__":
