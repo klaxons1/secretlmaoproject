@@ -3836,19 +3836,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 		// sort characters for rendering, so that southern will be rendered on top
 
 		if ((tick & 3) == 0) {
-			NPC[] sortedChars = this.renderChars;
-
-			for (int i = 0; i < n - 1; ++i) {
-				for (int j = 0; j < n - i - 1; ++j) {
-					if (sortedChars[j] != null && sortedChars[j + 1] != null
-							&& ((sortedChars[j].y - ((sortedChars[j].animation == NPC.ANIM_STUNNED || sortedChars[j].animation == NPC.ANIM_LYING) ? 10000 : 0)) >
-							(sortedChars[j + 1].y - ((sortedChars[j + 1].animation == NPC.ANIM_STUNNED || sortedChars[j + 1].animation == NPC.ANIM_LYING) ? 10000 : 0)))) {
-						NPC t = sortedChars[j];
-						sortedChars[j] = sortedChars[j + 1];
-						sortedChars[j + 1] = t;
-					}
-				}
-			}
+			sortRenderChars(renderChars);
 		}
 
 		if (lockdown && tick % TPS == 0) {
@@ -3873,6 +3861,26 @@ public class Game extends GameCanvas implements Runnable, Constants {
 			// welcome note
 			note = NOTE_WELCOME;
 			Sound.playEffect(Sound.SFX_OPEN);
+		}
+	}
+
+	// Stable insertion sort: between ticks, render order is usually nearly sorted.
+	// Null slots remain barriers, just as in the previous adjacent-swap sort.
+	static void sortRenderChars(NPC[] sortedChars) {
+		int n = sortedChars.length;
+		for (int i = 1; i < n; ++i) {
+			NPC npc = sortedChars[i];
+			if (npc == null) continue;
+			int y = npc.y - ((npc.animation == NPC.ANIM_STUNNED || npc.animation == NPC.ANIM_LYING) ? 10000 : 0);
+			int j = i;
+			while (j > 0) {
+				NPC prev = sortedChars[j - 1];
+				if (prev == null) break;
+				int prevY = prev.y - ((prev.animation == NPC.ANIM_STUNNED || prev.animation == NPC.ANIM_LYING) ? 10000 : 0);
+				if (prevY <= y) break;
+				sortedChars[j--] = prev;
+			}
+			sortedChars[j] = npc;
 		}
 	}
 
@@ -9059,46 +9067,48 @@ public class Game extends GameCanvas implements Runnable, Constants {
 			return;
 		}
 
-		int f1 = nodeG[n] + nodeH[n];
-		while (i != -1) {
-			int f2 = nodeG[i] + nodeH[i];
-			if (f1 < f2) {
-				// insert to next
-				if (openNodePrev[i] == -1) {
-					// last
-					sortedNode = n;
-				} else {
-					openNodeNext[openNodePrev[i]] = (short) n;
-				}
+		// Keep array references in locals while scanning the list on the KVM.
+		short[] nodeG = this.nodeG;
+		short[] nodeH = this.nodeH;
+		short[] next = openNodeNext;
+		short[] prev = openNodePrev;
+		int f = nodeG[n] + nodeH[n];
+		int p = -1;
+		// Insert AFTER equal-cost nodes to preserve the existing path tie-break.
+		while (i != -1 && f >= nodeG[i] + nodeH[i]) {
+			p = i;
+			i = next[i];
+		}
 
-				openNodePrev[n] = openNodePrev[i];
-				openNodeNext[n] = (short) i;
-				openNodePrev[i] = (short) n;
-				return;
-			} else if (openNodeNext[i] == -1) {
-				// insert to previous
-				openNodeNext[i] = (short) n;
-				openNodePrev[n] = (short) i;
-				return;
-			}
-			// continue
-			i = openNodeNext[i];
+		if (p == -1) {
+			sortedNode = n;
+		} else {
+			next[p] = (short) n;
+		}
+		prev[n] = (short) p;
+		next[n] = (short) i;
+		if (i != -1) {
+			prev[i] = (short) n;
 		}
 	}
 
 	void openRemove(int n) {
-		if (openNodeNext[n] != -1) {
-			openNodePrev[openNodeNext[n]] = openNodePrev[n];
+		short[] next = openNodeNext;
+		short[] prev = openNodePrev;
+		short nextNode = next[n];
+		short prevNode = prev[n];
+		if (nextNode != -1) {
+			prev[nextNode] = prevNode;
 		}
 
 		if (sortedNode == n) {
-			sortedNode = openNodeNext[n];
-		} else if (openNodePrev[n] != -1) {
-			openNodeNext[openNodePrev[n]] = openNodeNext[n];
+			sortedNode = nextNode;
+		} else if (prevNode != -1) {
+			next[prevNode] = nextNode;
 		}
 
-		openNodePrev[n] = -1;
-		openNodeNext[n] = -1;
+		prev[n] = -1;
+		next[n] = -1;
 	}
 
 	// endregion Pathfinding

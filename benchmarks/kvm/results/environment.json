@@ -1,0 +1,104 @@
+{
+  "recorded_at_utc": "2026-10-16T20:10:30.747145+00:00",
+  "baseline_commit": "785ef001798fad8e4e9f2e21426e4c6d65875d33",
+  "branch": "arena/a0d34468-secretlmaoproject",
+  "host": "Linux-6.1.158+-x86_64-with-glibc2.36",
+  "cpu": "Intel(R) Xeon(R) Processor @ 2.60GHz",
+  "python": "3.11.2",
+  "jdk_version": "openjdk version \"1.8.0_131-0-djytc\"\nOpenJDK Runtime Environment (build 1.8.0_131-0-djytc-11)\nOpenJDK 64-Bit Server VM (build 25.131-b11, mixed mode)",
+  "proguard_jar_sha256": "bd9b6c58daf01e5088b86fc8aa99ae9af53d3821c622e5e01d68db97ee82f2eb",
+  "cpu_affinity": [
+    0,
+    1
+  ],
+  "kvm_version": "Version: 1.1",
+  "kvm_sha256": "917b17f278023670b9a5472d7740d12a5c7b1c6e3718196f828d4bed5de82e66",
+  "kvm_modified": false,
+  "kvm_heap_bytes": 2097152,
+  "timer": "System.currentTimeMillis (integer milliseconds)",
+  "samples": 9,
+  "min_sample_ms": 250,
+  "independent_variant_calibration": true,
+  "warmup_batches": 2,
+  "dependencies": {
+    "cldc": {
+      "repository": "klaxons1/j2me_cldc-1_1-fcs-src-winunix",
+      "commit": "d924b6425fae9fb39387882ab6a86ae555cdcc90",
+      "archive_sha256": "3b6ef960509c6e18718ae7ad11fea692059a8bc5f38c9b4238baae16f912849f"
+    },
+    "suite": {
+      "repository": "klaxons1/LLM-J2ME-SUITE",
+      "commit": "c4799767bf43c9a94d327f6394ef51445a2be807",
+      "archive_sha256": "a61bc432db22fa456638bfc72b88b2a7e81075a393f91ac733f59c0ed62fa7de"
+    },
+    "jdk8": {
+      "repository": "klaxons1/tools_linux_jdk8",
+      "commit": "7be76e541810614e3627d42c68759fab16055b7b",
+      "archive_sha256": "e197de355b091aab8b98b2e5da44f8c5371da8791a1b72e510958758b370044c"
+    }
+  },
+  "glibc": {
+    "repository": "hanpfei/chromium-net",
+    "commit": "9df8ce98c2a14fb60c2f581853011e32eb4bed0f",
+    "files": {
+      "ld-2.13.so": [
+        "31f9e5a1bcbe8bcaa04179fe99826d1908d93ed3",
+        "898bd2ff11e1ba7fcc4eb672b23619b716dee96d95eeff03389dc21d3c6b6d73"
+      ],
+      "libc-2.13.so": [
+        "d81509e90df383f40e62a7459e2863e088d87c3d",
+        "412d26f0e732e2f5ca81e6635e0ff13bb2d13e1d3bb3180941b7dc7f43c86829"
+      ],
+      "libm-2.13.so": [
+        "5a5fc9b07f25b6091bee3eb345f6c65cd1889b63",
+        "f0359740af4d2091634354783c25c222cdd7ce33f75b88539c5928f5a769c155"
+      ],
+      "libnsl-2.13.so": [
+        "a1fc6f56ae1ca1ad47490bbc44f16f771bad054f",
+        "33512249dfd0d7b0abc34a81088b6f6b52040fc8a6f7b410f932af2795e9599e"
+      ]
+    }
+  },
+  "sources_sha256": {
+    "OriginalKernel": "3e7adb2c95fe8a09678c5698df70f0b9799edf8ffb25d034e94fd9986b46c12e",
+    "CountedOriginalKernel": "4bcd8dcfb3e39534f6b6f64b19f3f6185026be81ddc64441051548aa30e8c6e1",
+    "OptimizedKernel": "6902e2aad7e57964fad24949e721f2346f26e29ae729d2f3786795b515c2a64d",
+    "CountedOptimizedKernel": "06c87e11eb5b1a1907129d38712885016c25f3d8d3ba2b97a9af31bdd50b8573",
+    "Collision": "6571916564a5e8c3bcb848638d32b3248e01a2755bc0e30f42da4b3d3604d98e",
+    "baseline_Game.java": "830d95f65ecc8f96131e138285dccc408f71ccc68f38499fcd9b0d7528a10250",
+    "current_Game.java": "36d3062ea320a861bc0baa426208c2841219904bcde5f6a75f62ab955715b191",
+    "benchmarks/kvm/src/Benchmark.java": "66731f6271291f4b754d223e640a5dbd3b161c15dc47c54755829c53559ce54d",
+    "benchmarks/kvm/src/Checks.java": "8ff0e2fe3c9d3b0c0901c1140f6a68e767d6adb9cbb1745ac573f46f4fc3dafe",
+    "benchmarks/kvm/src/Fixtures.java": "96b68ec3e3b6cfb091f91c214c58f2ca34e32d00aa9137ac28a2ccec6a721452",
+    "benchmarks/kvm/src/Kernel.java": "e20b5a3e996dd9943cfea5165cf7934c2ac41353e51f98a2059f0d514577f805",
+    "benchmarks/kvm/src/Profile.java": "14cb20adae32f9119ab6dfaa4ccc980b3f4a5e3c27816c9604bd60e5acadcc7f",
+    "src/Game.java": "36d3062ea320a861bc0baa426208c2841219904bcde5f6a75f62ab955715b191",
+    "src/NPC.java": "cb356b58526e13d58e8de04d08c37ec694d8c7953930b6733a532164d42a70df",
+    "src/Profiler.java": "3dd5d2f000b56d126f7c5c19f8536fb949fb91818f291b1f829cb56eb348b61e",
+    "src/Sound.java": "cca6294180674329d3a4b31cbd8e49fe7a6ff8dbec7e529993b6ea3c58965ba3",
+    "src/TE.java": "d602a2281a038640d5a842d9f6ff7db4ab6fd8f20b0e5ab1a85d0dfc452748c4",
+    "src/Textures.java": "2aaf81c2bd9a981502f15720e2427940870fe36bf19058b8c17842c249f0c338",
+    "common/src/Constants.java": "2411c906bee1163597c132f1c6c72851322a8a63973c951e72dda6cba5220296",
+    "common/src/Items.java": "e5dfd9f8940849461668d96efd3adfeffc3e1753675f5187b0e7b2fe56f671a4",
+    "common/src/Objects.java": "05f9a7581298423bcf853d12e6e868dee6a62549a209050164fab397fea85236",
+    "benchmarks/kvm/run.py": "7ba899700d16253a727b4d1a14c5ce2cb72ace32d243268a7cdfe715408cd6ff"
+  },
+  "map_sha256": {
+    "perks": "5ed187fd779ba0480803477c8766144b6a686b02c99be3318557d5b8e021913a",
+    "stalagflucht": "4358072e0274b94230184a8d2721455d894fc427268882cc49b5b64c859cf5b9",
+    "shanktonstatepen": "e2b37756764eb8210e7f93faf19389acc84a92ac6b2bc85f32c403a4ce2be9a7",
+    "jungle": "5dcbe62f52fb57ff67545fd1de5ac2b0c862352590db123bf696e543bd87eac3",
+    "sanpancho": "2054c4ffc54a5d841462887004fe7d886987a74337623754ae21dbb49a49f9b3",
+    "irongate": "30a4e01c519682065864ff7f2a4d691d049abc80d230f6ab5aadfe1deffaaefe"
+  },
+  "class_bytes": {
+    "original": {
+      "Game.class": 161858,
+      "all_classes": 255332
+    },
+    "optimized": {
+      "Game.class": 161990,
+      "all_classes": 255464
+    }
+  }
+}

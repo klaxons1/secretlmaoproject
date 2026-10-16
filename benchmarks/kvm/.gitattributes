@@ -1,0 +1,2 @@
+# Python's csv writer emits CRLF; normalize text results in Git.
+results/*.csv text eol=lf
