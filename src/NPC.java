@@ -2993,6 +2993,27 @@ class NPC implements Constants {
 		byte b = getCollision(x, y, true);
 		x = (this.x + x) / TILE_SIZE;
 		y = (this.y + y) / TILE_SIZE;
+
+		if (b == COLL_SOLID_INTERACT && map.objects[layer][map.getObjectIdxAt(x, y, layer) + 1] == Objects.PLAYER_BED) {
+			if (map.bedDummyPlaced) {
+				if (!addItem(Items.BED_DUMMY | Items.ITEM_DEFAULT_DURABILITY, true)) return;
+				map.bedDummyPlaced = false;
+				return;
+			}
+			if (item == Items.BED_DUMMY) {
+				map.bedDummyPlaced = true;
+				inventory[slot] = Items.ITEM_NULL;
+				return;
+			}
+			xFloat = this.x = bedX * TILE_SIZE;
+			yFloat = this.y = bedY * TILE_SIZE + 2;
+			animation = ANIM_LYING;
+			if (map.schedule == SC_LIGHTSOUT && (map.time < 5 * 60 || map.time >= 20 * 60)) {
+				map.saveDialog = true;
+				Sound.playEffect(SFX_OPEN);
+			}
+		}
+
 		if (item != -1) {
 			if (item == Items.CUP_OF_MOLTEN_CHOCOLATE
 					&& map.interactNPC != null && (map.interactNPC.inmate || map.interactNPC.guard)) {
@@ -3568,22 +3589,25 @@ class NPC implements Constants {
 					Sound.playEffect(Sound.SFX_DOOR);
 					return;
 				case Objects.PLAYER_BED:
-					if (map.bedDummyPlaced) {
-						if (!addItem(Items.BED_DUMMY | Items.ITEM_DEFAULT_DURABILITY, true)) return;
-						map.bedDummyPlaced = false;
-						return;
+					if ((map.objects[layer][idx + 2] & 0xFF) == 160) {
+						if (addItem(Items.BED_SHEET, true)) {
+							map.objects[layer][idx + 2]++;
+						}
+					} else if ((map.objects[layer][idx + 2] & 0xFF) == 161) {
+						if (addItem(Items.PILLOW, true)) {
+							map.objects[layer][idx + 2]++;
+						}
 					}
-					if (item == Items.BED_DUMMY) {
-						map.bedDummyPlaced = true;
-						inventory[slot] = Items.ITEM_NULL;
-						return;
-					}
-					xFloat = this.x = bedX * TILE_SIZE;
-					yFloat = this.y = bedY * TILE_SIZE + 2;
-					animation = ANIM_LYING;
-					if (map.schedule == SC_LIGHTSOUT && (map.time < 5 * 60 || map.time >= 20 * 60)) {
-						map.saveDialog = true;
-						Sound.playEffect(SFX_OPEN);
+					return;
+				case Objects.BED:
+					if ((map.objects[layer][idx + 2] & 0xFF) == 163) {
+						if (addItem(Items.BED_SHEET, true)) {
+							map.objects[layer][idx + 2]++;
+						}
+					} else if ((map.objects[layer][idx + 2] & 0xFF) == 165) {
+						if (addItem(Items.PILLOW, true)) {
+							map.objects[layer][idx + 2]++;
+						}
 					}
 					return;
 				case Objects.MEDICAL_BED:

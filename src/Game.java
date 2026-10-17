@@ -3261,23 +3261,28 @@ public class Game extends GameCanvas implements Runnable, Constants {
 				for (int i = 0; i < n; ++i) {
 					int idx = i << 2;
 					byte s;
-					if ((s = getObjectCollision(objects[idx + 1])) == COLL_NONE) {
+					int obj = objects[idx + 1];
+					if ((s = getObjectCollision(obj)) == COLL_NONE) {
 						continue;
 					}
 
 					short x = objects[idx + 3], y = objects[idx + 4];
 
-					if (objects[idx + 1] == Objects.STASH && day == 0) {
+					if (obj == Objects.STASH && day == 0) {
 						if (NPC.rng.nextInt(10) != 0) {
 							// delete object
 							objects[idx + 1] = -Objects.STASH;
 							objects[idx + 2] |= 1 << 12;
 							s = COLL_NONE;
 						}
-					} else if (initSeats && objects[idx + 1] == Objects.CHAIR && isInZone(x * TILE_SIZE, y * TILE_SIZE, ZONE_CANTEEN)) {
+					} else if (initSeats && obj == Objects.CHAIR && isInZone(x * TILE_SIZE, y * TILE_SIZE, ZONE_CANTEEN)) {
 						int p = ((canteenSeatsPositions[0]++) << 1) + 1;
 						canteenSeatsPositions[p] = (short) ((x & 0xFF) | ((y & 0xFF) << 8));
 						canteenSeatsPositions[p + 1] = -1;
+					} else if (obj == Objects.PLAYER_BED) {
+						while ((objects[idx + 2] & 0xFF) > 160) objects[idx + 2]--;
+					} else if (obj == Objects.BED) {
+						while ((objects[idx + 2] & 0xFF) > 163) objects[idx + 2]--;
 					}
 
 					short sprite = objects[idx + 2];
