@@ -3835,21 +3835,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 
 		// sort characters for rendering, so that southern will be rendered on top
 
-		if ((tick & 3) == 0) {
-			NPC[] sortedChars = this.renderChars;
-
-			for (int i = 0; i < n - 1; ++i) {
-				for (int j = 0; j < n - i - 1; ++j) {
-					if (sortedChars[j] != null && sortedChars[j + 1] != null
-							&& ((sortedChars[j].y - ((sortedChars[j].animation == NPC.ANIM_STUNNED || sortedChars[j].animation == NPC.ANIM_LYING) ? 10000 : 0)) >
-							(sortedChars[j + 1].y - ((sortedChars[j + 1].animation == NPC.ANIM_STUNNED || sortedChars[j + 1].animation == NPC.ANIM_LYING) ? 10000 : 0)))) {
-						NPC t = sortedChars[j];
-						sortedChars[j] = sortedChars[j + 1];
-						sortedChars[j + 1] = t;
-					}
-				}
-			}
-		}
+		if ((tick & 7) == 0) sortRenderChars(renderChars);
 
 		if (lockdown && tick % TPS == 0) {
 			if (lockdownTimer == 0) {
@@ -3873,6 +3859,26 @@ public class Game extends GameCanvas implements Runnable, Constants {
 			// welcome note
 			note = NOTE_WELCOME;
 			Sound.playEffect(Sound.SFX_OPEN);
+		}
+	}
+
+	private static void sortRenderChars(NPC[] sortedChars) {
+		int n = sortedChars.length;
+		for (int i = 1; i < n; ++i) {
+			NPC npc = sortedChars[i];
+			if (npc == null) continue;
+
+			int y = npc.y - ((npc.animation == NPC.ANIM_STUNNED || npc.animation == NPC.ANIM_LYING) ? 10000 : 0);
+			int j = i;
+			while (j > 0) {
+				NPC t = sortedChars[j - 1];
+				if (t == null) break;
+				if (t.y - ((t.animation == NPC.ANIM_STUNNED || t.animation == NPC.ANIM_LYING) ? 10000 : 0) <= y)
+					break;
+
+				sortedChars[j--] = t;
+			}
+			sortedChars[j] = npc;
 		}
 	}
 
@@ -9059,31 +9065,26 @@ public class Game extends GameCanvas implements Runnable, Constants {
 			return;
 		}
 
-		int f1 = nodeG[n] + nodeH[n];
-		while (i != -1) {
-			int f2 = nodeG[i] + nodeH[i];
-			if (f1 < f2) {
-				// insert to next
-				if (openNodePrev[i] == -1) {
-					// last
-					sortedNode = n;
-				} else {
-					openNodeNext[openNodePrev[i]] = (short) n;
-				}
+		short[] nodeG = this.nodeG;
+		short[] nodeH = this.nodeH;
+		short[] openNodePrev = this.openNodePrev;
+		short[] openNodeNext = this.openNodeNext;
 
-				openNodePrev[n] = openNodePrev[i];
-				openNodeNext[n] = (short) i;
-				openNodePrev[i] = (short) n;
-				return;
-			} else if (openNodeNext[i] == -1) {
-				// insert to previous
-				openNodeNext[i] = (short) n;
-				openNodePrev[n] = (short) i;
-				return;
-			}
-			// continue
+		int f = nodeG[n] + nodeH[n];
+		int p = -1;
+		while (i != -1 && f >= nodeG[i] + nodeH[i]) {
+			p = i;
 			i = openNodeNext[i];
 		}
+
+		if (p == -1) {
+			sortedNode = n;
+		} else {
+			openNodeNext[p] = (short) n;
+		}
+		openNodePrev[n] = (short) p;
+		openNodeNext[n] = (short) i;
+		if (i != -1) openNodePrev[i] = (short) n;
 	}
 
 	void openRemove(int n) {
