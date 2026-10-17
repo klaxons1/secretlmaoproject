@@ -704,16 +704,36 @@ public class Game extends GameCanvas implements Runnable, Constants {
 			if (saveDialog) {
 				pausedOverlay = true;
 
+				int nw = 165;
+				int nh = 60;
+				int nx = (w - nw) >> 1;
+				int ny = (h - nh) >> 1;
+
+				g.setColor(0x333333);
+				g.fillRect(nx, ny, nw, nh);
+				g.setColor(0);
+				g.drawRect(nx, ny, nw - 1, nh - 1);
+
 				// TODO
 				fontColor = FONT_COLOR_WHITE;
 				String t = "Would you like to sleep until morning";
-				drawText(g, t, (w - textWidth(t, FONT_REGULAR)) >> 1, (h >> 1) - 5, FONT_REGULAR);
+				drawText(g, t, (w - textWidth(t, FONT_REGULAR)) >> 1, (h >> 1) - 20, FONT_REGULAR);
 				t = "and save your current progress?";
-				drawText(g, t, (w - textWidth(t, FONT_REGULAR)) >> 1, (h >> 1) + 5, FONT_REGULAR);
+				drawText(g, t, (w - textWidth(t, FONT_REGULAR)) >> 1, (h >> 1) - 10, FONT_REGULAR);
 				t = "Left soft: Ok, Right soft: Cancel";
-				drawText(g, t, (w - textWidth(t, FONT_REGULAR)) >> 1, (h >> 1) + 20, FONT_REGULAR);
+				drawText(g, t, (w - textWidth(t, FONT_REGULAR)) >> 1, (h >> 1) + 10, FONT_REGULAR);
 			} else if (saveProblem) {
 				pausedOverlay = true;
+
+				int nw = 165;
+				int nh = 60;
+				int nx = (w - nw) >> 1;
+				int ny = (h - nh) >> 1;
+
+				g.setColor(0x333333);
+				g.fillRect(nx, ny, nw, nh);
+				g.setColor(0);
+				g.drawRect(nx, ny, nw - 1, nh - 1);
 
 				// TODO
 				fontColor = FONT_COLOR_WHITE;
