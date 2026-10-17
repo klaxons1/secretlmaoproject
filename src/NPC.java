@@ -527,7 +527,7 @@ class NPC implements Constants {
 			if (wakeupTimer == -1) {
 				if (guard) {
 					map.guardsDown++;
-					if (map.guardsDown >= 3 && !map.lockdown) {
+					if (map.guardsDown >= (map.guards * 2) / 5 && !map.lockdown) {
 						map.startLockdown();
 					}
 				}
@@ -3285,12 +3285,13 @@ class NPC implements Constants {
 			map.objects[layer][objIdx + 3] = -1;
 			map.objects[layer][objIdx + 4] = -1;
 			map.solid[layer][y * map.width + x] = COLL_NONE;
+			Sound.playEffect(SFX_PICKUP);
 			return;
 		}
 		if (map.carryingObject != -1) {
 			int objIdx = map.carryingObject;
 			if (b != COLL_NONE) {
-				Sound.playEffect(Constants.SFX_LOSE);
+				Sound.playEffect(SFX_LOSE);
 				return;
 			}
 			map.carryingObject = -1;
@@ -3298,6 +3299,7 @@ class NPC implements Constants {
 			map.objects[layer][objIdx + 3] = (short) x;
 			map.objects[layer][objIdx + 4] = (short) y;
 			map.solid[layer][y * map.width + x] = COLL_DESK;
+			Sound.playEffect(SFX_THROW);
 			return;
 		}
 		if (map.interactNPC != null) {

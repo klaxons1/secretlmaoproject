@@ -3769,7 +3769,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 					if (time % 60 == 0) {
 						updateDoors();
 					}
-					if (guardsDown >= 4) {
+					if (guardsDown >= (guards * 4) / 5) {
 						if (!entranceOpen) {
 							entranceOpen = true;
 							updateDoors();
