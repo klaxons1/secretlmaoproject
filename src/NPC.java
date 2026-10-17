@@ -917,7 +917,9 @@ class NPC implements Constants {
 						aiWaitTimer = 0;
 						map.playerSeenByGuards = true;
 
-						heat("Oi, " + player.name + '!',
+						StringBuffer sb = Game.stringBuffer;
+						sb.setLength(0);
+						heat(sb.append("Oi, ").append(player.name).append('!').toString(),
 								map.action == ACT_CHIPPING || map.action == ACT_CUTTING
 								|| map.action == ACT_CUTTING_VENT || map.action == ACT_UNSCREWING ? 99 : 30);
 						if (map.lockdown && map.guardsDown < 3) {
@@ -944,9 +946,13 @@ class NPC implements Constants {
 								&& player.job != JOB_MAILMAN && player.job != JOB_LIBRARY) {
 							// TODO this check still doesn't work well
 							// guard warns player if they're in wrong cell
-							heat("Get out of that cell " + player.name + '!', 10);
+							StringBuffer sb = Game.stringBuffer;
+							sb.setLength(0);
+							heat(sb.append("Get out of that cell ").append(player.name).append('!').toString(), 10);
 						} else if (player.outfitItem == Items.ITEM_NULL) {
-							heat("Get some clothes on " + player.name + '!', 10);
+							StringBuffer sb = Game.stringBuffer;
+							sb.setLength(0);
+							heat(sb.append("Get some clothes on ").append(player.name).append('!').toString(), 10);
 						} else if (map.scheduleHeatCooldown == 0) {
 							// hurry up the player to scheduled place
 							onPlace: {
@@ -1003,7 +1009,9 @@ class NPC implements Constants {
 											break onJob;
 										}
 
-										heat("Get to work  " + player.name + '!', 10);
+										StringBuffer sb = Game.stringBuffer;
+										sb.setLength(0);
+										heat(sb.append("Get to work  ").append(player.name).append('!').toString(), 10);
 									}
 									break onPlace;
 								}
@@ -1011,7 +1019,9 @@ class NPC implements Constants {
 									break onPlace;
 								}
 
-								heat("Move it " + player.name, 10);
+								StringBuffer sb = Game.stringBuffer;
+								sb.setLength(0);
+								heat(sb.append("Move it ").append(player.name).toString(), 10);
 							}
 						}
 					}
@@ -1042,7 +1052,9 @@ class NPC implements Constants {
 						aiState = AI_ATTACK;
 						chaseTarget = other;
 						aiWaitTimer = 0;
-						heat("Oi! " + other.name, 0);
+						StringBuffer sb = Game.stringBuffer;
+						sb.setLength(0);
+						heat(sb.append("Oi! ").append(other.name).toString(), 0);
 						break;
 					}
 				} else if (inmate && other.inmate) {
