@@ -2375,7 +2375,7 @@ class NPC implements Constants {
 				&& (layer == LAYER_ROOF || (layer == LAYER_GROUND && getCollision(x, y, true) == COLL_NONE
 				&& !Game.isFloor(map.tiles[LAYER_GROUND][(x / TILE_SIZE) + ((y + 5) / TILE_SIZE) * map.width])))) {
 			if (map.heat >= 90 || ((layer == LAYER_ROOF || map.mapType == MAP_TYPE_INSIDE_ONLY
-					|| (map.mapType == MAP_TYPE_INSIDE && !isInZone(ZONE_SAFE) && (map.time >= 10 * 60 && map.time < 22 * 60)))
+					|| (map.mapType == MAP_TYPE_INSIDE && !isInZone(ZONE_SAFE) && (map.time < 10 * 60 && map.time > 22 * 60)))
 					&& outfitId != Textures.OUTFIT_GUARD)
 					|| map.action == ACT_CHIPPING || map.action == ACT_DIGGING || map.action == ACT_CUTTING) {
 				if (map.heat < 99) {
