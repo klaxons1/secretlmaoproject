@@ -1770,14 +1770,12 @@ public class Game extends GameCanvas implements Runnable, Constants {
 							}
 							if (profileTab == 0 && !profileOpen.ai) {
 								if (selectedSlot == 0) {
-									if (player.outfitItem != Items.ITEM_NULL) {
-										player.addItem(player.outfitItem, true);
+									if (player.outfitItem != Items.ITEM_NULL && player.addItem(player.outfitItem, true)) {
 										player.outfitItem = Items.ITEM_NULL;
 										player.outfitId = -1;
 									}
 								} else if (selectedSlot == 1) {
-									if (player.weapon != Items.ITEM_NULL) {
-										player.addItem(player.weapon, true);
+									if (player.weapon != Items.ITEM_NULL && player.addItem(player.weapon, true)) {
 										player.weapon = Items.ITEM_NULL;
 									}
 								}
@@ -4016,7 +4014,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 			if (i == -1) break;
 			objects[LAYER_GROUND][i + 2] |= 1 << 12;
 			solid[LAYER_GROUND][objects[LAYER_GROUND][i + 3] + objects[LAYER_GROUND][i + 4] * width] = COLL_NONE;
-			++i;
+			i += 4;
 		}
 
 		checkpointOpen = true;
@@ -6591,8 +6589,8 @@ public class Game extends GameCanvas implements Runnable, Constants {
 				s[1] = s[0];
 				s[0] = t;
 			} else if (s[1] == -1 || s[1] > t) {
-				s[1] = t;
 				s[2] = s[1];
+				s[1] = t;
 			} else {
 				s[2] = t;
 			}
