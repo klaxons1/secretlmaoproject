@@ -136,6 +136,7 @@ class NPC implements Constants {
 	int animationFrame;
 	int desk;
 	boolean selling;
+	boolean asking;
 	int[] sell;
 	boolean talked;
 

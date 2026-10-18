@@ -5001,8 +5001,9 @@ public class Game extends GameCanvas implements Runnable, Constants {
 			if (npc == null || npc.layer != layer || !npc.visible) continue;
 
 			int x = (int) npc.x - viewX, y = (int) npc.y - viewY;
-			if (npc.selling && (((ticks + npc.id * 3) >> 5) & 1) == 0) {
-				g.drawRegion(markersImg, 0, 0, 7, 8, 0, x + 4, y - 8, 0);
+			if ((((ticks + npc.id * 3) >> 5) & 1) == 0) {
+				if (npc.selling) g.drawRegion(markersImg, 0, 0, 7, 8, 0, x + 4, y - 8, 0);
+				else if (npc.asking) g.drawRegion(markersImg, 7, 0, 4, 9, 0, x + 6, y - 8, 0);
 			}
 			if (npc.dialog != null) {
 				String[] r = npc.dialogRender;
