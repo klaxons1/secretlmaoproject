@@ -2,7 +2,7 @@
 
 The Escapists fan demake for J2ME platform.
 
-![screenshot](/screenshot.png)
+![screenshot](/screenshot1.png) ![screenshot](/screenshot2.png)
 
 ## Project state
 
