@@ -657,7 +657,8 @@ class NPC implements Constants {
 			} else if (guard && (map.prevSchedule == SC_MORNING_ROLLCALL
 					|| map.prevSchedule == SC_AFTERNOON_ROLLCALL
 					|| map.prevSchedule == SC_EVENING_ROLLCALL)
-					&& ((typedId == 3 && map.shakedown1 != null) || (typedId == 4 && map.shakedown2 != null))) {
+					&& ((typedId == 3 && map.shakedown1 != null && map.shakedown1.desk != 0)
+					|| (typedId == 4 && map.shakedown2 != null && map.shakedown2.desk != 0))) {
 				aiState = AI_SHAKEDOWN;
 				correctPath = false;
 			}
@@ -1558,26 +1559,21 @@ class NPC implements Constants {
 						npc = map.shakedown1;
 						map.shakedown1 = null;
 					}
-					if (npc == null) break desk;
+					if (npc == null || npc.desk == 0) break desk;
 					int obj = map.containers[aiWorkState = npc.desk];
 					if (obj == -1) break desk;
 
 					int x = map.objects[LAYER_GROUND][obj + 3];
 					int y = map.objects[LAYER_GROUND][obj + 4];
 
-					try {
-						for (int n = 0; n < 4; ++n) {
-							int ox = Game.PATH_DIR_POSITIONS[(3 - n) << 1];
-							int oy = Game.PATH_DIR_POSITIONS[((3 - n) << 1) + 1];
-							// FIXME aioob
-							if (map.solid[LAYER_GROUND][x + ox + (y + oy) * map.width] == 0) {
-								x += ox;
-								y += oy;
-								break;
-							}
+					for (int n = 0; n < 4; ++n) {
+						int ox = Game.PATH_DIR_POSITIONS[(3 - n) << 1];
+						int oy = Game.PATH_DIR_POSITIONS[((3 - n) << 1) + 1];
+						if (map.solid[LAYER_GROUND][x + ox + (y + oy) * map.width] == 0) {
+							x += ox;
+							y += oy;
+							break;
 						}
-					} catch (Exception e) {
-						break desk;
 					}
 
 					if (map.pathfind(this.x / TILE_SIZE, (this.y + 5) / TILE_SIZE, direction, pathX = x, pathY = y, false, path)) {
@@ -1586,6 +1582,10 @@ class NPC implements Constants {
 					} else if (LOGGING) {
 						Profiler.log(debugName() + " cannot pathfind to desk " + npc);
 					}
+				}
+
+				if (!correctPath) {
+					aiState = AI_RESET;
 				}
 			} else if (targetReached) {
 				if (map.removeIllegalItems(aiWorkState) && aiWorkState == map.getContainerByOwner(0)) {
@@ -3006,6 +3006,7 @@ class NPC implements Constants {
 				if (item == Items.BED_DUMMY) {
 					map.bedDummyPlaced = true;
 					inventory[slot] = Items.ITEM_NULL;
+					Sound.playEffect(SFX_THROW);
 					return;
 				}
 				xFloat = this.x = bedX * TILE_SIZE;
@@ -3240,9 +3241,13 @@ class NPC implements Constants {
 				case Items.WALL_BLOCK:
 					int pos = x + y * map.width;
 					// TODO check collision
-					if (item == Items.WALL_BLOCK) {
+					if (item == Items.WALL_BLOCK || item == Items.FAKE_FENCE) {
 						// put wall back
-						if (t != -21 && t != -25) return;
+						if (item == Items.WALL_BLOCK) {
+							if (t != -21 && t != -25) return;
+						} else /*if (item == Items.FAKE_FENCE)*/ {
+							if (t != -77 && t != -81) return;
+						}
 						map.setBreakProgress(x, y, layer, 90);
 						map.tiles[layer][pos] = (byte) -t;
 						map.solid[layer][pos] = COLL_SOLID;
@@ -3251,11 +3256,7 @@ class NPC implements Constants {
 						}
 					} else {
 						// put poster
-						if (item == Items.POSTER || item == Items.FAKE_WALL_BLOCK) {
-							if (t != -21 && t != -25) return;
-						} else /*if (item == Items.FAKE_FENCE)*/ {
-							if (t != -77 && t != -81) return;
-						}
+						if (t != -21 && t != -25) return;
 						map.setBreakProgress(x, y, layer, item == Items.POSTER ? 101 : 102);
 						map.solid[layer][pos] = COLL_POSTER;
 						if (item != Items.POSTER) {
@@ -3600,25 +3601,31 @@ class NPC implements Constants {
 					Sound.playEffect(Sound.SFX_DOOR);
 					return;
 				case Objects.PLAYER_BED:
+					if (map.bedDummyPlaced) {
+						if (!addItem(Items.BED_DUMMY | Items.ITEM_DEFAULT_DURABILITY, true))
+							return;
+						map.bedDummyPlaced = false;
+						return;
+					}
 					if ((map.objects[layer][idx + 2] & 0xFF) == 160) {
-						if (addItem(Items.BED_SHEET, true)) {
-							map.objects[layer][idx + 2]++;
-						}
+						if (!addItem(Items.BED_SHEET, true))
+							return;
+						map.objects[layer][idx + 2]++;
 					} else if ((map.objects[layer][idx + 2] & 0xFF) == 161) {
-						if (addItem(Items.PILLOW, true)) {
-							map.objects[layer][idx + 2]++;
-						}
+						if (!addItem(Items.PILLOW, true))
+							return;
+						map.objects[layer][idx + 2]++;
 					}
 					return;
 				case Objects.BED:
 					if ((map.objects[layer][idx + 2] & 0xFF) == 163) {
-						if (addItem(Items.BED_SHEET, true)) {
-							map.objects[layer][idx + 2]++;
-						}
+						if (!addItem(Items.BED_SHEET, true))
+							return;
+						map.objects[layer][idx + 2]++;
 					} else if ((map.objects[layer][idx + 2] & 0xFF) == 164) {
-						if (addItem(Items.PILLOW, true)) {
-							map.objects[layer][idx + 2]++;
-						}
+						if (!addItem(Items.PILLOW, true))
+							return;
+						map.objects[layer][idx + 2]++;
 					}
 					return;
 				case Objects.CHAIR:
@@ -3915,10 +3922,10 @@ class NPC implements Constants {
 							dialogTimer = TPS * 2;
 							return;
 						}
-					} else if (!addItem(Items.FAKE_FENCE | Items.ITEM_DEFAULT_DURABILITY, true)) {
-						dialog = "Inventory full";
-						dialogTimer = TPS * 2;
-						return;
+//					} else if (!addItem(Items.FAKE_FENCE | Items.ITEM_DEFAULT_DURABILITY, true)) {
+//						dialog = "Inventory full";
+//						dialogTimer = TPS * 2;
+//						return;
 					}
 					map.tiles[layer][pos] = (byte) -t;
 				}

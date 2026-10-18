@@ -3447,6 +3447,18 @@ public class Game extends GameCanvas implements Runnable, Constants {
 								}
 							}
 							if (res != null) {
+								if (res.desk != 0) {
+									dx = x - res.bedX;
+									dy = y - res.bedY;
+
+									objIdx = containers[res.desk];
+									x = objects[objIdx + 3];
+									y = objects[objIdx + 4];
+									int dx2 = x - npc.bedX, dy2 = y - res.bedY;
+									if (dx * dx + dy * dy > dx2 * dx2 + dy2 * dy2) {
+										continue;
+									}
+								}
 								containers[idx - 1] = res.id;
 								res.desk = idx - 2;
 								break;

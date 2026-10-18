@@ -90,6 +90,7 @@
 - [ ] Guards check if player is in cell at lights out
 - [ ] Spotlights
 - [ ] Electric fences and generator
+- [ ] Gifting items
 
 # Low priority
 
