@@ -5712,7 +5712,6 @@ public class Game extends GameCanvas implements Runnable, Constants {
 		case Objects.TRAINING_BOOKSHELF:
 		case Objects.VISITATION_GUEST_SEAT:
 		case Objects.VISITATION_PLAYER_SEAT:
-		case Objects.MEDICAL_SUPPLIES:
 		case Objects.JOB_MAILROOM_FILE:
 		case Objects.JOB_METAL_TOOLS:
 		case Objects.JOB_DELIVERIES_BLUE_BOX:
@@ -5733,6 +5732,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 		case Objects.JOB_CLEANING_SUPPLIES:
 		case Objects.JOB_FABRIC_CHEST:
 		case Objects.JOB_CLOTHING_STORAGE:
+		case Objects.MEDICAL_SUPPLIES:
 			return Game.COLL_CHEST;
 		case Objects.VENT_SLATS:
 		case Objects.DOOR_JUNGLE_ENTRANCE:
