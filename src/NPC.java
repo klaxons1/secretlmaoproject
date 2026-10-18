@@ -3615,7 +3615,7 @@ class NPC implements Constants {
 						if (addItem(Items.BED_SHEET, true)) {
 							map.objects[layer][idx + 2]++;
 						}
-					} else if ((map.objects[layer][idx + 2] & 0xFF) == 165) {
+					} else if ((map.objects[layer][idx + 2] & 0xFF) == 164) {
 						if (addItem(Items.PILLOW, true)) {
 							map.objects[layer][idx + 2]++;
 						}
