@@ -521,7 +521,6 @@ class NPC implements Constants {
 			animationFrame = 0;
 
 		if (fighting != 0) --fighting;
-		if (stealing != 0) --stealing;
 		if (health <= 0) {
 			// stunned
 			health = 0;
@@ -552,21 +551,25 @@ class NPC implements Constants {
 			} else if (layer == LAYER_GROUND && --wakeupTimer == 0) {
 				if (guard) {
 					map.guardsDown--;
-					boolean hasKey = false;
-					loop: for (int i = 0; i < 6; ++i) {
-						switch (inventory[i] & Items.ITEM_ID_MASK) {
-						case Items.CELL_KEY:
-						case Items.STAFF_KEY:
-						case Items.ENTRANCE_KEY:
-						case Items.UTILITY_KEY:
-						case Items.WORK_KEY:
-							hasKey = true;
-							break loop;
+
+					if (typedId < 5) {
+						boolean hasKey = false;
+						loop: for (int i = 0; i < 6; ++i) {
+							if (i == Items.ITEM_NULL) continue;
+							switch (inventory[i] & Items.ITEM_ID_MASK) {
+							case Items.CELL_KEY:
+							case Items.STAFF_KEY:
+							case Items.ENTRANCE_KEY:
+							case Items.UTILITY_KEY:
+							case Items.WORK_KEY:
+								hasKey = true;
+								break loop;
+							}
 						}
-					}
-					if (!hasKey) {
-						map.note = NOTE_SOLITARY;
-						map.solitaryReason = REASON_KEY;
+						if (!hasKey) {
+							map.note = NOTE_SOLITARY;
+							map.solitaryReason = REASON_KEY;
+						}
 					}
 				}
 				wakeupTimer = -1;
@@ -2213,9 +2216,8 @@ class NPC implements Constants {
 		if (statStrength < 10) {
 			statStrength = 10;
 		}
-		if (fighting != 0) {
-			fighting--;
-		}
+		if (fighting != 0) --fighting;
+		if (stealing != 0) --stealing;
 		if (map.lockdown) {
 			map.heat = 100;
 		} else if (map.heat != 0) {
@@ -2375,7 +2377,7 @@ class NPC implements Constants {
 				&& (layer == LAYER_ROOF || (layer == LAYER_GROUND && getCollision(x, y, true) == COLL_NONE
 				&& !Game.isFloor(map.tiles[LAYER_GROUND][(x / TILE_SIZE) + ((y + 5) / TILE_SIZE) * map.width])))) {
 			if (map.heat >= 90 || ((layer == LAYER_ROOF || map.mapType == MAP_TYPE_INSIDE_ONLY
-					|| (map.mapType == MAP_TYPE_INSIDE && !isInZone(ZONE_SAFE) && (map.time < 10 * 60 && map.time > 22 * 60)))
+					|| (map.mapType == MAP_TYPE_INSIDE && !isInZone(ZONE_SAFE) && (map.time < 10 * 60 || map.time > 22 * 60)))
 					&& outfitId != Textures.OUTFIT_GUARD)
 					|| map.action == ACT_CHIPPING || map.action == ACT_DIGGING || map.action == ACT_CUTTING) {
 				if (map.heat < 99) {
@@ -3038,6 +3040,8 @@ class NPC implements Constants {
 					Sound.playEffect(Constants.SFX_ENHIT);
 					npc.health = 0;
 					npc.statOpinion = 0;
+					fighting = 4;
+					inventory[slot] = Items.ITEM_NULL;
 					return;
 				}
 			}
@@ -3288,6 +3292,7 @@ class NPC implements Constants {
 				if (dist < NPC_VIEW_DISTANCE) return;
 
 				npc.dialogTimer = TPS * 3;
+				npc.aiWaitTimer = 10;
 				if (item == Items.ID_PAPERS) {
 					map.openCheckpoint();
 					npc.dialog = "Seeya tomorrow!";

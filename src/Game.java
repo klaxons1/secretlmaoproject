@@ -6410,6 +6410,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 		case Items.PAPER_MACHE:
 		case Items.SOCK_MACE:
 		case Items.SUPER_SOCK_MACE:
+		case Items.CUP_OF_MOLTEN_CHOCOLATE:
 		case Items.NUNCHUKS:
 		case Items.COMB_SHIV:
 		case Items.WHIP:
