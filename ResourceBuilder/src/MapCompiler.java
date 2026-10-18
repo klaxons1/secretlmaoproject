@@ -576,7 +576,7 @@ public class MapCompiler implements Constants {
 								break object;
 							}
 							case Objects.JUNGLE_CHECKPOINT_GUARD: {
-								npc.add(new int[] { objectId, x, y + 1 });
+								npc.add(new int[] { objectId, x, y });
 								break object;
 							}
 							case Objects.DOOR_JUNGLE_ENTRANCE: {

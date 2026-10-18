@@ -3463,7 +3463,8 @@ class NPC implements Constants {
 				return;
 			}
 		}
-		if (b == COLL_NONE && item == -1) {
+
+		if (item == -1) {
 			int peekItem = map.peekItem(x, y, layer);
 			if (peekItem != -1 && peekItem != Items.ITEM_NULL) {
 				if (addItem(peekItem, true)) {
@@ -3474,20 +3475,22 @@ class NPC implements Constants {
 				}
 				return;
 			}
-			if (layer == LAYER_GROUND && map.getBreakProgress(x, y, layer) == 100) {
-				layer = LAYER_UNDERGROUND;
-				xFloat = this.x = x * TILE_SIZE;
-				yFloat = this.y = y * TILE_SIZE;
-				map.resetCamera = true;
-				return;
-			}
-			if (layer == LAYER_UNDERGROUND && map.getBreakProgress(x, y, LAYER_GROUND) == 100
-					&& map.getObjectIdxAt(x, y, LAYER_GROUND) == -1) {
-				layer = LAYER_GROUND;
-				xFloat = this.x = x * TILE_SIZE;
-				yFloat = this.y = y * TILE_SIZE;
-				map.resetCamera = true;
-				return;
+			if (b == COLL_NONE) {
+				if (layer == LAYER_GROUND && map.getBreakProgress(x, y, layer) == 100) {
+					layer = LAYER_UNDERGROUND;
+					xFloat = this.x = x * TILE_SIZE;
+					yFloat = this.y = y * TILE_SIZE;
+					map.resetCamera = true;
+					return;
+				}
+				if (layer == LAYER_UNDERGROUND && map.getBreakProgress(x, y, LAYER_GROUND) == 100
+						&& map.getObjectIdxAt(x, y, LAYER_GROUND) == -1) {
+					layer = LAYER_GROUND;
+					xFloat = this.x = x * TILE_SIZE;
+					yFloat = this.y = y * TILE_SIZE;
+					map.resetCamera = true;
+					return;
+				}
 			}
 		}
 
@@ -3516,7 +3519,7 @@ class NPC implements Constants {
 		x = (x + this.x) / TILE_SIZE;
 		y = (y + this.y) / TILE_SIZE;
 
-		if (b == COLL_NONE && item == -1) {
+		if (item == -1) {
 			// pickup item
 			int peekItem = map.peekItem(x, y, layer);
 			if (peekItem != -1 && peekItem != Items.ITEM_NULL) {
@@ -3528,19 +3531,21 @@ class NPC implements Constants {
 				}
 				return;
 			}
-			if (layer == LAYER_GROUND && map.getBreakProgress(x, y, layer) == 100) {
-				layer = LAYER_UNDERGROUND;
-				xFloat = this.x = x * TILE_SIZE;
-				yFloat = this.y = y * TILE_SIZE;
-				map.resetCamera = true;
-				return;
-			}
-			if (layer == LAYER_UNDERGROUND && map.getBreakProgress(x, y, LAYER_GROUND) == 100) {
-				layer = LAYER_GROUND;
-				xFloat = this.x = x * TILE_SIZE;
-				yFloat = this.y = y * TILE_SIZE;
-				map.resetCamera = true;
-				return;
+			if (b == COLL_NONE) {
+				if (layer == LAYER_GROUND && map.getBreakProgress(x, y, layer) == 100) {
+					layer = LAYER_UNDERGROUND;
+					xFloat = this.x = x * TILE_SIZE;
+					yFloat = this.y = y * TILE_SIZE;
+					map.resetCamera = true;
+					return;
+				}
+				if (layer == LAYER_UNDERGROUND && map.getBreakProgress(x, y, LAYER_GROUND) == 100) {
+					layer = LAYER_GROUND;
+					xFloat = this.x = x * TILE_SIZE;
+					yFloat = this.y = y * TILE_SIZE;
+					map.resetCamera = true;
+					return;
+				}
 			}
 		}
 
