@@ -2994,23 +2994,34 @@ class NPC implements Constants {
 		x = (this.x + x) / TILE_SIZE;
 		y = (this.y + y) / TILE_SIZE;
 
-		if (b == COLL_SOLID_INTERACT && map.objects[layer][map.getObjectIdxAt(x, y, layer) + 1] == Objects.PLAYER_BED) {
-			if (map.bedDummyPlaced) {
-				if (!addItem(Items.BED_DUMMY | Items.ITEM_DEFAULT_DURABILITY, true)) return;
-				map.bedDummyPlaced = false;
+		if (b == COLL_SOLID_INTERACT) {
+			int idx = map.getObjectIdxAt(x, y, layer);
+			switch (map.objects[layer][idx + 1]) {
+			case Objects.PLAYER_BED:
+				if (map.bedDummyPlaced) {
+					if (!addItem(Items.BED_DUMMY | Items.ITEM_DEFAULT_DURABILITY, true)) return;
+					map.bedDummyPlaced = false;
+					return;
+				}
+				if (item == Items.BED_DUMMY) {
+					map.bedDummyPlaced = true;
+					inventory[slot] = Items.ITEM_NULL;
+					return;
+				}
+				xFloat = this.x = bedX * TILE_SIZE;
+				yFloat = this.y = bedY * TILE_SIZE + 2;
+				animation = ANIM_LYING;
+				if (map.schedule == SC_LIGHTSOUT && (map.time < 5 * 60 || map.time >= 20 * 60)) {
+					map.saveDialog = true;
+					Sound.playEffect(SFX_OPEN);
+				}
+				break;
+			case Objects.MEDICAL_BED:
+			case Objects.SUN_LOUNGER:
+				xFloat = this.x = map.objects[layer][idx + 3] * TILE_SIZE;
+				yFloat = this.y = (map.objects[layer][idx + 4] - 1) * TILE_SIZE + 2;
+				animation = ANIM_LYING;
 				return;
-			}
-			if (item == Items.BED_DUMMY) {
-				map.bedDummyPlaced = true;
-				inventory[slot] = Items.ITEM_NULL;
-				return;
-			}
-			xFloat = this.x = bedX * TILE_SIZE;
-			yFloat = this.y = bedY * TILE_SIZE + 2;
-			animation = ANIM_LYING;
-			if (map.schedule == SC_LIGHTSOUT && (map.time < 5 * 60 || map.time >= 20 * 60)) {
-				map.saveDialog = true;
-				Sound.playEffect(SFX_OPEN);
 			}
 		}
 
@@ -3609,16 +3620,6 @@ class NPC implements Constants {
 							map.objects[layer][idx + 2]++;
 						}
 					}
-					return;
-				case Objects.MEDICAL_BED:
-					xFloat = this.x = map.objects[layer][idx + 3] * TILE_SIZE;
-					yFloat = this.y = (map.objects[layer][idx + 4] - 1) * TILE_SIZE + 2;
-					animation = ANIM_LYING;
-					return;
-				case Objects.SUN_LOUNGER:
-					xFloat = this.x = map.objects[layer][idx + 3] * TILE_SIZE;
-					yFloat = this.y = (map.objects[layer][idx + 4] - 1) * TILE_SIZE + 2;
-					animation = ANIM_LYING;
 					return;
 				case Objects.CHAIR:
 					// sit
