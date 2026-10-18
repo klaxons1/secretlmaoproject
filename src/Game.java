@@ -5596,6 +5596,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 		case 9:
 		case 13:
 		case 69:
+		case 88:
 		case 92:
 			return true;
 		}
