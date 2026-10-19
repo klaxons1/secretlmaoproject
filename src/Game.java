@@ -90,6 +90,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 	int canvasWidth, canvasHeight;
 
 	int fps, tps;
+	int lag;
 	long globalCounter;
 
 	boolean paused;
@@ -537,6 +538,9 @@ public class Game extends GameCanvas implements Runnable, Constants {
 				drawNumber(g, fps, fontImg, 0, 9, 5, 7, 0, 55);
 				// tps
 				drawNumber(g, tps, fontImg, 0, 9, 5, 7, 5*3, 55);
+				if (lag != 0) {
+					drawNumber(g, lag, fontImg, 0, 16, 5, 7, 5*6, 55);
+				}
 				// used heap
 				Runtime r = Runtime.getRuntime();
 				drawNumber(g, (int) (r.totalMemory() - r.freeMemory()) / 1024, fontImg, 0, 9, 5, 7, 0, 55+8);
@@ -2492,6 +2496,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 					lastCounterTime += 1000L;
 					frames = 0;
 					ticksC = 0;
+					lag = 0;
 				}
 
 				Profiler.endFrame();
@@ -3863,6 +3868,8 @@ public class Game extends GameCanvas implements Runnable, Constants {
 		int tick = tickCounter;
 		player.tickPlayer(tick);
 
+		long l = System.currentTimeMillis();
+
 		NPC[] chars = this.chars;
 		int n = chars.length;
 		for (int i = 0; i < n; ++i) {
@@ -3870,6 +3877,8 @@ public class Game extends GameCanvas implements Runnable, Constants {
 			if (i != 0) chars[i].tickAI(tick);
 			chars[i].tick();
 		}
+
+		if (l > lag) lag = (int) (System.currentTimeMillis() - l);
 
 		// sort characters for rendering, so that southern will be rendered on top
 
