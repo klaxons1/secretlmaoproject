@@ -1,0 +1,2 @@
+# Unified diffs need a context-space prefix before blank or tab-indented lines.
+*.patch text eol=lf -whitespace

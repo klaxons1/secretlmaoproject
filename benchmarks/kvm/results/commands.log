@@ -1,0 +1,881 @@
+$ <repo>/benchmarks/kvm/.work/jdk8/bin/javac -source 1.3 -target 1.3 -Xlint:-options -bootclasspath <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/common/api/classes -d <repo>/benchmarks/kvm/.work/raw <repo>/benchmarks/kvm/src/Benchmark.java <repo>/benchmarks/kvm/src/Checks.java <repo>/benchmarks/kvm/src/Fixtures.java <repo>/benchmarks/kvm/src/Kernel.java <repo>/benchmarks/kvm/src/Profile.java <repo>/benchmarks/kvm/.work/generated/Collision.java <repo>/benchmarks/kvm/.work/generated/CountedOptimizedKernel.java <repo>/benchmarks/kvm/.work/generated/CountedOriginalKernel.java <repo>/benchmarks/kvm/.work/generated/OptimizedKernel.java <repo>/benchmarks/kvm/.work/generated/OriginalKernel.java <repo>/common/src/Constants.java <repo>/common/src/Objects.java
+
+$ <repo>/benchmarks/kvm/.work/jdk8/bin/java -jar <repo>/benchmarks/kvm/.work/suite/libs/proguard.jar -injars <repo>/benchmarks/kvm/.work/raw -outjars <repo>/benchmarks/kvm/.work/verified -libraryjars <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/common/api/classes -dontshrink -dontoptimize -dontobfuscate -microedition -target 1.1
+ProGuard, version 6.2.2
+Reading program directory [<repo>/benchmarks/kvm/.work/raw] (filtered)
+Reading library directory [<repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/common/api/classes] (filtered)
+Preparing output directory [<repo>/benchmarks/kvm/.work/verified] (filtered)
+  Copying resources from program directory [<repo>/benchmarks/kvm/.work/raw] (filtered)
+
+$ <repo>/benchmarks/kvm/.work/jdk8/bin/javac -source 1.3 -target 1.3 -Xlint:-options -bootclasspath <repo>/benchmarks/kvm/.work/suite/uei/cldc11.jar -classpath <repo>/benchmarks/kvm/.work/suite/uei/midp21.jar:<repo>/benchmarks/kvm/.work/suite/uei/jsr135.jar:<repo>/benchmarks/kvm/.work/suite/uei/jsr184.jar:<repo>/benchmarks/kvm/.work/suite/uei/nokiaui.jar -d <repo>/benchmarks/kvm/.work/game-original/raw <repo>/src/NPC.java <repo>/src/Profiler.java <repo>/src/Sound.java <repo>/src/TE.java <repo>/src/Textures.java <repo>/common/src/Constants.java <repo>/common/src/Items.java <repo>/common/src/Objects.java <repo>/benchmarks/kvm/.work/game-original/source/Game.java
+
+$ <repo>/benchmarks/kvm/.work/jdk8/bin/java -jar <repo>/benchmarks/kvm/.work/suite/libs/proguard.jar -injars <repo>/benchmarks/kvm/.work/game-original/raw -outjars <repo>/benchmarks/kvm/.work/game-original/verified -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/cldc11.jar -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/midp21.jar -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/jsr135.jar -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/jsr184.jar -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/nokiaui.jar -dontshrink -dontoptimize -dontobfuscate -microedition -target 1.1
+ProGuard, version 6.2.2
+Reading program directory [<repo>/benchmarks/kvm/.work/game-original/raw] (filtered)
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/cldc11.jar] (filtered)
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/midp21.jar] (filtered)
+Note: duplicate definition of library class [java.lang.ArithmeticException]
+Note: duplicate definition of library class [java.lang.ArrayIndexOutOfBoundsException]
+Note: duplicate definition of library class [java.lang.ArrayStoreException]
+Note: duplicate definition of library class [java.lang.Boolean]
+Note: duplicate definition of library class [java.lang.Byte]
+Note: duplicate definition of library class [java.lang.Character]
+Note: duplicate definition of library class [java.lang.Class]
+Note: duplicate definition of library class [java.lang.ClassCastException]
+Note: duplicate definition of library class [java.lang.ClassNotFoundException]
+Note: duplicate definition of library class [java.lang.Double]
+Note: duplicate definition of library class [java.lang.Error]
+Note: duplicate definition of library class [java.lang.Exception]
+Note: duplicate definition of library class [java.lang.Float]
+Note: duplicate definition of library class [java.lang.IllegalAccessException]
+Note: duplicate definition of library class [java.lang.IllegalArgumentException]
+Note: duplicate definition of library class [java.lang.IllegalMonitorStateException]
+Note: duplicate definition of library class [java.lang.IllegalStateException]
+Note: duplicate definition of library class [java.lang.IllegalThreadStateException]
+Note: duplicate definition of library class [java.lang.IndexOutOfBoundsException]
+Note: duplicate definition of library class [java.lang.InstantiationException]
+Note: duplicate definition of library class [java.lang.Integer]
+Note: duplicate definition of library class [java.lang.InterruptedException]
+Note: duplicate definition of library class [java.lang.Long]
+Note: duplicate definition of library class [java.lang.Math]
+Note: duplicate definition of library class [java.lang.NegativeArraySizeException]
+Note: duplicate definition of library class [java.lang.NoClassDefFoundError]
+Note: duplicate definition of library class [java.lang.NullPointerException]
+Note: duplicate definition of library class [java.lang.NumberFormatException]
+Note: duplicate definition of library class [java.lang.Object]
+Note: duplicate definition of library class [java.lang.OutOfMemoryError]
+Note: duplicate definition of library class [java.lang.Runnable]
+Note: duplicate definition of library class [java.lang.Runtime]
+Note: duplicate definition of library class [java.lang.RuntimeException]
+Note: duplicate definition of library class [java.lang.SecurityException]
+Note: duplicate definition of library class [java.lang.Short]
+Note: duplicate definition of library class [java.lang.String]
+Note: duplicate definition of library class [java.lang.StringBuffer]
+Note: duplicate definition of library class [java.lang.StringIndexOutOfBoundsException]
+Note: duplicate definition of library class [java.lang.System]
+Note: duplicate definition of library class [java.lang.Thread]
+Note: duplicate definition of library class [java.lang.Throwable]
+Note: duplicate definition of library class [java.lang.UnsupportedOperationException]
+Note: duplicate definition of library class [java.lang.VirtualMachineError]
+Note: duplicate definition of library class [java.lang.ref.Reference]
+Note: duplicate definition of library class [java.lang.ref.WeakReference]
+Note: duplicate definition of library class [java.util.Calendar]
+Note: duplicate definition of library class [java.util.Date]
+Note: duplicate definition of library class [java.util.EmptyStackException]
+Note: duplicate definition of library class [java.util.Enumeration]
+Note: duplicate definition of library class [java.util.Hashtable]
+Note: duplicate definition of library class [java.util.NoSuchElementException]
+Note: duplicate definition of library class [java.util.Random]
+Note: duplicate definition of library class [java.util.Stack]
+Note: duplicate definition of library class [java.util.TimeZone]
+Note: duplicate definition of library class [java.util.Timer]
+Note: duplicate definition of library class [java.util.TimerTask]
+Note: duplicate definition of library class [java.util.Vector]
+Note: duplicate definition of library class [javax.microedition.io.CommConnection]
+Note: duplicate definition of library class [javax.microedition.io.Connection]
+Note: duplicate definition of library class [javax.microedition.io.ConnectionNotFoundException]
+Note: duplicate definition of library class [javax.microedition.io.Connector]
+Note: duplicate definition of library class [javax.microedition.io.ContentConnection]
+Note: duplicate definition of library class [javax.microedition.io.Datagram]
+Note: duplicate definition of library class [javax.microedition.io.DatagramConnection]
+Note: duplicate definition of library class [javax.microedition.io.HttpConnection]
+Note: duplicate definition of library class [javax.microedition.io.HttpsConnection]
+Note: duplicate definition of library class [javax.microedition.io.InputConnection]
+Note: duplicate definition of library class [javax.microedition.io.OutputConnection]
+Note: duplicate definition of library class [javax.microedition.io.PushRegistry]
+Note: duplicate definition of library class [javax.microedition.io.SecureConnection]
+Note: duplicate definition of library class [javax.microedition.io.SecurityInfo]
+Note: duplicate definition of library class [javax.microedition.io.ServerSocketConnection]
+Note: duplicate definition of library class [javax.microedition.io.SocketConnection]
+Note: duplicate definition of library class [javax.microedition.io.StreamConnection]
+Note: duplicate definition of library class [javax.microedition.io.StreamConnectionNotifier]
+Note: duplicate definition of library class [javax.microedition.io.UDPDatagramConnection]
+Note: duplicate definition of library class [javax.microedition.io.file.ConnectionClosedException]
+Note: duplicate definition of library class [javax.microedition.io.file.FileConnection]
+Note: duplicate definition of library class [javax.microedition.io.file.FileSystemListener]
+Note: duplicate definition of library class [javax.microedition.io.file.FileSystemRegistry]
+Note: duplicate definition of library class [javax.microedition.io.file.IllegalModeException]
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/jsr135.jar] (filtered)
+Note: duplicate definition of library class [javax.microedition.media.Control]
+Note: duplicate definition of library class [javax.microedition.media.Controllable]
+Note: duplicate definition of library class [javax.microedition.media.Manager]
+Note: duplicate definition of library class [javax.microedition.media.MediaException]
+Note: duplicate definition of library class [javax.microedition.media.Player]
+Note: duplicate definition of library class [javax.microedition.media.PlayerListener]
+Note: duplicate definition of library class [javax.microedition.media.TimeBase]
+Note: duplicate definition of library class [javax.microedition.media.control.FramePositioningControl]
+Note: duplicate definition of library class [javax.microedition.media.control.GUIControl]
+Note: duplicate definition of library class [javax.microedition.media.control.MIDIControl]
+Note: duplicate definition of library class [javax.microedition.media.control.MetaDataControl]
+Note: duplicate definition of library class [javax.microedition.media.control.PitchControl]
+Note: duplicate definition of library class [javax.microedition.media.control.RateControl]
+Note: duplicate definition of library class [javax.microedition.media.control.RecordControl]
+Note: duplicate definition of library class [javax.microedition.media.control.StopTimeControl]
+Note: duplicate definition of library class [javax.microedition.media.control.TempoControl]
+Note: duplicate definition of library class [javax.microedition.media.control.ToneControl]
+Note: duplicate definition of library class [javax.microedition.media.control.VideoControl]
+Note: duplicate definition of library class [javax.microedition.media.control.VolumeControl]
+Note: duplicate definition of library class [javax.microedition.media.protocol.ContentDescriptor]
+Note: duplicate definition of library class [javax.microedition.media.protocol.DataSource]
+Note: duplicate definition of library class [javax.microedition.media.protocol.SourceStream]
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/jsr184.jar] (filtered)
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/nokiaui.jar] (filtered)
+Note: there were 103 duplicate class definitions.
+      (http://proguard.sourceforge.net/manual/troubleshooting.html#duplicateclass)
+Note: Game: can't find dynamically referenced class com.pspkvm.system.Power
+Note: there were 1 unresolved dynamic references to classes or interfaces.
+      You should check if you need to specify additional program jars.
+      (http://proguard.sourceforge.net/manual/troubleshooting.html#dynamicalclass)
+Preparing output directory [<repo>/benchmarks/kvm/.work/game-original/verified] (filtered)
+  Copying resources from program directory [<repo>/benchmarks/kvm/.work/game-original/raw] (filtered)
+
+$ <repo>/benchmarks/kvm/.work/jdk8/bin/javac -source 1.3 -target 1.3 -Xlint:-options -bootclasspath <repo>/benchmarks/kvm/.work/suite/uei/cldc11.jar -classpath <repo>/benchmarks/kvm/.work/suite/uei/midp21.jar:<repo>/benchmarks/kvm/.work/suite/uei/jsr135.jar:<repo>/benchmarks/kvm/.work/suite/uei/jsr184.jar:<repo>/benchmarks/kvm/.work/suite/uei/nokiaui.jar -d <repo>/benchmarks/kvm/.work/game-optimized/raw <repo>/src/NPC.java <repo>/src/Profiler.java <repo>/src/Sound.java <repo>/src/TE.java <repo>/src/Textures.java <repo>/common/src/Constants.java <repo>/common/src/Items.java <repo>/common/src/Objects.java <repo>/benchmarks/kvm/.work/game-optimized/source/Game.java
+
+$ <repo>/benchmarks/kvm/.work/jdk8/bin/java -jar <repo>/benchmarks/kvm/.work/suite/libs/proguard.jar -injars <repo>/benchmarks/kvm/.work/game-optimized/raw -outjars <repo>/benchmarks/kvm/.work/game-optimized/verified -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/cldc11.jar -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/midp21.jar -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/jsr135.jar -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/jsr184.jar -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/nokiaui.jar -dontshrink -dontoptimize -dontobfuscate -microedition -target 1.1
+ProGuard, version 6.2.2
+Reading program directory [<repo>/benchmarks/kvm/.work/game-optimized/raw] (filtered)
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/cldc11.jar] (filtered)
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/midp21.jar] (filtered)
+Note: duplicate definition of library class [java.lang.ArithmeticException]
+Note: duplicate definition of library class [java.lang.ArrayIndexOutOfBoundsException]
+Note: duplicate definition of library class [java.lang.ArrayStoreException]
+Note: duplicate definition of library class [java.lang.Boolean]
+Note: duplicate definition of library class [java.lang.Byte]
+Note: duplicate definition of library class [java.lang.Character]
+Note: duplicate definition of library class [java.lang.Class]
+Note: duplicate definition of library class [java.lang.ClassCastException]
+Note: duplicate definition of library class [java.lang.ClassNotFoundException]
+Note: duplicate definition of library class [java.lang.Double]
+Note: duplicate definition of library class [java.lang.Error]
+Note: duplicate definition of library class [java.lang.Exception]
+Note: duplicate definition of library class [java.lang.Float]
+Note: duplicate definition of library class [java.lang.IllegalAccessException]
+Note: duplicate definition of library class [java.lang.IllegalArgumentException]
+Note: duplicate definition of library class [java.lang.IllegalMonitorStateException]
+Note: duplicate definition of library class [java.lang.IllegalStateException]
+Note: duplicate definition of library class [java.lang.IllegalThreadStateException]
+Note: duplicate definition of library class [java.lang.IndexOutOfBoundsException]
+Note: duplicate definition of library class [java.lang.InstantiationException]
+Note: duplicate definition of library class [java.lang.Integer]
+Note: duplicate definition of library class [java.lang.InterruptedException]
+Note: duplicate definition of library class [java.lang.Long]
+Note: duplicate definition of library class [java.lang.Math]
+Note: duplicate definition of library class [java.lang.NegativeArraySizeException]
+Note: duplicate definition of library class [java.lang.NoClassDefFoundError]
+Note: duplicate definition of library class [java.lang.NullPointerException]
+Note: duplicate definition of library class [java.lang.NumberFormatException]
+Note: duplicate definition of library class [java.lang.Object]
+Note: duplicate definition of library class [java.lang.OutOfMemoryError]
+Note: duplicate definition of library class [java.lang.Runnable]
+Note: duplicate definition of library class [java.lang.Runtime]
+Note: duplicate definition of library class [java.lang.RuntimeException]
+Note: duplicate definition of library class [java.lang.SecurityException]
+Note: duplicate definition of library class [java.lang.Short]
+Note: duplicate definition of library class [java.lang.String]
+Note: duplicate definition of library class [java.lang.StringBuffer]
+Note: duplicate definition of library class [java.lang.StringIndexOutOfBoundsException]
+Note: duplicate definition of library class [java.lang.System]
+Note: duplicate definition of library class [java.lang.Thread]
+Note: duplicate definition of library class [java.lang.Throwable]
+Note: duplicate definition of library class [java.lang.UnsupportedOperationException]
+Note: duplicate definition of library class [java.lang.VirtualMachineError]
+Note: duplicate definition of library class [java.lang.ref.Reference]
+Note: duplicate definition of library class [java.lang.ref.WeakReference]
+Note: duplicate definition of library class [java.util.Calendar]
+Note: duplicate definition of library class [java.util.Date]
+Note: duplicate definition of library class [java.util.EmptyStackException]
+Note: duplicate definition of library class [java.util.Enumeration]
+Note: duplicate definition of library class [java.util.Hashtable]
+Note: duplicate definition of library class [java.util.NoSuchElementException]
+Note: duplicate definition of library class [java.util.Random]
+Note: duplicate definition of library class [java.util.Stack]
+Note: duplicate definition of library class [java.util.TimeZone]
+Note: duplicate definition of library class [java.util.Timer]
+Note: duplicate definition of library class [java.util.TimerTask]
+Note: duplicate definition of library class [java.util.Vector]
+Note: duplicate definition of library class [javax.microedition.io.CommConnection]
+Note: duplicate definition of library class [javax.microedition.io.Connection]
+Note: duplicate definition of library class [javax.microedition.io.ConnectionNotFoundException]
+Note: duplicate definition of library class [javax.microedition.io.Connector]
+Note: duplicate definition of library class [javax.microedition.io.ContentConnection]
+Note: duplicate definition of library class [javax.microedition.io.Datagram]
+Note: duplicate definition of library class [javax.microedition.io.DatagramConnection]
+Note: duplicate definition of library class [javax.microedition.io.HttpConnection]
+Note: duplicate definition of library class [javax.microedition.io.HttpsConnection]
+Note: duplicate definition of library class [javax.microedition.io.InputConnection]
+Note: duplicate definition of library class [javax.microedition.io.OutputConnection]
+Note: duplicate definition of library class [javax.microedition.io.PushRegistry]
+Note: duplicate definition of library class [javax.microedition.io.SecureConnection]
+Note: duplicate definition of library class [javax.microedition.io.SecurityInfo]
+Note: duplicate definition of library class [javax.microedition.io.ServerSocketConnection]
+Note: duplicate definition of library class [javax.microedition.io.SocketConnection]
+Note: duplicate definition of library class [javax.microedition.io.StreamConnection]
+Note: duplicate definition of library class [javax.microedition.io.StreamConnectionNotifier]
+Note: duplicate definition of library class [javax.microedition.io.UDPDatagramConnection]
+Note: duplicate definition of library class [javax.microedition.io.file.ConnectionClosedException]
+Note: duplicate definition of library class [javax.microedition.io.file.FileConnection]
+Note: duplicate definition of library class [javax.microedition.io.file.FileSystemListener]
+Note: duplicate definition of library class [javax.microedition.io.file.FileSystemRegistry]
+Note: duplicate definition of library class [javax.microedition.io.file.IllegalModeException]
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/jsr135.jar] (filtered)
+Note: duplicate definition of library class [javax.microedition.media.Control]
+Note: duplicate definition of library class [javax.microedition.media.Controllable]
+Note: duplicate definition of library class [javax.microedition.media.Manager]
+Note: duplicate definition of library class [javax.microedition.media.MediaException]
+Note: duplicate definition of library class [javax.microedition.media.Player]
+Note: duplicate definition of library class [javax.microedition.media.PlayerListener]
+Note: duplicate definition of library class [javax.microedition.media.TimeBase]
+Note: duplicate definition of library class [javax.microedition.media.control.FramePositioningControl]
+Note: duplicate definition of library class [javax.microedition.media.control.GUIControl]
+Note: duplicate definition of library class [javax.microedition.media.control.MIDIControl]
+Note: duplicate definition of library class [javax.microedition.media.control.MetaDataControl]
+Note: duplicate definition of library class [javax.microedition.media.control.PitchControl]
+Note: duplicate definition of library class [javax.microedition.media.control.RateControl]
+Note: duplicate definition of library class [javax.microedition.media.control.RecordControl]
+Note: duplicate definition of library class [javax.microedition.media.control.StopTimeControl]
+Note: duplicate definition of library class [javax.microedition.media.control.TempoControl]
+Note: duplicate definition of library class [javax.microedition.media.control.ToneControl]
+Note: duplicate definition of library class [javax.microedition.media.control.VideoControl]
+Note: duplicate definition of library class [javax.microedition.media.control.VolumeControl]
+Note: duplicate definition of library class [javax.microedition.media.protocol.ContentDescriptor]
+Note: duplicate definition of library class [javax.microedition.media.protocol.DataSource]
+Note: duplicate definition of library class [javax.microedition.media.protocol.SourceStream]
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/jsr184.jar] (filtered)
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/nokiaui.jar] (filtered)
+Note: there were 103 duplicate class definitions.
+      (http://proguard.sourceforge.net/manual/troubleshooting.html#duplicateclass)
+Note: Game: can't find dynamically referenced class com.pspkvm.system.Power
+Note: there were 1 unresolved dynamic references to classes or interfaces.
+      You should check if you need to specify additional program jars.
+      (http://proguard.sourceforge.net/manual/troubleshooting.html#dynamicalclass)
+Preparing output directory [<repo>/benchmarks/kvm/.work/game-optimized/verified] (filtered)
+  Copying resources from program directory [<repo>/benchmarks/kvm/.work/game-optimized/raw] (filtered)
+
+$ <repo>/benchmarks/kvm/.work/jdk8/bin/java -cp <repo>/benchmarks/kvm/.work/verified Checks
+MAP,perks,96,93,31,21
+MAP,stalagflucht,96,93,31,21
+MAP,shanktonstatepen,96,93,46,36
+MAP,jungle,96,93,31,21
+MAP,sanpancho,96,93,41,31
+MAP,irongate,96,93,41,30
+FIXTURE,sort,perks:spawn,slots=31,active=21
+FIXTURE,sort,perks:sorted,slots=31,active=21
+FIXTURE,sort,perks:near,slots=31,active=21
+FIXTURE,sort,perks:reverse,slots=31,active=21
+FIXTURE,sort,irongate:spawn,slots=41,active=30
+FIXTURE,sort,irongate:sorted,slots=41,active=30
+FIXTURE,sort,irongate:near,slots=41,active=30
+FIXTURE,sort,irongate:reverse,slots=41,active=30
+FIXTURE,sort,shanktonstatepen:spawn,slots=46,active=36
+FIXTURE,sort,shanktonstatepen:sorted,slots=46,active=36
+FIXTURE,sort,shanktonstatepen:near,slots=46,active=36
+FIXTURE,sort,shanktonstatepen:reverse,slots=46,active=36
+CHECKS,sort,101674
+CHECKS,queue,10772
+CHECKS,path,416
+CHECKS,PASS
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/verified Checks
+MAP,perks,96,93,31,21
+MAP,stalagflucht,96,93,31,21
+MAP,shanktonstatepen,96,93,46,36
+MAP,jungle,96,93,31,21
+MAP,sanpancho,96,93,41,31
+MAP,irongate,96,93,41,30
+FIXTURE,sort,perks:spawn,slots=31,active=21
+FIXTURE,sort,perks:sorted,slots=31,active=21
+FIXTURE,sort,perks:near,slots=31,active=21
+FIXTURE,sort,perks:reverse,slots=31,active=21
+FIXTURE,sort,irongate:spawn,slots=41,active=30
+FIXTURE,sort,irongate:sorted,slots=41,active=30
+FIXTURE,sort,irongate:near,slots=41,active=30
+FIXTURE,sort,irongate:reverse,slots=41,active=30
+FIXTURE,sort,shanktonstatepen:spawn,slots=46,active=36
+FIXTURE,sort,shanktonstatepen:sorted,slots=46,active=36
+FIXTURE,sort,shanktonstatepen:near,slots=46,active=36
+FIXTURE,sort,shanktonstatepen:reverse,slots=46,active=36
+CHECKS,sort,101674
+CHECKS,queue,10772
+CHECKS,path,416
+CHECKS,PASS
+
+$ git branch --show-current
+arena/a0d34468-secretlmaoproject
+
+$ <repo>/benchmarks/kvm/.work/jdk8/bin/java -version
+openjdk version "1.8.0_131-0-djytc"
+OpenJDK Runtime Environment (build 1.8.0_131-0-djytc-11)
+OpenJDK 64-Bit Server VM (build 25.131-b11, mixed mode)
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -version
+Version: 1.1
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/verified Profile sort perks:spawn
+FIXTURE,sort,perks:spawn,slots=31,active=21
+METRIC,sort,perks:spawn,original,1,465,410,0,0,0,0,626111914
+METRIC,sort,perks:spawn,optimized,1,64,64,0,0,0,0,626111914
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/verified Profile sort perks:sorted
+FIXTURE,sort,perks:sorted,slots=31,active=21
+METRIC,sort,perks:sorted,original,1,465,410,0,0,0,0,626111914
+METRIC,sort,perks:sorted,optimized,1,20,20,0,0,0,0,626111914
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/verified Profile sort perks:near
+FIXTURE,sort,perks:near,slots=31,active=21
+METRIC,sort,perks:near,original,1,465,410,0,0,0,0,626111914
+METRIC,sort,perks:near,optimized,1,23,23,0,0,0,0,626111914
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/verified Profile sort perks:reverse
+FIXTURE,sort,perks:reverse,slots=31,active=21
+METRIC,sort,perks:reverse,original,1,465,410,0,0,0,0,814106658
+METRIC,sort,perks:reverse,optimized,1,205,205,0,0,0,0,814106658
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/verified Profile sort irongate:spawn
+FIXTURE,sort,irongate:spawn,slots=41,active=30
+METRIC,sort,irongate:spawn,original,1,820,754,0,0,0,0,1016051912
+METRIC,sort,irongate:spawn,optimized,1,265,265,0,0,0,0,1016051912
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/verified Profile sort irongate:sorted
+FIXTURE,sort,irongate:sorted,slots=41,active=30
+METRIC,sort,irongate:sorted,original,1,820,754,0,0,0,0,1016051912
+METRIC,sort,irongate:sorted,optimized,1,29,29,0,0,0,0,1016051912
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/verified Profile sort irongate:near
+FIXTURE,sort,irongate:near,slots=41,active=30
+METRIC,sort,irongate:near,original,1,820,754,0,0,0,0,1016051912
+METRIC,sort,irongate:near,optimized,1,32,32,0,0,0,0,1016051912
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/verified Profile sort irongate:reverse
+FIXTURE,sort,irongate:reverse,slots=41,active=30
+METRIC,sort,irongate:reverse,original,1,820,754,0,0,0,0,97833688
+METRIC,sort,irongate:reverse,optimized,1,398,398,0,0,0,0,97833688
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/verified Profile sort shanktonstatepen:spawn
+FIXTURE,sort,shanktonstatepen:spawn,slots=46,active=36
+METRIC,sort,shanktonstatepen:spawn,original,1,1035,980,0,0,0,0,930243713
+METRIC,sort,shanktonstatepen:spawn,optimized,1,401,401,0,0,0,0,930243713
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/verified Profile sort shanktonstatepen:sorted
+FIXTURE,sort,shanktonstatepen:sorted,slots=46,active=36
+METRIC,sort,shanktonstatepen:sorted,original,1,1035,980,0,0,0,0,930243713
+METRIC,sort,shanktonstatepen:sorted,optimized,1,35,35,0,0,0,0,930243713
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/verified Profile sort shanktonstatepen:near
+FIXTURE,sort,shanktonstatepen:near,slots=46,active=36
+METRIC,sort,shanktonstatepen:near,original,1,1035,980,0,0,0,0,930243713
+METRIC,sort,shanktonstatepen:near,optimized,1,38,38,0,0,0,0,930243713
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/verified Profile sort shanktonstatepen:reverse
+FIXTURE,sort,shanktonstatepen:reverse,slots=46,active=36
+METRIC,sort,shanktonstatepen:reverse,original,1,1035,980,0,0,0,0,1554215717
+METRIC,sort,shanktonstatepen:reverse,optimized,1,603,603,0,0,0,0,1554215717
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/verified Profile queue head:16
+METRIC,queue,head:16,original,1,0,0,16,15,16,0,-1808376583
+METRIC,queue,head:16,optimized,1,0,0,16,15,16,0,-1808376583
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/verified Profile queue ties:64
+METRIC,queue,ties:64,original,1,0,0,64,2016,64,0,-832096223
+METRIC,queue,ties:64,optimized,1,0,0,64,2016,64,0,-832096223
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/verified Profile queue mixed:256
+METRIC,queue,mixed:256,original,1,0,0,256,17837,256,0,-1271746277
+METRIC,queue,mixed:256,optimized,1,0,0,256,17837,256,0,-1271746277
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/verified Profile path perks
+METRIC,path,perks,original,8,0,0,25071,1178334,24834,22228,-1512014644
+METRIC,path,perks,optimized,8,0,0,25071,1178334,24834,22228,-1512014644
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/verified Profile path stalagflucht
+METRIC,path,stalagflucht,original,8,0,0,25339,911274,25042,21851,-1903281332
+METRIC,path,stalagflucht,optimized,8,0,0,25339,911274,25042,21851,-1903281332
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/verified Profile path shanktonstatepen
+METRIC,path,shanktonstatepen,original,8,0,0,19128,799622,18899,17157,-251689183
+METRIC,path,shanktonstatepen,optimized,8,0,0,19128,799622,18899,17157,-251689183
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/verified Profile path jungle
+METRIC,path,jungle,original,8,0,0,16526,1194770,16054,13665,2028727186
+METRIC,path,jungle,optimized,8,0,0,16526,1194770,16054,13665,2028727186
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/verified Profile path sanpancho
+METRIC,path,sanpancho,original,8,0,0,24868,1666855,23875,20997,-1467515294
+METRIC,path,sanpancho,optimized,8,0,0,24868,1666855,23875,20997,-1467515294
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/verified Profile path irongate
+METRIC,path,irongate,original,8,0,0,13445,356840,13089,11849,1543803296
+METRIC,path,irongate,optimized,8,0,0,13445,356840,13089,11849,1543803296
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/verified Benchmark sort perks:spawn 9 250
+FIXTURE,sort,perks:spawn,slots=31,active=21
+CALIBRATE,sort,perks:spawn,0,2560
+CALIBRATE,sort,perks:spawn,1,16384
+RESULT,sort,perks:spawn,original,0,0,2560,2560,327,626111914
+RESULT,sort,perks:spawn,optimized,0,1,16384,16384,255,626111914
+RESULT,sort,perks:spawn,optimized,1,0,16384,16384,255,626111914
+RESULT,sort,perks:spawn,original,1,1,2560,2560,313,626111914
+RESULT,sort,perks:spawn,original,2,0,2560,2560,308,626111914
+RESULT,sort,perks:spawn,optimized,2,1,16384,16384,255,626111914
+RESULT,sort,perks:spawn,optimized,3,0,16384,16384,254,626111914
+RESULT,sort,perks:spawn,original,3,1,2560,2560,307,626111914
+RESULT,sort,perks:spawn,original,4,0,2560,2560,307,626111914
+RESULT,sort,perks:spawn,optimized,4,1,16384,16384,254,626111914
+RESULT,sort,perks:spawn,optimized,5,0,16384,16384,255,626111914
+RESULT,sort,perks:spawn,original,5,1,2560,2560,307,626111914
+RESULT,sort,perks:spawn,original,6,0,2560,2560,307,626111914
+RESULT,sort,perks:spawn,optimized,6,1,16384,16384,253,626111914
+RESULT,sort,perks:spawn,optimized,7,0,16384,16384,254,626111914
+RESULT,sort,perks:spawn,original,7,1,2560,2560,307,626111914
+RESULT,sort,perks:spawn,original,8,0,2560,2560,307,626111914
+RESULT,sort,perks:spawn,optimized,8,1,16384,16384,254,626111914
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/verified Benchmark sort perks:sorted 9 250
+FIXTURE,sort,perks:sorted,slots=31,active=21
+CALIBRATE,sort,perks:sorted,0,2560
+CALIBRATE,sort,perks:sorted,1,32768
+RESULT,sort,perks:sorted,original,0,0,2560,2560,303,626111914
+RESULT,sort,perks:sorted,optimized,0,1,32768,32768,235,626111914
+RESULT,sort,perks:sorted,optimized,1,0,32768,32768,248,626111914
+RESULT,sort,perks:sorted,original,1,1,2560,2560,314,626111914
+RESULT,sort,perks:sorted,original,2,0,2560,2560,304,626111914
+RESULT,sort,perks:sorted,optimized,2,1,32768,32768,234,626111914
+RESULT,sort,perks:sorted,optimized,3,0,32768,32768,235,626111914
+RESULT,sort,perks:sorted,original,3,1,2560,2560,303,626111914
+RESULT,sort,perks:sorted,original,4,0,2560,2560,303,626111914
+RESULT,sort,perks:sorted,optimized,4,1,32768,32768,235,626111914
+RESULT,sort,perks:sorted,optimized,5,0,32768,32768,238,626111914
+RESULT,sort,perks:sorted,original,5,1,2560,2560,305,626111914
+RESULT,sort,perks:sorted,original,6,0,2560,2560,305,626111914
+RESULT,sort,perks:sorted,optimized,6,1,32768,32768,244,626111914
+RESULT,sort,perks:sorted,optimized,7,0,32768,32768,237,626111914
+RESULT,sort,perks:sorted,original,7,1,2560,2560,303,626111914
+RESULT,sort,perks:sorted,original,8,0,2560,2560,303,626111914
+RESULT,sort,perks:sorted,optimized,8,1,32768,32768,264,626111914
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/verified Benchmark sort perks:near 9 250
+FIXTURE,sort,perks:near,slots=31,active=21
+CALIBRATE,sort,perks:near,0,2560
+CALIBRATE,sort,perks:near,1,32768
+RESULT,sort,perks:near,original,0,0,2560,2560,305,626111914
+RESULT,sort,perks:near,optimized,0,1,32768,32768,255,626111914
+RESULT,sort,perks:near,optimized,1,0,32768,32768,255,626111914
+RESULT,sort,perks:near,original,1,1,2560,2560,304,626111914
+RESULT,sort,perks:near,original,2,0,2560,2560,304,626111914
+RESULT,sort,perks:near,optimized,2,1,32768,32768,255,626111914
+RESULT,sort,perks:near,optimized,3,0,32768,32768,257,626111914
+RESULT,sort,perks:near,original,3,1,2560,2560,304,626111914
+RESULT,sort,perks:near,original,4,0,2560,2560,305,626111914
+RESULT,sort,perks:near,optimized,4,1,32768,32768,256,626111914
+RESULT,sort,perks:near,optimized,5,0,32768,32768,256,626111914
+RESULT,sort,perks:near,original,5,1,2560,2560,304,626111914
+RESULT,sort,perks:near,original,6,0,2560,2560,304,626111914
+RESULT,sort,perks:near,optimized,6,1,32768,32768,255,626111914
+RESULT,sort,perks:near,optimized,7,0,32768,32768,255,626111914
+RESULT,sort,perks:near,original,7,1,2560,2560,303,626111914
+RESULT,sort,perks:near,original,8,0,2560,2560,305,626111914
+RESULT,sort,perks:near,optimized,8,1,32768,32768,260,626111914
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/verified Benchmark sort perks:reverse 9 250
+FIXTURE,sort,perks:reverse,slots=31,active=21
+CALIBRATE,sort,perks:reverse,0,2048
+CALIBRATE,sort,perks:reverse,1,8192
+RESULT,sort,perks:reverse,original,0,0,2048,2048,255,814106658
+RESULT,sort,perks:reverse,optimized,0,1,8192,8192,344,814106658
+RESULT,sort,perks:reverse,optimized,1,0,8192,8192,345,814106658
+RESULT,sort,perks:reverse,original,1,1,2048,2048,256,814106658
+RESULT,sort,perks:reverse,original,2,0,2048,2048,256,814106658
+RESULT,sort,perks:reverse,optimized,2,1,8192,8192,344,814106658
+RESULT,sort,perks:reverse,optimized,3,0,8192,8192,345,814106658
+RESULT,sort,perks:reverse,original,3,1,2048,2048,256,814106658
+RESULT,sort,perks:reverse,original,4,0,2048,2048,256,814106658
+RESULT,sort,perks:reverse,optimized,4,1,8192,8192,346,814106658
+RESULT,sort,perks:reverse,optimized,5,0,8192,8192,346,814106658
+RESULT,sort,perks:reverse,original,5,1,2048,2048,257,814106658
+RESULT,sort,perks:reverse,original,6,0,2048,2048,256,814106658
+RESULT,sort,perks:reverse,optimized,6,1,8192,8192,346,814106658
+RESULT,sort,perks:reverse,optimized,7,0,8192,8192,345,814106658
+RESULT,sort,perks:reverse,original,7,1,2048,2048,256,814106658
+RESULT,sort,perks:reverse,original,8,0,2048,2048,256,814106658
+RESULT,sort,perks:reverse,optimized,8,1,8192,8192,345,814106658
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/verified Benchmark sort irongate:spawn 9 250
+FIXTURE,sort,irongate:spawn,slots=41,active=30
+CALIBRATE,sort,irongate:spawn,0,1536
+CALIBRATE,sort,irongate:spawn,1,8192
+RESULT,sort,irongate:spawn,original,0,0,1536,1536,338,1016051912
+RESULT,sort,irongate:spawn,optimized,0,1,8192,8192,437,1016051912
+RESULT,sort,irongate:spawn,optimized,1,0,8192,8192,438,1016051912
+RESULT,sort,irongate:spawn,original,1,1,1536,1536,338,1016051912
+RESULT,sort,irongate:spawn,original,2,0,1536,1536,337,1016051912
+RESULT,sort,irongate:spawn,optimized,2,1,8192,8192,438,1016051912
+RESULT,sort,irongate:spawn,optimized,3,0,8192,8192,439,1016051912
+RESULT,sort,irongate:spawn,original,3,1,1536,1536,338,1016051912
+RESULT,sort,irongate:spawn,original,4,0,1536,1536,339,1016051912
+RESULT,sort,irongate:spawn,optimized,4,1,8192,8192,438,1016051912
+RESULT,sort,irongate:spawn,optimized,5,0,8192,8192,439,1016051912
+RESULT,sort,irongate:spawn,original,5,1,1536,1536,339,1016051912
+RESULT,sort,irongate:spawn,original,6,0,1536,1536,340,1016051912
+RESULT,sort,irongate:spawn,optimized,6,1,8192,8192,438,1016051912
+RESULT,sort,irongate:spawn,optimized,7,0,8192,8192,439,1016051912
+RESULT,sort,irongate:spawn,original,7,1,1536,1536,340,1016051912
+RESULT,sort,irongate:spawn,original,8,0,1536,1536,339,1016051912
+RESULT,sort,irongate:spawn,optimized,8,1,8192,8192,440,1016051912
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/verified Benchmark sort irongate:sorted 9 250
+FIXTURE,sort,irongate:sorted,slots=41,active=30
+CALIBRATE,sort,irongate:sorted,0,1536
+CALIBRATE,sort,irongate:sorted,1,28672
+RESULT,sort,irongate:sorted,original,0,0,1536,1536,326,1016051912
+RESULT,sort,irongate:sorted,optimized,0,1,28672,28672,294,1016051912
+RESULT,sort,irongate:sorted,optimized,1,0,28672,28672,293,1016051912
+RESULT,sort,irongate:sorted,original,1,1,1536,1536,341,1016051912
+RESULT,sort,irongate:sorted,original,2,0,1536,1536,329,1016051912
+RESULT,sort,irongate:sorted,optimized,2,1,28672,28672,295,1016051912
+RESULT,sort,irongate:sorted,optimized,3,0,28672,28672,295,1016051912
+RESULT,sort,irongate:sorted,original,3,1,1536,1536,349,1016051912
+RESULT,sort,irongate:sorted,original,4,0,1536,1536,343,1016051912
+RESULT,sort,irongate:sorted,optimized,4,1,28672,28672,300,1016051912
+RESULT,sort,irongate:sorted,optimized,5,0,28672,28672,291,1016051912
+RESULT,sort,irongate:sorted,original,5,1,1536,1536,330,1016051912
+RESULT,sort,irongate:sorted,original,6,0,1536,1536,333,1016051912
+RESULT,sort,irongate:sorted,optimized,6,1,28672,28672,294,1016051912
+RESULT,sort,irongate:sorted,optimized,7,0,28672,28672,294,1016051912
+RESULT,sort,irongate:sorted,original,7,1,1536,1536,330,1016051912
+RESULT,sort,irongate:sorted,original,8,0,1536,1536,340,1016051912
+RESULT,sort,irongate:sorted,optimized,8,1,28672,28672,292,1016051912
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/verified Benchmark sort irongate:near 9 250
+FIXTURE,sort,irongate:near,slots=41,active=30
+CALIBRATE,sort,irongate:near,0,1536
+CALIBRATE,sort,irongate:near,1,24576
+RESULT,sort,irongate:near,original,0,0,1536,1536,343,1016051912
+RESULT,sort,irongate:near,optimized,0,1,24576,24576,262,1016051912
+RESULT,sort,irongate:near,optimized,1,0,24576,24576,264,1016051912
+RESULT,sort,irongate:near,original,1,1,1536,1536,339,1016051912
+RESULT,sort,irongate:near,original,2,0,1536,1536,357,1016051912
+RESULT,sort,irongate:near,optimized,2,1,24576,24576,261,1016051912
+RESULT,sort,irongate:near,optimized,3,0,24576,24576,261,1016051912
+RESULT,sort,irongate:near,original,3,1,1536,1536,343,1016051912
+RESULT,sort,irongate:near,original,4,0,1536,1536,336,1016051912
+RESULT,sort,irongate:near,optimized,4,1,24576,24576,262,1016051912
+RESULT,sort,irongate:near,optimized,5,0,24576,24576,263,1016051912
+RESULT,sort,irongate:near,original,5,1,1536,1536,343,1016051912
+RESULT,sort,irongate:near,original,6,0,1536,1536,334,1016051912
+RESULT,sort,irongate:near,optimized,6,1,24576,24576,262,1016051912
+RESULT,sort,irongate:near,optimized,7,0,24576,24576,278,1016051912
+RESULT,sort,irongate:near,original,7,1,1536,1536,342,1016051912
+RESULT,sort,irongate:near,original,8,0,1536,1536,333,1016051912
+RESULT,sort,irongate:near,optimized,8,1,24576,24576,284,1016051912
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/verified Benchmark sort irongate:reverse 9 250
+FIXTURE,sort,irongate:reverse,slots=41,active=30
+CALIBRATE,sort,irongate:reverse,0,1536
+CALIBRATE,sort,irongate:reverse,1,3584
+RESULT,sort,irongate:reverse,original,0,0,1536,1536,348,97833688
+RESULT,sort,irongate:reverse,optimized,0,1,3584,3584,281,97833688
+RESULT,sort,irongate:reverse,optimized,1,0,3584,3584,283,97833688
+RESULT,sort,irongate:reverse,original,1,1,1536,1536,348,97833688
+RESULT,sort,irongate:reverse,original,2,0,1536,1536,346,97833688
+RESULT,sort,irongate:reverse,optimized,2,1,3584,3584,281,97833688
+RESULT,sort,irongate:reverse,optimized,3,0,3584,3584,283,97833688
+RESULT,sort,irongate:reverse,original,3,1,1536,1536,345,97833688
+RESULT,sort,irongate:reverse,original,4,0,1536,1536,346,97833688
+RESULT,sort,irongate:reverse,optimized,4,1,3584,3584,283,97833688
+RESULT,sort,irongate:reverse,optimized,5,0,3584,3584,282,97833688
+RESULT,sort,irongate:reverse,original,5,1,1536,1536,349,97833688
+RESULT,sort,irongate:reverse,original,6,0,1536,1536,348,97833688
+RESULT,sort,irongate:reverse,optimized,6,1,3584,3584,284,97833688
+RESULT,sort,irongate:reverse,optimized,7,0,3584,3584,286,97833688
+RESULT,sort,irongate:reverse,original,7,1,1536,1536,347,97833688
+RESULT,sort,irongate:reverse,original,8,0,1536,1536,348,97833688
+RESULT,sort,irongate:reverse,optimized,8,1,3584,3584,280,97833688
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/verified Benchmark sort shanktonstatepen:spawn 9 250
+FIXTURE,sort,shanktonstatepen:spawn,slots=46,active=36
+CALIBRATE,sort,shanktonstatepen:spawn,0,1024
+CALIBRATE,sort,shanktonstatepen:spawn,1,3584
+RESULT,sort,shanktonstatepen:spawn,original,0,0,1024,1024,293,930243713
+RESULT,sort,shanktonstatepen:spawn,optimized,0,1,3584,3584,283,930243713
+RESULT,sort,shanktonstatepen:spawn,optimized,1,0,3584,3584,284,930243713
+RESULT,sort,shanktonstatepen:spawn,original,1,1,1024,1024,294,930243713
+RESULT,sort,shanktonstatepen:spawn,original,2,0,1024,1024,293,930243713
+RESULT,sort,shanktonstatepen:spawn,optimized,2,1,3584,3584,284,930243713
+RESULT,sort,shanktonstatepen:spawn,optimized,3,0,3584,3584,284,930243713
+RESULT,sort,shanktonstatepen:spawn,original,3,1,1024,1024,293,930243713
+RESULT,sort,shanktonstatepen:spawn,original,4,0,1024,1024,294,930243713
+RESULT,sort,shanktonstatepen:spawn,optimized,4,1,3584,3584,285,930243713
+RESULT,sort,shanktonstatepen:spawn,optimized,5,0,3584,3584,289,930243713
+RESULT,sort,shanktonstatepen:spawn,original,5,1,1024,1024,318,930243713
+RESULT,sort,shanktonstatepen:spawn,original,6,0,1024,1024,294,930243713
+RESULT,sort,shanktonstatepen:spawn,optimized,6,1,3584,3584,283,930243713
+RESULT,sort,shanktonstatepen:spawn,optimized,7,0,3584,3584,284,930243713
+RESULT,sort,shanktonstatepen:spawn,original,7,1,1024,1024,309,930243713
+RESULT,sort,shanktonstatepen:spawn,original,8,0,1024,1024,295,930243713
+RESULT,sort,shanktonstatepen:spawn,optimized,8,1,3584,3584,287,930243713
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/verified Benchmark sort shanktonstatepen:sorted 9 250
+FIXTURE,sort,shanktonstatepen:sorted,slots=46,active=36
+CALIBRATE,sort,shanktonstatepen:sorted,0,1024
+CALIBRATE,sort,shanktonstatepen:sorted,1,24576
+RESULT,sort,shanktonstatepen:sorted,original,0,0,1024,1024,281,930243713
+RESULT,sort,shanktonstatepen:sorted,optimized,0,1,24576,24576,292,930243713
+RESULT,sort,shanktonstatepen:sorted,optimized,1,0,24576,24576,292,930243713
+RESULT,sort,shanktonstatepen:sorted,original,1,1,1024,1024,281,930243713
+RESULT,sort,shanktonstatepen:sorted,original,2,0,1024,1024,281,930243713
+RESULT,sort,shanktonstatepen:sorted,optimized,2,1,24576,24576,292,930243713
+RESULT,sort,shanktonstatepen:sorted,optimized,3,0,24576,24576,292,930243713
+RESULT,sort,shanktonstatepen:sorted,original,3,1,1024,1024,289,930243713
+RESULT,sort,shanktonstatepen:sorted,original,4,0,1024,1024,284,930243713
+RESULT,sort,shanktonstatepen:sorted,optimized,4,1,24576,24576,292,930243713
+RESULT,sort,shanktonstatepen:sorted,optimized,5,0,24576,24576,292,930243713
+RESULT,sort,shanktonstatepen:sorted,original,5,1,1024,1024,282,930243713
+RESULT,sort,shanktonstatepen:sorted,original,6,0,1024,1024,283,930243713
+RESULT,sort,shanktonstatepen:sorted,optimized,6,1,24576,24576,293,930243713
+RESULT,sort,shanktonstatepen:sorted,optimized,7,0,24576,24576,292,930243713
+RESULT,sort,shanktonstatepen:sorted,original,7,1,1024,1024,282,930243713
+RESULT,sort,shanktonstatepen:sorted,original,8,0,1024,1024,281,930243713
+RESULT,sort,shanktonstatepen:sorted,optimized,8,1,24576,24576,293,930243713
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/verified Benchmark sort shanktonstatepen:near 9 250
+FIXTURE,sort,shanktonstatepen:near,slots=46,active=36
+CALIBRATE,sort,shanktonstatepen:near,0,1024
+CALIBRATE,sort,shanktonstatepen:near,1,20480
+RESULT,sort,shanktonstatepen:near,original,0,0,1024,1024,282,930243713
+RESULT,sort,shanktonstatepen:near,optimized,0,1,20480,20480,258,930243713
+RESULT,sort,shanktonstatepen:near,optimized,1,0,20480,20480,256,930243713
+RESULT,sort,shanktonstatepen:near,original,1,1,1024,1024,281,930243713
+RESULT,sort,shanktonstatepen:near,original,2,0,1024,1024,283,930243713
+RESULT,sort,shanktonstatepen:near,optimized,2,1,20480,20480,256,930243713
+RESULT,sort,shanktonstatepen:near,optimized,3,0,20480,20480,256,930243713
+RESULT,sort,shanktonstatepen:near,original,3,1,1024,1024,282,930243713
+RESULT,sort,shanktonstatepen:near,original,4,0,1024,1024,281,930243713
+RESULT,sort,shanktonstatepen:near,optimized,4,1,20480,20480,257,930243713
+RESULT,sort,shanktonstatepen:near,optimized,5,0,20480,20480,256,930243713
+RESULT,sort,shanktonstatepen:near,original,5,1,1024,1024,281,930243713
+RESULT,sort,shanktonstatepen:near,original,6,0,1024,1024,281,930243713
+RESULT,sort,shanktonstatepen:near,optimized,6,1,20480,20480,269,930243713
+RESULT,sort,shanktonstatepen:near,optimized,7,0,20480,20480,256,930243713
+RESULT,sort,shanktonstatepen:near,original,7,1,1024,1024,282,930243713
+RESULT,sort,shanktonstatepen:near,original,8,0,1024,1024,285,930243713
+RESULT,sort,shanktonstatepen:near,optimized,8,1,20480,20480,275,930243713
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/verified Benchmark sort shanktonstatepen:reverse 9 250
+FIXTURE,sort,shanktonstatepen:reverse,slots=46,active=36
+CALIBRATE,sort,shanktonstatepen:reverse,0,1024
+CALIBRATE,sort,shanktonstatepen:reverse,1,2560
+RESULT,sort,shanktonstatepen:reverse,original,0,0,1024,1024,301,1554215717
+RESULT,sort,shanktonstatepen:reverse,optimized,0,1,2560,2560,298,1554215717
+RESULT,sort,shanktonstatepen:reverse,optimized,1,0,2560,2560,298,1554215717
+RESULT,sort,shanktonstatepen:reverse,original,1,1,1024,1024,300,1554215717
+RESULT,sort,shanktonstatepen:reverse,original,2,0,1024,1024,302,1554215717
+RESULT,sort,shanktonstatepen:reverse,optimized,2,1,2560,2560,302,1554215717
+RESULT,sort,shanktonstatepen:reverse,optimized,3,0,2560,2560,298,1554215717
+RESULT,sort,shanktonstatepen:reverse,original,3,1,1024,1024,302,1554215717
+RESULT,sort,shanktonstatepen:reverse,original,4,0,1024,1024,316,1554215717
+RESULT,sort,shanktonstatepen:reverse,optimized,4,1,2560,2560,301,1554215717
+RESULT,sort,shanktonstatepen:reverse,optimized,5,0,2560,2560,319,1554215717
+RESULT,sort,shanktonstatepen:reverse,original,5,1,1024,1024,300,1554215717
+RESULT,sort,shanktonstatepen:reverse,original,6,0,1024,1024,309,1554215717
+RESULT,sort,shanktonstatepen:reverse,optimized,6,1,2560,2560,299,1554215717
+RESULT,sort,shanktonstatepen:reverse,optimized,7,0,2560,2560,300,1554215717
+RESULT,sort,shanktonstatepen:reverse,original,7,1,1024,1024,301,1554215717
+RESULT,sort,shanktonstatepen:reverse,original,8,0,1024,1024,306,1554215717
+RESULT,sort,shanktonstatepen:reverse,optimized,8,1,2560,2560,299,1554215717
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/verified Benchmark queue head:16 9 250
+CALIBRATE,queue,head:16,0,28672
+CALIBRATE,queue,head:16,1,28672
+RESULT,queue,head:16,original,0,0,28672,28672,264,-1808376583
+RESULT,queue,head:16,optimized,0,1,28672,28672,261,-1808376583
+RESULT,queue,head:16,optimized,1,0,28672,28672,265,-1808376583
+RESULT,queue,head:16,original,1,1,28672,28672,257,-1808376583
+RESULT,queue,head:16,original,2,0,28672,28672,259,-1808376583
+RESULT,queue,head:16,optimized,2,1,28672,28672,267,-1808376583
+RESULT,queue,head:16,optimized,3,0,28672,28672,266,-1808376583
+RESULT,queue,head:16,original,3,1,28672,28672,276,-1808376583
+RESULT,queue,head:16,original,4,0,28672,28672,260,-1808376583
+RESULT,queue,head:16,optimized,4,1,28672,28672,266,-1808376583
+RESULT,queue,head:16,optimized,5,0,28672,28672,267,-1808376583
+RESULT,queue,head:16,original,5,1,28672,28672,285,-1808376583
+RESULT,queue,head:16,original,6,0,28672,28672,255,-1808376583
+RESULT,queue,head:16,optimized,6,1,28672,28672,262,-1808376583
+RESULT,queue,head:16,optimized,7,0,28672,28672,267,-1808376583
+RESULT,queue,head:16,original,7,1,28672,28672,255,-1808376583
+RESULT,queue,head:16,original,8,0,28672,28672,256,-1808376583
+RESULT,queue,head:16,optimized,8,1,28672,28672,264,-1808376583
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/verified Benchmark queue ties:64 9 250
+CALIBRATE,queue,ties:64,0,1024
+CALIBRATE,queue,ties:64,1,1536
+RESULT,queue,ties:64,original,0,0,1024,1024,301,-832096223
+RESULT,queue,ties:64,optimized,0,1,1536,1536,276,-832096223
+RESULT,queue,ties:64,optimized,1,0,1536,1536,275,-832096223
+RESULT,queue,ties:64,original,1,1,1024,1024,301,-832096223
+RESULT,queue,ties:64,original,2,0,1024,1024,300,-832096223
+RESULT,queue,ties:64,optimized,2,1,1536,1536,279,-832096223
+RESULT,queue,ties:64,optimized,3,0,1536,1536,285,-832096223
+RESULT,queue,ties:64,original,3,1,1024,1024,304,-832096223
+RESULT,queue,ties:64,original,4,0,1024,1024,303,-832096223
+RESULT,queue,ties:64,optimized,4,1,1536,1536,278,-832096223
+RESULT,queue,ties:64,optimized,5,0,1536,1536,279,-832096223
+RESULT,queue,ties:64,original,5,1,1024,1024,305,-832096223
+RESULT,queue,ties:64,original,6,0,1024,1024,303,-832096223
+RESULT,queue,ties:64,optimized,6,1,1536,1536,285,-832096223
+RESULT,queue,ties:64,optimized,7,0,1536,1536,281,-832096223
+RESULT,queue,ties:64,original,7,1,1024,1024,304,-832096223
+RESULT,queue,ties:64,original,8,0,1024,1024,305,-832096223
+RESULT,queue,ties:64,optimized,8,1,1536,1536,297,-832096223
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/verified Benchmark queue mixed:256 9 250
+CALIBRATE,queue,mixed:256,0,128
+CALIBRATE,queue,mixed:256,1,192
+RESULT,queue,mixed:256,original,0,0,128,128,321,-1271746277
+RESULT,queue,mixed:256,optimized,0,1,192,192,276,-1271746277
+RESULT,queue,mixed:256,optimized,1,0,192,192,276,-1271746277
+RESULT,queue,mixed:256,original,1,1,128,128,321,-1271746277
+RESULT,queue,mixed:256,original,2,0,128,128,320,-1271746277
+RESULT,queue,mixed:256,optimized,2,1,192,192,271,-1271746277
+RESULT,queue,mixed:256,optimized,3,0,192,192,271,-1271746277
+RESULT,queue,mixed:256,original,3,1,128,128,320,-1271746277
+RESULT,queue,mixed:256,original,4,0,128,128,328,-1271746277
+RESULT,queue,mixed:256,optimized,4,1,192,192,271,-1271746277
+RESULT,queue,mixed:256,optimized,5,0,192,192,296,-1271746277
+RESULT,queue,mixed:256,original,5,1,128,128,315,-1271746277
+RESULT,queue,mixed:256,original,6,0,128,128,314,-1271746277
+RESULT,queue,mixed:256,optimized,6,1,192,192,270,-1271746277
+RESULT,queue,mixed:256,optimized,7,0,192,192,269,-1271746277
+RESULT,queue,mixed:256,original,7,1,128,128,313,-1271746277
+RESULT,queue,mixed:256,original,8,0,128,128,315,-1271746277
+RESULT,queue,mixed:256,optimized,8,1,192,192,270,-1271746277
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/verified Benchmark path perks 9 250
+CALIBRATE,path,perks,0,1
+CALIBRATE,path,perks,1,2
+RESULT,path,perks,original,0,0,1,8,295,-1512014644
+RESULT,path,perks,optimized,0,1,2,16,410,-1512014644
+RESULT,path,perks,optimized,1,0,2,16,411,-1512014644
+RESULT,path,perks,original,1,1,1,8,298,-1512014644
+RESULT,path,perks,original,2,0,1,8,288,-1512014644
+RESULT,path,perks,optimized,2,1,2,16,409,-1512014644
+RESULT,path,perks,optimized,3,0,2,16,417,-1512014644
+RESULT,path,perks,original,3,1,1,8,289,-1512014644
+RESULT,path,perks,original,4,0,1,8,288,-1512014644
+RESULT,path,perks,optimized,4,1,2,16,417,-1512014644
+RESULT,path,perks,optimized,5,0,2,16,415,-1512014644
+RESULT,path,perks,original,5,1,1,8,288,-1512014644
+RESULT,path,perks,original,6,0,1,8,290,-1512014644
+RESULT,path,perks,optimized,6,1,2,16,425,-1512014644
+RESULT,path,perks,optimized,7,0,2,16,412,-1512014644
+RESULT,path,perks,original,7,1,1,8,291,-1512014644
+RESULT,path,perks,original,8,0,1,8,298,-1512014644
+RESULT,path,perks,optimized,8,1,2,16,412,-1512014644
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/verified Benchmark path stalagflucht 9 250
+CALIBRATE,path,stalagflucht,0,2
+CALIBRATE,path,stalagflucht,1,2
+RESULT,path,stalagflucht,original,0,0,2,16,496,-1903281332
+RESULT,path,stalagflucht,optimized,0,1,2,16,371,-1903281332
+RESULT,path,stalagflucht,optimized,1,0,2,16,374,-1903281332
+RESULT,path,stalagflucht,original,1,1,2,16,498,-1903281332
+RESULT,path,stalagflucht,original,2,0,2,16,496,-1903281332
+RESULT,path,stalagflucht,optimized,2,1,2,16,367,-1903281332
+RESULT,path,stalagflucht,optimized,3,0,2,16,367,-1903281332
+RESULT,path,stalagflucht,original,3,1,2,16,508,-1903281332
+RESULT,path,stalagflucht,original,4,0,2,16,497,-1903281332
+RESULT,path,stalagflucht,optimized,4,1,2,16,368,-1903281332
+RESULT,path,stalagflucht,optimized,5,0,2,16,376,-1903281332
+RESULT,path,stalagflucht,original,5,1,2,16,498,-1903281332
+RESULT,path,stalagflucht,original,6,0,2,16,508,-1903281332
+RESULT,path,stalagflucht,optimized,6,1,2,16,371,-1903281332
+RESULT,path,stalagflucht,optimized,7,0,2,16,370,-1903281332
+RESULT,path,stalagflucht,original,7,1,2,16,501,-1903281332
+RESULT,path,stalagflucht,original,8,0,2,16,501,-1903281332
+RESULT,path,stalagflucht,optimized,8,1,2,16,370,-1903281332
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/verified Benchmark path shanktonstatepen 9 250
+CALIBRATE,path,shanktonstatepen,0,2
+CALIBRATE,path,shanktonstatepen,1,2
+RESULT,path,shanktonstatepen,original,0,0,2,16,411,-251689183
+RESULT,path,shanktonstatepen,optimized,0,1,2,16,299,-251689183
+RESULT,path,shanktonstatepen,optimized,1,0,2,16,300,-251689183
+RESULT,path,shanktonstatepen,original,1,1,2,16,408,-251689183
+RESULT,path,shanktonstatepen,original,2,0,2,16,413,-251689183
+RESULT,path,shanktonstatepen,optimized,2,1,2,16,298,-251689183
+RESULT,path,shanktonstatepen,optimized,3,0,2,16,295,-251689183
+RESULT,path,shanktonstatepen,original,3,1,2,16,410,-251689183
+RESULT,path,shanktonstatepen,original,4,0,2,16,410,-251689183
+RESULT,path,shanktonstatepen,optimized,4,1,2,16,296,-251689183
+RESULT,path,shanktonstatepen,optimized,5,0,2,16,295,-251689183
+RESULT,path,shanktonstatepen,original,5,1,2,16,416,-251689183
+RESULT,path,shanktonstatepen,original,6,0,2,16,418,-251689183
+RESULT,path,shanktonstatepen,optimized,6,1,2,16,298,-251689183
+RESULT,path,shanktonstatepen,optimized,7,0,2,16,297,-251689183
+RESULT,path,shanktonstatepen,original,7,1,2,16,421,-251689183
+RESULT,path,shanktonstatepen,original,8,0,2,16,417,-251689183
+RESULT,path,shanktonstatepen,optimized,8,1,2,16,299,-251689183
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/verified Benchmark path jungle 9 250
+CALIBRATE,path,jungle,0,1
+CALIBRATE,path,jungle,1,2
+RESULT,path,jungle,original,0,0,1,8,271,2028727186
+RESULT,path,jungle,optimized,0,1,2,16,464,2028727186
+RESULT,path,jungle,optimized,1,0,2,16,371,2028727186
+RESULT,path,jungle,original,1,1,1,8,304,2028727186
+RESULT,path,jungle,original,2,0,1,8,291,2028727186
+RESULT,path,jungle,optimized,2,1,2,16,378,2028727186
+RESULT,path,jungle,optimized,3,0,2,16,387,2028727186
+RESULT,path,jungle,original,3,1,1,8,287,2028727186
+RESULT,path,jungle,original,4,0,1,8,272,2028727186
+RESULT,path,jungle,optimized,4,1,2,16,357,2028727186
+RESULT,path,jungle,optimized,5,0,2,16,351,2028727186
+RESULT,path,jungle,original,5,1,1,8,275,2028727186
+RESULT,path,jungle,original,6,0,1,8,266,2028727186
+RESULT,path,jungle,optimized,6,1,2,16,340,2028727186
+RESULT,path,jungle,optimized,7,0,2,16,338,2028727186
+RESULT,path,jungle,original,7,1,1,8,263,2028727186
+RESULT,path,jungle,original,8,0,1,8,263,2028727186
+RESULT,path,jungle,optimized,8,1,2,16,339,2028727186
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/verified Benchmark path sanpancho 9 250
+CALIBRATE,path,sanpancho,0,1
+CALIBRATE,path,sanpancho,1,2
+RESULT,path,sanpancho,original,0,0,1,8,362,-1467515294
+RESULT,path,sanpancho,optimized,0,1,2,16,488,-1467515294
+RESULT,path,sanpancho,optimized,1,0,2,16,489,-1467515294
+RESULT,path,sanpancho,original,1,1,1,8,359,-1467515294
+RESULT,path,sanpancho,original,2,0,1,8,374,-1467515294
+RESULT,path,sanpancho,optimized,2,1,2,16,498,-1467515294
+RESULT,path,sanpancho,optimized,3,0,2,16,491,-1467515294
+RESULT,path,sanpancho,original,3,1,1,8,361,-1467515294
+RESULT,path,sanpancho,original,4,0,1,8,362,-1467515294
+RESULT,path,sanpancho,optimized,4,1,2,16,485,-1467515294
+RESULT,path,sanpancho,optimized,5,0,2,16,485,-1467515294
+RESULT,path,sanpancho,original,5,1,1,8,358,-1467515294
+RESULT,path,sanpancho,original,6,0,1,8,361,-1467515294
+RESULT,path,sanpancho,optimized,6,1,2,16,485,-1467515294
+RESULT,path,sanpancho,optimized,7,0,2,16,484,-1467515294
+RESULT,path,sanpancho,original,7,1,1,8,359,-1467515294
+RESULT,path,sanpancho,original,8,0,1,8,359,-1467515294
+RESULT,path,sanpancho,optimized,8,1,2,16,484,-1467515294
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/verified Benchmark path irongate 9 250
+CALIBRATE,path,irongate,0,3
+CALIBRATE,path,irongate,1,3
+RESULT,path,irongate,original,0,0,3,24,338,1543803296
+RESULT,path,irongate,optimized,0,1,3,24,262,1543803296
+RESULT,path,irongate,optimized,1,0,3,24,262,1543803296
+RESULT,path,irongate,original,1,1,3,24,339,1543803296
+RESULT,path,irongate,original,2,0,3,24,339,1543803296
+RESULT,path,irongate,optimized,2,1,3,24,262,1543803296
+RESULT,path,irongate,optimized,3,0,3,24,263,1543803296
+RESULT,path,irongate,original,3,1,3,24,339,1543803296
+RESULT,path,irongate,original,4,0,3,24,339,1543803296
+RESULT,path,irongate,optimized,4,1,3,24,262,1543803296
+RESULT,path,irongate,optimized,5,0,3,24,262,1543803296
+RESULT,path,irongate,original,5,1,3,24,339,1543803296
+RESULT,path,irongate,original,6,0,3,24,339,1543803296
+RESULT,path,irongate,optimized,6,1,3,24,275,1543803296
+RESULT,path,irongate,optimized,7,0,3,24,277,1543803296
+RESULT,path,irongate,original,7,1,3,24,337,1543803296
+RESULT,path,irongate,original,8,0,3,24,337,1543803296
+RESULT,path,irongate,optimized,8,1,3,24,268,1543803296

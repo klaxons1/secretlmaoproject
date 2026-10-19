@@ -1,0 +1,210 @@
+Stable FIFO min-heap for pathfinding. Exported diff, not a new commit.
+Base-commit: 0716b47205e297375d7a3848d923d5ce916eba6d
+Changes only src/Game.java; no tile, sort-frequency, AI or lag-counter changes.
+
+diff --git a/src/Game.java b/src/Game.java
+index 2b37ec5b33d0f0f8c9968cd8cf42a1b3274f41d0..8b4202b91f99ec626a9c703e970a9c2cb1e5b425 100644
+--- a/src/Game.java
++++ b/src/Game.java
+@@ -8905,9 +8905,12 @@
+ 	short[] nodeParent;
+ 	short[] nodeG, nodeH;
+ 
+-	// linked list of open nodes
+-	short[] openNodePrev;
+-	short[] openNodeNext;
++	// Stable binary min-heap. Extra storage versus the two list arrays: one
++	// int per map cell for FIFO tie-breaking. No search-time allocations.
++	short[] openHeap;
++	short[] openHeapPosition;
++	int[] openHeapOrder;
++	int openHeapSize, openHeapSerial;
+ 	int sortedNode;
+ 
+ 	short[] visitedNodes;
+@@ -8920,8 +8923,10 @@
+ 		nodeG = new short[size];
+ 		nodeH = new short[size];
+ 
+-		openNodePrev = new short[size];
+-		openNodeNext = new short[size];
++		openHeap = new short[size];
++		openHeapPosition = new short[size];
++		openHeapOrder = new int[size];
++		openHeapSize = openHeapSerial = 0;
+ 
+ 		// TODO make old method accessible with preprocessor constant
+ 		visitedNodes = new short[size];
+@@ -8931,8 +8936,7 @@
+ 
+ 		for (int i = 0; i < size; ++i) {
+ 			nodeParent[i] = -1;
+-			openNodePrev[i] = -1;
+-			openNodeNext[i] = -1;
++			openHeapPosition[i] = -1;
+ 		}
+ 	}
+ 
+@@ -8943,8 +8947,7 @@
+ 		short[] nodeParent = this.nodeParent;
+ 		short[] nodeG = this.nodeG;
+ 		short[] nodeH = this.nodeH;
+-		short[] openNodePrev = this.openNodePrev;
+-		short[] openNodeNext = this.openNodeNext;
++		short[] openHeapPosition = this.openHeapPosition;
+ 		byte[] solid = this.solid[LAYER_GROUND]; // npc can only move on ground layer
+ 
+ 		short[] visitedNodes = this.visitedNodes;
+@@ -8953,6 +8956,7 @@
+ 		byte[] nodeY = this.nodeY;
+ 
+ 		int visited = 0;
++		openHeapSize = openHeapSerial = 0;
+ 		sortedNode = -1;
+ 
+ 		int cur = startX + startY * width;
+@@ -9037,7 +9041,7 @@
+ //				h = dx*dx + dy*dy;
+ 
+ 				// check if node is not already open
+-				if (openNodePrev[n] == -1 && openNodeNext[n] == -1 && sortedNode != n) {
++				if (openHeapPosition[n] == -1) {
+ 					nodeParent[n] = (short) cur;
+ 					nodeG[n] = (short) g;
+ 					nodeH[n] = (short) h;
+@@ -9103,58 +9107,91 @@
+ 			nodeG[n] = 0;
+ 			nodeH[n] = 0;
+ 
+-			openNodePrev[n] = -1;
+-			openNodeNext[n] = -1;
+-		}
+-
++			openHeapPosition[n] = -1;
++		}
++
++		openHeapSize = openHeapSerial = 0;
+ 		return ret;
+ 	}
+ 
+-	// sorted linked list functions
++	// stable binary heap operations
+ 
+ 	void openAdd(int n) {
+-		int i = sortedNode;
+-		if (i == -1) {
+-			// first node
+-			sortedNode = n;
+-			return;
+-		}
+-
+-		short[] nodeG = this.nodeG;
+-		short[] nodeH = this.nodeH;
+-		short[] openNodePrev = this.openNodePrev;
+-		short[] openNodeNext = this.openNodeNext;
+-
+-		int f = nodeG[n] + nodeH[n];
+-		int p = -1;
+-		while (i != -1 && f >= nodeG[i] + nodeH[i]) {
+-			p = i;
+-			i = openNodeNext[i];
+-		}
+-
+-		if (p == -1) {
+-			sortedNode = n;
+-		} else {
+-			openNodeNext[p] = (short) n;
+-		}
+-		openNodePrev[n] = (short) p;
+-		openNodeNext[n] = (short) i;
+-		if (i != -1) openNodePrev[i] = (short) n;
++		short[] heap = openHeap;
++		short[] position = openHeapPosition;
++		int[] order = openHeapOrder;
++		short[] g = nodeG, h = nodeH;
++		if (openHeapSize == 0) openHeapSerial = 0;
++		int serial = openHeapSerial++;
++		order[n] = serial;
++		int f = g[n] + h[n];
++		int i = openHeapSize++;
++		while (i > 0) {
++			int parent = (i - 1) >>> 1;
++			int other = heap[parent] & 0xFFFF;
++			int otherF = g[other] + h[other];
++			if (f > otherF || (f == otherF && serial >= order[other])) break;
++			heap[i] = (short) other;
++			position[other] = (short) i;
++			i = parent;
++		}
++		heap[i] = (short) n;
++		position[n] = (short) i;
++		sortedNode = heap[0] & 0xFFFF;
+ 	}
+ 
+ 	void openRemove(int n) {
+-		if (openNodeNext[n] != -1) {
+-			openNodePrev[openNodeNext[n]] = openNodePrev[n];
+-		}
+-
+-		if (sortedNode == n) {
+-			sortedNode = openNodeNext[n];
+-		} else if (openNodePrev[n] != -1) {
+-			openNodeNext[openNodePrev[n]] = openNodeNext[n];
+-		}
+-
+-		openNodePrev[n] = -1;
+-		openNodeNext[n] = -1;
++		short[] heap = openHeap;
++		short[] position = openHeapPosition;
++		int i = position[n];
++		// The initial start node is expanded without first being enqueued.
++		if (i == -1) return;
++		position[n] = -1;
++		int size = --openHeapSize;
++		if (i < size) {
++			int moved = heap[size] & 0xFFFF;
++			int[] order = openHeapOrder;
++			short[] g = nodeG, h = nodeH;
++			int f = g[moved] + h[moved];
++			int serial = order[moved];
++			int hole = i;
++			// Removing an arbitrary item can require either sift direction.
++			// This also handles decrease-key: pathfind updates nodeG[n]
++			// BEFORE removing n, then reinserts it with a fresh FIFO serial.
++			while (i > 0) {
++				int parent = (i - 1) >>> 1;
++				int other = heap[parent] & 0xFFFF;
++				int otherF = g[other] + h[other];
++				if (f > otherF || (f == otherF && serial >= order[other])) break;
++				heap[i] = (short) other;
++				position[other] = (short) i;
++				i = parent;
++			}
++			if (i == hole) {
++				int child = (i << 1) + 1;
++				while (child < size) {
++					int other = heap[child] & 0xFFFF;
++					int otherF = g[other] + h[other];
++					if (child + 1 < size) {
++						int right = heap[child + 1] & 0xFFFF;
++						int rightF = g[right] + h[right];
++						if (rightF < otherF || (rightF == otherF && order[right] < order[other])) {
++							++child;
++							other = right;
++							otherF = rightF;
++						}
++					}
++					if (f < otherF || (f == otherF && serial <= order[other])) break;
++					heap[i] = (short) other;
++					position[other] = (short) i;
++					i = child;
++					child = (i << 1) + 1;
++				}
++			}
++			heap[i] = (short) moved;
++			position[moved] = (short) i;
++		}
++		sortedNode = size == 0 ? -1 : heap[0] & 0xFFFF;
+ 	}
+ 
+ 	// endregion Pathfinding
