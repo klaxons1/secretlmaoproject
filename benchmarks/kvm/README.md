@@ -1,5 +1,10 @@
 # Game hot-path benchmarks on the original KVM 1.1
 
+> **New post-heap study:** [Russian report, separate datasets and detailed patch catalog](bottlenecks/README.md).
+> It uses master `0716b47` + heap and does **not** reuse the historical timings below.
+> The production source remains an unpatched control; runtime changes are exported
+> as individual/combined files under [`patches/performance`](../../patches/performance/README.md).
+
 > **Historical measurement snapshot.** These timings describe the earlier measured source, not the newly synchronized master. For the heap-only patch against master `0716b47` and its fresh build/KVM checks, see [patches/HEAP.md](../../patches/HEAP.md). No historical timing samples were replaced.
 
 This change optimizes two sources of avoidable interpreter work in `src/Game.java`:

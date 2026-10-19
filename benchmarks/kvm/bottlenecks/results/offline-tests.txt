@@ -17,7 +17,7 @@ test_brace_matching_ignores_comments_and_literals (test_run.SourceTests.test_bra
 test_unbalanced_source_fails (test_run.SourceTests.test_unbalanced_source_fails) ... ok
 
 ----------------------------------------------------------------------
-Ran 17 tests in 0.251s
+Ran 17 tests in 0.258s
 
 OK
 test_reanalysis_is_byte_identical (test_experiments.AnalysisTests.test_reanalysis_is_byte_identical) ... ok
@@ -30,7 +30,7 @@ test_heap_changes_only_pathfinding_region (test_experiments.SourceTests.test_hea
 test_tiles_do_not_modify_objects_or_other_methods (test_experiments.SourceTests.test_tiles_do_not_modify_objects_or_other_methods) ... ok
 
 ----------------------------------------------------------------------
-Ran 8 tests in 0.012s
+Ran 8 tests in 0.014s
 
 OK
 test_paired_not_ratio_of_medians (test_bottlenecks.AnalysisTests.test_paired_not_ratio_of_medians) ... ok
@@ -55,6 +55,6 @@ test_priority_requires_decrease_hook_and_preserves_scope (test_supplements.Suppl
 test_transforms_fail_closed (test_supplements.SupplementSourceTests.test_transforms_fail_closed) ... ok
 
 ----------------------------------------------------------------------
-Ran 19 tests in 4.592s
+Ran 19 tests in 4.426s
 
 OK

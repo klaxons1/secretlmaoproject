@@ -1,5 +1,6 @@
 Audit checkout branch: arena/a0d34468-secretlmaoproject
 PASS production sources match pinned master; no runtime patch auto-applied
+PASS historical raw preserved: 378 original / 2484 experiment / 162 separate AWT intervals
 PASS primary 3204 intervals / 69 scenarios / 32 complete builds; byte-identical reanalysis
 PASS run_fallback 864 intervals; separate fresh pairs and byte-identical reanalysis
 PASS run_priority 900 intervals; separate fresh pairs and byte-identical reanalysis
@@ -7,4 +8,4 @@ PASS fallback counts 16->8 on 8 failures, controls unchanged; 42 native-walkable
 PASS 41 full build/preverification records (32+2+3+4), not physical gameplay
 PASS regression controls retained; optional 0011/0013 excluded from conservative
 PASS all new data: 4968 intervals; no historical raw rewritten
-PASS audit checks: 1629 (build cache verified)
+PASS audit checks: 1635 (build cache verified)

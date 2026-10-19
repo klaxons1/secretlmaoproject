@@ -1,5 +1,20 @@
 # Standalone optimization patches
 
+## New post-heap bottleneck patches (0004–0019)
+
+**[Detailed Russian catalog and application choices](performance/README.md)** —
+16 separate exports, including optional diagnostics and two deliberately opt-in
+candidates with measured regressions. The conservative bundles exclude those
+regressions; the memory variant trades another ≈35 KiB for cached heap priorities.
+
+Base: current pinned master `0716b47` + 0003, **except 0019 also requires 0007**.
+The `*-from-master` bundles already include 0003. Do not layer combined files or
+reapply their individual components. Production source in this branch is still
+the unpatched master, for reproducible A/B; use the exported patches explicitly.
+
+[Three new original-KVM datasets and verification](../benchmarks/kvm/bottlenecks/README.md).
+No new physical PSPKVM timing or full-game FPS is claimed.
+
 ## Heap patch for synchronized master
 
 [0003-use-stable-heap-pathfinding.patch](0003-use-stable-heap-pathfinding.patch)
