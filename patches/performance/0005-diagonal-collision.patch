@@ -1,0 +1,42 @@
+diagonal-collision
+Base-master: 0716b47205e297375d7a3848d923d5ce916eba6d
+Prerequisites: 0003 and preceding numbered performance patches
+Apply with git apply, NOT git am.
+
+diff --git a/src/Game.java b/src/Game.java
+--- a/src/Game.java
++++ b/src/Game.java
+@@ -8989,29 +8989,10 @@
+ 				if (x < 0 || x >= width || y < 0 || y >= height)
+ 					continue;
+ 
+-				if (i >= 4) { // check collision for both ways in diagonal dir
+-					if (i == 4) { // right up
+-						if ((solid[nx + (ny - 1) * width] & COLL_BIT_SOLID_AI) != 0)
+-							continue;
+-						if ((solid[nx + 1 + ny * width] & COLL_BIT_SOLID_AI) != 0)
+-							continue;
+-					} else if (i == 5) { // right down
+-						if ((solid[nx + (ny + 1) * width] & COLL_BIT_SOLID_AI) != 0)
+-							continue;
+-						if ((solid[nx + 1 + ny * width] & COLL_BIT_SOLID_AI) != 0)
+-							continue;
+-					} else if (i == 6) { // left up
+-						if ((solid[nx + (ny - 1) * width] & COLL_BIT_SOLID_AI) != 0)
+-							continue;
+-						if ((solid[nx - 1 + ny * width] & COLL_BIT_SOLID_AI) != 0)
+-							continue;
+-					} else { // left down
+-						if ((solid[nx + (ny + 1) * width] & COLL_BIT_SOLID_AI) != 0)
+-							continue;
+-						if ((solid[nx - 1 + ny * width] & COLL_BIT_SOLID_AI) != 0)
+-							continue;
+-					}
+-				}
++				// A diagonal must have both adjacent cardinal cells clear.
++				if (i >= 4 && ((solid[nx + y * width] |
++						solid[x + ny * width]) & COLL_BIT_SOLID_AI) != 0)
++					continue;
+ 
+ 				int n = x + y * width;
+ 				byte s;
