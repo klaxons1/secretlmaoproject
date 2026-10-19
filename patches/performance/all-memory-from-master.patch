@@ -1,0 +1,781 @@
+Heap plus all CPU/render/release patches including 0018/0019, NO diagnostic
+Base-master: 0716b47205e297375d7a3848d923d5ce916eba6d
+Prerequisites: Clean pinned master ONLY; +35 KiB beyond the normal heap for cached priorities
+Apply with git apply, NOT git am.
+
+diff --git a/src/Game.java b/src/Game.java
+--- a/src/Game.java
++++ b/src/Game.java
+@@ -4050,12 +4050,19 @@
+ 			int viewy = viewY - yr;
+ 			int xoff = viewx / TILE_SIZE, yoff = viewy / TILE_SIZE;
+ 
++			if (!NOKIAUI_SHADOWS) {
++				int cols = (viewWidth + xr + TILE_SIZE - 1) / TILE_SIZE;
++				int rows = (viewHeight + yr + TILE_SIZE - 1) / TILE_SIZE;
++				if (viewCols > cols) viewCols = cols;
++				if (viewRows > rows) viewRows = rows;
++			}
++
+ 			Image tilesImg = tilesTexture;
+ 
+ 			// background
+ 			if (layer == LAYER_GROUND || layer == LAYER_UNDERGROUND) {
+-				int y0 = viewHeight / (TILE_SIZE * 3) + 1;
+-				for (int x = viewWidth / (TILE_SIZE * 3) + 1; x >= 0; --x) {
++				int y0 = (viewHeight + yr + TILE_SIZE * 3 - 1) / (TILE_SIZE * 3) - 1;
++				for (int x = (viewWidth + xr + TILE_SIZE * 3 - 1) / (TILE_SIZE * 3) - 1; x >= 0; --x) {
+ 					for (int y = y0; y >= 0; --y) {
+ 						g.drawRegion(groundTexture, layer == LAYER_UNDERGROUND ? (TILE_SIZE * 3) : 0, 0,
+ 								TILE_SIZE * 3, TILE_SIZE * 3, 0, -xr + x * TILE_SIZE * 3, -yr + y * 48, 0);
+@@ -4093,93 +4100,101 @@
+ 				tiledLayer[layer].paint(g);
+ 			}
+ 
+-			// tiles
+-			int y = -yr;
++			// Hoist map bounds and row strides out of the per-tile path.
++			// CULL_LIMITS is replaced only in the separately tested clip variant.
++			int firstCol = xoff < 0 ? -xoff : 0;
++			int firstRow = yoff < 0 ? -yoff : 0;
++			int lastCol = viewCols;
++			int lastRow = viewRows;
++			// CULL_LIMITS
++			if (lastCol > width - xoff) lastCol = width - xoff;
++			if (lastRow > height - yoff) lastRow = height - yoff;
+ 			byte[] tiles = this.tiles[layer];
+-			for (int i = 0; i < viewRows; ++i) {
+-				int x = -xr;
+-				y: {
+-					if (i + yoff < 0 || i + yoff >= height) break y;
+-					for (int j = 0; j < viewCols; ++j) {
+-						int pos = j + xoff + (i + yoff) * width;
+-						x: {
+-							if (j + xoff < 0 || j + xoff >= width) break x;
+-
++			int rowPos = (yoff + firstRow) * width + xoff + firstCol;
++			int y = firstRow * TILE_SIZE - yr;
++			int mapY = yoff + firstRow;
++			for (int i = firstRow; i < lastRow; ++i) {
++				int x = firstCol * TILE_SIZE - xr;
++				int pos = rowPos;
++				int mapX = xoff + firstCol;
++				for (int j = firstCol; j < lastCol; ++j) {
+ //							if (layer == LAYER_VENT) {
+ //								g.drawRegion(shadowsTexture, 0, 0, TILE_SIZE, TILE_SIZE, 0, x, y, 0);
+ //							}
+ 
+-							if (!USE_TILED_LAYER) {
+-								byte tile = tiles[pos];
+-								if (tile != 0) {
+-									if (tile < 0) {
+-										g.setColor(0);
++					if (!USE_TILED_LAYER) {
++						byte tile = tiles[pos];
++						if (tile != 0) {
++							if (tile < 0) {
++								g.setColor(0);
++								g.fillRect(x, y, TILE_SIZE, TILE_SIZE);
++							} else if (tile != 100 && tile != 96 && tile != 92) {
++								--tile;
++								g.drawRegion(tilesImg, (tile & 3) * TILE_SIZE, (tile >> 2) * TILE_SIZE, TILE_SIZE, TILE_SIZE, 0, x, y, 0);
++							}
++						}
++					}
++
++					// wall shadows
++					if (drawShadows && mapY > 1 && mapX > 1) {
++						byte s = solid[pos];
++						if (s != COLL_SOLID && s != COLL_SOLID_TRANSPARENT) {
++							byte t = solid[pos - width];
++							byte l = solid[pos - 1];
++							byte tl = solid[pos - width - 1];
++							if (NOKIAUI_SHADOWS) {
++								if ((t & COLL_BIT_CAST_SHADOW) != 0) {
++									if ((tl & COLL_BIT_CAST_SHADOW) == 0) {
++										g.fillTriangle(x, y, x + TILE_SIZE, y, x + TILE_SIZE, y + TILE_SIZE);
++									} else {
+ 										g.fillRect(x, y, TILE_SIZE, TILE_SIZE);
+-									} else if (tile != 100 && tile != 96 && tile != 92) {
+-										--tile;
+-										g.drawRegion(tilesImg, (tile % 4) * TILE_SIZE, (tile / 4) * TILE_SIZE, TILE_SIZE, TILE_SIZE, 0, x, y, 0);
+ 									}
++								} else if ((l & COLL_BIT_CAST_SHADOW) != 0) {
++									if ((tl & COLL_BIT_CAST_SHADOW) == 0) {
++										g.fillTriangle(x, y, x, y + TILE_SIZE, x + TILE_SIZE, y + TILE_SIZE);
++									} else {
++										g.fillRect(x, y, TILE_SIZE, TILE_SIZE);
++									}
++								} else if ((tl & COLL_BIT_CAST_SHADOW) != 0) {
++									g.fillRect(x, y, TILE_SIZE, TILE_SIZE);
++								}
++							} else {
++								if ((t & COLL_BIT_CAST_SHADOW) != 0) {
++									if ((tl & COLL_BIT_CAST_SHADOW) == 0) {
++										g.drawRegion(shadowImg, TILE_SIZE * 2, 0, TILE_SIZE, TILE_SIZE, 0, x, y, 0);
++									} else {
++										g.drawRegion(shadowImg, 0, 0, TILE_SIZE, TILE_SIZE, 0, x, y, 0);
++									}
++								} else if ((l & COLL_BIT_CAST_SHADOW) != 0) {
++									if ((tl & COLL_BIT_CAST_SHADOW) == 0) {
++										g.drawRegion(shadowImg, TILE_SIZE, 0, TILE_SIZE, TILE_SIZE, 0, x, y, 0);
++									} else {
++										g.drawRegion(shadowImg, 0, 0, TILE_SIZE, TILE_SIZE, 0, x, y, 0);
++									}
++								} else if ((tl & COLL_BIT_CAST_SHADOW) != 0) {
++									g.drawRegion(shadowImg, 0, 0, TILE_SIZE, TILE_SIZE, 0, x, y, 0);
+ 								}
+ 							}
+-
+-							// wall shadows
+-							if (drawShadows && i + yoff > 1 && j + xoff > 1) {
+-								byte s = solid[pos];
+-								if (s != COLL_SOLID && s != COLL_SOLID_TRANSPARENT) {
+-									byte t = solid[j + xoff + (i + yoff - 1) * width];
+-									byte l = solid[j + xoff - 1 + (i + yoff) * width];
+-									byte tl = solid[j + xoff - 1 + (i + yoff - 1) * width];
+-									if (NOKIAUI_SHADOWS) {
+-										if ((t & COLL_BIT_CAST_SHADOW) != 0) {
+-											if ((tl & COLL_BIT_CAST_SHADOW) == 0) {
+-												g.fillTriangle(x, y, x + TILE_SIZE, y, x + TILE_SIZE, y + TILE_SIZE);
+-											} else {
+-												g.fillRect(x, y, TILE_SIZE, TILE_SIZE);
+-											}
+-										} else if ((l & COLL_BIT_CAST_SHADOW) != 0) {
+-											if ((tl & COLL_BIT_CAST_SHADOW) == 0) {
+-												g.fillTriangle(x, y, x, y + TILE_SIZE, x + TILE_SIZE, y + TILE_SIZE);
+-											} else {
+-												g.fillRect(x, y, TILE_SIZE, TILE_SIZE);
+-											}
+-										} else if ((tl & COLL_BIT_CAST_SHADOW) != 0) {
+-											g.fillRect(x, y, TILE_SIZE, TILE_SIZE);
+-										}
+-									} else {
+-										if ((t & COLL_BIT_CAST_SHADOW) != 0) {
+-											if ((tl & COLL_BIT_CAST_SHADOW) == 0) {
+-												g.drawRegion(shadowImg, TILE_SIZE * 2, 0, TILE_SIZE, TILE_SIZE, 0, x, y, 0);
+-											} else {
+-												g.drawRegion(shadowImg, 0, 0, TILE_SIZE, TILE_SIZE, 0, x, y, 0);
+-											}
+-										} else if ((l & COLL_BIT_CAST_SHADOW) != 0) {
+-											if ((tl & COLL_BIT_CAST_SHADOW) == 0) {
+-												g.drawRegion(shadowImg, TILE_SIZE, 0, TILE_SIZE, TILE_SIZE, 0, x, y, 0);
+-											} else {
+-												g.drawRegion(shadowImg, 0, 0, TILE_SIZE, TILE_SIZE, 0, x, y, 0);
+-											}
+-										} else if ((tl & COLL_BIT_CAST_SHADOW) != 0) {
+-											g.drawRegion(shadowImg, 0, 0, TILE_SIZE, TILE_SIZE, 0, x, y, 0);
+-										}
+-									}
+-								}
+-							}
+-
+-							// collision debug
++						}
++					}
++
++					// collision debug
+ //							if (solid[pos] != 0) {
+ //								g.setColor(0x00FF00);
+ //								g.drawRect(x, y, TILE_SIZE - 1, TILE_SIZE - 1);
+ //							}
+-							// tiles id debug
++					// tiles id debug
+ //							if (layer == 0) {
+ //								g.setColor(0xFFFFFF);
+ //								g.drawString(Integer.toString(tiles[pos]), x, y, 0);
+ //							}
+-						}
+-
+-						x += TILE_SIZE;
+-					}
+-				}
++
++					++pos;
++					++mapX;
++					x += TILE_SIZE;
++				}
++				rowPos += width;
++				++mapY;
+ 				y += TILE_SIZE;
+ 			}
+ 		}
+@@ -5317,8 +5332,40 @@
+ 	// region Map zones
+ 
+ 	int[] zones; // int[5] {count, [x,y,x1,x2,type], ...}
++	private int[] indexedZones;
++	private short[] firstZoneByType, nextZoneOfType;
++
++
++	// Zone data is immutable after load; a new map replaces the zones array.
++	private void ensureZoneIndex() {
++		if (indexedZones == zones) return;
++		short[] first = new short[ZONE_SAFE + 1];
++		short[] next = new short[zones[0]];
++		for (int i = 0; i < first.length; ++i) first[i] = -1;
++		for (int i = next.length - 1; i >= 0; --i) {
++			int type = zones[i * 5 + 5];
++			next[i] = -1;
++			if (type >= 0 && type < first.length) {
++				next[i] = first[type];
++				first[type] = (short) i;
++			}
++		}
++		firstZoneByType = first;
++		nextZoneOfType = next;
++		indexedZones = zones;
++	}
+ 
+ 	boolean isInZone(int x, int y, int zone) {
++		if (zone >= 0 && zone <= ZONE_SAFE) {
++			ensureZoneIndex();
++			int[] zones = this.zones;
++			for (int i = firstZoneByType[zone]; i != -1; i = nextZoneOfType[i]) {
++				int idx = i * 5 + 1;
++				if (x >= zones[idx] && x <= zones[idx + 2] &&
++						y >= zones[idx + 1] && y <= zones[idx + 3]) return true;
++			}
++			return false;
++		}
+ 		int[] zones = this.zones;
+ 		int n = zones[0];
+ 		for (int i = 0; i < n; ++i) {
+@@ -5333,6 +5380,11 @@
+ 	}
+ 
+ 	int findZone(int zone) {
++		if (zone >= 0 && zone <= ZONE_SAFE) {
++			ensureZoneIndex();
++			int i = firstZoneByType[zone];
++			return i == -1 ? -1 : i * 5 + 1;
++		}
+ 		int[] zones = this.zones;
+ 		int n = zones[0];
+ 		for (int i = 0; i < n; ++i) {
+@@ -5448,13 +5500,13 @@
+ 			int n = objects[0] << 2;
+ 			for (int idx = 0; idx < n; idx += 4) {
+ 				int ox = objects[idx + 3], oy = objects[idx + 4];
++				// Reject outside the anchor's left/bottom half-planes before decoding.
++				if (x < ox || y > oy) continue;
++				// Anchor hits must work even for zero-sized/disabled sprites.
++				if (x == ox && y == oy) return idx;
+ 				short sprite = objects[idx + 2];
+ 				int w = (sprite & (3 << 8)) >> 8, h = (sprite & (3 << 10)) >> 10;
+-				if ((x == ox && y == oy)
+-						// check dimensions of non-single tile objects
+-						|| (x >= ox && x < ox + w && y > oy - h && y <= oy)) {
+-					return idx;
+-				}
++				if (x < ox + w && y > oy - h) return idx;
+ 			}
+ 		}
+ 		return -1;
+@@ -5475,10 +5527,12 @@
+ 
+ 	int getSeatIndex(short[] positions, int x, int y) {
+ 		int n = positions[0];
++		if (((x | y) & ~0xFF) != 0) return -1;
++		int packed = x | (y << 8);
+ 		for (int i = 0; i < n; ++i) {
+ 			int idx = (i << 1) + 1;
+ 			int pos = positions[idx];
+-			if ((pos & 0xFF) == x && (pos >> 8 & 0xFF) == y) {
++			if ((pos & 0xFFFF) == packed) {
+ 				return idx;
+ 			}
+ 		}
+@@ -8902,12 +8956,33 @@
+ 			-1, 1 // left-down
+ 	};
+ 
++	// 8 directions plus an 'other' facing, preserving arbitrary startDir values.
++	private static final byte[] PATH_MOVE_COSTS = createPathMoveCosts();
++
++	private static byte[] createPathMoveCosts() {
++		byte[] costs = new byte[9 * 9 * 8];
++		for (int start = 0; start < 9; ++start) {
++			for (int facing = 0; facing < 9; ++facing) {
++				for (int move = 0; move < 8; ++move) {
++					costs[(start * 9 + facing) * 8 + move] = (byte)
++							(10 + (move >= 4 ? 4 : 0) + (move != facing ? 4 : 0)
++							+ (move != start ? 2 : 0));
++				}
++			}
++		}
++		return costs;
++	}
++
+ 	short[] nodeParent;
+ 	short[] nodeG, nodeH;
+-
+-	// linked list of open nodes
+-	short[] openNodePrev;
+-	short[] openNodeNext;
++	private int[] openHeapPriority;
++
++	// Stable binary min-heap. Extra storage versus the two list arrays: one
++	// int per map cell for FIFO tie-breaking. No search-time allocations.
++	short[] openHeap;
++	short[] openHeapPosition;
++	int[] openHeapOrder;
++	int openHeapSize, openHeapSerial;
+ 	int sortedNode;
+ 
+ 	short[] visitedNodes;
+@@ -8919,9 +8994,12 @@
+ 		nodeParent = new short[size];
+ 		nodeG = new short[size];
+ 		nodeH = new short[size];
+-
+-		openNodePrev = new short[size];
+-		openNodeNext = new short[size];
++		openHeapPriority = new int[size];
++
++		openHeap = new short[size];
++		openHeapPosition = new short[size];
++		openHeapOrder = new int[size];
++		openHeapSize = openHeapSerial = 0;
+ 
+ 		// TODO make old method accessible with preprocessor constant
+ 		visitedNodes = new short[size];
+@@ -8931,8 +9009,7 @@
+ 
+ 		for (int i = 0; i < size; ++i) {
+ 			nodeParent[i] = -1;
+-			openNodePrev[i] = -1;
+-			openNodeNext[i] = -1;
++			openHeapPosition[i] = -1;
+ 		}
+ 	}
+ 
+@@ -8943,8 +9020,7 @@
+ 		short[] nodeParent = this.nodeParent;
+ 		short[] nodeG = this.nodeG;
+ 		short[] nodeH = this.nodeH;
+-		short[] openNodePrev = this.openNodePrev;
+-		short[] openNodeNext = this.openNodeNext;
++		short[] openHeapPosition = this.openHeapPosition;
+ 		byte[] solid = this.solid[LAYER_GROUND]; // npc can only move on ground layer
+ 
+ 		short[] visitedNodes = this.visitedNodes;
+@@ -8953,6 +9029,7 @@
+ 		byte[] nodeY = this.nodeY;
+ 
+ 		int visited = 0;
++		openHeapSize = openHeapSerial = 0;
+ 		sortedNode = -1;
+ 
+ 		int cur = startX + startY * width;
+@@ -8962,6 +9039,8 @@
+ 		int nx = cur - ny * width;
+ 		int g, h, dx, dy;
+ 		int dir = startDir;
++		byte[] moveCosts = PATH_MOVE_COSTS;
++		int startCost = (startDir >= 0 && startDir < 8 ? startDir : 8) * 72;
+ 
+ 		while (cur != -1) {
+ 			openRemove(cur);
+@@ -8976,6 +9055,7 @@
+ 			if (nx == targetX && ny == targetY)
+ 				break;
+ 
++			int costOffset = startCost + ((dir >= 0 && dir < 8 ? dir : 8) << 3);
+ 			for (int i = 0; i < 8; ++i) { // for each direction
+ 				// new position
+ 				int x = nx + PATH_DIR_POSITIONS[i << 1];
+@@ -8985,29 +9065,10 @@
+ 				if (x < 0 || x >= width || y < 0 || y >= height)
+ 					continue;
+ 
+-				if (i >= 4) { // check collision for both ways in diagonal dir
+-					if (i == 4) { // right up
+-						if ((solid[nx + (ny - 1) * width] & COLL_BIT_SOLID_AI) != 0)
+-							continue;
+-						if ((solid[nx + 1 + ny * width] & COLL_BIT_SOLID_AI) != 0)
+-							continue;
+-					} else if (i == 5) { // right down
+-						if ((solid[nx + (ny + 1) * width] & COLL_BIT_SOLID_AI) != 0)
+-							continue;
+-						if ((solid[nx + 1 + ny * width] & COLL_BIT_SOLID_AI) != 0)
+-							continue;
+-					} else if (i == 6) { // left up
+-						if ((solid[nx + (ny - 1) * width] & COLL_BIT_SOLID_AI) != 0)
+-							continue;
+-						if ((solid[nx - 1 + ny * width] & COLL_BIT_SOLID_AI) != 0)
+-							continue;
+-					} else { // left down
+-						if ((solid[nx + (ny + 1) * width] & COLL_BIT_SOLID_AI) != 0)
+-							continue;
+-						if ((solid[nx - 1 + ny * width] & COLL_BIT_SOLID_AI) != 0)
+-							continue;
+-					}
+-				}
++				// A diagonal must have both adjacent cardinal cells clear.
++				if (i >= 4 && ((solid[nx + y * width] |
++						solid[x + ny * width]) & COLL_BIT_SOLID_AI) != 0)
++					continue;
+ 
+ 				int n = x + y * width;
+ 				byte s;
+@@ -9018,26 +9079,20 @@
+ 				if (noStaffDoors && s == COLL_DOOR_STAFF)
+ 					continue;
+ 
+-				// add g cost
+-				g = gPrev + 10;
+-				// try to avoid objects
++				g = gPrev + moveCosts[costOffset + i];
+ 				if ((s & COLL_BIT_AVOID_AI) != 0) g += 15;
+-				// avoid diagonal move when unnecessary
+-				if (i >= 4) g += 4;
+-				// prefer keeping current facing
+-				if (i != dir) g += 4;
+-				if (i != startDir) g += 2;
+-
+-				// h cost is octile distance
+-				dx = (x - targetX);
+-				if (dx < 0) dx = -dx;
+-				dy = (y - targetY);
+-				if (dy < 0) dy = -dy;
+-				h = dx > dy ? (dx * 10 + dy * 5) : (dy * 10 + dx * 5);
+-//				h = dx*dx + dy*dy;
+ 
+ 				// check if node is not already open
+-				if (openNodePrev[n] == -1 && openNodeNext[n] == -1 && sortedNode != n) {
++				if (openHeapPosition[n] == -1) {
++
++					// h cost is octile distance
++					dx = (x - targetX);
++					if (dx < 0) dx = -dx;
++					dy = (y - targetY);
++					if (dy < 0) dy = -dy;
++					h = dx > dy ? (dx * 10 + dy * 5) : (dy * 10 + dx * 5);
++	//				h = dx*dx + dy*dy;
++
+ 					nodeParent[n] = (short) cur;
+ 					nodeG[n] = (short) g;
+ 					nodeH[n] = (short) h;
+@@ -9052,8 +9107,7 @@
+ 					nodeG[n] = (short) g;
+ 
+ 					// re-sort
+-					openRemove(n);
+-					openAdd(n);
++					openImprove(n);
+ 				}
+ 			}
+ 
+@@ -9103,58 +9157,115 @@
+ 			nodeG[n] = 0;
+ 			nodeH[n] = 0;
+ 
+-			openNodePrev[n] = -1;
+-			openNodeNext[n] = -1;
+-		}
+-
++			openHeapPosition[n] = -1;
++		}
++
++		openHeapSize = openHeapSerial = 0;
+ 		return ret;
+ 	}
+ 
+-	// sorted linked list functions
++	// stable binary heap operations
+ 
+ 	void openAdd(int n) {
+-		int i = sortedNode;
+-		if (i == -1) {
+-			// first node
+-			sortedNode = n;
+-			return;
+-		}
+-
+-		short[] nodeG = this.nodeG;
+-		short[] nodeH = this.nodeH;
+-		short[] openNodePrev = this.openNodePrev;
+-		short[] openNodeNext = this.openNodeNext;
+-
+-		int f = nodeG[n] + nodeH[n];
+-		int p = -1;
+-		while (i != -1 && f >= nodeG[i] + nodeH[i]) {
+-			p = i;
+-			i = openNodeNext[i];
+-		}
+-
+-		if (p == -1) {
+-			sortedNode = n;
+-		} else {
+-			openNodeNext[p] = (short) n;
+-		}
+-		openNodePrev[n] = (short) p;
+-		openNodeNext[n] = (short) i;
+-		if (i != -1) openNodePrev[i] = (short) n;
++		int[] priority = openHeapPriority;
++		short[] heap = openHeap;
++		short[] position = openHeapPosition;
++		int[] order = openHeapOrder;
++		if (openHeapSize == 0) openHeapSerial = 0;
++		int serial = openHeapSerial++;
++		order[n] = serial;
++		int f = priority[n] = nodeG[n] + nodeH[n];
++		int i = openHeapSize++;
++		while (i > 0) {
++			int parent = (i - 1) >>> 1;
++			int other = heap[parent] & 0xFFFF;
++			int otherF = priority[other];
++			if (f > otherF || (f == otherF && serial >= order[other])) break;
++			heap[i] = (short) other;
++			position[other] = (short) i;
++			i = parent;
++		}
++		heap[i] = (short) n;
++		position[n] = (short) i;
++		sortedNode = heap[0] & 0xFFFF;
+ 	}
+ 
+ 	void openRemove(int n) {
+-		if (openNodeNext[n] != -1) {
+-			openNodePrev[openNodeNext[n]] = openNodePrev[n];
+-		}
+-
+-		if (sortedNode == n) {
+-			sortedNode = openNodeNext[n];
+-		} else if (openNodePrev[n] != -1) {
+-			openNodeNext[openNodePrev[n]] = openNodeNext[n];
+-		}
+-
+-		openNodePrev[n] = -1;
+-		openNodeNext[n] = -1;
++		int[] priority = openHeapPriority;
++		short[] heap = openHeap;
++		short[] position = openHeapPosition;
++		int i = position[n];
++		// The initial start node is expanded without first being enqueued.
++		if (i == -1) return;
++		position[n] = -1;
++		int size = --openHeapSize;
++		if (i < size) {
++			int moved = heap[size] & 0xFFFF;
++			int[] order = openHeapOrder;
++				int f = priority[moved];
++			int serial = order[moved];
++			int hole = i;
++			// Removing an arbitrary item can require either sift direction.
++			// This also handles decrease-key: pathfind updates nodeG[n]
++			// BEFORE removing n, then reinserts it with a fresh FIFO serial.
++			while (i > 0) {
++				int parent = (i - 1) >>> 1;
++				int other = heap[parent] & 0xFFFF;
++				int otherF = priority[other];
++				if (f > otherF || (f == otherF && serial >= order[other])) break;
++				heap[i] = (short) other;
++				position[other] = (short) i;
++				i = parent;
++			}
++			if (i == hole) {
++				int child = (i << 1) + 1;
++				while (child < size) {
++					int other = heap[child] & 0xFFFF;
++					int otherF = priority[other];
++					if (child + 1 < size) {
++						int right = heap[child + 1] & 0xFFFF;
++						int rightF = priority[right];
++						if (rightF < otherF || (rightF == otherF && order[right] < order[other])) {
++							++child;
++							other = right;
++							otherF = rightF;
++						}
++					}
++					if (f < otherF || (f == otherF && serial <= order[other])) break;
++					heap[i] = (short) other;
++					position[other] = (short) i;
++					i = child;
++					child = (i << 1) + 1;
++				}
++			}
++			heap[i] = (short) moved;
++			position[moved] = (short) i;
++		}
++		sortedNode = size == 0 ? -1 : heap[0] & 0xFFFF;
++	}
++
++	// Only for a strictly decreased G cost. Give reinsertions a fresh FIFO ticket.
++	void openImprove(int n) {
++		int[] priority = openHeapPriority;
++		short[] heap = openHeap;
++		short[] position = openHeapPosition;
++		int[] order = openHeapOrder;
++		int serial = openHeapSerial++;
++		order[n] = serial;
++		int f = priority[n] = nodeG[n] + nodeH[n];
++		int i = position[n];
++		while (i > 0) {
++			int parent = (i - 1) >>> 1;
++			int other = heap[parent] & 0xFFFF;
++			int otherF = priority[other];
++			if (f > otherF || (f == otherF && serial >= order[other])) break;
++			heap[i] = (short) other;
++			position[other] = (short) i;
++			i = parent;
++		}
++		heap[i] = (short) n;
++		position[n] = (short) i;
++		sortedNode = heap[0] & 0xFFFF;
+ 	}
+ 
+ 	// endregion Pathfinding
+diff --git a/src/NPC.java b/src/NPC.java
+--- a/src/NPC.java
++++ b/src/NPC.java
+@@ -292,8 +292,25 @@
+ 		}
+ 	}
+ 	
++	// Membership bits belong to one exact position and one immutable zone array.
++	private int zoneCacheX, zoneCacheY, zoneCacheChecked, zoneCacheFound;
++	private int[] zoneCacheData;
++
+ 	boolean isInZone(int zone) {
+-		return map.isInZone((int) x + 7, (int) y + 7, zone);
++		int px = x + 7, py = y + 7;
++		if (zone < 0 || zone > ZONE_SAFE) return map.isInZone(px, py, zone);
++		if (zoneCacheData != map.zones || zoneCacheX != px || zoneCacheY != py) {
++			zoneCacheData = map.zones;
++			zoneCacheX = px;
++			zoneCacheY = py;
++			zoneCacheChecked = zoneCacheFound = 0;
++		}
++		int bit = 1 << zone;
++		if ((zoneCacheChecked & bit) == 0) {
++			if (map.isInZone(px, py, zone)) zoneCacheFound |= bit;
++			zoneCacheChecked |= bit;
++		}
++		return (zoneCacheFound & bit) != 0;
+ 	}
+ 
+ 	void tick() {
+@@ -1045,31 +1062,35 @@
+ 			}
+ 
+ 			boolean found = false;
+-			for (int i = 1; i < n; ++i) {
+-				NPC other = chars[i];
+-				if (other == null || other == this || other.guard || other.health <= 0 || !canSee(other)) {
+-					continue;
+-				}
+-
+-				if (guard) {
+-					// attack if inmate is fighting
+-					if (other.fighting != 0) {
+-						aiState = AI_ATTACK;
+-						chaseTarget = other;
+-						aiWaitTimer = 0;
+-						StringBuffer sb = Game.stringBuffer;
+-						sb.setLength(0);
+-						heat(sb.append("Oi! ").append(other.name).toString(), 0);
+-						break;
+-					}
+-				} else if (inmate && other.inmate) {
+-					// attack someone in random interval if not busy
+-					found = true;
+-					if (attack && rng.nextInt(30) == 0) {
+-						animation = ANIM_REGULAR;
+-						aiState = AI_RESET;
+-						chaseTarget = other;
+-						break;
++			// Passive inmates neither use 'found' nor have canSee side effects.
++			// Guards must still scan: they can discover digged walls.
++			if (guard || attack) {
++				for (int i = 1; i < n; ++i) {
++					NPC other = chars[i];
++					if (other == null || other == this || other.guard || other.health <= 0 || !canSee(other)) {
++						continue;
++					}
++
++					if (guard) {
++						// attack if inmate is fighting
++						if (other.fighting != 0) {
++							aiState = AI_ATTACK;
++							chaseTarget = other;
++							aiWaitTimer = 0;
++							StringBuffer sb = Game.stringBuffer;
++							sb.setLength(0);
++							heat(sb.append("Oi! ").append(other.name).toString(), 0);
++							break;
++						}
++					} else if (inmate && other.inmate) {
++						// attack someone in random interval if not busy
++						found = true;
++						if (attack && rng.nextInt(30) == 0) {
++							animation = ANIM_REGULAR;
++							aiState = AI_RESET;
++							chaseTarget = other;
++							break;
++						}
+ 					}
+ 				}
+ 			}
+@@ -1115,7 +1136,7 @@
+ 					nextRoamPos = false;
+ 					if (map.pathfind(x / TILE_SIZE, (y + 5) / TILE_SIZE, direction, pathX, pathY, inmate, path)
+ 							// fallback
+-							|| map.pathfind(x / TILE_SIZE, (y + 5) / TILE_SIZE, direction, pathX, pathY, false, path)) {
++							|| (inmate && map.pathfind(x / TILE_SIZE, (y + 5) / TILE_SIZE, direction, pathX, pathY, false, path))) {
+ 						correctPath = true;
+ 						pathStep = 0;
+ 					} else {
+@@ -1392,7 +1413,7 @@
+ 						nextRoamPos = false;
+ 						if (map.pathfind(x / TILE_SIZE, (y + 5) / TILE_SIZE, direction, pathX, pathY, inmate, path)
+ 								// fallback
+-								|| map.pathfind(x / TILE_SIZE, (y + 5) / TILE_SIZE, direction, pathX, pathY, false, path)) {
++								|| (inmate && map.pathfind(x / TILE_SIZE, (y + 5) / TILE_SIZE, direction, pathX, pathY, false, path))) {
+ 							correctPath = true;
+ 							pathStep = 0;
+ 						} else {
+@@ -1728,14 +1749,22 @@
+ 
+ 		float dx = tx - xFloat;
+ 		float dy = ty - yFloat;
+-		float distance = (float) Math.sqrt(dx * dx + dy * dy);
+-
+-		if (distance <= speed) {
+-			xFloat = tx;
+-			yFloat = ty;
++		float distanceSquared = dx * dx + dy * dy;
++		if (speed == 0f && distanceSquared > 0f
++				&& distanceSquared < Float.POSITIVE_INFINITY) {
++			// Turning only: the normalized vector times zero is signed zero.
++			xFloat += dx < 0f ? -speed : speed;
++			yFloat += dy < 0f ? -speed : speed;
+ 		} else {
+-			xFloat += (dx / distance) * speed;
+-			yFloat += (dy / distance) * speed;
++			float distance = (float) Math.sqrt(distanceSquared);
++
++			if (distance <= speed) {
++				xFloat = tx;
++				yFloat = ty;
++			} else {
++				xFloat += (dx / distance) * speed;
++				yFloat += (dy / distance) * speed;
++			}
+ 		}
+ 
+ 		this.x = (int) xFloat;
+diff --git a/common/src/Constants.java b/common/src/Constants.java
+--- a/common/src/Constants.java
++++ b/common/src/Constants.java
+@@ -49,7 +49,8 @@
+ 	static final int CONFIG_VERSION = 1;
+ 
+ 	static final boolean PROFILER = false;
+-	static final boolean LOGGING = true;
++	// Release-only: re-enable for diagnostics; avoids console I/O and debug strings.
++	static final boolean LOGGING = false;
+ 	static final boolean SERIAL_LOGS = false;
+ 	static final boolean SCREEN_LOGS = false;
+ 	

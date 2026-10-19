@@ -1,0 +1,17 @@
+desktop Java
+CHECKS,arbitrary-rekey-states,30000+drain
+CHECKS,decrease-key-queue-states,55380
+CHECKS,five-way-exact-paths,1232
+CHECKS,lookup-cases,258864
+CHECKS,bit-exact-movement,40000
+CHECKS,vision-state-rng-cases,5400
+CHECKS,PASS
+
+original KVM 1.1
+CHECKS,arbitrary-rekey-states,30000+drain
+CHECKS,decrease-key-queue-states,55380
+CHECKS,five-way-exact-paths,1232
+CHECKS,lookup-cases,258864
+CHECKS,bit-exact-movement,40000
+CHECKS,vision-state-rng-cases,5400
+CHECKS,PASS

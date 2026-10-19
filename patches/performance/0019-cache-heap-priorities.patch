@@ -1,0 +1,109 @@
+Cache signed-int F priorities; +4*mapCells bytes; requires decrease-key update hook
+Base-master: 0716b47205e297375d7a3848d923d5ce916eba6d
+Prerequisites: 0003 AND 0007; or core/all containing 0007. Do not use with a stale openImprove implementation
+Apply with git apply, NOT git am.
+
+diff --git a/src/Game.java b/src/Game.java
+--- a/src/Game.java
++++ b/src/Game.java
+@@ -8904,6 +8904,7 @@
+ 
+ 	short[] nodeParent;
+ 	short[] nodeG, nodeH;
++	private int[] openHeapPriority;
+ 
+ 	// Stable binary min-heap. Extra storage versus the two list arrays: one
+ 	// int per map cell for FIFO tie-breaking. No search-time allocations.
+@@ -8922,6 +8923,7 @@
+ 		nodeParent = new short[size];
+ 		nodeG = new short[size];
+ 		nodeH = new short[size];
++		openHeapPriority = new int[size];
+ 
+ 		openHeap = new short[size];
+ 		openHeapPosition = new short[size];
+@@ -9116,19 +9118,19 @@
+ 	// stable binary heap operations
+ 
+ 	void openAdd(int n) {
++		int[] priority = openHeapPriority;
+ 		short[] heap = openHeap;
+ 		short[] position = openHeapPosition;
+ 		int[] order = openHeapOrder;
+-		short[] g = nodeG, h = nodeH;
+ 		if (openHeapSize == 0) openHeapSerial = 0;
+ 		int serial = openHeapSerial++;
+ 		order[n] = serial;
+-		int f = g[n] + h[n];
++		int f = priority[n] = nodeG[n] + nodeH[n];
+ 		int i = openHeapSize++;
+ 		while (i > 0) {
+ 			int parent = (i - 1) >>> 1;
+ 			int other = heap[parent] & 0xFFFF;
+-			int otherF = g[other] + h[other];
++			int otherF = priority[other];
+ 			if (f > otherF || (f == otherF && serial >= order[other])) break;
+ 			heap[i] = (short) other;
+ 			position[other] = (short) i;
+@@ -9140,6 +9142,7 @@
+ 	}
+ 
+ 	void openRemove(int n) {
++		int[] priority = openHeapPriority;
+ 		short[] heap = openHeap;
+ 		short[] position = openHeapPosition;
+ 		int i = position[n];
+@@ -9150,8 +9153,7 @@
+ 		if (i < size) {
+ 			int moved = heap[size] & 0xFFFF;
+ 			int[] order = openHeapOrder;
+-			short[] g = nodeG, h = nodeH;
+-			int f = g[moved] + h[moved];
++				int f = priority[moved];
+ 			int serial = order[moved];
+ 			int hole = i;
+ 			// Removing an arbitrary item can require either sift direction.
+@@ -9160,7 +9162,7 @@
+ 			while (i > 0) {
+ 				int parent = (i - 1) >>> 1;
+ 				int other = heap[parent] & 0xFFFF;
+-				int otherF = g[other] + h[other];
++				int otherF = priority[other];
+ 				if (f > otherF || (f == otherF && serial >= order[other])) break;
+ 				heap[i] = (short) other;
+ 				position[other] = (short) i;
+@@ -9170,10 +9172,10 @@
+ 				int child = (i << 1) + 1;
+ 				while (child < size) {
+ 					int other = heap[child] & 0xFFFF;
+-					int otherF = g[other] + h[other];
++					int otherF = priority[other];
+ 					if (child + 1 < size) {
+ 						int right = heap[child + 1] & 0xFFFF;
+-						int rightF = g[right] + h[right];
++						int rightF = priority[right];
+ 						if (rightF < otherF || (rightF == otherF && order[right] < order[other])) {
+ 							++child;
+ 							other = right;
+@@ -9195,18 +9197,18 @@
+ 
+ 	// Only for a strictly decreased G cost. Give reinsertions a fresh FIFO ticket.
+ 	void openImprove(int n) {
++		int[] priority = openHeapPriority;
+ 		short[] heap = openHeap;
+ 		short[] position = openHeapPosition;
+ 		int[] order = openHeapOrder;
+-		short[] g = nodeG, h = nodeH;
+ 		int serial = openHeapSerial++;
+ 		order[n] = serial;
+-		int f = g[n] + h[n];
++		int f = priority[n] = nodeG[n] + nodeH[n];
+ 		int i = position[n];
+ 		while (i > 0) {
+ 			int parent = (i - 1) >>> 1;
+ 			int other = heap[parent] & 0xFFFF;
+-			int otherF = g[other] + h[other];
++			int otherF = priority[other];
+ 			if (f > otherF || (f == otherF && serial >= order[other])) break;
+ 			heap[i] = (short) other;
+ 			position[other] = (short) i;
