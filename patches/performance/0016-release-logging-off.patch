@@ -1,0 +1,18 @@
+release-logging-off
+Base-master: 0716b47205e297375d7a3848d923d5ce916eba6d
+Prerequisites: 0003 and preceding numbered performance patches
+Apply with git apply, NOT git am.
+
+diff --git a/common/src/Constants.java b/common/src/Constants.java
+--- a/common/src/Constants.java
++++ b/common/src/Constants.java
+@@ -49,7 +49,8 @@
+ 	static final int CONFIG_VERSION = 1;
+ 
+ 	static final boolean PROFILER = false;
+-	static final boolean LOGGING = true;
++	// Release-only: re-enable for diagnostics; avoids console I/O and debug strings.
++	static final boolean LOGGING = false;
+ 	static final boolean SERIAL_LOGS = false;
+ 	static final boolean SCREEN_LOGS = false;
+ 	
