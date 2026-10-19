@@ -1,0 +1,34 @@
+discovery-heuristic
+Base-master: 0716b47205e297375d7a3848d923d5ce916eba6d
+Prerequisites: 0003 and preceding numbered performance patches
+Apply with git apply, NOT git am.
+
+diff --git a/src/Game.java b/src/Game.java
+--- a/src/Game.java
++++ b/src/Game.java
+@@ -9032,16 +9032,17 @@
+ 				if (i != dir) g += 4;
+ 				if (i != startDir) g += 2;
+ 
+-				// h cost is octile distance
+-				dx = (x - targetX);
+-				if (dx < 0) dx = -dx;
+-				dy = (y - targetY);
+-				if (dy < 0) dy = -dy;
+-				h = dx > dy ? (dx * 10 + dy * 5) : (dy * 10 + dx * 5);
+-//				h = dx*dx + dy*dy;
+-
+ 				// check if node is not already open
+ 				if (openHeapPosition[n] == -1) {
++
++					// h cost is octile distance
++					dx = (x - targetX);
++					if (dx < 0) dx = -dx;
++					dy = (y - targetY);
++					if (dy < 0) dy = -dy;
++					h = dx > dy ? (dx * 10 + dy * 5) : (dy * 10 + dx * 5);
++	//				h = dx*dx + dy*dy;
++
+ 					nodeParent[n] = (short) cur;
+ 					nodeG[n] = (short) g;
+ 					nodeH[n] = (short) h;
