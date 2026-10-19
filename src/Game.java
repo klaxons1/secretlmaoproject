@@ -2498,8 +2498,8 @@ public class Game extends GameCanvas implements Runnable, Constants {
 					frames = 0;
 					ticksC = 0;
 				}
-				if (now >= lastLagCounterTime + 10000L) {
-					lastLagCounterTime += 10000L;
+				if (now >= lastLagCounterTime + 5000L) {
+					lastLagCounterTime += 5000L;
 					lag = 0;
 				}
 
@@ -3882,7 +3882,8 @@ public class Game extends GameCanvas implements Runnable, Constants {
 			chars[i].tick();
 		}
 
-		if (l > lag) lag = (int) (System.currentTimeMillis() - l);
+		l = (System.currentTimeMillis() - l);
+		if (l > lag) lag = (int) l;
 
 		// sort characters for rendering, so that southern will be rendered on top
 
