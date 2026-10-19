@@ -1,0 +1,600 @@
+{
+  "recorded_utc": "2026-10-19T20:39:04.051472+00:00",
+  "host": "Linux-6.1.158+-x86_64-with-glibc2.36",
+  "logical_cpus": 2,
+  "affinity": [
+    0,
+    1
+  ],
+  "load": [
+    1.1142578125,
+    0.806640625,
+    0.40478515625
+  ],
+  "git_head": "b3dee4bbb5834d44e46c63af16d8a9214dbb5bf4",
+  "base_master": "0716b47205e297375d7a3848d923d5ce916eba6d",
+  "kvm_sha256": "917b17f278023670b9a5472d7740d12a5c7b1c6e3718196f828d4bed5de82e66",
+  "kvm_heap_bytes": 2097152,
+  "samples": 12,
+  "target_ms": 150,
+  "dependencies": {
+    "cldc": [
+      "klaxons1/j2me_cldc-1_1-fcs-src-winunix",
+      "d924b6425fae9fb39387882ab6a86ae555cdcc90",
+      "3b6ef960509c6e18718ae7ad11fea692059a8bc5f38c9b4238baae16f912849f"
+    ],
+    "suite": [
+      "klaxons1/LLM-J2ME-SUITE",
+      "c4799767bf43c9a94d327f6394ef51445a2be807",
+      "a61bc432db22fa456638bfc72b88b2a7e81075a393f91ac733f59c0ed62fa7de"
+    ],
+    "jdk8": [
+      "klaxons1/tools_linux_jdk8",
+      "7be76e541810614e3627d42c68759fab16055b7b",
+      "e197de355b091aab8b98b2e5da44f8c5371da8791a1b72e510958758b370044c"
+    ]
+  },
+  "footprints": {
+    "master": {
+      "Game_bytes": 162948,
+      "Game_sha256": "1cc102a95bfdccdc57b2b3592fb915ff292489813c03d96e9141a4b002f94321",
+      "NPC_bytes": 65332,
+      "NPC_sha256": "5c80910f54d58101b55d5712bca4c28db5134955a3a4308d2010a0e09b4ace08",
+      "Constants_bytes": 6302,
+      "Constants_sha256": "cb57a1b22b67762c359d6acc40929b5a2f2e7f1e94eb8ad2f6a64a4e03a518ed"
+    },
+    "heap": {
+      "Game_bytes": 163754,
+      "Game_sha256": "9c247374b310c260fd9f0254973438b2cad927f058384a5d06ac441be0dd4478",
+      "NPC_bytes": 65332,
+      "NPC_sha256": "5c80910f54d58101b55d5712bca4c28db5134955a3a4308d2010a0e09b4ace08",
+      "Constants_bytes": 6302,
+      "Constants_sha256": "cb57a1b22b67762c359d6acc40929b5a2f2e7f1e94eb8ad2f6a64a4e03a518ed"
+    },
+    "heuristic": {
+      "Game_bytes": 163754,
+      "Game_sha256": "815552998774c26be6858f709bf9bc8975bce0534c722307f2b0000d90784fd2",
+      "NPC_bytes": 65332,
+      "NPC_sha256": "5c80910f54d58101b55d5712bca4c28db5134955a3a4308d2010a0e09b4ace08",
+      "Constants_bytes": 6302,
+      "Constants_sha256": "cb57a1b22b67762c359d6acc40929b5a2f2e7f1e94eb8ad2f6a64a4e03a518ed"
+    },
+    "diagonal": {
+      "Game_bytes": 163099,
+      "Game_sha256": "ab9acd75d998d21307562f6169309ae90ecbfb0a0422bd4925dec7bdcf00be1d",
+      "NPC_bytes": 65332,
+      "NPC_sha256": "5c80910f54d58101b55d5712bca4c28db5134955a3a4308d2010a0e09b4ace08",
+      "Constants_bytes": 6302,
+      "Constants_sha256": "cb57a1b22b67762c359d6acc40929b5a2f2e7f1e94eb8ad2f6a64a4e03a518ed"
+    },
+    "stepcost": {
+      "Game_bytes": 164410,
+      "Game_sha256": "b996107d4afa522fb11871f642cac5f4b8fe2b0fcdc4caacd6e4a51b6fcb4581",
+      "NPC_bytes": 65332,
+      "NPC_sha256": "5c80910f54d58101b55d5712bca4c28db5134955a3a4308d2010a0e09b4ace08",
+      "Constants_bytes": 6302,
+      "Constants_sha256": "cb57a1b22b67762c359d6acc40929b5a2f2e7f1e94eb8ad2f6a64a4e03a518ed"
+    },
+    "decrease": {
+      "Game_bytes": 164143,
+      "Game_sha256": "4a7c6adc37fd0fcf56bca01db64f5d2bda3a91f630e27dbc0599ef45947f405d",
+      "NPC_bytes": 65332,
+      "NPC_sha256": "5c80910f54d58101b55d5712bca4c28db5134955a3a4308d2010a0e09b4ace08",
+      "Constants_bytes": 6302,
+      "Constants_sha256": "cb57a1b22b67762c359d6acc40929b5a2f2e7f1e94eb8ad2f6a64a4e03a518ed"
+    },
+    "vision": {
+      "Game_bytes": 163754,
+      "Game_sha256": "9c247374b310c260fd9f0254973438b2cad927f058384a5d06ac441be0dd4478",
+      "NPC_bytes": 65365,
+      "NPC_sha256": "c101727391217b19c63e5ddfe5d6ad4b9d91c1c0ebf811bf6ee8bdfbc9838ff0",
+      "Constants_bytes": 6302,
+      "Constants_sha256": "cb57a1b22b67762c359d6acc40929b5a2f2e7f1e94eb8ad2f6a64a4e03a518ed"
+    },
+    "objects": {
+      "Game_bytes": 163765,
+      "Game_sha256": "f87f12f12ce956fed242dcd964205f41042d2f3125adba3f7c372061e9d72f7c",
+      "NPC_bytes": 65332,
+      "NPC_sha256": "5c80910f54d58101b55d5712bca4c28db5134955a3a4308d2010a0e09b4ace08",
+      "Constants_bytes": 6302,
+      "Constants_sha256": "cb57a1b22b67762c359d6acc40929b5a2f2e7f1e94eb8ad2f6a64a4e03a518ed"
+    },
+    "zones": {
+      "Game_bytes": 164458,
+      "Game_sha256": "4610ffd7e6a7e914171b5ab4796ccb40ba9e4cd92de8ff43a959e24776770509",
+      "NPC_bytes": 65332,
+      "NPC_sha256": "5c80910f54d58101b55d5712bca4c28db5134955a3a4308d2010a0e09b4ace08",
+      "Constants_bytes": 6302,
+      "Constants_sha256": "cb57a1b22b67762c359d6acc40929b5a2f2e7f1e94eb8ad2f6a64a4e03a518ed"
+    },
+    "memo": {
+      "Game_bytes": 163754,
+      "Game_sha256": "9c247374b310c260fd9f0254973438b2cad927f058384a5d06ac441be0dd4478",
+      "NPC_bytes": 65780,
+      "NPC_sha256": "a69c92c6ac35d85370772c196bf1f2f01b577fb5f273c71b285057a716a54883",
+      "Constants_bytes": 6302,
+      "Constants_sha256": "cb57a1b22b67762c359d6acc40929b5a2f2e7f1e94eb8ad2f6a64a4e03a518ed"
+    },
+    "seats": {
+      "Game_bytes": 163784,
+      "Game_sha256": "17d9fea66ff45a75eaa033049ebfbf8abc7f8ff46aa953b9dcccbe6cdea6693d",
+      "NPC_bytes": 65332,
+      "NPC_sha256": "5c80910f54d58101b55d5712bca4c28db5134955a3a4308d2010a0e09b4ace08",
+      "Constants_bytes": 6302,
+      "Constants_sha256": "cb57a1b22b67762c359d6acc40929b5a2f2e7f1e94eb8ad2f6a64a4e03a518ed"
+    },
+    "facing": {
+      "Game_bytes": 163754,
+      "Game_sha256": "9c247374b310c260fd9f0254973438b2cad927f058384a5d06ac441be0dd4478",
+      "NPC_bytes": 65530,
+      "NPC_sha256": "620623801f4ab4387b0b790d2f0a9769d9c7dd207eee0aef9497678cd4eee39c",
+      "Constants_bytes": 6302,
+      "Constants_sha256": "cb57a1b22b67762c359d6acc40929b5a2f2e7f1e94eb8ad2f6a64a4e03a518ed"
+    },
+    "tile-index": {
+      "Game_bytes": 164048,
+      "Game_sha256": "a4622a32ae8c0bbd0ffbb890ebb46653ac691d0a3e75e9494c5d08901a3c27a3",
+      "NPC_bytes": 65332,
+      "NPC_sha256": "5c80910f54d58101b55d5712bca4c28db5134955a3a4308d2010a0e09b4ace08",
+      "Constants_bytes": 6302,
+      "Constants_sha256": "cb57a1b22b67762c359d6acc40929b5a2f2e7f1e94eb8ad2f6a64a4e03a518ed"
+    },
+    "tile-cull": {
+      "Game_bytes": 163894,
+      "Game_sha256": "af8a999461c9ed2879636d5540ef0b54c062e57076bc79f9b8c54309430181e1",
+      "NPC_bytes": 65332,
+      "NPC_sha256": "5c80910f54d58101b55d5712bca4c28db5134955a3a4308d2010a0e09b4ace08",
+      "Constants_bytes": 6302,
+      "Constants_sha256": "cb57a1b22b67762c359d6acc40929b5a2f2e7f1e94eb8ad2f6a64a4e03a518ed"
+    },
+    "release": {
+      "Game_bytes": 163287,
+      "Game_sha256": "3a7cf8ab4f8a4f6936f67ef2c2b8af82cc56027c5482c2d197cffc41f2f4b90d",
+      "NPC_bytes": 63905,
+      "NPC_sha256": "4176291119a40248c09a09782c25344551ef69b0889045ea1e44342337b67476",
+      "Constants_bytes": 6302,
+      "Constants_sha256": "d2b59a24bc580f945f81ea11a830fdc1ad6dd9ffd2204a9c729ac967a96d873c"
+    },
+    "diagnostic": {
+      "Game_bytes": 164595,
+      "Game_sha256": "0e87bb1714d5e127dbb24c3ebec36c7ea2d789d82533e9c4f733fa1b7b3c1df5",
+      "NPC_bytes": 65332,
+      "NPC_sha256": "5c80910f54d58101b55d5712bca4c28db5134955a3a4308d2010a0e09b4ace08",
+      "Constants_bytes": 6302,
+      "Constants_sha256": "cb57a1b22b67762c359d6acc40929b5a2f2e7f1e94eb8ad2f6a64a4e03a518ed"
+    },
+    "core": {
+      "Game_bytes": 164854,
+      "Game_sha256": "954691aec36db14eeef515c186fda752eef8d89eaddee48a4dbb8fa18b10e637",
+      "NPC_bytes": 66011,
+      "NPC_sha256": "cb4eb0ef8e453effccfb56b8468678b8505fe7cb367fc38f57ede273f9e8b1fc",
+      "Constants_bytes": 6302,
+      "Constants_sha256": "cb57a1b22b67762c359d6acc40929b5a2f2e7f1e94eb8ad2f6a64a4e03a518ed"
+    },
+    "all": {
+      "Game_bytes": 164821,
+      "Game_sha256": "0387bb758ea6d12c01d70fd2e1e34418e2a7975f0f2ec2209c8a0019908d7253",
+      "NPC_bytes": 64584,
+      "NPC_sha256": "dcab7fdcc55ccb6813cd88009b803bca62f05b4fbd8f9d92f3551b5672443e66",
+      "Constants_bytes": 6302,
+      "Constants_sha256": "d2b59a24bc580f945f81ea11a830fdc1ad6dd9ffd2204a9c729ac967a96d873c"
+    },
+    "series-0004": {
+      "Game_bytes": 163754,
+      "Game_sha256": "815552998774c26be6858f709bf9bc8975bce0534c722307f2b0000d90784fd2",
+      "NPC_bytes": 65332,
+      "NPC_sha256": "5c80910f54d58101b55d5712bca4c28db5134955a3a4308d2010a0e09b4ace08",
+      "Constants_bytes": 6302,
+      "Constants_sha256": "cb57a1b22b67762c359d6acc40929b5a2f2e7f1e94eb8ad2f6a64a4e03a518ed"
+    },
+    "series-0005": {
+      "Game_bytes": 163099,
+      "Game_sha256": "938aa32e5200c5fb2ce957ff02129cfe93b9a885461868271e6b66b7399bc7fe",
+      "NPC_bytes": 65332,
+      "NPC_sha256": "5c80910f54d58101b55d5712bca4c28db5134955a3a4308d2010a0e09b4ace08",
+      "Constants_bytes": 6302,
+      "Constants_sha256": "cb57a1b22b67762c359d6acc40929b5a2f2e7f1e94eb8ad2f6a64a4e03a518ed"
+    },
+    "series-0006": {
+      "Game_bytes": 163720,
+      "Game_sha256": "dbdfb74854394be8f839f3064e0c1e042ec799c29e9f1cfb49790a2bed44a40d",
+      "NPC_bytes": 65332,
+      "NPC_sha256": "5c80910f54d58101b55d5712bca4c28db5134955a3a4308d2010a0e09b4ace08",
+      "Constants_bytes": 6302,
+      "Constants_sha256": "cb57a1b22b67762c359d6acc40929b5a2f2e7f1e94eb8ad2f6a64a4e03a518ed"
+    },
+    "series-0007": {
+      "Game_bytes": 164109,
+      "Game_sha256": "b2ed69d6bbc71e4043ba8049e8c7b1604b87c0a78b267732fd96bd9e5fef0810",
+      "NPC_bytes": 65332,
+      "NPC_sha256": "5c80910f54d58101b55d5712bca4c28db5134955a3a4308d2010a0e09b4ace08",
+      "Constants_bytes": 6302,
+      "Constants_sha256": "cb57a1b22b67762c359d6acc40929b5a2f2e7f1e94eb8ad2f6a64a4e03a518ed"
+    },
+    "series-0008": {
+      "Game_bytes": 164109,
+      "Game_sha256": "b2ed69d6bbc71e4043ba8049e8c7b1604b87c0a78b267732fd96bd9e5fef0810",
+      "NPC_bytes": 65365,
+      "NPC_sha256": "c101727391217b19c63e5ddfe5d6ad4b9d91c1c0ebf811bf6ee8bdfbc9838ff0",
+      "Constants_bytes": 6302,
+      "Constants_sha256": "cb57a1b22b67762c359d6acc40929b5a2f2e7f1e94eb8ad2f6a64a4e03a518ed"
+    },
+    "series-0009": {
+      "Game_bytes": 164120,
+      "Game_sha256": "80efb487c8c5abd8f3bcde2326a534a9ad90df6e31ca407c056faf1f0610d1e6",
+      "NPC_bytes": 65365,
+      "NPC_sha256": "c101727391217b19c63e5ddfe5d6ad4b9d91c1c0ebf811bf6ee8bdfbc9838ff0",
+      "Constants_bytes": 6302,
+      "Constants_sha256": "cb57a1b22b67762c359d6acc40929b5a2f2e7f1e94eb8ad2f6a64a4e03a518ed"
+    },
+    "series-0010": {
+      "Game_bytes": 164824,
+      "Game_sha256": "30e5c2929f4b2d7750e888c3b61d48996c4060c511f97b1984839befa1d59ba6",
+      "NPC_bytes": 65365,
+      "NPC_sha256": "c101727391217b19c63e5ddfe5d6ad4b9d91c1c0ebf811bf6ee8bdfbc9838ff0",
+      "Constants_bytes": 6302,
+      "Constants_sha256": "cb57a1b22b67762c359d6acc40929b5a2f2e7f1e94eb8ad2f6a64a4e03a518ed"
+    },
+    "series-0011": {
+      "Game_bytes": 164824,
+      "Game_sha256": "30e5c2929f4b2d7750e888c3b61d48996c4060c511f97b1984839befa1d59ba6",
+      "NPC_bytes": 65813,
+      "NPC_sha256": "552a2f42787b064f2652ae2ac738d98c85343aced360891b35c873d3b347fc85",
+      "Constants_bytes": 6302,
+      "Constants_sha256": "cb57a1b22b67762c359d6acc40929b5a2f2e7f1e94eb8ad2f6a64a4e03a518ed"
+    },
+    "series-0012": {
+      "Game_bytes": 164854,
+      "Game_sha256": "954691aec36db14eeef515c186fda752eef8d89eaddee48a4dbb8fa18b10e637",
+      "NPC_bytes": 65813,
+      "NPC_sha256": "552a2f42787b064f2652ae2ac738d98c85343aced360891b35c873d3b347fc85",
+      "Constants_bytes": 6302,
+      "Constants_sha256": "cb57a1b22b67762c359d6acc40929b5a2f2e7f1e94eb8ad2f6a64a4e03a518ed"
+    },
+    "series-0013": {
+      "Game_bytes": 164854,
+      "Game_sha256": "954691aec36db14eeef515c186fda752eef8d89eaddee48a4dbb8fa18b10e637",
+      "NPC_bytes": 66011,
+      "NPC_sha256": "cb4eb0ef8e453effccfb56b8468678b8505fe7cb367fc38f57ede273f9e8b1fc",
+      "Constants_bytes": 6302,
+      "Constants_sha256": "cb57a1b22b67762c359d6acc40929b5a2f2e7f1e94eb8ad2f6a64a4e03a518ed"
+    },
+    "series-0014": {
+      "Game_bytes": 165148,
+      "Game_sha256": "1eaa9107dc617eb878e89c20b499069748cca4b9c627978b7c4b7fc8516d2eda",
+      "NPC_bytes": 66011,
+      "NPC_sha256": "cb4eb0ef8e453effccfb56b8468678b8505fe7cb367fc38f57ede273f9e8b1fc",
+      "Constants_bytes": 6302,
+      "Constants_sha256": "cb57a1b22b67762c359d6acc40929b5a2f2e7f1e94eb8ad2f6a64a4e03a518ed"
+    },
+    "series-0015": {
+      "Game_bytes": 165288,
+      "Game_sha256": "d6b934dad2ab83c2c0804389be12bcc554e635cace03a53b806f6a4044a8cabe",
+      "NPC_bytes": 66011,
+      "NPC_sha256": "cb4eb0ef8e453effccfb56b8468678b8505fe7cb367fc38f57ede273f9e8b1fc",
+      "Constants_bytes": 6302,
+      "Constants_sha256": "cb57a1b22b67762c359d6acc40929b5a2f2e7f1e94eb8ad2f6a64a4e03a518ed"
+    },
+    "series-0016": {
+      "Game_bytes": 164821,
+      "Game_sha256": "0387bb758ea6d12c01d70fd2e1e34418e2a7975f0f2ec2209c8a0019908d7253",
+      "NPC_bytes": 64584,
+      "NPC_sha256": "dcab7fdcc55ccb6813cd88009b803bca62f05b4fbd8f9d92f3551b5672443e66",
+      "Constants_bytes": 6302,
+      "Constants_sha256": "d2b59a24bc580f945f81ea11a830fdc1ad6dd9ffd2204a9c729ac967a96d873c"
+    },
+    "all-diagnostic": {
+      "Game_bytes": 165658,
+      "Game_sha256": "5ac7581b3427c9c02c24da96bc42c366e22d74f6462b3dc5f9632776aa26dd03",
+      "NPC_bytes": 64584,
+      "NPC_sha256": "dcab7fdcc55ccb6813cd88009b803bca62f05b4fbd8f9d92f3551b5672443e66",
+      "Constants_bytes": 6302,
+      "Constants_sha256": "d2b59a24bc580f945f81ea11a830fdc1ad6dd9ffd2204a9c729ac967a96d873c"
+    }
+  },
+  "input_sha256": {
+    "benchmarks/kvm/bottlenecks/candidates.py": "7b7efaef1af226a8e328e6397e4eb6d0636b1322d8310ede4a873880e1a05b81",
+    "benchmarks/kvm/bottlenecks/run_bottlenecks.py": "00b443dc246735c2d4921d5a192e90e04f4c1f0d487ba80c373b939651f089a0",
+    "benchmarks/kvm/bottlenecks/test_bottlenecks.py": "d6bf1aa230ea58061ede9e961001bc6aea6167ed676d9654cb3e4b2de4020125",
+    "benchmarks/kvm/bottlenecks/src/PerfBench.java": "d9e921b227f3a05317b33dc25a284daf6792f8e9ecbf27bb93151361910cb529",
+    "benchmarks/kvm/bottlenecks/src/PerfChecks.java": "1cced4e355ab3a9c49a84638ddb8cbfad3b20be0a5ebda78fc933b9ee6eb2787",
+    "benchmarks/kvm/bottlenecks/src/PerfProfile.java": "d763fd5dcd784a6e8e0c0d00ad4f543f89fd80f71334592cc5aea90ca6e6fe9f",
+    "benchmarks/kvm/bottlenecks/src/PerfTypes.java": "5e1f61a5162ea1129d2f2a57bb469cade8b2213f2bc336b95d59edbe0f3a5196",
+    "benchmarks/kvm/bottlenecks/src/WorldData.java": "0c934b14e63de7a5642c73fc40460257be6c8507ae3d6d1bc1bb03fecf43338c",
+    "benchmarks/kvm/src/Kernel.java": "e20b5a3e996dd9943cfea5165cf7934c2ac41353e51f98a2059f0d514577f805",
+    "benchmarks/kvm/src/Fixtures.java": "96b68ec3e3b6cfb091f91c214c58f2ca34e32d00aa9137ac28a2ccec6a721452",
+    "benchmarks/kvm/run.py": "7ba899700d16253a727b4d1a14c5ce2cb72ace32d243268a7cdfe715408cd6ff",
+    "benchmarks/kvm/experiments/run_experiments.py": "649a540a6e88b5fbfaca28806884df69d326670c5cc1249b12e886737049feb6",
+    "benchmarks/kvm/experiments/TileLoop.java.inc": "d65fdfd4dfa4a6d20c4932708d74cc3945e87a04ef872895d6fea035a16dc827",
+    "benchmarks/kvm/experiments/src/MapData.java": "6f11036ae2bd80e99b8c8eb7a4231c07b3346260d63d93540f50ed6c4c6480e2",
+    "benchmarks/kvm/experiments/src/TileKernel.java": "b8969160113f5f5a1464bcacdc267d0fd18afde0e3b22217fc68b3c8efc7a35f",
+    "benchmarks/kvm/experiments/src/ExperimentChecks.java": "b51dbad1e57d5c1f71cba72f1885a0e9f76d174033e10607878fe3d23986fa08",
+    "benchmarks/kvm/experiments/desktop/RasterChecks.java": "85eda43cacb8ca6de981d2832a5d087e79e4649310b459c5d87f0329eb46bf95",
+    "benchmarks/kvm/experiments/desktop/RasterGraphics.java": "99ce46a9ae789ed7f0d61bc9f002ed8a9e7bf50114e643b9c8ab72ee6f5ba786",
+    "patches/performance/0004-discovery-heuristic.patch": "04f486c3422bb0bf6b75c160bc3d2bd430cef07167fb5cab2313bb9570d22e41",
+    "patches/performance/0005-diagonal-collision.patch": "b0f5d73a653397f445cd928c7686f1d40f3751b7e0bcb0791ba6a0fcced7cace",
+    "patches/performance/0006-movement-cost-table.patch": "9638156015272e1bcd060662e4863b25f43137b9c3d7f547441de58a2547e39b",
+    "patches/performance/0007-heap-decrease-key.patch": "edfbdcbee30d634cc769d465491a75f473e4ed64243cca0a0532adb7af8da802",
+    "patches/performance/0008-passive-inmate-vision.patch": "2f2c39feb654d6fc9f68b482380ac109397ed5f728dec807e5e5ff00800b52a6",
+    "patches/performance/0009-object-broad-phase.patch": "aadd0caecd2a0b50ead319394e17ba4d75b4a40921eaf5ba1cd1d5bcc7fed9c3",
+    "patches/performance/0010-zone-type-index.patch": "b0b6e08ddff7a25ed00b88a3daa209b2b27bc22e03636649b2462efde959a4c1",
+    "patches/performance/0011-npc-zone-memo.patch": "44fcf4d3c7a4ba4258ee255c8bee39254b9169f537ae85a1be0f898b2735e55f",
+    "patches/performance/0012-packed-seat-lookup.patch": "3407f0389a6fab95ce41fb9b874288ac94d776d7bd4d7940f16967afcc7a279f",
+    "patches/performance/0013-facing-only-movement.patch": "4b128ee2ed233558dc7ead2c846703464b11a4467e21eedb605dc405295e0c7d",
+    "patches/performance/0014-tile-row-strides.patch": "48ccdcf84c6049727b0191a99b7f80552c8c7fb7fa647ef0898fb6202e5e5718",
+    "patches/performance/0015-clip-invisible-tiles.patch": "0fea4c936e54fd6fb2b63e1cd658f02b621c971679ed788da07e3296d2d1145e",
+    "patches/performance/0016-release-logging-off.patch": "22a1faae22fae8213eed373dbdc90d1b274bd6ff130b56422be11b274f919bfc",
+    "patches/performance/0017-npc-lag-breakdown.patch": "85051a5c0b15723257755264a2286bd14caec256fe806baa0f2dc14ffedc7619",
+    "patches/performance/all-after-heap.patch": "7b92ba8ddf89803763373c984ade3cf899a3dfcc1b28376db6789facd502db2e",
+    "patches/performance/all-from-master.patch": "113f75092a4c788c0e64777a2170b1bf5497414b2b2f882759190a853fb8fb88",
+    "patches/performance/standalone/0004-discovery-heuristic.patch": "e4623d302c3675a028f9005800cb1f4c8a56e8f336c08930d8b0f0b01d95252b",
+    "patches/performance/standalone/0005-diagonal-collision.patch": "a0f6a64947ae8869fc3c941d0f9296e51f5de984fee1dfa0b74ee9b7541a7a8f",
+    "patches/performance/standalone/0006-movement-cost-table.patch": "8adc71cf2e976ad7736cb6eebf03ed295a061580af66e9c3d876c9f5fcfca120",
+    "patches/performance/standalone/0007-heap-decrease-key.patch": "9ec79bddbd4fac0d8e41a374eb3720f1b017063ca2ea3bf287cc5c3206a206b3",
+    "patches/performance/standalone/0008-passive-inmate-vision.patch": "c69782e3f9e1c648918a5db2bd276c639c932553b1cb27facffdb60152a755d1",
+    "patches/performance/standalone/0009-object-broad-phase.patch": "636738e193b489629086c9b11afc2688e9ec5572242a20132946087204de3537",
+    "patches/performance/standalone/0010-zone-type-index.patch": "24f994727169ee7b2f5a9ab8b3b72a7eb08000b4a96f1d17a301e170aa6dad32",
+    "patches/performance/standalone/0011-npc-zone-memo.patch": "79e2c710f8a76c1d19d70cb9892533176b501c073d54e6c3326dea970b6ba158",
+    "patches/performance/standalone/0012-packed-seat-lookup.patch": "11e9525e78cea56ceb531e078f70316342abfb04912c43ad9aecb154e40da659",
+    "patches/performance/standalone/0013-facing-only-movement.patch": "6ec9c4e62da50d7e8acf596ccceda59682b99641d64c47ea3f864d747a1e1a7e",
+    "patches/performance/standalone/0014-tile-row-strides.patch": "f657c8e3a40638b33c9be91e25a5ea141528444b01951a50e9bcb83203a3c3c2",
+    "patches/performance/standalone/0015-clip-invisible-tiles.patch": "5324bb1de8ce3ae3ac764953dce4633d1e40fa52c990fcb40a8ca5834fe3a1b5",
+    "patches/performance/standalone/0016-release-logging-off.patch": "4177c11d35755e107e4d948029cc081bca49db14d2d7f366ddcbc3fd4d835c06"
+  },
+  "resources_sha256": {
+    "doctor.png": "70a30595a68dc4bbe06cb34d4e4743e171c51ec5e83d85b45797009b3e5204c1",
+    "ground_irongate.png": "6918707ba42c30c74cf622fc48282052b7d7e8da6405300bcd359041ca84f5b1",
+    "ground_jungle.png": "7bb573cfbd134492b5232f22f77bda0ea45f13054d2939108e4bbdd5417c79c6",
+    "ground_perks.png": "0098af5032b9209339196b6e3418177ee101343f339bb94a00903a0d3927f815",
+    "ground_sanpancho.png": "2963d3bea8115da700dd259fe04f4140d4ee53dba0694be709c4e000a8a2d74f",
+    "ground_shanktonstatepen.png": "0098af5032b9209339196b6e3418177ee101343f339bb94a00903a0d3927f815",
+    "ground_stalagflucht.png": "333901789fe4f3eba95e686a7862b750cba944c796e4a4ace88f73871538f4b2",
+    "guard.png": "3b0670202b5b0eef86e8109727f3aae882920be8650732fcfb5309a4bc4ada34",
+    "huds.png": "a48718e721fb10c7d81292f2268ae70b620d1dfd6c05b4377b1cc8c519e1f7f7",
+    "icon.png": "72e04e7a70ab4c3af6361bce430f505ce45b3a269563237d718e5df4711d25c2",
+    "inmate.png": "15901c5910714196e0db13a7464a0e05a8a5169faa68eebed8220446ceaec361",
+    "inmate2.png": "8f1ed1238e3fb87efe89a86f42d653e69922e767704a4cf9d0119cdaf8469844",
+    "inmate3.png": "63852a0debbf3c384209350e25c753c9a894b599ebca72c696f6f20095bff8ff",
+    "inmate4.png": "dada79058743fe397fc9c9da1c51662c5177415f7dcc772c55ff8d5516b672f3",
+    "irongate": "30a4e01c519682065864ff7f2a4d691d049abc80d230f6ab5aadfe1deffaaefe",
+    "items.png": "28f105b3255a74de2093b38fe8298066504e8f58e09e7ba8b2e3eeb2e3b3fa16",
+    "jobstaff.png": "b688613dfbbd1aedfb796899ef06145e893f1152c9aa35a80b6a53a6d3802452",
+    "jungle": "5dcbe62f52fb57ff67545fd1de5ac2b0c862352590db123bf696e543bd87eac3",
+    "light.png": "a9ebc2845c8d3ac9f97a4dc273e41e759b1373833dabf4e75b8885417faac236",
+    "logo.png": "de935e69b08305cf0e056376e2ea34f32e1a7f2fcbb1dec9caf9edbf5614ae99",
+    "markers.png": "2c2f5fc57885d8edd21bdb281e51736e7b7e9c5251add09ea1e8a7d06fb0093f",
+    "objects.png": "acc2cc492bb8c9fbfaf8289306a91856e2d0170db2a97fefbdbbca6d71121654",
+    "outfit0.png": "43fbe800f730f9b7f5e0fb1adb83a0883a5ed254b8a21d8de89f957c6e018b9b",
+    "outfit1.png": "d8b656f8773851e11f75615c254d9f2a3aeb7eecd49890fbd3eced5e5bd98602",
+    "perks": "5ed187fd779ba0480803477c8766144b6a686b02c99be3318557d5b8e021913a",
+    "sanpancho": "2054c4ffc54a5d841462887004fe7d886987a74337623754ae21dbb49a49f9b3",
+    "shadow.png": "f6491c7eac997078b94202821eaf42acec09085f7fbe31018842578073a714b7",
+    "shanktonstatepen": "e2b37756764eb8210e7f93faf19389acc84a92ac6b2bc85f32c403a4ce2be9a7",
+    "sniper.png": "ef4de0f797087e4563dea7fb2966fdc7de729243361059b48ccac0e38050af0e",
+    "stalagflucht": "4358072e0274b94230184a8d2721455d894fc427268882cc49b5b64c859cf5b9",
+    "tiles_irongate.png": "20452f63f31b05f9528eb4e9e3ffd275efb45c34ca36dd6ecc74e06cdf00b024",
+    "tiles_jungle.png": "b48bfcad68a2609c23f32691d20cb872fedfe9c5df3fc2ca166102955bb392e0",
+    "tiles_perks.png": "ee46c10bead5c597eeb04555897e12da1d03864ef7f1c3dfaa25613b30f2f058",
+    "tiles_sanpancho.png": "c71a829487428177e4ff5e63ed8400d12ecec5e5022a08fe4e7fb86511fc7a57",
+    "tiles_shanktonstatepen.png": "582acbd3a77b83c0dc87713a53e5e70712533888cb6b38c3f301104fb6ed0f96",
+    "tiles_stalagflucht.png": "04d77ce8a7d91fe76f81fdee262f49a90562180fa3c50257e6e764a6066da645",
+    "title.png": "76f3a3227c7502fbcb6cc8e38d4eeda178693b8e6f3dd02ab4f083dc0be1c8b5",
+    "underground.png": "058b734f9498616cfbb2d352e277ed9a90977afb76be821e43a03bef109409da",
+    "warden.png": "7bbc8669a927c8f6ca7f99754f74e07a5e49ea6c18867a167e722e2cd20223e3"
+  },
+  "prototype_sha256": {
+    "heap": {
+      "src/Game.java": "91b50cd8aee341d6c0350653b468a0e23c06d3b697287e8dff98c67bfc4ba107",
+      "src/NPC.java": "d587c7dbe93601dfe53bfb8b8b31cffe4c03b64933a87f41c013ca6dc5f35fdf",
+      "common/src/Constants.java": "2411c906bee1163597c132f1c6c72851322a8a63973c951e72dda6cba5220296"
+    },
+    "heuristic": {
+      "src/Game.java": "f05d38e78859a37a13431923b08e48771f5e10c9f1796bf1d5d8fddf9d8fe802",
+      "src/NPC.java": "d587c7dbe93601dfe53bfb8b8b31cffe4c03b64933a87f41c013ca6dc5f35fdf",
+      "common/src/Constants.java": "2411c906bee1163597c132f1c6c72851322a8a63973c951e72dda6cba5220296"
+    },
+    "diagonal": {
+      "src/Game.java": "978692d1487f40054384e6da6cb50488eeb842422f0a708fe8a5917ad5f06dc2",
+      "src/NPC.java": "d587c7dbe93601dfe53bfb8b8b31cffe4c03b64933a87f41c013ca6dc5f35fdf",
+      "common/src/Constants.java": "2411c906bee1163597c132f1c6c72851322a8a63973c951e72dda6cba5220296"
+    },
+    "stepcost": {
+      "src/Game.java": "7722a5c989f5bbc95f2e815888b269a3acc4d7fcd9aec489dae984e9af48c5a3",
+      "src/NPC.java": "d587c7dbe93601dfe53bfb8b8b31cffe4c03b64933a87f41c013ca6dc5f35fdf",
+      "common/src/Constants.java": "2411c906bee1163597c132f1c6c72851322a8a63973c951e72dda6cba5220296"
+    },
+    "decrease": {
+      "src/Game.java": "8096bce6b168dd1b0f87e17ddb9c9427295dfd90be5188004a557af9f5537094",
+      "src/NPC.java": "d587c7dbe93601dfe53bfb8b8b31cffe4c03b64933a87f41c013ca6dc5f35fdf",
+      "common/src/Constants.java": "2411c906bee1163597c132f1c6c72851322a8a63973c951e72dda6cba5220296"
+    },
+    "vision": {
+      "src/Game.java": "91b50cd8aee341d6c0350653b468a0e23c06d3b697287e8dff98c67bfc4ba107",
+      "src/NPC.java": "62b6f384439455271579238c419aeb57c4fe08bc4a8e48ade02f55dd20b09d36",
+      "common/src/Constants.java": "2411c906bee1163597c132f1c6c72851322a8a63973c951e72dda6cba5220296"
+    },
+    "objects": {
+      "src/Game.java": "f4fbadcbdb06231cee0e269f64d1f2b07d6bf4e4c41190864e635bc938543158",
+      "src/NPC.java": "d587c7dbe93601dfe53bfb8b8b31cffe4c03b64933a87f41c013ca6dc5f35fdf",
+      "common/src/Constants.java": "2411c906bee1163597c132f1c6c72851322a8a63973c951e72dda6cba5220296"
+    },
+    "zones": {
+      "src/Game.java": "1fe54ec35488d5082b014f5f9252193742881191e1a9094f2105354bee737834",
+      "src/NPC.java": "d587c7dbe93601dfe53bfb8b8b31cffe4c03b64933a87f41c013ca6dc5f35fdf",
+      "common/src/Constants.java": "2411c906bee1163597c132f1c6c72851322a8a63973c951e72dda6cba5220296"
+    },
+    "memo": {
+      "src/Game.java": "91b50cd8aee341d6c0350653b468a0e23c06d3b697287e8dff98c67bfc4ba107",
+      "src/NPC.java": "9aacedf1f4380fbaa66c2cd07f3c0ba71e9ea4aa8352658847fb59b6f89eb448",
+      "common/src/Constants.java": "2411c906bee1163597c132f1c6c72851322a8a63973c951e72dda6cba5220296"
+    },
+    "seats": {
+      "src/Game.java": "dd759db50c3eca1417e25e8910f59c8f2d33106bc0c08acf6c3afb42bc1aafe8",
+      "src/NPC.java": "d587c7dbe93601dfe53bfb8b8b31cffe4c03b64933a87f41c013ca6dc5f35fdf",
+      "common/src/Constants.java": "2411c906bee1163597c132f1c6c72851322a8a63973c951e72dda6cba5220296"
+    },
+    "facing": {
+      "src/Game.java": "91b50cd8aee341d6c0350653b468a0e23c06d3b697287e8dff98c67bfc4ba107",
+      "src/NPC.java": "0f0b100765641378f8e22bc0d7bdb42ebe3be51188eaf713115f1d6ad939a433",
+      "common/src/Constants.java": "2411c906bee1163597c132f1c6c72851322a8a63973c951e72dda6cba5220296"
+    },
+    "tile-index": {
+      "src/Game.java": "9b2509aec99c8f6bd49393c8f0c79e2926c85c8ab667c107b3a1e91641d7bed9",
+      "src/NPC.java": "d587c7dbe93601dfe53bfb8b8b31cffe4c03b64933a87f41c013ca6dc5f35fdf",
+      "common/src/Constants.java": "2411c906bee1163597c132f1c6c72851322a8a63973c951e72dda6cba5220296"
+    },
+    "tile-cull": {
+      "src/Game.java": "611559874c9c168ecedf6d5620954e9d8cd29f9c18e722d80e09e53abd5583cc",
+      "src/NPC.java": "d587c7dbe93601dfe53bfb8b8b31cffe4c03b64933a87f41c013ca6dc5f35fdf",
+      "common/src/Constants.java": "2411c906bee1163597c132f1c6c72851322a8a63973c951e72dda6cba5220296"
+    },
+    "release": {
+      "src/Game.java": "91b50cd8aee341d6c0350653b468a0e23c06d3b697287e8dff98c67bfc4ba107",
+      "src/NPC.java": "d587c7dbe93601dfe53bfb8b8b31cffe4c03b64933a87f41c013ca6dc5f35fdf",
+      "common/src/Constants.java": "b38aab54e5823616ce3f4f29220ddb137d9adf46f88eaced0971b1d75292f1ab"
+    },
+    "diagnostic": {
+      "src/Game.java": "34b30b8f24a872728a2bf3f724020cd957948c6294cfee7ccb5598d0911c5cfa",
+      "src/NPC.java": "d587c7dbe93601dfe53bfb8b8b31cffe4c03b64933a87f41c013ca6dc5f35fdf",
+      "common/src/Constants.java": "2411c906bee1163597c132f1c6c72851322a8a63973c951e72dda6cba5220296"
+    },
+    "core": {
+      "src/Game.java": "3e054ac21893408172d3dabd5f2d98f58f486884734c44b3d7cb5841042328c3",
+      "src/NPC.java": "9b44ec31a393aa073a8cb65e380757cbb596722e3dcb79dffa980f58a018315b",
+      "common/src/Constants.java": "2411c906bee1163597c132f1c6c72851322a8a63973c951e72dda6cba5220296"
+    },
+    "all": {
+      "src/Game.java": "7fb1f6c724c1b14c0f9cb3647ba26813c37ae321b8de7a941fb3c4d30d3c7327",
+      "src/NPC.java": "9b44ec31a393aa073a8cb65e380757cbb596722e3dcb79dffa980f58a018315b",
+      "common/src/Constants.java": "b38aab54e5823616ce3f4f29220ddb137d9adf46f88eaced0971b1d75292f1ab"
+    }
+  },
+  "generated_java_sha256": {
+    "generated/A_all.java": "15f2f156862063bdc55a481ccc605b8a482351b9b5af2e7a3877233ca00db746",
+    "generated/A_core.java": "3559e566ddec8c3435a7a0046523454e1231c6cf06970b6c09105da8221ba824",
+    "generated/A_decrease.java": "7555cf90555743a7552cccd576ed14de386e8b0fd63101031322a1e73f12376b",
+    "generated/A_diagonal.java": "63cda31e171389643a5c2cfbb3a118b7115cb6f96802aab4056ff4f407737214",
+    "generated/A_facing.java": "56f8bae6cf0117a5d1e0beaf85d6f98dbebffc90b5ff6cd960850f566efb8670",
+    "generated/A_heap.java": "4cb80c5c99eb7a6704be0a9062b1415799343f84d6cd80ff6b369e33a28f7244",
+    "generated/A_heuristic.java": "d335fe995f69daedaf1cd4be430072d36c0c3c24827c238126fc04565d4d9b0b",
+    "generated/A_memo.java": "ea269c132d6351a5e14cffa96f9dc1962a351119a77d9980f2bf658ae85b58a2",
+    "generated/A_objects.java": "875a87f0a5e348e7dad63b8ec9aa0ab19c75a68e02c0757777a5fd40e3069280",
+    "generated/A_release.java": "00bc42ddf7499e11cc07969507f23df4347041a66bf757a56524dce9e6e51cde",
+    "generated/A_seats.java": "097683c2d00a25880f163dc5551decacfbc863c200444a4f97a5fa2769bb162c",
+    "generated/A_stepcost.java": "cbaa6ec64b9177d9f253a2b810bf688d235f55bdf6dae1a71b1df23f3946e8eb",
+    "generated/A_tile_cull.java": "2422255aa6a1a2a81652e505e43c31611a2887088864195960d28e85c7be94d6",
+    "generated/A_tile_index.java": "90e6e9f71bbaca6dfa3f0d94f1519bb8c6214eff171930c8a81f25592934a5c2",
+    "generated/A_vision.java": "094373507d0f9d6690640dbb877c8b4636682f09b9530aba6b09bbf93c2b872e",
+    "generated/A_zones.java": "dc141670a177a0059da31027102a3f7e50f23bc3d97507687818d0c9f69068c0",
+    "generated/Collision.java": "4dd09790553d932dbc3540fdc5e991702df206bc6e5ce7d15a626ac644c52232",
+    "generated/Counted_core.java": "cf8c6d0c3463967c912ea4c1fa0055c559648093e5ae6d329608137162fd59f0",
+    "generated/Counted_decrease.java": "2e3af00536d4292be38d44892c8de7733969c708061286691e7e4aac729a7ce9",
+    "generated/Counted_diagonal.java": "318c697a8a0500195b688b9490a400e4d86d64fa4d39ee1a80f036a3ed02db77",
+    "generated/Counted_heap.java": "4cf320cc14f6fe08c30e847104877e9a39c5e10fd8c46affcc59c29660a9178a",
+    "generated/Counted_heuristic.java": "7f88b04d603083aef21c023856a4bf259b0135b052a2b6e54b9125dd0c169cda",
+    "generated/Counted_stepcost.java": "e81b3cd16a8ea23e09ed8a27fd8724212f0c4010eb23d14b95a981b78f338563",
+    "generated/CullOnlyTiles.java": "44235923b79df076e4d96fb9741e00a0dc7643b54ebd50253996bdf34e6de2d6",
+    "generated/CulledTiles.java": "ab6a1b545b31834a3bd040df7fb1755592c9cf286be74ae6ea3e7973af5aea34",
+    "generated/ExperimentChecks.java": "24ad74232cdb1c4262f2e2c62c2f8f96fc7ae2bbc7665ee5565c1663c625e269",
+    "generated/Factories.java": "06f9b77a60d22ed2b4c81827aa1bc50394ee41320fabadd441af6540a98fb965",
+    "generated/IndexedTiles.java": "71dfbe5e116637dac8e60b5a6ded685478a61be9bcd9d5908735f09002512cde",
+    "generated/K_all.java": "908aa65c61ada0eb7751a73643aa5d811f3f0d38963f528d53e9455c0c3511dc",
+    "generated/K_core.java": "a47c33ff88ac5411b15c2a497f0dcc926fab5e4472cba8906094eabdfd1eb203",
+    "generated/K_decrease.java": "52f00ad6e29756ad50e913bf2a4a2e59e06f88e48f8a2a5b61d17e7b26002175",
+    "generated/K_diagonal.java": "0c5d53f56c79f4d01807e506f079ce6f950af865e90cf663030c616df06deed5",
+    "generated/K_facing.java": "e258c1074561036297f65891f78099c96e690d3fe52dc05d92e83c8455d4a171",
+    "generated/K_heap.java": "117efaf44c16b94d5d38418ce9bbd65456158a20f33bd3f66a18590439fa3de1",
+    "generated/K_heuristic.java": "2963a3c8f54edb0817db4141d72ce50e808705f8ca78f27b3299995880825a78",
+    "generated/K_memo.java": "4110e76fabef4524d765d5c768c761e29137714054ac0924083ef4676bcb852e",
+    "generated/K_objects.java": "2503a0ba53be1a0f00912fb18ba6e169ccdf00d5946d8f0d7343f58245cbd8aa",
+    "generated/K_release.java": "7b57ac90dbecab08abced04dcd15ab8bb1927b9a8f59bca6a00e6a7b738ff4d3",
+    "generated/K_seats.java": "4ef34df69bcc4eae0c6d260673e589796ef197d1b55189b703a14cdd044ed973",
+    "generated/K_stepcost.java": "555b8077758ebe9a659b6eb32d7f4ce2911953a14bc0fca82643d99ad722b1be",
+    "generated/K_tile_cull.java": "ccd5131387655412941af1af40f121ea5a4e2698c3ffc2813f3c18b4b5fe899b",
+    "generated/K_tile_index.java": "25e7c2bfb7489292f13e4c1a65dc4048022403a070c614a7005ab53fac0ba05d",
+    "generated/K_vision.java": "7c79673cfd84bfecb6a937fc0e0f5ba99ded5edbd5e8c26a7bb83960d80bf58b",
+    "generated/K_zones.java": "934de62ca411a31b92eff5960f47c54329c51790fe2979956d33e2d1d4648a89",
+    "generated/OriginalTiles.java": "5d7b423f23be2dddfac8840dec5049293bda2b36600cd7d35e2103015d5347e8",
+    "desktop-source/RasterChecks.java": "f41caec93002ce3b9c059ba26257608946a0a7809e170845ec16bb0741816989"
+  },
+  "headless_class_sha256": {
+    "A_all.class": "10aac553755205522a193d1124cb5adeda00c00ba88701576856faec27a77231",
+    "A_core.class": "2b2e8561e36deaf980ec6fb75e30eaa82da6675a8f88971c928e55d71307f021",
+    "A_decrease.class": "cd5c81b0b5092a1b7b23b2f6b169dfef37e0816eaa1adadba5eedf14dafd11cc",
+    "A_diagonal.class": "9ad24d19b5a31900a52a6b4dbc9991ab0290223ebb32c85fe44880aeffa6ed09",
+    "A_facing.class": "7be0faaa3b9d8372e1f59393a14a129d351b2473805da1595a1bf1f2ffd0920b",
+    "A_heap.class": "bdd5057e9ce6ac712d951611d9cd7a0351fec8c5a28db9e99870c3246bae2ba3",
+    "A_heuristic.class": "48587c2b07e689cb68a2e6833792f5b99410637d3b2b7f085fc1a572abadca17",
+    "A_memo.class": "e8568062a2193500265937adea4e5fe33d509a824d292189c68eabfed0c70061",
+    "A_objects.class": "b89aea5e86bb5c5abeb3c650f6b9ea5c61c0e3305fe8d20e2280b2bf5143b7cf",
+    "A_release.class": "a56f2736c324cd400536b5a9ad2e3b7c3632ccc8e1f61771a01e8fc5f4fd9bd9",
+    "A_seats.class": "65ddf03177496292a5a1b6488463cec589b08deae26394f0a9ebe0d856b1f200",
+    "A_stepcost.class": "f336c1857e5b44a7273d97e0228f90ae98abece39e1a46705f63327484502e3c",
+    "A_tile_cull.class": "0ceef9d2bcee1c8878db19ee8b4ec5b37e24e43101a06eead138a03482d410a1",
+    "A_tile_index.class": "6732875d9e4bb831cab15eba0d52a3597218163b727985d7eb916b47cb1bb782",
+    "A_vision.class": "72b192d91a85ce2d779a59dc78cd4464c9a2493e53d371cf4008e996912b11f8",
+    "A_zones.class": "bf7cf251a0127133a93701753cb73f2059ef2ee0720dd8dbcd365fa8145fb824",
+    "Actor.class": "ecea0e991510066c190d2cbe225291e45b9fb1c4dd9431f0b19aff4ab4c03c15",
+    "Collision.class": "ce78fc66359264ab418dcde7b655be9dbd83c9ca8d2563f851073bca4aaf3eb6",
+    "Constants.class": "cb57a1b22b67762c359d6acc40929b5a2f2e7f1e94eb8ad2f6a64a4e03a518ed",
+    "Counted_core.class": "905d1029b0f775624cf161c4b6eb4b686d102a8280a865236d7b401df4ab462f",
+    "Counted_decrease.class": "f1a07b8a15496dd914ca4dfd083a791d076b114b5d119713b3794d7783d55fbc",
+    "Counted_diagonal.class": "5978f653dff793f4da4333f36d80112dc3eb5495a2e5b59473bb59889d9499ff",
+    "Counted_heap.class": "78e1644b21999259b3cd522bbb581d5458d2354b1d6d6ef1119560fec7b2d6d3",
+    "Counted_heuristic.class": "75a5560daa6bbdc0d2d340f3915d450caee867a9711bf3dc4c6676c851209d93",
+    "Counted_stepcost.class": "37c4d280174f8e3211aa3d772a5735cb3833729a7a39eb5305f294fefc2778dc",
+    "CullOnlyTiles.class": "994dddc7ef912e3de01eebcd098d32fc98dcd1e356131e7e7f54298af1c79806",
+    "CulledTiles.class": "f9b0c5d6481ee45f08f33a8028ea0ff638c59d6fa7e25712fd5e5822eae9d56f",
+    "DirectGraphics.class": "0b867ca576b8bddc3b31c212857ac23d98018dd1449d7ab47d25a8bbe6c04623",
+    "DirectUtils.class": "1e4b9c82032977732a02fc77d71fd0b4f52f54994ea4d481489e9ffcdd08e408",
+    "ExperimentChecks.class": "0a4de96b821dda748329815aa17fa17e6b888782e70788c1bd2b8b99f1d1a788",
+    "Factories.class": "38aa7ca933e4165773b57c3f55c30ac30cf15b7d1bb88db26b94c76f6a5ce6f1",
+    "Fixtures.class": "f85131ac42c46a5b5f8f0f9ebbb0d3cad513372f1cb2b9b12825b7ee4634d82c",
+    "Graphics.class": "d426e42a0fc80227c2a861955297f9bdf574b321e8c4863d0b8637a61c00912e",
+    "Image.class": "322267ee36780984a106de4981e1960ddf29ffc41cf3569edbb483615cb94964",
+    "IndexedTiles.class": "cc1d79c1136c914a508cf8ce442326825013055ebfd11f6c274deb3d1fad8dae",
+    "K_all.class": "fbdf492312bb05639a87ea68f4c3c89135979186bb96358257eaac525c4378f7",
+    "K_core.class": "55d400f967d48ab0471c848b4def03076d82f25d132f6f8d7ea268a890360b17",
+    "K_decrease.class": "85f43954aa62bc734aa8e562638c3d0d1583d415efa276912cc11c0d5a1a50ab",
+    "K_diagonal.class": "0f3411fecc79c486373f76999d7278cb05bf0011586f11bedae45ced55e81e0c",
+    "K_facing.class": "a57fa85a9002f9e6e81622700de316e41ca741655d20d3863763483512e03d38",
+    "K_heap.class": "80cd4d1358de563e06d52d6d6b4ae363d1ab3cd2cb9e48d5a93c911a09c7e27a",
+    "K_heuristic.class": "ed396ed6350ac82407b1847a862abbbb1dac8d3f709e207cb9797fd5a4d092e1",
+    "K_memo.class": "08b7fac76c7ec72370d77cf9f71f9ca8ed4dc98a962b9e095239f4305e7ed023",
+    "K_objects.class": "2dbbad5bde2dc90323101b31418ac2fb50dfed7f37e7d1c0fa2fe0739a655056",
+    "K_release.class": "bb8665fa1f01b022e7b9374d2b3836e0b699b4aa28068f48d428fa7ec7fddbab",
+    "K_seats.class": "8045d20d6ad0fd384347ae92f36f87a841fba8c2bd306830a4db76dabf704e48",
+    "K_stepcost.class": "5f8db4b1d8f0a29359c8e5e9511a0889cce7da8f752edc8f4aa467a1de8c7783",
+    "K_tile_cull.class": "f7bc741e41b5390bdebbbe8617b58d023bb9c01abd7f7cacbce8bf0782fb99d5",
+    "K_tile_index.class": "d4385ee9ddc0f314b693b00e741b089a95b76fa7346571d5f2e4075c6c011a05",
+    "K_vision.class": "8ef7b0ffc3da569107a69bd018786a0810d883e0b87fa1f5aa67d47255381a0f",
+    "K_zones.class": "437fcc303152e227803c7be87008976268f6f72939883293ccaecda2bdd9d215",
+    "Kernel.class": "33533656a6969cb97bc5b92937a33c29a4700dc73df2e7e2f4708845b3148938",
+    "MapData.class": "7513cbdc9df0061a898d87608860aca640c40b15ef81f5db7e0084c9c5d43649",
+    "NPC.class": "779174dd08dc700cfbef1a63d1f2b8ed769e9ad5176f9206dcecc16100021642",
+    "Objects.class": "8f8c52176250d5d2d357eddaa0a58bd380d58d1181588cc7453b58404cd9ae16",
+    "OriginalTiles.class": "07f9193c6776672699ac92a24582c1e704586e8f9787f285497eb56728a667b8",
+    "PerfBench$Trial.class": "4ca5bae9c0569122694aa1f100efd38d78e60804b0f020f9fded481caba6ef5a",
+    "PerfBench.class": "a4a190c3376a6d0dfaa1315ba4965bccc63c0c244a21f1f1214b5e99946c33ad",
+    "PerfChecks.class": "0179d0b3b6140ff77d78c058553ab2ad008db403d932269664806824428e91f9",
+    "PerfGame.class": "17826e49371620f651a0c3bc6b54cc3f13af164cf69e588397cb96ddad382aa9",
+    "PerfProfile.class": "47d48ebd3b80f446c638afb0150c6ef5b194cd6c171a139745ca58ef87bdefbc",
+    "Profiler.class": "614afc7881161554c9617a396a838078ffc77803522bbc103ea1a6584c56b035",
+    "TileKernel.class": "d75396daf4adf15e0e5844566c6ac75b820398a5bbab6be8c4ec9beb17ab938c",
+    "TiledLayer.class": "9914806e32937edd68d75fd5f4a1c346eec731a0ba90588392ab71e9ede64e36",
+    "TraceGraphics.class": "3923302e92d9478259ffa4618748d1ffdda0a17683e0e50ec0f56451f8236943",
+    "WorldData.class": "e50ed14fe3c2a6204722a1b170a7a047c52403ffa1175635f8ec3871a931420d"
+  },
+  "pspkvm_tested_here": false,
+  "whole_game_profile": false,
+  "caveats": [
+    "Source-extracted methods, not a full MIDP/PSPKVM run or FPS",
+    "Path queries are synthetic spawn/waypoint or spatial fixtures on real maps",
+    "No-op logger in path kernels; logging I/O/debug string removal is not timed",
+    "Vision candidate block uses a heat-call recorder; RNG/state/call arguments and wall-detection side effects are compared",
+    "KVM tiles only count commands; AWT pixel checks are a different graphics engine",
+    "Common harness/checksum overhead is included in timed loops; allocation/setup/GC/output are excluded",
+    "All candidates preserve zone contents only under existing immutable-after-load contract; replacing the array invalidates caches",
+    "Float movement compares raw result bits including exceptional and underflow values"
+  ]
+}

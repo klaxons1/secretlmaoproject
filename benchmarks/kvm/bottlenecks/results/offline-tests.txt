@@ -1,0 +1,60 @@
+test_artifact_publication_commits_do_not_break_base_guard (test_heap_patch.HeapPatchTests.test_artifact_publication_commits_do_not_break_base_guard) ... ok
+test_blob_hash_matches_git (test_heap_patch.HeapPatchTests.test_blob_hash_matches_git) ... ok
+test_everything_outside_pathfinding_is_byte_identical (test_heap_patch.HeapPatchTests.test_everything_outside_pathfinding_is_byte_identical) ... ok
+test_export_is_reproducible_and_applies_reversibly (test_heap_patch.HeapPatchTests.test_export_is_reproducible_and_applies_reversibly) ... ok
+test_heap_operations_match_previously_tested_prototype (test_heap_patch.HeapPatchTests.test_heap_operations_match_previously_tested_prototype) ... ok
+test_master_duplicate_aliases_are_not_ambiguous (test_heap_patch.HeapPatchTests.test_master_duplicate_aliases_are_not_ambiguous) ... ok
+test_shape_guard_rejects_missing_or_duplicate_matches (test_heap_patch.HeapPatchTests.test_shape_guard_rejects_missing_or_duplicate_matches) ... ok
+test_paired_ratios_not_ratio_of_medians (test_run.CalculationTests.test_paired_ratios_not_ratio_of_medians) ... ok
+test_path_batch_normalization (test_run.CalculationTests.test_path_batch_normalization) ... ok
+test_reject_checksum_mismatch (test_run.CalculationTests.test_reject_checksum_mismatch) ... ok
+test_reject_empty_incomplete_and_duplicate (test_run.CalculationTests.test_reject_empty_incomplete_and_duplicate) ... ok
+test_reject_invalid_normalization_and_order (test_run.CalculationTests.test_reject_invalid_normalization_and_order) ... ok
+test_heap_patch_applies_only_to_pathfinding_and_reverses (test_run.PatchTests.test_heap_patch_applies_only_to_pathfinding_and_reverses) ... ok
+test_standalone_patches_and_both_application_orders (test_run.PatchTests.test_standalone_patches_and_both_application_orders) ... ok
+test_baseline_exists_and_extracts (test_run.SourceTests.test_baseline_exists_and_extracts) ... ok
+test_brace_matching_ignores_comments_and_literals (test_run.SourceTests.test_brace_matching_ignores_comments_and_literals) ... ok
+test_unbalanced_source_fails (test_run.SourceTests.test_unbalanced_source_fails) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.251s
+
+OK
+test_reanalysis_is_byte_identical (test_experiments.AnalysisTests.test_reanalysis_is_byte_identical) ... ok
+test_rejects_checksum_units_and_nonpositive_time (test_experiments.AnalysisTests.test_rejects_checksum_units_and_nonpositive_time) ... ok
+test_rejects_missing_duplicate_and_bad_order (test_experiments.AnalysisTests.test_rejects_missing_duplicate_and_bad_order) ... ok
+test_rejects_phone_claim_engine_or_mixed_schema (test_experiments.AnalysisTests.test_rejects_phone_claim_engine_or_mixed_schema) ... ok
+test_uses_median_of_paired_ratios (test_experiments.AnalysisTests.test_uses_median_of_paired_ratios) ... ok
+test_all_maps_and_separate_engines (test_experiments.SourceTests.test_all_maps_and_separate_engines) ... ok
+test_heap_changes_only_pathfinding_region (test_experiments.SourceTests.test_heap_changes_only_pathfinding_region) ... ok
+test_tiles_do_not_modify_objects_or_other_methods (test_experiments.SourceTests.test_tiles_do_not_modify_objects_or_other_methods) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.012s
+
+OK
+test_paired_not_ratio_of_medians (test_bottlenecks.AnalysisTests.test_paired_not_ratio_of_medians) ... ok
+test_reanalysis_byte_identical (test_bottlenecks.AnalysisTests.test_reanalysis_byte_identical) ... ok
+test_reject_bad_raw_data (test_bottlenecks.AnalysisTests.test_reject_bad_raw_data) ... ok
+test_rotation_balanced_and_unique (test_bottlenecks.AnalysisTests.test_rotation_balanced_and_unique) ... ok
+test_export_is_reproducible (test_bottlenecks.ExportTests.test_export_is_reproducible) ... ok
+test_master_and_heap_pins (test_bottlenecks.ExportTests.test_master_and_heap_pins) ... ok
+test_scopes_and_no_schedule_or_sort_changes (test_bottlenecks.ExportTests.test_scopes_and_no_schedule_or_sort_changes) ... ok
+test_series_and_standalones_apply_reverse (test_bottlenecks.ExportTests.test_series_and_standalones_apply_reverse) ... All cumulative/standalone/combined patches apply and reverse in private indexes
+ok
+test_transforms_refuse_unknown_shapes (test_bottlenecks.ExportTests.test_transforms_refuse_unknown_shapes) ... ok
+test_vision_keeps_guard_and_rng_path (test_bottlenecks.ExportTests.test_vision_keeps_guard_and_rng_path) ... ok
+test_csv_roundtrip_reanalysis_byte_identical (test_supplements.SupplementAnalysisTests.test_csv_roundtrip_reanalysis_byte_identical) ... ok
+test_paired_median_not_ratio_of_medians (test_supplements.SupplementAnalysisTests.test_paired_median_not_ratio_of_medians) ... ok
+test_reject_incomplete_corrupt_and_unnormalized_data (test_supplements.SupplementAnalysisTests.test_reject_incomplete_corrupt_and_unnormalized_data) ... ok
+test_supplement_rotation_balances_slots (test_supplements.SupplementAnalysisTests.test_supplement_rotation_balances_slots) ... ok
+test_all_supplement_exports_reproducible_private_and_reversible (test_supplements.SupplementSourceTests.test_all_supplement_exports_reproducible_private_and_reversible) ... ok
+test_conservative_excludes_optional_regressions (test_supplements.SupplementSourceTests.test_conservative_excludes_optional_regressions) ... ok
+test_fallback_changes_exactly_two_operands_only (test_supplements.SupplementSourceTests.test_fallback_changes_exactly_two_operands_only) ... ok
+test_priority_requires_decrease_hook_and_preserves_scope (test_supplements.SupplementSourceTests.test_priority_requires_decrease_hook_and_preserves_scope) ... ok
+test_transforms_fail_closed (test_supplements.SupplementSourceTests.test_transforms_fail_closed) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 4.592s
+
+OK

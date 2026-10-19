@@ -1,0 +1,27 @@
+desktop Java PerfChecks
+CHECKS,decrease-key-queue-states,25187
+CHECKS,six-way-exact-paths,1232
+CHECKS,lookup-cases,258864
+CHECKS,bit-exact-movement,40000
+CHECKS,vision-state-rng-cases,5400
+CHECKS,PASS
+
+desktop Java ExperimentChecks
+CHECKS,tile-traces,3264
+CHECKS,PASS
+
+original KVM 1.1 PerfChecks
+CHECKS,decrease-key-queue-states,25187
+CHECKS,six-way-exact-paths,1232
+CHECKS,lookup-cases,258864
+CHECKS,bit-exact-movement,40000
+CHECKS,vision-state-rng-cases,5400
+CHECKS,PASS
+
+original KVM 1.1 ExperimentChecks
+CHECKS,tile-traces,3264
+CHECKS,PASS
+
+desktop AWT pixels
+RASTER,four-way-exact-ARGB-frames,1920
+RASTER,PASS

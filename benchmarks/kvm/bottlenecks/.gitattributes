@@ -1,0 +1,5 @@
+# Raw evidence remains versioned and downloadable; keep generated PR diffs folded.
+results/** linguist-generated=true
+fallback/results/** linguist-generated=true
+priority/results/** linguist-generated=true
+conservative-results/** linguist-generated=true
