@@ -1,0 +1,66 @@
+movement-cost-table
+Base-master: 0716b47205e297375d7a3848d923d5ce916eba6d
+Prerequisites: 0003 ONLY; do not combine with the cumulative copy of this patch
+Apply with git apply, NOT git am.
+
+diff --git a/src/Game.java b/src/Game.java
+--- a/src/Game.java
++++ b/src/Game.java
+@@ -8902,6 +8902,23 @@
+ 			-1, 1 // left-down
+ 	};
+ 
++	// 8 directions plus an 'other' facing, preserving arbitrary startDir values.
++	private static final byte[] PATH_MOVE_COSTS = createPathMoveCosts();
++
++	private static byte[] createPathMoveCosts() {
++		byte[] costs = new byte[9 * 9 * 8];
++		for (int start = 0; start < 9; ++start) {
++			for (int facing = 0; facing < 9; ++facing) {
++				for (int move = 0; move < 8; ++move) {
++					costs[(start * 9 + facing) * 8 + move] = (byte)
++							(10 + (move >= 4 ? 4 : 0) + (move != facing ? 4 : 0)
++							+ (move != start ? 2 : 0));
++				}
++			}
++		}
++		return costs;
++	}
++
+ 	short[] nodeParent;
+ 	short[] nodeG, nodeH;
+ 
+@@ -8966,6 +8983,8 @@
+ 		int nx = cur - ny * width;
+ 		int g, h, dx, dy;
+ 		int dir = startDir;
++		byte[] moveCosts = PATH_MOVE_COSTS;
++		int startCost = (startDir >= 0 && startDir < 8 ? startDir : 8) * 72;
+ 
+ 		while (cur != -1) {
+ 			openRemove(cur);
+@@ -8980,6 +8999,7 @@
+ 			if (nx == targetX && ny == targetY)
+ 				break;
+ 
++			int costOffset = startCost + ((dir >= 0 && dir < 8 ? dir : 8) << 3);
+ 			for (int i = 0; i < 8; ++i) { // for each direction
+ 				// new position
+ 				int x = nx + PATH_DIR_POSITIONS[i << 1];
+@@ -9022,15 +9042,8 @@
+ 				if (noStaffDoors && s == COLL_DOOR_STAFF)
+ 					continue;
+ 
+-				// add g cost
+-				g = gPrev + 10;
+-				// try to avoid objects
++				g = gPrev + moveCosts[costOffset + i];
+ 				if ((s & COLL_BIT_AVOID_AI) != 0) g += 15;
+-				// avoid diagonal move when unnecessary
+-				if (i >= 4) g += 4;
+-				// prefer keeping current facing
+-				if (i != dir) g += 4;
+-				if (i != startDir) g += 2;
+ 
+ 				// h cost is octile distance
+ 				dx = (x - targetX);
