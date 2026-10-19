@@ -2308,6 +2308,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 			drawScreen();
 
 			long lastFrameTime = System.currentTimeMillis();
+			long lastLagCounterTime = lastFrameTime;
 			long lastCounterTime = lastFrameTime;
 			float passedTime = 0;
 			int frames = 0, ticksC = 0;
@@ -2496,6 +2497,9 @@ public class Game extends GameCanvas implements Runnable, Constants {
 					lastCounterTime += 1000L;
 					frames = 0;
 					ticksC = 0;
+				}
+				if (now >= lastLagCounterTime + 10000L) {
+					lastLagCounterTime += 10000L;
 					lag = 0;
 				}
 
