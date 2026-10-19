@@ -1,0 +1,49 @@
+heap-decrease-key
+Base-master: 0716b47205e297375d7a3848d923d5ce916eba6d
+Prerequisites: 0003 ONLY; do not combine with the cumulative copy of this patch
+Apply with git apply, NOT git am.
+
+diff --git a/src/Game.java b/src/Game.java
+--- a/src/Game.java
++++ b/src/Game.java
+@@ -9056,8 +9056,7 @@
+ 					nodeG[n] = (short) g;
+ 
+ 					// re-sort
+-					openRemove(n);
+-					openAdd(n);
++					openImprove(n);
+ 				}
+ 			}
+ 
+@@ -9194,6 +9193,30 @@
+ 		sortedNode = size == 0 ? -1 : heap[0] & 0xFFFF;
+ 	}
+ 
++	// Only for a strictly decreased G cost. Give reinsertions a fresh FIFO ticket.
++	void openImprove(int n) {
++		short[] heap = openHeap;
++		short[] position = openHeapPosition;
++		int[] order = openHeapOrder;
++		short[] g = nodeG, h = nodeH;
++		int serial = openHeapSerial++;
++		order[n] = serial;
++		int f = g[n] + h[n];
++		int i = position[n];
++		while (i > 0) {
++			int parent = (i - 1) >>> 1;
++			int other = heap[parent] & 0xFFFF;
++			int otherF = g[other] + h[other];
++			if (f > otherF || (f == otherF && serial >= order[other])) break;
++			heap[i] = (short) other;
++			position[other] = (short) i;
++			i = parent;
++		}
++		heap[i] = (short) n;
++		position[n] = (short) i;
++		sortedNode = heap[0] & 0xFFFF;
++	}
++
+ 	// endregion Pathfinding
+ 
+ 	// region Math
