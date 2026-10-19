@@ -1,0 +1,68 @@
+{
+  "recorded_utc": "2026-10-19T21:23:51.629865+00:00",
+  "base_master": "0716b47205e297375d7a3848d923d5ce916eba6d",
+  "footprints": {
+    "conservative": {
+      "Game_bytes": 164821,
+      "Game_sha256": "0387bb758ea6d12c01d70fd2e1e34418e2a7975f0f2ec2209c8a0019908d7253",
+      "NPC_bytes": 63950,
+      "NPC_sha256": "541e8fa0989b363e1e132bd9cc43698854f67e3ae4c4b777125419cc32f2af23",
+      "source_sha256": {
+        "src/Game.java": "7fb1f6c724c1b14c0f9cb3647ba26813c37ae321b8de7a941fb3c4d30d3c7327",
+        "src/NPC.java": "c8735e8536b2aaf2d478ba798aca1decc6d1502b4cb24a83ec69967fc2213a8e",
+        "common/src/Constants.java": "b38aab54e5823616ce3f4f29220ddb137d9adf46f88eaced0971b1d75292f1ab"
+      }
+    },
+    "conservative-diagnostic": {
+      "Game_bytes": 165658,
+      "Game_sha256": "5ac7581b3427c9c02c24da96bc42c366e22d74f6462b3dc5f9632776aa26dd03",
+      "NPC_bytes": 63950,
+      "NPC_sha256": "541e8fa0989b363e1e132bd9cc43698854f67e3ae4c4b777125419cc32f2af23",
+      "source_sha256": {
+        "src/Game.java": "027ad91edb89a56d17afb67f9c1f1b041c8fda31ddd504c17275f7ed865e6a19",
+        "src/NPC.java": "c8735e8536b2aaf2d478ba798aca1decc6d1502b4cb24a83ec69967fc2213a8e",
+        "common/src/Constants.java": "b38aab54e5823616ce3f4f29220ddb137d9adf46f88eaced0971b1d75292f1ab"
+      }
+    },
+    "conservative-memory": {
+      "Game_bytes": 164803,
+      "Game_sha256": "45d41562addce60885e862c14aa3852816ce1fb0bfd592340f78289431ca499c",
+      "NPC_bytes": 63950,
+      "NPC_sha256": "541e8fa0989b363e1e132bd9cc43698854f67e3ae4c4b777125419cc32f2af23",
+      "source_sha256": {
+        "src/Game.java": "f24ced383e33d109a372dc61c3247d0bd24af12700e17133b2529d096648750b",
+        "src/NPC.java": "c8735e8536b2aaf2d478ba798aca1decc6d1502b4cb24a83ec69967fc2213a8e",
+        "common/src/Constants.java": "b38aab54e5823616ce3f4f29220ddb137d9adf46f88eaced0971b1d75292f1ab"
+      }
+    },
+    "conservative-memory-diagnostic": {
+      "Game_bytes": 165640,
+      "Game_sha256": "ba9aca13f0e5aa67982ba56a9b74af87d3902a2fe9fe999be116fce7d39e85bc",
+      "NPC_bytes": 63950,
+      "NPC_sha256": "541e8fa0989b363e1e132bd9cc43698854f67e3ae4c4b777125419cc32f2af23",
+      "source_sha256": {
+        "src/Game.java": "32a4f7ea37dbebc77d6752b20d92fd08a86ab6d72d9d78095e8fd834eb172907",
+        "src/NPC.java": "c8735e8536b2aaf2d478ba798aca1decc6d1502b4cb24a83ec69967fc2213a8e",
+        "common/src/Constants.java": "b38aab54e5823616ce3f4f29220ddb137d9adf46f88eaced0971b1d75292f1ab"
+      }
+    }
+  },
+  "input_sha256": {
+    "benchmarks/kvm/bottlenecks/conservative.py": "61d27b08bf3f435d22ea85e1410f3d992ed947da74eb1c2fd0c7e1faac9b181a",
+    "benchmarks/kvm/bottlenecks/supplement_support.py": "fe318797ae7a0af3b56d9619ee5452f93f52d6895715d787b60018850e6496ec",
+    "benchmarks/kvm/bottlenecks/fallback/run_fallback.py": "ec9d51fb40e954c4ffdbe8a116bfe5b886b5b145faeb00550a3a66b5a6a9f23b",
+    "benchmarks/kvm/bottlenecks/priority/run_priority.py": "f4e0437ddc0a8c16ac684b52280a28e3cd96d7fe4a0d1111594e1a5046df73c6",
+    "patches/performance/conservative-after-heap.patch": "dfe3c76ab09783db466407c01139b81d80f7ad4c395ea451a00789ea0acba46c",
+    "patches/performance/conservative-from-master.patch": "e7f7277ab4a5685b02a00aeaaea78c7745657d0a70a528ee0311661cd9caf02d",
+    "patches/performance/conservative-memory-after-heap.patch": "3bbe991c0c063bd949337ba813d5c1318813f282e449a77f4f56e6f5b19a3e18",
+    "patches/performance/conservative-memory-from-master.patch": "f1358508c9b049e033326b8c0ffb511f07485ada352eeaf1f8cdb8daa375e45e"
+  },
+  "primary_environment_sha256": "960c139ad44726e87cc9a00ef28a9268b960193bca10818bf1a4ef7bff556c7a",
+  "pspkvm_tested_here": false,
+  "whole_combination_timed": false,
+  "excluded_optional_patches": [
+    "0011",
+    "0013"
+  ],
+  "diagnostic_excluded_from_runtime_bundles": true
+}
