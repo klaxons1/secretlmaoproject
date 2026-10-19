@@ -1,0 +1,69 @@
+passive-inmate-vision
+Base-master: 0716b47205e297375d7a3848d923d5ce916eba6d
+Prerequisites: 0003 ONLY; do not combine with the cumulative copy of this patch
+Apply with git apply, NOT git am.
+
+diff --git a/src/NPC.java b/src/NPC.java
+--- a/src/NPC.java
++++ b/src/NPC.java
+@@ -1045,31 +1045,35 @@
+ 			}
+ 
+ 			boolean found = false;
+-			for (int i = 1; i < n; ++i) {
+-				NPC other = chars[i];
+-				if (other == null || other == this || other.guard || other.health <= 0 || !canSee(other)) {
+-					continue;
+-				}
+-
+-				if (guard) {
+-					// attack if inmate is fighting
+-					if (other.fighting != 0) {
+-						aiState = AI_ATTACK;
+-						chaseTarget = other;
+-						aiWaitTimer = 0;
+-						StringBuffer sb = Game.stringBuffer;
+-						sb.setLength(0);
+-						heat(sb.append("Oi! ").append(other.name).toString(), 0);
+-						break;
+-					}
+-				} else if (inmate && other.inmate) {
+-					// attack someone in random interval if not busy
+-					found = true;
+-					if (attack && rng.nextInt(30) == 0) {
+-						animation = ANIM_REGULAR;
+-						aiState = AI_RESET;
+-						chaseTarget = other;
+-						break;
++			// Passive inmates neither use 'found' nor have canSee side effects.
++			// Guards must still scan: they can discover digged walls.
++			if (guard || attack) {
++				for (int i = 1; i < n; ++i) {
++					NPC other = chars[i];
++					if (other == null || other == this || other.guard || other.health <= 0 || !canSee(other)) {
++						continue;
++					}
++
++					if (guard) {
++						// attack if inmate is fighting
++						if (other.fighting != 0) {
++							aiState = AI_ATTACK;
++							chaseTarget = other;
++							aiWaitTimer = 0;
++							StringBuffer sb = Game.stringBuffer;
++							sb.setLength(0);
++							heat(sb.append("Oi! ").append(other.name).toString(), 0);
++							break;
++						}
++					} else if (inmate && other.inmate) {
++						// attack someone in random interval if not busy
++						found = true;
++						if (attack && rng.nextInt(30) == 0) {
++							animation = ANIM_REGULAR;
++							aiState = AI_RESET;
++							chaseTarget = other;
++							break;
++						}
+ 					}
+ 				}
+ 			}
