@@ -1,0 +1,73 @@
+Diagnostic only: overhead makes these numbers unsuitable for performance A/B
+Base-master: 0716b47205e297375d7a3848d923d5ce916eba6d
+Prerequisites: 0003; apply separately or AFTER optimizations; NOT part of series.txt
+Apply with git apply, NOT git am.
+
+diff --git a/src/Game.java b/src/Game.java
+--- a/src/Game.java
++++ b/src/Game.java
+@@ -93,2 +93,5 @@
+ 	int lag;
++	int npcPathCalls, npcPathFails, npcPathExpanded;
++	long npcPathTime;
++	int npcPeakAI, npcPeakTick, npcPeakPathCalls, npcPeakPathFails, npcPeakExpanded, npcPeakPathMs;
+ 	long globalCounter;
+@@ -543,2 +546,12 @@
+ 				}
++				// Peak-NPC-pass breakdown (same pass, not independent maxima).
++				// y=71: AI ms / pathfind ms / remaining tick ms.
++				drawNumber(g, npcPeakAI, fontImg, 0, 16, 5, 7, 0, 71);
++				drawNumber(g, npcPeakPathMs, fontImg, 0, 16, 5, 7, 40, 71);
++				drawNumber(g, npcPeakTick, fontImg, 0, 16, 5, 7, 80, 71);
++				// y=79: path calls / failed calls (includes short buffers) / expansions.
++				drawNumber(g, npcPeakPathCalls, fontImg, 0, 16, 5, 7, 0, 79);
++				drawNumber(g, npcPeakPathFails, fontImg, 0, 16, 5, 7, 40, 79);
++				drawNumber(g, npcPeakExpanded, fontImg, 0, 16, 5, 7, 80, 79);
++
+ 				// used heap
+@@ -2503,2 +2516,3 @@
+ 					lag = 0;
++					npcPeakAI = npcPeakTick = npcPeakPathCalls = npcPeakPathFails = npcPeakExpanded = npcPeakPathMs = 0;
+ 				}
+@@ -3874,2 +3888,5 @@
+ 
++		npcPathCalls = npcPathFails = npcPathExpanded = 0;
++		npcPathTime = 0;
++		long aiTime = 0, tickTime = 0;
+ 		long l = System.currentTimeMillis();
+@@ -3880,4 +3897,8 @@
+ 			if (chars[i] == null) continue;
++			long t = System.currentTimeMillis();
+ 			if (i != 0) chars[i].tickAI(tick);
++			long afterAI = System.currentTimeMillis();
++			aiTime += afterAI - t;
+ 			chars[i].tick();
++			tickTime += System.currentTimeMillis() - afterAI;
+ 		}
+@@ -3885,3 +3906,11 @@
+ 		l = (System.currentTimeMillis() - l);
+-		if (l > lag) lag = (int) l;
++		if (l >= lag) {
++			lag = (int) l;
++			npcPeakAI = (int) aiTime;
++			npcPeakTick = (int) tickTime;
++			npcPeakPathCalls = npcPathCalls;
++			npcPeakPathFails = npcPathFails;
++			npcPeakExpanded = npcPathExpanded;
++			npcPeakPathMs = (int) npcPathTime;
++		}
+ 
+@@ -8943,2 +8972,4 @@
+ 	boolean pathfind(int startX, int startY, int startDir, int targetX, int targetY, boolean noStaffDoors, short[] res) {
++		long profileStart = System.currentTimeMillis();
++		npcPathCalls++;
+ 		int width = this.width;
+@@ -8970,2 +9001,3 @@
+ 		while (cur != -1) {
++			npcPathExpanded++;
+ 			openRemove(cur);
+@@ -9113,2 +9145,4 @@
+ 		openHeapSize = openHeapSerial = 0;
++		npcPathTime += System.currentTimeMillis() - profileStart;
++		if (!ret) npcPathFails++;
+ 		return ret;
