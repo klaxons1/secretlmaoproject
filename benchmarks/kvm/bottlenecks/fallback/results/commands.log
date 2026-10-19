@@ -1,0 +1,1403 @@
+$ <repo>/benchmarks/kvm/.work/jdk8/bin/javac -source 1.3 -target 1.3 -Xlint:-options -bootclasspath <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/common/api/classes -classpath <repo>/benchmarks/kvm/.work/bottlenecks/verified -d <repo>/benchmarks/kvm/.work/fallback/raw <repo>/benchmarks/kvm/bottlenecks/fallback/FallbackBench.java <repo>/benchmarks/kvm/.work/fallback/source/CountedOnceRequest.java <repo>/benchmarks/kvm/.work/fallback/source/CountedOriginalRequest.java <repo>/benchmarks/kvm/.work/fallback/source/OnceRequest.java <repo>/benchmarks/kvm/.work/fallback/source/OriginalRequest.java
+
+$ <repo>/benchmarks/kvm/.work/jdk8/bin/java -jar <repo>/benchmarks/kvm/.work/suite/libs/proguard.jar -injars <repo>/benchmarks/kvm/.work/fallback/raw -outjars <repo>/benchmarks/kvm/.work/fallback/verified -libraryjars <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/common/api/classes -libraryjars <repo>/benchmarks/kvm/.work/bottlenecks/verified -dontskipnonpubliclibraryclasses -dontskipnonpubliclibraryclassmembers -dontshrink -dontoptimize -dontobfuscate -microedition -target 1.1
+ProGuard, version 6.2.2
+Reading program directory [<repo>/benchmarks/kvm/.work/fallback/raw] (filtered)
+Reading library directory [<repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/common/api/classes] (filtered)
+Reading library directory [<repo>/benchmarks/kvm/.work/bottlenecks/verified] (filtered)
+Preparing output directory [<repo>/benchmarks/kvm/.work/fallback/verified] (filtered)
+  Copying resources from program directory [<repo>/benchmarks/kvm/.work/fallback/raw] (filtered)
+
+$ <repo>/benchmarks/kvm/.work/jdk8/bin/javac -source 1.3 -target 1.3 -Xlint:-options -bootclasspath <repo>/benchmarks/kvm/.work/suite/uei/cldc11.jar -classpath <repo>/benchmarks/kvm/.work/suite/uei/midp21.jar:<repo>/benchmarks/kvm/.work/suite/uei/jsr135.jar:<repo>/benchmarks/kvm/.work/suite/uei/jsr184.jar:<repo>/benchmarks/kvm/.work/suite/uei/nokiaui.jar -d <repo>/benchmarks/kvm/.work/fallback/heap-fallback/raw <repo>/benchmarks/kvm/.work/fallback/heap-fallback/source/Game.java <repo>/benchmarks/kvm/.work/fallback/heap-fallback/source/NPC.java <repo>/src/Profiler.java <repo>/src/Sound.java <repo>/src/TE.java <repo>/src/Textures.java <repo>/benchmarks/kvm/.work/fallback/heap-fallback/source/Constants.java <repo>/common/src/Items.java <repo>/common/src/Objects.java
+
+$ <repo>/benchmarks/kvm/.work/jdk8/bin/java -jar <repo>/benchmarks/kvm/.work/suite/libs/proguard.jar -injars <repo>/benchmarks/kvm/.work/fallback/heap-fallback/raw -outjars <repo>/benchmarks/kvm/.work/fallback/heap-fallback/verified -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/cldc11.jar -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/midp21.jar -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/jsr135.jar -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/jsr184.jar -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/nokiaui.jar -dontshrink -dontoptimize -dontobfuscate -microedition -target 1.1
+ProGuard, version 6.2.2
+Reading program directory [<repo>/benchmarks/kvm/.work/fallback/heap-fallback/raw] (filtered)
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/cldc11.jar] (filtered)
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/midp21.jar] (filtered)
+Note: duplicate definition of library class [java.lang.ArithmeticException]
+Note: duplicate definition of library class [java.lang.ArrayIndexOutOfBoundsException]
+Note: duplicate definition of library class [java.lang.ArrayStoreException]
+Note: duplicate definition of library class [java.lang.Boolean]
+Note: duplicate definition of library class [java.lang.Byte]
+Note: duplicate definition of library class [java.lang.Character]
+Note: duplicate definition of library class [java.lang.Class]
+Note: duplicate definition of library class [java.lang.ClassCastException]
+Note: duplicate definition of library class [java.lang.ClassNotFoundException]
+Note: duplicate definition of library class [java.lang.Double]
+Note: duplicate definition of library class [java.lang.Error]
+Note: duplicate definition of library class [java.lang.Exception]
+Note: duplicate definition of library class [java.lang.Float]
+Note: duplicate definition of library class [java.lang.IllegalAccessException]
+Note: duplicate definition of library class [java.lang.IllegalArgumentException]
+Note: duplicate definition of library class [java.lang.IllegalMonitorStateException]
+Note: duplicate definition of library class [java.lang.IllegalStateException]
+Note: duplicate definition of library class [java.lang.IllegalThreadStateException]
+Note: duplicate definition of library class [java.lang.IndexOutOfBoundsException]
+Note: duplicate definition of library class [java.lang.InstantiationException]
+Note: duplicate definition of library class [java.lang.Integer]
+Note: duplicate definition of library class [java.lang.InterruptedException]
+Note: duplicate definition of library class [java.lang.Long]
+Note: duplicate definition of library class [java.lang.Math]
+Note: duplicate definition of library class [java.lang.NegativeArraySizeException]
+Note: duplicate definition of library class [java.lang.NoClassDefFoundError]
+Note: duplicate definition of library class [java.lang.NullPointerException]
+Note: duplicate definition of library class [java.lang.NumberFormatException]
+Note: duplicate definition of library class [java.lang.Object]
+Note: duplicate definition of library class [java.lang.OutOfMemoryError]
+Note: duplicate definition of library class [java.lang.Runnable]
+Note: duplicate definition of library class [java.lang.Runtime]
+Note: duplicate definition of library class [java.lang.RuntimeException]
+Note: duplicate definition of library class [java.lang.SecurityException]
+Note: duplicate definition of library class [java.lang.Short]
+Note: duplicate definition of library class [java.lang.String]
+Note: duplicate definition of library class [java.lang.StringBuffer]
+Note: duplicate definition of library class [java.lang.StringIndexOutOfBoundsException]
+Note: duplicate definition of library class [java.lang.System]
+Note: duplicate definition of library class [java.lang.Thread]
+Note: duplicate definition of library class [java.lang.Throwable]
+Note: duplicate definition of library class [java.lang.UnsupportedOperationException]
+Note: duplicate definition of library class [java.lang.VirtualMachineError]
+Note: duplicate definition of library class [java.lang.ref.Reference]
+Note: duplicate definition of library class [java.lang.ref.WeakReference]
+Note: duplicate definition of library class [java.util.Calendar]
+Note: duplicate definition of library class [java.util.Date]
+Note: duplicate definition of library class [java.util.EmptyStackException]
+Note: duplicate definition of library class [java.util.Enumeration]
+Note: duplicate definition of library class [java.util.Hashtable]
+Note: duplicate definition of library class [java.util.NoSuchElementException]
+Note: duplicate definition of library class [java.util.Random]
+Note: duplicate definition of library class [java.util.Stack]
+Note: duplicate definition of library class [java.util.TimeZone]
+Note: duplicate definition of library class [java.util.Timer]
+Note: duplicate definition of library class [java.util.TimerTask]
+Note: duplicate definition of library class [java.util.Vector]
+Note: duplicate definition of library class [javax.microedition.io.CommConnection]
+Note: duplicate definition of library class [javax.microedition.io.Connection]
+Note: duplicate definition of library class [javax.microedition.io.ConnectionNotFoundException]
+Note: duplicate definition of library class [javax.microedition.io.Connector]
+Note: duplicate definition of library class [javax.microedition.io.ContentConnection]
+Note: duplicate definition of library class [javax.microedition.io.Datagram]
+Note: duplicate definition of library class [javax.microedition.io.DatagramConnection]
+Note: duplicate definition of library class [javax.microedition.io.HttpConnection]
+Note: duplicate definition of library class [javax.microedition.io.HttpsConnection]
+Note: duplicate definition of library class [javax.microedition.io.InputConnection]
+Note: duplicate definition of library class [javax.microedition.io.OutputConnection]
+Note: duplicate definition of library class [javax.microedition.io.PushRegistry]
+Note: duplicate definition of library class [javax.microedition.io.SecureConnection]
+Note: duplicate definition of library class [javax.microedition.io.SecurityInfo]
+Note: duplicate definition of library class [javax.microedition.io.ServerSocketConnection]
+Note: duplicate definition of library class [javax.microedition.io.SocketConnection]
+Note: duplicate definition of library class [javax.microedition.io.StreamConnection]
+Note: duplicate definition of library class [javax.microedition.io.StreamConnectionNotifier]
+Note: duplicate definition of library class [javax.microedition.io.UDPDatagramConnection]
+Note: duplicate definition of library class [javax.microedition.io.file.ConnectionClosedException]
+Note: duplicate definition of library class [javax.microedition.io.file.FileConnection]
+Note: duplicate definition of library class [javax.microedition.io.file.FileSystemListener]
+Note: duplicate definition of library class [javax.microedition.io.file.FileSystemRegistry]
+Note: duplicate definition of library class [javax.microedition.io.file.IllegalModeException]
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/jsr135.jar] (filtered)
+Note: duplicate definition of library class [javax.microedition.media.Control]
+Note: duplicate definition of library class [javax.microedition.media.Controllable]
+Note: duplicate definition of library class [javax.microedition.media.Manager]
+Note: duplicate definition of library class [javax.microedition.media.MediaException]
+Note: duplicate definition of library class [javax.microedition.media.Player]
+Note: duplicate definition of library class [javax.microedition.media.PlayerListener]
+Note: duplicate definition of library class [javax.microedition.media.TimeBase]
+Note: duplicate definition of library class [javax.microedition.media.control.FramePositioningControl]
+Note: duplicate definition of library class [javax.microedition.media.control.GUIControl]
+Note: duplicate definition of library class [javax.microedition.media.control.MIDIControl]
+Note: duplicate definition of library class [javax.microedition.media.control.MetaDataControl]
+Note: duplicate definition of library class [javax.microedition.media.control.PitchControl]
+Note: duplicate definition of library class [javax.microedition.media.control.RateControl]
+Note: duplicate definition of library class [javax.microedition.media.control.RecordControl]
+Note: duplicate definition of library class [javax.microedition.media.control.StopTimeControl]
+Note: duplicate definition of library class [javax.microedition.media.control.TempoControl]
+Note: duplicate definition of library class [javax.microedition.media.control.ToneControl]
+Note: duplicate definition of library class [javax.microedition.media.control.VideoControl]
+Note: duplicate definition of library class [javax.microedition.media.control.VolumeControl]
+Note: duplicate definition of library class [javax.microedition.media.protocol.ContentDescriptor]
+Note: duplicate definition of library class [javax.microedition.media.protocol.DataSource]
+Note: duplicate definition of library class [javax.microedition.media.protocol.SourceStream]
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/jsr184.jar] (filtered)
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/nokiaui.jar] (filtered)
+Note: there were 103 duplicate class definitions.
+      (http://proguard.sourceforge.net/manual/troubleshooting.html#duplicateclass)
+Note: Game: can't find dynamically referenced class com.pspkvm.system.Power
+Note: there were 1 unresolved dynamic references to classes or interfaces.
+      You should check if you need to specify additional program jars.
+      (http://proguard.sourceforge.net/manual/troubleshooting.html#dynamicalclass)
+Preparing output directory [<repo>/benchmarks/kvm/.work/fallback/heap-fallback/verified] (filtered)
+  Copying resources from program directory [<repo>/benchmarks/kvm/.work/fallback/heap-fallback/raw] (filtered)
+
+$ <repo>/benchmarks/kvm/.work/jdk8/bin/javac -source 1.3 -target 1.3 -Xlint:-options -bootclasspath <repo>/benchmarks/kvm/.work/suite/uei/cldc11.jar -classpath <repo>/benchmarks/kvm/.work/suite/uei/midp21.jar:<repo>/benchmarks/kvm/.work/suite/uei/jsr135.jar:<repo>/benchmarks/kvm/.work/suite/uei/jsr184.jar:<repo>/benchmarks/kvm/.work/suite/uei/nokiaui.jar -d <repo>/benchmarks/kvm/.work/fallback/all-fallback/raw <repo>/benchmarks/kvm/.work/fallback/all-fallback/source/Game.java <repo>/benchmarks/kvm/.work/fallback/all-fallback/source/NPC.java <repo>/src/Profiler.java <repo>/src/Sound.java <repo>/src/TE.java <repo>/src/Textures.java <repo>/benchmarks/kvm/.work/fallback/all-fallback/source/Constants.java <repo>/common/src/Items.java <repo>/common/src/Objects.java
+
+$ <repo>/benchmarks/kvm/.work/jdk8/bin/java -jar <repo>/benchmarks/kvm/.work/suite/libs/proguard.jar -injars <repo>/benchmarks/kvm/.work/fallback/all-fallback/raw -outjars <repo>/benchmarks/kvm/.work/fallback/all-fallback/verified -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/cldc11.jar -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/midp21.jar -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/jsr135.jar -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/jsr184.jar -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/nokiaui.jar -dontshrink -dontoptimize -dontobfuscate -microedition -target 1.1
+ProGuard, version 6.2.2
+Reading program directory [<repo>/benchmarks/kvm/.work/fallback/all-fallback/raw] (filtered)
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/cldc11.jar] (filtered)
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/midp21.jar] (filtered)
+Note: duplicate definition of library class [java.lang.ArithmeticException]
+Note: duplicate definition of library class [java.lang.ArrayIndexOutOfBoundsException]
+Note: duplicate definition of library class [java.lang.ArrayStoreException]
+Note: duplicate definition of library class [java.lang.Boolean]
+Note: duplicate definition of library class [java.lang.Byte]
+Note: duplicate definition of library class [java.lang.Character]
+Note: duplicate definition of library class [java.lang.Class]
+Note: duplicate definition of library class [java.lang.ClassCastException]
+Note: duplicate definition of library class [java.lang.ClassNotFoundException]
+Note: duplicate definition of library class [java.lang.Double]
+Note: duplicate definition of library class [java.lang.Error]
+Note: duplicate definition of library class [java.lang.Exception]
+Note: duplicate definition of library class [java.lang.Float]
+Note: duplicate definition of library class [java.lang.IllegalAccessException]
+Note: duplicate definition of library class [java.lang.IllegalArgumentException]
+Note: duplicate definition of library class [java.lang.IllegalMonitorStateException]
+Note: duplicate definition of library class [java.lang.IllegalStateException]
+Note: duplicate definition of library class [java.lang.IllegalThreadStateException]
+Note: duplicate definition of library class [java.lang.IndexOutOfBoundsException]
+Note: duplicate definition of library class [java.lang.InstantiationException]
+Note: duplicate definition of library class [java.lang.Integer]
+Note: duplicate definition of library class [java.lang.InterruptedException]
+Note: duplicate definition of library class [java.lang.Long]
+Note: duplicate definition of library class [java.lang.Math]
+Note: duplicate definition of library class [java.lang.NegativeArraySizeException]
+Note: duplicate definition of library class [java.lang.NoClassDefFoundError]
+Note: duplicate definition of library class [java.lang.NullPointerException]
+Note: duplicate definition of library class [java.lang.NumberFormatException]
+Note: duplicate definition of library class [java.lang.Object]
+Note: duplicate definition of library class [java.lang.OutOfMemoryError]
+Note: duplicate definition of library class [java.lang.Runnable]
+Note: duplicate definition of library class [java.lang.Runtime]
+Note: duplicate definition of library class [java.lang.RuntimeException]
+Note: duplicate definition of library class [java.lang.SecurityException]
+Note: duplicate definition of library class [java.lang.Short]
+Note: duplicate definition of library class [java.lang.String]
+Note: duplicate definition of library class [java.lang.StringBuffer]
+Note: duplicate definition of library class [java.lang.StringIndexOutOfBoundsException]
+Note: duplicate definition of library class [java.lang.System]
+Note: duplicate definition of library class [java.lang.Thread]
+Note: duplicate definition of library class [java.lang.Throwable]
+Note: duplicate definition of library class [java.lang.UnsupportedOperationException]
+Note: duplicate definition of library class [java.lang.VirtualMachineError]
+Note: duplicate definition of library class [java.lang.ref.Reference]
+Note: duplicate definition of library class [java.lang.ref.WeakReference]
+Note: duplicate definition of library class [java.util.Calendar]
+Note: duplicate definition of library class [java.util.Date]
+Note: duplicate definition of library class [java.util.EmptyStackException]
+Note: duplicate definition of library class [java.util.Enumeration]
+Note: duplicate definition of library class [java.util.Hashtable]
+Note: duplicate definition of library class [java.util.NoSuchElementException]
+Note: duplicate definition of library class [java.util.Random]
+Note: duplicate definition of library class [java.util.Stack]
+Note: duplicate definition of library class [java.util.TimeZone]
+Note: duplicate definition of library class [java.util.Timer]
+Note: duplicate definition of library class [java.util.TimerTask]
+Note: duplicate definition of library class [java.util.Vector]
+Note: duplicate definition of library class [javax.microedition.io.CommConnection]
+Note: duplicate definition of library class [javax.microedition.io.Connection]
+Note: duplicate definition of library class [javax.microedition.io.ConnectionNotFoundException]
+Note: duplicate definition of library class [javax.microedition.io.Connector]
+Note: duplicate definition of library class [javax.microedition.io.ContentConnection]
+Note: duplicate definition of library class [javax.microedition.io.Datagram]
+Note: duplicate definition of library class [javax.microedition.io.DatagramConnection]
+Note: duplicate definition of library class [javax.microedition.io.HttpConnection]
+Note: duplicate definition of library class [javax.microedition.io.HttpsConnection]
+Note: duplicate definition of library class [javax.microedition.io.InputConnection]
+Note: duplicate definition of library class [javax.microedition.io.OutputConnection]
+Note: duplicate definition of library class [javax.microedition.io.PushRegistry]
+Note: duplicate definition of library class [javax.microedition.io.SecureConnection]
+Note: duplicate definition of library class [javax.microedition.io.SecurityInfo]
+Note: duplicate definition of library class [javax.microedition.io.ServerSocketConnection]
+Note: duplicate definition of library class [javax.microedition.io.SocketConnection]
+Note: duplicate definition of library class [javax.microedition.io.StreamConnection]
+Note: duplicate definition of library class [javax.microedition.io.StreamConnectionNotifier]
+Note: duplicate definition of library class [javax.microedition.io.UDPDatagramConnection]
+Note: duplicate definition of library class [javax.microedition.io.file.ConnectionClosedException]
+Note: duplicate definition of library class [javax.microedition.io.file.FileConnection]
+Note: duplicate definition of library class [javax.microedition.io.file.FileSystemListener]
+Note: duplicate definition of library class [javax.microedition.io.file.FileSystemRegistry]
+Note: duplicate definition of library class [javax.microedition.io.file.IllegalModeException]
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/jsr135.jar] (filtered)
+Note: duplicate definition of library class [javax.microedition.media.Control]
+Note: duplicate definition of library class [javax.microedition.media.Controllable]
+Note: duplicate definition of library class [javax.microedition.media.Manager]
+Note: duplicate definition of library class [javax.microedition.media.MediaException]
+Note: duplicate definition of library class [javax.microedition.media.Player]
+Note: duplicate definition of library class [javax.microedition.media.PlayerListener]
+Note: duplicate definition of library class [javax.microedition.media.TimeBase]
+Note: duplicate definition of library class [javax.microedition.media.control.FramePositioningControl]
+Note: duplicate definition of library class [javax.microedition.media.control.GUIControl]
+Note: duplicate definition of library class [javax.microedition.media.control.MIDIControl]
+Note: duplicate definition of library class [javax.microedition.media.control.MetaDataControl]
+Note: duplicate definition of library class [javax.microedition.media.control.PitchControl]
+Note: duplicate definition of library class [javax.microedition.media.control.RateControl]
+Note: duplicate definition of library class [javax.microedition.media.control.RecordControl]
+Note: duplicate definition of library class [javax.microedition.media.control.StopTimeControl]
+Note: duplicate definition of library class [javax.microedition.media.control.TempoControl]
+Note: duplicate definition of library class [javax.microedition.media.control.ToneControl]
+Note: duplicate definition of library class [javax.microedition.media.control.VideoControl]
+Note: duplicate definition of library class [javax.microedition.media.control.VolumeControl]
+Note: duplicate definition of library class [javax.microedition.media.protocol.ContentDescriptor]
+Note: duplicate definition of library class [javax.microedition.media.protocol.DataSource]
+Note: duplicate definition of library class [javax.microedition.media.protocol.SourceStream]
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/jsr184.jar] (filtered)
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/nokiaui.jar] (filtered)
+Note: there were 103 duplicate class definitions.
+      (http://proguard.sourceforge.net/manual/troubleshooting.html#duplicateclass)
+Note: Game: can't find dynamically referenced class com.pspkvm.system.Power
+Note: there were 1 unresolved dynamic references to classes or interfaces.
+      You should check if you need to specify additional program jars.
+      (http://proguard.sourceforge.net/manual/troubleshooting.html#dynamicalclass)
+Preparing output directory [<repo>/benchmarks/kvm/.work/fallback/all-fallback/verified] (filtered)
+  Copying resources from program directory [<repo>/benchmarks/kvm/.work/fallback/all-fallback/raw] (filtered)
+
+$ <repo>/benchmarks/kvm/.work/jdk8/bin/java -Xmx512m -cp <repo>/benchmarks/kvm/.work/fallback/verified FallbackBench check
+CHECKS,four-way-fallback-cases,432
+CHECKS,non-inmate-false-cases,160
+CHECKS,retained-control-cases,272
+CHECKS,forced-staff-fallback,4
+CHECKS,PASS
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/fallback/verified FallbackBench check
+CHECKS,four-way-fallback-cases,432
+CHECKS,non-inmate-false-cases,160
+CHECKS,retained-control-cases,272
+CHECKS,forced-staff-fallback,4
+CHECKS,PASS
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/fallback/verified FallbackBench fixtures
+SELECT,perks:guard-failure,7,1
+QUERY,perks:guard-failure,0,17,0,0,23,44,0,0
+QUERY,perks:guard-failure,1,52,58,1,23,62,0,0
+QUERY,perks:guard-failure,2,1,74,1,93,89,0,0
+QUERY,perks:guard-failure,3,9,9,1,73,48,0,0
+QUERY,perks:guard-failure,4,69,10,2,23,52,0,0
+QUERY,perks:guard-failure,5,27,16,1,80,62,0,0
+QUERY,perks:guard-failure,6,80,39,1,6,91,0,0
+QUERY,perks:guard-failure,7,75,71,3,61,6,0,1
+SELECT,perks:guard-success,8,0
+QUERY,perks:guard-success,0,58,1,1,82,47,0,0
+QUERY,perks:guard-success,1,3,3,2,36,51,0,0
+QUERY,perks:guard-success,2,44,4,3,63,54,0,0
+QUERY,perks:guard-success,3,85,5,0,94,57,0,0
+QUERY,perks:guard-success,4,37,7,1,71,61,0,0
+QUERY,perks:guard-success,5,17,9,2,20,65,0,0
+QUERY,perks:guard-success,6,82,10,3,75,68,0,0
+QUERY,perks:guard-success,7,47,12,0,95,71,0,0
+SELECT,perks:inmate-policy,8,0
+QUERY,perks:inmate-policy,0,17,0,0,23,44,1,0
+QUERY,perks:inmate-policy,1,58,1,1,82,47,1,0
+QUERY,perks:inmate-policy,2,3,3,2,36,51,1,0
+QUERY,perks:inmate-policy,3,44,4,3,63,54,1,0
+QUERY,perks:inmate-policy,4,85,5,0,94,57,1,0
+QUERY,perks:inmate-policy,5,37,7,1,71,61,1,0
+QUERY,perks:inmate-policy,6,17,9,2,20,65,1,0
+QUERY,perks:inmate-policy,7,82,10,3,75,68,1,0
+SELECT,stalagflucht:guard-failure,8,0
+QUERY,stalagflucht:guard-failure,0,46,9,1,93,62,0,0
+QUERY,stalagflucht:guard-failure,1,62,17,2,82,80,0,0
+QUERY,stalagflucht:guard-failure,2,13,20,3,1,84,0,0
+QUERY,stalagflucht:guard-failure,3,72,25,2,78,0,0,0
+QUERY,stalagflucht:guard-failure,4,69,29,0,69,7,0,0
+QUERY,stalagflucht:guard-failure,5,61,31,1,95,10,0,0
+QUERY,stalagflucht:guard-failure,6,57,35,3,91,16,0,0
+QUERY,stalagflucht:guard-failure,7,45,49,3,93,44,0,0
+SELECT,stalagflucht:guard-success,8,0
+QUERY,stalagflucht:guard-success,0,22,0,0,21,46,0,0
+QUERY,stalagflucht:guard-success,1,82,1,1,21,49,0,0
+QUERY,stalagflucht:guard-success,2,75,3,2,36,52,0,0
+QUERY,stalagflucht:guard-success,3,71,5,3,19,56,0,0
+QUERY,stalagflucht:guard-success,4,56,7,0,51,59,0,0
+QUERY,stalagflucht:guard-success,5,17,11,2,59,66,0,0
+QUERY,stalagflucht:guard-success,6,75,12,3,7,70,0,0
+QUERY,stalagflucht:guard-success,7,44,14,0,75,73,0,0
+SELECT,stalagflucht:inmate-policy,8,0
+QUERY,stalagflucht:inmate-policy,0,22,0,0,21,46,1,0
+QUERY,stalagflucht:inmate-policy,1,82,1,1,21,49,1,0
+QUERY,stalagflucht:inmate-policy,2,75,3,2,36,52,1,0
+QUERY,stalagflucht:inmate-policy,3,71,5,3,19,56,1,0
+QUERY,stalagflucht:inmate-policy,4,56,7,0,51,59,1,0
+QUERY,stalagflucht:inmate-policy,5,46,9,1,93,62,1,0
+QUERY,stalagflucht:inmate-policy,6,17,11,2,59,66,1,0
+QUERY,stalagflucht:inmate-policy,7,75,12,3,7,70,1,0
+SELECT,shanktonstatepen:guard-failure,8,0
+QUERY,shanktonstatepen:guard-failure,0,17,0,0,67,46,0,0
+QUERY,shanktonstatepen:guard-failure,1,58,1,1,3,50,0,0
+QUERY,shanktonstatepen:guard-failure,2,16,10,1,83,64,0,0
+QUERY,shanktonstatepen:guard-failure,3,6,12,2,5,68,0,0
+QUERY,shanktonstatepen:guard-failure,4,74,13,3,44,71,0,0
+QUERY,shanktonstatepen:guard-failure,5,84,17,1,49,78,0,0
+QUERY,shanktonstatepen:guard-failure,6,61,27,2,81,1,0,0
+QUERY,shanktonstatepen:guard-failure,7,90,34,2,39,16,0,0
+SELECT,shanktonstatepen:guard-success,8,0
+QUERY,shanktonstatepen:guard-success,0,94,3,2,17,54,0,0
+QUERY,shanktonstatepen:guard-success,1,37,6,3,63,57,0,0
+QUERY,shanktonstatepen:guard-success,2,39,8,0,67,60,0,0
+QUERY,shanktonstatepen:guard-success,3,38,15,0,86,74,0,0
+QUERY,shanktonstatepen:guard-success,4,12,20,2,72,81,0,0
+QUERY,shanktonstatepen:guard-success,5,95,21,3,15,85,0,0
+QUERY,shanktonstatepen:guard-success,6,67,23,0,59,89,0,0
+QUERY,shanktonstatepen:guard-success,7,62,25,1,22,92,0,0
+SELECT,shanktonstatepen:inmate-policy,8,0
+QUERY,shanktonstatepen:inmate-policy,0,17,0,0,67,46,1,0
+QUERY,shanktonstatepen:inmate-policy,1,58,1,1,3,50,1,0
+QUERY,shanktonstatepen:inmate-policy,2,94,3,2,17,54,1,0
+QUERY,shanktonstatepen:inmate-policy,3,37,6,3,63,57,1,0
+QUERY,shanktonstatepen:inmate-policy,4,39,8,0,67,60,1,0
+QUERY,shanktonstatepen:inmate-policy,5,16,10,1,83,64,1,0
+QUERY,shanktonstatepen:inmate-policy,6,6,12,2,5,68,1,0
+QUERY,shanktonstatepen:inmate-policy,7,74,13,3,44,71,1,0
+SELECT,jungle:guard-failure,8,0
+QUERY,jungle:guard-failure,0,52,2,0,58,45,0,0
+QUERY,jungle:guard-failure,1,13,12,0,92,59,0,0
+QUERY,jungle:guard-failure,2,41,22,2,1,80,0,0
+QUERY,jungle:guard-failure,3,13,26,0,71,1,0,0
+QUERY,jungle:guard-failure,4,94,37,2,27,24,0,0
+QUERY,jungle:guard-failure,5,95,45,2,40,38,0,0
+QUERY,jungle:guard-failure,6,67,53,2,92,52,0,0
+QUERY,jungle:guard-failure,7,73,55,3,61,56,0,0
+SELECT,jungle:guard-success,8,0
+QUERY,jungle:guard-success,0,20,6,1,16,49,0,0
+QUERY,jungle:guard-success,1,63,8,2,69,52,0,0
+QUERY,jungle:guard-success,2,43,10,3,31,56,0,0
+QUERY,jungle:guard-success,3,74,13,1,45,63,0,0
+QUERY,jungle:guard-success,4,35,15,2,82,67,0,0
+QUERY,jungle:guard-success,5,84,16,3,79,70,0,0
+QUERY,jungle:guard-success,6,53,18,0,71,73,0,0
+QUERY,jungle:guard-success,7,62,20,1,79,76,0,0
+SELECT,jungle:inmate-policy,8,0
+QUERY,jungle:inmate-policy,0,52,2,0,58,45,1,0
+QUERY,jungle:inmate-policy,1,20,6,1,16,49,1,0
+QUERY,jungle:inmate-policy,2,63,8,2,69,52,1,0
+QUERY,jungle:inmate-policy,3,43,10,3,31,56,1,0
+QUERY,jungle:inmate-policy,4,13,12,0,92,59,1,0
+QUERY,jungle:inmate-policy,5,74,13,1,45,63,1,0
+QUERY,jungle:inmate-policy,6,35,15,2,82,67,1,0
+QUERY,jungle:inmate-policy,7,84,16,3,79,70,1,0
+SELECT,sanpancho:guard-failure,3,5
+QUERY,sanpancho:guard-failure,0,50,21,1,76,71,0,0
+QUERY,sanpancho:guard-failure,1,47,5,0,63,26,0,0
+QUERY,sanpancho:guard-failure,2,12,15,2,61,45,0,0
+QUERY,sanpancho:guard-failure,3,41,67,3,4,0,0,1
+QUERY,sanpancho:guard-failure,4,7,87,0,5,0,0,1
+QUERY,sanpancho:guard-failure,5,91,13,1,6,0,0,1
+QUERY,sanpancho:guard-failure,6,69,37,2,7,0,0,1
+QUERY,sanpancho:guard-failure,7,32,60,3,84,0,0,1
+SELECT,sanpancho:guard-success,8,0
+QUERY,sanpancho:guard-success,0,21,0,0,25,48,0,0
+QUERY,sanpancho:guard-success,1,68,1,1,58,51,0,0
+QUERY,sanpancho:guard-success,2,26,3,2,61,54,0,0
+QUERY,sanpancho:guard-success,3,76,4,3,19,58,0,0
+QUERY,sanpancho:guard-success,4,31,6,0,27,61,0,0
+QUERY,sanpancho:guard-success,5,76,7,1,62,64,0,0
+QUERY,sanpancho:guard-success,6,29,9,2,42,67,0,0
+QUERY,sanpancho:guard-success,7,74,10,3,26,70,0,0
+SELECT,sanpancho:inmate-policy,8,0
+QUERY,sanpancho:inmate-policy,0,21,0,0,25,48,1,0
+QUERY,sanpancho:inmate-policy,1,68,1,1,58,51,1,0
+QUERY,sanpancho:inmate-policy,2,26,3,2,61,54,1,0
+QUERY,sanpancho:inmate-policy,3,76,4,3,19,58,1,0
+QUERY,sanpancho:inmate-policy,4,31,6,0,27,61,1,0
+QUERY,sanpancho:inmate-policy,5,76,7,1,62,64,1,0
+QUERY,sanpancho:inmate-policy,6,29,9,2,42,67,1,0
+QUERY,sanpancho:inmate-policy,7,74,10,3,26,70,1,0
+SELECT,irongate:guard-failure,8,0
+QUERY,irongate:guard-failure,0,51,6,1,92,51,0,0
+QUERY,irongate:guard-failure,1,83,55,3,54,54,0,0
+QUERY,irongate:guard-failure,2,94,57,0,70,58,0,0
+QUERY,irongate:guard-failure,3,58,6,0,27,38,0,0
+QUERY,irongate:guard-failure,4,61,8,1,22,42,0,0
+QUERY,irongate:guard-failure,5,22,11,2,26,46,0,0
+QUERY,irongate:guard-failure,6,47,13,3,95,49,0,0
+QUERY,irongate:guard-failure,7,62,20,2,60,61,0,0
+SELECT,irongate:guard-success,8,0
+QUERY,irongate:guard-success,0,57,2,0,48,48,0,0
+QUERY,irongate:guard-success,1,56,8,2,86,55,0,0
+QUERY,irongate:guard-success,2,17,11,3,73,59,0,0
+QUERY,irongate:guard-success,3,42,13,0,84,63,0,0
+QUERY,irongate:guard-success,4,8,16,1,54,67,0,0
+QUERY,irongate:guard-success,5,11,18,2,36,71,0,0
+QUERY,irongate:guard-success,6,57,20,3,53,75,0,0
+QUERY,irongate:guard-success,7,67,22,0,31,79,0,0
+SELECT,irongate:inmate-policy,8,0
+QUERY,irongate:inmate-policy,0,57,2,0,48,48,1,0
+QUERY,irongate:inmate-policy,1,51,6,1,92,51,1,0
+QUERY,irongate:inmate-policy,2,56,8,2,86,55,1,0
+QUERY,irongate:inmate-policy,3,17,11,3,73,59,1,0
+QUERY,irongate:inmate-policy,4,42,13,0,84,63,1,0
+QUERY,irongate:inmate-policy,5,8,16,1,54,67,1,0
+QUERY,irongate:inmate-policy,6,11,18,2,36,71,1,0
+QUERY,irongate:inmate-policy,7,57,20,3,53,75,1,0
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/fallback/verified FallbackBench time perks:guard-failure 12 150
+RESULT,fallback,perks:guard-failure,heap-original,0,0,1,8,826,-1807454463
+RESULT,fallback,perks:guard-failure,heap-once,0,1,1,8,326,-1807454463
+RESULT,fallback,perks:guard-failure,core-original,0,2,1,8,659,-1807454463
+RESULT,fallback,perks:guard-failure,core-once,0,3,1,8,300,-1807454463
+RESULT,fallback,perks:guard-failure,heap-once,1,0,1,8,314,-1807454463
+RESULT,fallback,perks:guard-failure,core-original,1,1,1,8,531,-1807454463
+RESULT,fallback,perks:guard-failure,core-once,1,2,1,8,273,-1807454463
+RESULT,fallback,perks:guard-failure,heap-original,1,3,1,8,793,-1807454463
+RESULT,fallback,perks:guard-failure,core-original,2,0,1,8,683,-1807454463
+RESULT,fallback,perks:guard-failure,core-once,2,1,1,8,324,-1807454463
+RESULT,fallback,perks:guard-failure,heap-original,2,2,1,8,631,-1807454463
+RESULT,fallback,perks:guard-failure,heap-once,2,3,1,8,365,-1807454463
+RESULT,fallback,perks:guard-failure,core-once,3,0,1,8,348,-1807454463
+RESULT,fallback,perks:guard-failure,heap-original,3,1,1,8,720,-1807454463
+RESULT,fallback,perks:guard-failure,heap-once,3,2,1,8,316,-1807454463
+RESULT,fallback,perks:guard-failure,core-original,3,3,1,8,531,-1807454463
+RESULT,fallback,perks:guard-failure,core-once,4,0,1,8,265,-1807454463
+RESULT,fallback,perks:guard-failure,core-original,4,1,1,8,530,-1807454463
+RESULT,fallback,perks:guard-failure,heap-once,4,2,1,8,314,-1807454463
+RESULT,fallback,perks:guard-failure,heap-original,4,3,1,8,636,-1807454463
+RESULT,fallback,perks:guard-failure,heap-original,5,0,1,8,628,-1807454463
+RESULT,fallback,perks:guard-failure,core-once,5,1,1,8,265,-1807454463
+RESULT,fallback,perks:guard-failure,core-original,5,2,1,8,532,-1807454463
+RESULT,fallback,perks:guard-failure,heap-once,5,3,1,8,329,-1807454463
+RESULT,fallback,perks:guard-failure,heap-once,6,0,1,8,394,-1807454463
+RESULT,fallback,perks:guard-failure,heap-original,6,1,1,8,632,-1807454463
+RESULT,fallback,perks:guard-failure,core-once,6,2,1,8,285,-1807454463
+RESULT,fallback,perks:guard-failure,core-original,6,3,1,8,540,-1807454463
+RESULT,fallback,perks:guard-failure,core-original,7,0,1,8,536,-1807454463
+RESULT,fallback,perks:guard-failure,heap-once,7,1,1,8,315,-1807454463
+RESULT,fallback,perks:guard-failure,heap-original,7,2,1,8,636,-1807454463
+RESULT,fallback,perks:guard-failure,core-once,7,3,1,8,273,-1807454463
+RESULT,fallback,perks:guard-failure,heap-original,8,0,1,8,635,-1807454463
+RESULT,fallback,perks:guard-failure,heap-once,8,1,1,8,321,-1807454463
+RESULT,fallback,perks:guard-failure,core-original,8,2,1,8,532,-1807454463
+RESULT,fallback,perks:guard-failure,core-once,8,3,1,8,266,-1807454463
+RESULT,fallback,perks:guard-failure,heap-once,9,0,1,8,317,-1807454463
+RESULT,fallback,perks:guard-failure,core-original,9,1,1,8,587,-1807454463
+RESULT,fallback,perks:guard-failure,core-once,9,2,1,8,268,-1807454463
+RESULT,fallback,perks:guard-failure,heap-original,9,3,1,8,632,-1807454463
+RESULT,fallback,perks:guard-failure,core-original,10,0,1,8,535,-1807454463
+RESULT,fallback,perks:guard-failure,core-once,10,1,1,8,276,-1807454463
+RESULT,fallback,perks:guard-failure,heap-original,10,2,1,8,788,-1807454463
+RESULT,fallback,perks:guard-failure,heap-once,10,3,1,8,378,-1807454463
+RESULT,fallback,perks:guard-failure,core-once,11,0,1,8,324,-1807454463
+RESULT,fallback,perks:guard-failure,heap-original,11,1,1,8,815,-1807454463
+RESULT,fallback,perks:guard-failure,heap-once,11,2,1,8,397,-1807454463
+RESULT,fallback,perks:guard-failure,core-original,11,3,1,8,540,-1807454463
+CALLS,perks:guard-failure,heap-original,8,16,-1807454463
+CALLS,perks:guard-failure,heap-once,8,8,-1807454463
+CALLS,perks:guard-failure,core-original,8,16,-1807454463
+CALLS,perks:guard-failure,core-once,8,8,-1807454463
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/fallback/verified FallbackBench time perks:guard-success 12 150
+RESULT,fallback,perks:guard-success,heap-original,0,0,2,16,196,-1233291796
+RESULT,fallback,perks:guard-success,heap-once,0,1,2,16,196,-1233291796
+RESULT,fallback,perks:guard-success,core-original,0,2,2,16,165,-1233291796
+RESULT,fallback,perks:guard-success,core-once,0,3,2,16,166,-1233291796
+RESULT,fallback,perks:guard-success,heap-once,1,0,2,16,195,-1233291796
+RESULT,fallback,perks:guard-success,core-original,1,1,2,16,166,-1233291796
+RESULT,fallback,perks:guard-success,core-once,1,2,2,16,165,-1233291796
+RESULT,fallback,perks:guard-success,heap-original,1,3,2,16,195,-1233291796
+RESULT,fallback,perks:guard-success,core-original,2,0,2,16,165,-1233291796
+RESULT,fallback,perks:guard-success,core-once,2,1,2,16,166,-1233291796
+RESULT,fallback,perks:guard-success,heap-original,2,2,2,16,194,-1233291796
+RESULT,fallback,perks:guard-success,heap-once,2,3,2,16,251,-1233291796
+RESULT,fallback,perks:guard-success,core-once,3,0,2,16,209,-1233291796
+RESULT,fallback,perks:guard-success,heap-original,3,1,2,16,240,-1233291796
+RESULT,fallback,perks:guard-success,heap-once,3,2,2,16,244,-1233291796
+RESULT,fallback,perks:guard-success,core-original,3,3,2,16,197,-1233291796
+RESULT,fallback,perks:guard-success,core-once,4,0,2,16,211,-1233291796
+RESULT,fallback,perks:guard-success,core-original,4,1,2,16,212,-1233291796
+RESULT,fallback,perks:guard-success,heap-once,4,2,2,16,230,-1233291796
+RESULT,fallback,perks:guard-success,heap-original,4,3,2,16,195,-1233291796
+RESULT,fallback,perks:guard-success,heap-original,5,0,2,16,248,-1233291796
+RESULT,fallback,perks:guard-success,core-once,5,1,2,16,212,-1233291796
+RESULT,fallback,perks:guard-success,core-original,5,2,2,16,211,-1233291796
+RESULT,fallback,perks:guard-success,heap-once,5,3,2,16,251,-1233291796
+RESULT,fallback,perks:guard-success,heap-once,6,0,2,16,238,-1233291796
+RESULT,fallback,perks:guard-success,heap-original,6,1,2,16,239,-1233291796
+RESULT,fallback,perks:guard-success,core-once,6,2,2,16,222,-1233291796
+RESULT,fallback,perks:guard-success,core-original,6,3,2,16,175,-1233291796
+RESULT,fallback,perks:guard-success,core-original,7,0,2,16,201,-1233291796
+RESULT,fallback,perks:guard-success,heap-once,7,1,2,16,245,-1233291796
+RESULT,fallback,perks:guard-success,heap-original,7,2,2,16,245,-1233291796
+RESULT,fallback,perks:guard-success,core-once,7,3,2,16,165,-1233291796
+RESULT,fallback,perks:guard-success,heap-original,8,0,2,16,196,-1233291796
+RESULT,fallback,perks:guard-success,heap-once,8,1,2,16,201,-1233291796
+RESULT,fallback,perks:guard-success,core-original,8,2,2,16,165,-1233291796
+RESULT,fallback,perks:guard-success,core-once,8,3,2,16,166,-1233291796
+RESULT,fallback,perks:guard-success,heap-once,9,0,2,16,195,-1233291796
+RESULT,fallback,perks:guard-success,core-original,9,1,2,16,166,-1233291796
+RESULT,fallback,perks:guard-success,core-once,9,2,2,16,166,-1233291796
+RESULT,fallback,perks:guard-success,heap-original,9,3,2,16,195,-1233291796
+RESULT,fallback,perks:guard-success,core-original,10,0,2,16,166,-1233291796
+RESULT,fallback,perks:guard-success,core-once,10,1,2,16,165,-1233291796
+RESULT,fallback,perks:guard-success,heap-original,10,2,2,16,196,-1233291796
+RESULT,fallback,perks:guard-success,heap-once,10,3,2,16,195,-1233291796
+RESULT,fallback,perks:guard-success,core-once,11,0,2,16,165,-1233291796
+RESULT,fallback,perks:guard-success,heap-original,11,1,2,16,195,-1233291796
+RESULT,fallback,perks:guard-success,heap-once,11,2,2,16,194,-1233291796
+RESULT,fallback,perks:guard-success,core-original,11,3,2,16,166,-1233291796
+CALLS,perks:guard-success,heap-original,8,8,-1233291796
+CALLS,perks:guard-success,heap-once,8,8,-1233291796
+CALLS,perks:guard-success,core-original,8,8,-1233291796
+CALLS,perks:guard-success,core-once,8,8,-1233291796
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/fallback/verified FallbackBench time perks:inmate-policy 12 150
+RESULT,fallback,perks:inmate-policy,heap-original,0,0,1,8,307,-643144150
+RESULT,fallback,perks:inmate-policy,heap-once,0,1,1,8,297,-643144150
+RESULT,fallback,perks:inmate-policy,core-original,0,2,1,8,265,-643144150
+RESULT,fallback,perks:inmate-policy,core-once,0,3,1,8,252,-643144150
+RESULT,fallback,perks:inmate-policy,heap-once,1,0,1,8,312,-643144150
+RESULT,fallback,perks:inmate-policy,core-original,1,1,1,8,257,-643144150
+RESULT,fallback,perks:inmate-policy,core-once,1,2,1,8,263,-643144150
+RESULT,fallback,perks:inmate-policy,heap-original,1,3,1,8,295,-643144150
+RESULT,fallback,perks:inmate-policy,core-original,2,0,1,8,255,-643144150
+RESULT,fallback,perks:inmate-policy,core-once,2,1,1,8,251,-643144150
+RESULT,fallback,perks:inmate-policy,heap-original,2,2,1,8,306,-643144150
+RESULT,fallback,perks:inmate-policy,heap-once,2,3,1,8,318,-643144150
+RESULT,fallback,perks:inmate-policy,core-once,3,0,1,8,266,-643144150
+RESULT,fallback,perks:inmate-policy,heap-original,3,1,1,8,312,-643144150
+RESULT,fallback,perks:inmate-policy,heap-once,3,2,1,8,303,-643144150
+RESULT,fallback,perks:inmate-policy,core-original,3,3,1,8,262,-643144150
+RESULT,fallback,perks:inmate-policy,core-once,4,0,1,8,254,-643144150
+RESULT,fallback,perks:inmate-policy,core-original,4,1,1,8,264,-643144150
+RESULT,fallback,perks:inmate-policy,heap-once,4,2,1,8,304,-643144150
+RESULT,fallback,perks:inmate-policy,heap-original,4,3,1,8,317,-643144150
+RESULT,fallback,perks:inmate-policy,heap-original,5,0,1,8,301,-643144150
+RESULT,fallback,perks:inmate-policy,core-once,5,1,1,8,256,-643144150
+RESULT,fallback,perks:inmate-policy,core-original,5,2,1,8,250,-643144150
+RESULT,fallback,perks:inmate-policy,heap-once,5,3,1,8,307,-643144150
+RESULT,fallback,perks:inmate-policy,heap-once,6,0,1,8,304,-643144150
+RESULT,fallback,perks:inmate-policy,heap-original,6,1,1,8,299,-643144150
+RESULT,fallback,perks:inmate-policy,core-once,6,2,1,8,217,-643144150
+RESULT,fallback,perks:inmate-policy,core-original,6,3,1,8,209,-643144150
+RESULT,fallback,perks:inmate-policy,core-original,7,0,1,8,262,-643144150
+RESULT,fallback,perks:inmate-policy,heap-once,7,1,1,8,298,-643144150
+RESULT,fallback,perks:inmate-policy,heap-original,7,2,1,8,304,-643144150
+RESULT,fallback,perks:inmate-policy,core-once,7,3,1,8,256,-643144150
+RESULT,fallback,perks:inmate-policy,heap-original,8,0,1,8,288,-643144150
+RESULT,fallback,perks:inmate-policy,heap-once,8,1,1,8,302,-643144150
+RESULT,fallback,perks:inmate-policy,core-original,8,2,1,8,254,-643144150
+RESULT,fallback,perks:inmate-policy,core-once,8,3,1,8,243,-643144150
+RESULT,fallback,perks:inmate-policy,heap-once,9,0,1,8,303,-643144150
+RESULT,fallback,perks:inmate-policy,core-original,9,1,1,8,261,-643144150
+RESULT,fallback,perks:inmate-policy,core-once,9,2,1,8,253,-643144150
+RESULT,fallback,perks:inmate-policy,heap-original,9,3,1,8,301,-643144150
+RESULT,fallback,perks:inmate-policy,core-original,10,0,1,8,262,-643144150
+RESULT,fallback,perks:inmate-policy,core-once,10,1,1,8,279,-643144150
+RESULT,fallback,perks:inmate-policy,heap-original,10,2,1,8,320,-643144150
+RESULT,fallback,perks:inmate-policy,heap-once,10,3,1,8,293,-643144150
+RESULT,fallback,perks:inmate-policy,core-once,11,0,1,8,226,-643144150
+RESULT,fallback,perks:inmate-policy,heap-original,11,1,1,8,322,-643144150
+RESULT,fallback,perks:inmate-policy,heap-once,11,2,1,8,313,-643144150
+RESULT,fallback,perks:inmate-policy,core-original,11,3,1,8,274,-643144150
+CALLS,perks:inmate-policy,heap-original,8,15,-643144150
+CALLS,perks:inmate-policy,heap-once,8,15,-643144150
+CALLS,perks:inmate-policy,core-original,8,15,-643144150
+CALLS,perks:inmate-policy,core-once,8,15,-643144150
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/fallback/verified FallbackBench time stalagflucht:guard-failure 12 150
+RESULT,fallback,stalagflucht:guard-failure,heap-original,0,0,1,8,576,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,heap-once,0,1,1,8,287,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,core-original,0,2,1,8,490,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,core-once,0,3,1,8,301,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,heap-once,1,0,1,8,327,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,core-original,1,1,1,8,492,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,core-once,1,2,1,8,244,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,heap-original,1,3,1,8,686,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,core-original,2,0,1,8,609,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,core-once,2,1,1,8,299,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,heap-original,2,2,1,8,721,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,heap-once,2,3,1,8,370,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,core-once,3,0,1,8,299,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,heap-original,3,1,1,8,707,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,heap-once,3,2,1,8,354,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,core-original,3,3,1,8,584,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,core-once,4,0,1,8,299,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,core-original,4,1,1,8,611,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,heap-once,4,2,1,8,350,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,heap-original,4,3,1,8,684,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,heap-original,5,0,1,8,751,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,core-once,5,1,1,8,265,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,core-original,5,2,1,8,492,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,heap-once,5,3,1,8,358,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,heap-once,6,0,1,8,361,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,heap-original,6,1,1,8,673,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,core-once,6,2,1,8,313,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,core-original,6,3,1,8,625,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,core-original,7,0,1,8,633,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,heap-once,7,1,1,8,364,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,heap-original,7,2,1,8,690,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,core-once,7,3,1,8,312,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,heap-original,8,0,1,8,650,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,heap-once,8,1,1,8,290,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,core-original,8,2,1,8,591,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,core-once,8,3,1,8,289,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,heap-once,9,0,1,8,364,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,core-original,9,1,1,8,633,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,core-once,9,2,1,8,319,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,heap-original,9,3,1,8,623,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,core-original,10,0,1,8,491,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,core-once,10,1,1,8,308,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,heap-original,10,2,1,8,711,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,heap-once,10,3,1,8,356,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,core-once,11,0,1,8,307,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,heap-original,11,1,1,8,744,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,heap-once,11,2,1,8,364,-1807454463
+RESULT,fallback,stalagflucht:guard-failure,core-original,11,3,1,8,601,-1807454463
+CALLS,stalagflucht:guard-failure,heap-original,8,16,-1807454463
+CALLS,stalagflucht:guard-failure,heap-once,8,8,-1807454463
+CALLS,stalagflucht:guard-failure,core-original,8,16,-1807454463
+CALLS,stalagflucht:guard-failure,core-once,8,8,-1807454463
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/fallback/verified FallbackBench time stalagflucht:guard-success 12 150
+RESULT,fallback,stalagflucht:guard-success,heap-original,0,0,1,8,152,-1685623281
+RESULT,fallback,stalagflucht:guard-success,heap-once,0,1,1,8,188,-1685623281
+RESULT,fallback,stalagflucht:guard-success,core-original,0,2,1,8,159,-1685623281
+RESULT,fallback,stalagflucht:guard-success,core-once,0,3,1,8,153,-1685623281
+RESULT,fallback,stalagflucht:guard-success,heap-once,1,0,1,8,188,-1685623281
+RESULT,fallback,stalagflucht:guard-success,core-original,1,1,1,8,151,-1685623281
+RESULT,fallback,stalagflucht:guard-success,core-once,1,2,1,8,159,-1685623281
+RESULT,fallback,stalagflucht:guard-success,heap-original,1,3,1,8,152,-1685623281
+RESULT,fallback,stalagflucht:guard-success,core-original,2,0,1,8,127,-1685623281
+RESULT,fallback,stalagflucht:guard-success,core-once,2,1,1,8,126,-1685623281
+RESULT,fallback,stalagflucht:guard-success,heap-original,2,2,1,8,150,-1685623281
+RESULT,fallback,stalagflucht:guard-success,heap-once,2,3,1,8,156,-1685623281
+RESULT,fallback,stalagflucht:guard-success,core-once,3,0,1,8,145,-1685623281
+RESULT,fallback,stalagflucht:guard-success,heap-original,3,1,1,8,178,-1685623281
+RESULT,fallback,stalagflucht:guard-success,heap-once,3,2,1,8,185,-1685623281
+RESULT,fallback,stalagflucht:guard-success,core-original,3,3,1,8,156,-1685623281
+RESULT,fallback,stalagflucht:guard-success,core-once,4,0,1,8,156,-1685623281
+RESULT,fallback,stalagflucht:guard-success,core-original,4,1,1,8,165,-1685623281
+RESULT,fallback,stalagflucht:guard-success,heap-once,4,2,1,8,192,-1685623281
+RESULT,fallback,stalagflucht:guard-success,heap-original,4,3,1,8,194,-1685623281
+RESULT,fallback,stalagflucht:guard-success,heap-original,5,0,1,8,194,-1685623281
+RESULT,fallback,stalagflucht:guard-success,core-once,5,1,1,8,170,-1685623281
+RESULT,fallback,stalagflucht:guard-success,core-original,5,2,1,8,162,-1685623281
+RESULT,fallback,stalagflucht:guard-success,heap-once,5,3,1,8,209,-1685623281
+RESULT,fallback,stalagflucht:guard-success,heap-once,6,0,1,8,194,-1685623281
+RESULT,fallback,stalagflucht:guard-success,heap-original,6,1,1,8,194,-1685623281
+RESULT,fallback,stalagflucht:guard-success,core-once,6,2,1,8,163,-1685623281
+RESULT,fallback,stalagflucht:guard-success,core-original,6,3,1,8,139,-1685623281
+RESULT,fallback,stalagflucht:guard-success,core-original,7,0,1,8,155,-1685623281
+RESULT,fallback,stalagflucht:guard-success,heap-once,7,1,1,8,188,-1685623281
+RESULT,fallback,stalagflucht:guard-success,heap-original,7,2,1,8,191,-1685623281
+RESULT,fallback,stalagflucht:guard-success,core-once,7,3,1,8,155,-1685623281
+RESULT,fallback,stalagflucht:guard-success,heap-original,8,0,1,8,185,-1685623281
+RESULT,fallback,stalagflucht:guard-success,heap-once,8,1,1,8,180,-1685623281
+RESULT,fallback,stalagflucht:guard-success,core-original,8,2,1,8,160,-1685623281
+RESULT,fallback,stalagflucht:guard-success,core-once,8,3,1,8,161,-1685623281
+RESULT,fallback,stalagflucht:guard-success,heap-once,9,0,1,8,190,-1685623281
+RESULT,fallback,stalagflucht:guard-success,core-original,9,1,1,8,128,-1685623281
+RESULT,fallback,stalagflucht:guard-success,core-once,9,2,1,8,127,-1685623281
+RESULT,fallback,stalagflucht:guard-success,heap-original,9,3,1,8,150,-1685623281
+RESULT,fallback,stalagflucht:guard-success,core-original,10,0,1,8,127,-1685623281
+RESULT,fallback,stalagflucht:guard-success,core-once,10,1,1,8,126,-1685623281
+RESULT,fallback,stalagflucht:guard-success,heap-original,10,2,1,8,180,-1685623281
+RESULT,fallback,stalagflucht:guard-success,heap-once,10,3,1,8,185,-1685623281
+RESULT,fallback,stalagflucht:guard-success,core-once,11,0,1,8,161,-1685623281
+RESULT,fallback,stalagflucht:guard-success,heap-original,11,1,1,8,183,-1685623281
+RESULT,fallback,stalagflucht:guard-success,heap-once,11,2,1,8,195,-1685623281
+RESULT,fallback,stalagflucht:guard-success,core-original,11,3,1,8,154,-1685623281
+CALLS,stalagflucht:guard-success,heap-original,8,8,-1685623281
+CALLS,stalagflucht:guard-success,heap-once,8,8,-1685623281
+CALLS,stalagflucht:guard-success,core-original,8,8,-1685623281
+CALLS,stalagflucht:guard-success,core-once,8,8,-1685623281
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/fallback/verified FallbackBench time stalagflucht:inmate-policy 12 150
+RESULT,fallback,stalagflucht:inmate-policy,heap-original,0,0,1,8,375,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,heap-once,0,1,1,8,349,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,core-original,0,2,1,8,333,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,core-once,0,3,1,8,321,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,heap-once,1,0,1,8,318,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,core-original,1,1,1,8,260,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,core-once,1,2,1,8,260,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,heap-original,1,3,1,8,314,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,core-original,2,0,1,8,259,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,core-once,2,1,1,8,258,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,heap-original,2,2,1,8,304,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,heap-once,2,3,1,8,303,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,core-once,3,0,1,8,256,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,heap-original,3,1,1,8,307,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,heap-once,3,2,1,8,390,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,core-original,3,3,1,8,320,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,core-once,4,0,1,8,294,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,core-original,4,1,1,8,325,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,heap-once,4,2,1,8,383,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,heap-original,4,3,1,8,370,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,heap-original,5,0,1,8,309,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,core-once,5,1,1,8,294,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,core-original,5,2,1,8,323,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,heap-once,5,3,1,8,368,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,heap-once,6,0,1,8,311,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,heap-original,6,1,1,8,362,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,core-once,6,2,1,8,257,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,core-original,6,3,1,8,279,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,core-original,7,0,1,8,260,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,heap-once,7,1,1,8,377,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,heap-original,7,2,1,8,381,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,core-once,7,3,1,8,324,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,heap-original,8,0,1,8,357,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,heap-once,8,1,1,8,380,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,core-original,8,2,1,8,257,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,core-once,8,3,1,8,268,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,heap-once,9,0,1,8,316,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,core-original,9,1,1,8,264,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,core-once,9,2,1,8,319,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,heap-original,9,3,1,8,358,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,core-original,10,0,1,8,304,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,core-once,10,1,1,8,335,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,heap-original,10,2,1,8,372,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,heap-once,10,3,1,8,399,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,core-once,11,0,1,8,327,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,heap-original,11,1,1,8,383,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,heap-once,11,2,1,8,388,1132797591
+RESULT,fallback,stalagflucht:inmate-policy,core-original,11,3,1,8,326,1132797591
+CALLS,stalagflucht:inmate-policy,heap-original,8,16,1132797591
+CALLS,stalagflucht:inmate-policy,heap-once,8,16,1132797591
+CALLS,stalagflucht:inmate-policy,core-original,8,16,1132797591
+CALLS,stalagflucht:inmate-policy,core-once,8,16,1132797591
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/fallback/verified FallbackBench time shanktonstatepen:guard-failure 12 150
+RESULT,fallback,shanktonstatepen:guard-failure,heap-original,0,0,1,8,420,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,heap-once,0,1,1,8,212,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,core-original,0,2,1,8,368,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,core-once,0,3,1,8,145,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,heap-once,1,0,1,8,169,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,core-original,1,1,1,8,354,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,core-once,1,2,1,8,146,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,heap-original,1,3,1,8,340,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,core-original,2,0,1,8,298,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,core-once,2,1,1,8,148,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,heap-original,2,2,1,8,341,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,heap-once,2,3,1,8,170,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,core-once,3,0,1,8,145,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,heap-original,3,1,1,8,342,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,heap-once,3,2,1,8,185,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,core-original,3,3,1,8,390,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,core-once,4,0,1,8,185,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,core-original,4,1,1,8,290,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,heap-once,4,2,1,8,172,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,heap-original,4,3,1,8,409,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,heap-original,5,0,1,8,437,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,core-once,5,1,1,8,166,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,core-original,5,2,1,8,298,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,heap-once,5,3,1,8,171,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,heap-once,6,0,1,8,219,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,heap-original,6,1,1,8,436,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,core-once,6,2,1,8,181,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,core-original,6,3,1,8,356,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,core-original,7,0,1,8,363,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,heap-once,7,1,1,8,215,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,heap-original,7,2,1,8,433,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,core-once,7,3,1,8,186,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,heap-original,8,0,1,8,342,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,heap-once,8,1,1,8,183,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,core-original,8,2,1,8,296,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,core-once,8,3,1,8,146,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,heap-once,9,0,1,8,175,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,core-original,9,1,1,8,291,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,core-once,9,2,1,8,187,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,heap-original,9,3,1,8,450,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,core-original,10,0,1,8,357,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,core-once,10,1,1,8,186,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,heap-original,10,2,1,8,425,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,heap-once,10,3,1,8,171,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,core-once,11,0,1,8,191,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,heap-original,11,1,1,8,429,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,heap-once,11,2,1,8,210,-1807454463
+RESULT,fallback,shanktonstatepen:guard-failure,core-original,11,3,1,8,291,-1807454463
+CALLS,shanktonstatepen:guard-failure,heap-original,8,16,-1807454463
+CALLS,shanktonstatepen:guard-failure,heap-once,8,8,-1807454463
+CALLS,shanktonstatepen:guard-failure,core-original,8,16,-1807454463
+CALLS,shanktonstatepen:guard-failure,core-once,8,8,-1807454463
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/fallback/verified FallbackBench time shanktonstatepen:guard-success 12 150
+RESULT,fallback,shanktonstatepen:guard-success,heap-original,0,0,2,16,276,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,heap-once,0,1,2,16,260,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,core-original,0,2,2,16,238,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,core-once,0,3,2,16,236,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,heap-once,1,0,2,16,268,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,core-original,1,1,2,16,192,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,core-once,1,2,2,16,186,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,heap-original,1,3,2,16,224,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,core-original,2,0,2,16,249,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,core-once,2,1,2,16,239,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,heap-original,2,2,2,16,282,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,heap-once,2,3,2,16,283,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,core-once,3,0,2,16,187,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,heap-original,3,1,2,16,219,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,heap-once,3,2,2,16,227,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,core-original,3,3,2,16,234,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,core-once,4,0,2,16,239,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,core-original,4,1,2,16,247,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,heap-once,4,2,2,16,279,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,heap-original,4,3,2,16,270,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,heap-original,5,0,2,16,271,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,core-once,5,1,2,16,202,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,core-original,5,2,2,16,185,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,heap-once,5,3,2,16,217,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,heap-once,6,0,2,16,218,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,heap-original,6,1,2,16,282,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,core-once,6,2,2,16,238,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,core-original,6,3,2,16,238,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,core-original,7,0,2,16,238,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,heap-once,7,1,2,16,279,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,heap-original,7,2,2,16,285,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,core-once,7,3,2,16,231,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,heap-original,8,0,2,16,217,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,heap-once,8,1,2,16,265,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,core-original,8,2,2,16,224,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,core-once,8,3,2,16,242,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,heap-once,9,0,2,16,290,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,core-original,9,1,2,16,236,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,core-once,9,2,2,16,244,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,heap-original,9,3,2,16,218,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,core-original,10,0,2,16,203,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,core-once,10,1,2,16,222,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,heap-original,10,2,2,16,252,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,heap-once,10,3,2,16,229,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,core-once,11,0,2,16,191,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,heap-original,11,1,2,16,223,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,heap-once,11,2,2,16,223,1955649556
+RESULT,fallback,shanktonstatepen:guard-success,core-original,11,3,2,16,214,1955649556
+CALLS,shanktonstatepen:guard-success,heap-original,8,8,1955649556
+CALLS,shanktonstatepen:guard-success,heap-once,8,8,1955649556
+CALLS,shanktonstatepen:guard-success,core-original,8,8,1955649556
+CALLS,shanktonstatepen:guard-success,core-once,8,8,1955649556
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/fallback/verified FallbackBench time shanktonstatepen:inmate-policy 12 150
+RESULT,fallback,shanktonstatepen:inmate-policy,heap-original,0,0,1,8,247,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,heap-once,0,1,1,8,243,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,core-original,0,2,1,8,209,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,core-once,0,3,1,8,165,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,heap-once,1,0,1,8,195,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,core-original,1,1,1,8,174,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,core-once,1,2,1,8,216,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,heap-original,1,3,1,8,250,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,core-original,2,0,1,8,207,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,core-once,2,1,1,8,204,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,heap-original,2,2,1,8,243,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,heap-once,2,3,1,8,244,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,core-once,3,0,1,8,212,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,heap-original,3,1,1,8,241,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,heap-once,3,2,1,8,241,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,core-original,3,3,1,8,218,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,core-once,4,0,1,8,168,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,core-original,4,1,1,8,236,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,heap-once,4,2,1,8,255,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,heap-original,4,3,1,8,233,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,heap-original,5,0,1,8,254,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,core-once,5,1,1,8,203,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,core-original,5,2,1,8,211,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,heap-once,5,3,1,8,251,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,heap-once,6,0,1,8,209,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,heap-original,6,1,1,8,243,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,core-once,6,2,1,8,207,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,core-original,6,3,1,8,211,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,core-original,7,0,1,8,172,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,heap-once,7,1,1,8,204,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,heap-original,7,2,1,8,193,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,core-once,7,3,1,8,165,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,heap-original,8,0,1,8,192,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,heap-once,8,1,1,8,193,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,core-original,8,2,1,8,166,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,core-once,8,3,1,8,167,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,heap-once,9,0,1,8,194,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,core-original,9,1,1,8,166,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,core-once,9,2,1,8,165,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,heap-original,9,3,1,8,252,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,core-original,10,0,1,8,201,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,core-once,10,1,1,8,213,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,heap-original,10,2,1,8,215,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,heap-once,10,3,1,8,194,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,core-once,11,0,1,8,174,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,heap-original,11,1,1,8,193,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,heap-once,11,2,1,8,193,-1894281232
+RESULT,fallback,shanktonstatepen:inmate-policy,core-original,11,3,1,8,164,-1894281232
+CALLS,shanktonstatepen:inmate-policy,heap-original,8,15,-1894281232
+CALLS,shanktonstatepen:inmate-policy,heap-once,8,15,-1894281232
+CALLS,shanktonstatepen:inmate-policy,core-original,8,15,-1894281232
+CALLS,shanktonstatepen:inmate-policy,core-once,8,15,-1894281232
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/fallback/verified FallbackBench time jungle:guard-failure 12 150
+RESULT,fallback,jungle:guard-failure,heap-original,0,0,1,8,367,-1807454463
+RESULT,fallback,jungle:guard-failure,heap-once,0,1,1,8,148,-1807454463
+RESULT,fallback,jungle:guard-failure,core-original,0,2,1,8,252,-1807454463
+RESULT,fallback,jungle:guard-failure,core-once,0,3,2,16,321,-1807454463
+RESULT,fallback,jungle:guard-failure,heap-once,1,0,1,8,177,-1807454463
+RESULT,fallback,jungle:guard-failure,core-original,1,1,1,8,303,-1807454463
+RESULT,fallback,jungle:guard-failure,core-once,1,2,2,16,320,-1807454463
+RESULT,fallback,jungle:guard-failure,heap-original,1,3,1,8,379,-1807454463
+RESULT,fallback,jungle:guard-failure,core-original,2,0,1,8,323,-1807454463
+RESULT,fallback,jungle:guard-failure,core-once,2,1,2,16,325,-1807454463
+RESULT,fallback,jungle:guard-failure,heap-original,2,2,1,8,369,-1807454463
+RESULT,fallback,jungle:guard-failure,heap-once,2,3,1,8,186,-1807454463
+RESULT,fallback,jungle:guard-failure,core-once,3,0,2,16,308,-1807454463
+RESULT,fallback,jungle:guard-failure,heap-original,3,1,1,8,361,-1807454463
+RESULT,fallback,jungle:guard-failure,heap-once,3,2,1,8,152,-1807454463
+RESULT,fallback,jungle:guard-failure,core-original,3,3,1,8,318,-1807454463
+RESULT,fallback,jungle:guard-failure,core-once,4,0,2,16,317,-1807454463
+RESULT,fallback,jungle:guard-failure,core-original,4,1,1,8,317,-1807454463
+RESULT,fallback,jungle:guard-failure,heap-once,4,2,1,8,180,-1807454463
+RESULT,fallback,jungle:guard-failure,heap-original,4,3,1,8,299,-1807454463
+RESULT,fallback,jungle:guard-failure,heap-original,5,0,1,8,389,-1807454463
+RESULT,fallback,jungle:guard-failure,core-once,5,1,2,16,293,-1807454463
+RESULT,fallback,jungle:guard-failure,core-original,5,2,1,8,264,-1807454463
+RESULT,fallback,jungle:guard-failure,heap-once,5,3,1,8,153,-1807454463
+RESULT,fallback,jungle:guard-failure,heap-once,6,0,1,8,168,-1807454463
+RESULT,fallback,jungle:guard-failure,heap-original,6,1,1,8,359,-1807454463
+RESULT,fallback,jungle:guard-failure,core-once,6,2,2,16,268,-1807454463
+RESULT,fallback,jungle:guard-failure,core-original,6,3,1,8,299,-1807454463
+RESULT,fallback,jungle:guard-failure,core-original,7,0,1,8,300,-1807454463
+RESULT,fallback,jungle:guard-failure,heap-once,7,1,1,8,183,-1807454463
+RESULT,fallback,jungle:guard-failure,heap-original,7,2,1,8,297,-1807454463
+RESULT,fallback,jungle:guard-failure,core-once,7,3,2,16,258,-1807454463
+RESULT,fallback,jungle:guard-failure,heap-original,8,0,1,8,368,-1807454463
+RESULT,fallback,jungle:guard-failure,heap-once,8,1,1,8,192,-1807454463
+RESULT,fallback,jungle:guard-failure,core-original,8,2,1,8,316,-1807454463
+RESULT,fallback,jungle:guard-failure,core-once,8,3,2,16,329,-1807454463
+RESULT,fallback,jungle:guard-failure,heap-once,9,0,1,8,188,-1807454463
+RESULT,fallback,jungle:guard-failure,core-original,9,1,1,8,325,-1807454463
+RESULT,fallback,jungle:guard-failure,core-once,9,2,2,16,310,-1807454463
+RESULT,fallback,jungle:guard-failure,heap-original,9,3,1,8,374,-1807454463
+RESULT,fallback,jungle:guard-failure,core-original,10,0,1,8,325,-1807454463
+RESULT,fallback,jungle:guard-failure,core-once,10,1,2,16,319,-1807454463
+RESULT,fallback,jungle:guard-failure,heap-original,10,2,1,8,378,-1807454463
+RESULT,fallback,jungle:guard-failure,heap-once,10,3,1,8,183,-1807454463
+RESULT,fallback,jungle:guard-failure,core-once,11,0,2,16,316,-1807454463
+RESULT,fallback,jungle:guard-failure,heap-original,11,1,1,8,375,-1807454463
+RESULT,fallback,jungle:guard-failure,heap-once,11,2,1,8,188,-1807454463
+RESULT,fallback,jungle:guard-failure,core-original,11,3,1,8,321,-1807454463
+CALLS,jungle:guard-failure,heap-original,8,16,-1807454463
+CALLS,jungle:guard-failure,heap-once,8,8,-1807454463
+CALLS,jungle:guard-failure,core-original,8,16,-1807454463
+CALLS,jungle:guard-failure,core-once,8,8,-1807454463
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/fallback/verified FallbackBench time jungle:guard-success 12 150
+RESULT,fallback,jungle:guard-success,heap-original,0,0,4,32,230,1831387430
+RESULT,fallback,jungle:guard-success,heap-once,0,1,4,32,229,1831387430
+RESULT,fallback,jungle:guard-success,core-original,0,2,4,32,195,1831387430
+RESULT,fallback,jungle:guard-success,core-once,0,3,4,32,198,1831387430
+RESULT,fallback,jungle:guard-success,heap-once,1,0,4,32,250,1831387430
+RESULT,fallback,jungle:guard-success,core-original,1,1,4,32,193,1831387430
+RESULT,fallback,jungle:guard-success,core-once,1,2,4,32,191,1831387430
+RESULT,fallback,jungle:guard-success,heap-original,1,3,4,32,233,1831387430
+RESULT,fallback,jungle:guard-success,core-original,2,0,4,32,245,1831387430
+RESULT,fallback,jungle:guard-success,core-once,2,1,4,32,244,1831387430
+RESULT,fallback,jungle:guard-success,heap-original,2,2,4,32,291,1831387430
+RESULT,fallback,jungle:guard-success,heap-once,2,3,4,32,288,1831387430
+RESULT,fallback,jungle:guard-success,core-once,3,0,4,32,246,1831387430
+RESULT,fallback,jungle:guard-success,heap-original,3,1,4,32,305,1831387430
+RESULT,fallback,jungle:guard-success,heap-once,3,2,4,32,312,1831387430
+RESULT,fallback,jungle:guard-success,core-original,3,3,4,32,249,1831387430
+RESULT,fallback,jungle:guard-success,core-once,4,0,4,32,243,1831387430
+RESULT,fallback,jungle:guard-success,core-original,4,1,4,32,240,1831387430
+RESULT,fallback,jungle:guard-success,heap-once,4,2,4,32,296,1831387430
+RESULT,fallback,jungle:guard-success,heap-original,4,3,4,32,296,1831387430
+RESULT,fallback,jungle:guard-success,heap-original,5,0,4,32,289,1831387430
+RESULT,fallback,jungle:guard-success,core-once,5,1,4,32,253,1831387430
+RESULT,fallback,jungle:guard-success,core-original,5,2,4,32,218,1831387430
+RESULT,fallback,jungle:guard-success,heap-once,5,3,4,32,247,1831387430
+RESULT,fallback,jungle:guard-success,heap-once,6,0,4,32,296,1831387430
+RESULT,fallback,jungle:guard-success,heap-original,6,1,4,32,305,1831387430
+RESULT,fallback,jungle:guard-success,core-once,6,2,4,32,242,1831387430
+RESULT,fallback,jungle:guard-success,core-original,6,3,4,32,245,1831387430
+RESULT,fallback,jungle:guard-success,core-original,7,0,4,32,246,1831387430
+RESULT,fallback,jungle:guard-success,heap-once,7,1,4,32,293,1831387430
+RESULT,fallback,jungle:guard-success,heap-original,7,2,4,32,229,1831387430
+RESULT,fallback,jungle:guard-success,core-once,7,3,4,32,191,1831387430
+RESULT,fallback,jungle:guard-success,heap-original,8,0,4,32,229,1831387430
+RESULT,fallback,jungle:guard-success,heap-once,8,1,4,32,230,1831387430
+RESULT,fallback,jungle:guard-success,core-original,8,2,4,32,196,1831387430
+RESULT,fallback,jungle:guard-success,core-once,8,3,4,32,245,1831387430
+RESULT,fallback,jungle:guard-success,heap-once,9,0,4,32,286,1831387430
+RESULT,fallback,jungle:guard-success,core-original,9,1,4,32,242,1831387430
+RESULT,fallback,jungle:guard-success,core-once,9,2,4,32,191,1831387430
+RESULT,fallback,jungle:guard-success,heap-original,9,3,4,32,229,1831387430
+RESULT,fallback,jungle:guard-success,core-original,10,0,4,32,192,1831387430
+RESULT,fallback,jungle:guard-success,core-once,10,1,4,32,196,1831387430
+RESULT,fallback,jungle:guard-success,heap-original,10,2,4,32,235,1831387430
+RESULT,fallback,jungle:guard-success,heap-once,10,3,4,32,231,1831387430
+RESULT,fallback,jungle:guard-success,core-once,11,0,4,32,194,1831387430
+RESULT,fallback,jungle:guard-success,heap-original,11,1,4,32,230,1831387430
+RESULT,fallback,jungle:guard-success,heap-once,11,2,4,32,237,1831387430
+RESULT,fallback,jungle:guard-success,core-original,11,3,4,32,192,1831387430
+CALLS,jungle:guard-success,heap-original,8,8,1831387430
+CALLS,jungle:guard-success,heap-once,8,8,1831387430
+CALLS,jungle:guard-success,core-original,8,8,1831387430
+CALLS,jungle:guard-success,core-once,8,8,1831387430
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/fallback/verified FallbackBench time jungle:inmate-policy 12 150
+RESULT,fallback,jungle:inmate-policy,heap-original,0,0,1,8,164,1605198345
+RESULT,fallback,jungle:inmate-policy,heap-once,0,1,1,8,160,1605198345
+RESULT,fallback,jungle:inmate-policy,core-original,0,2,1,8,141,1605198345
+RESULT,fallback,jungle:inmate-policy,core-once,0,3,1,8,133,1605198345
+RESULT,fallback,jungle:inmate-policy,heap-once,1,0,1,8,157,1605198345
+RESULT,fallback,jungle:inmate-policy,core-original,1,1,1,8,133,1605198345
+RESULT,fallback,jungle:inmate-policy,core-once,1,2,1,8,159,1605198345
+RESULT,fallback,jungle:inmate-policy,heap-original,1,3,1,8,191,1605198345
+RESULT,fallback,jungle:inmate-policy,core-original,2,0,1,8,170,1605198345
+RESULT,fallback,jungle:inmate-policy,core-once,2,1,1,8,171,1605198345
+RESULT,fallback,jungle:inmate-policy,heap-original,2,2,1,8,209,1605198345
+RESULT,fallback,jungle:inmate-policy,heap-once,2,3,1,8,196,1605198345
+RESULT,fallback,jungle:inmate-policy,core-once,3,0,1,8,133,1605198345
+RESULT,fallback,jungle:inmate-policy,heap-original,3,1,1,8,160,1605198345
+RESULT,fallback,jungle:inmate-policy,heap-once,3,2,1,8,204,1605198345
+RESULT,fallback,jungle:inmate-policy,core-original,3,3,1,8,172,1605198345
+RESULT,fallback,jungle:inmate-policy,core-once,4,0,1,8,133,1605198345
+RESULT,fallback,jungle:inmate-policy,core-original,4,1,1,8,173,1605198345
+RESULT,fallback,jungle:inmate-policy,heap-once,4,2,1,8,159,1605198345
+RESULT,fallback,jungle:inmate-policy,heap-original,4,3,1,8,161,1605198345
+RESULT,fallback,jungle:inmate-policy,heap-original,5,0,1,8,157,1605198345
+RESULT,fallback,jungle:inmate-policy,core-once,5,1,1,8,139,1605198345
+RESULT,fallback,jungle:inmate-policy,core-original,5,2,1,8,133,1605198345
+RESULT,fallback,jungle:inmate-policy,heap-once,5,3,1,8,157,1605198345
+RESULT,fallback,jungle:inmate-policy,heap-once,6,0,1,8,191,1605198345
+RESULT,fallback,jungle:inmate-policy,heap-original,6,1,1,8,196,1605198345
+RESULT,fallback,jungle:inmate-policy,core-once,6,2,1,8,162,1605198345
+RESULT,fallback,jungle:inmate-policy,core-original,6,3,1,8,170,1605198345
+RESULT,fallback,jungle:inmate-policy,core-original,7,0,1,8,167,1605198345
+RESULT,fallback,jungle:inmate-policy,heap-once,7,1,1,8,202,1605198345
+RESULT,fallback,jungle:inmate-policy,heap-original,7,2,1,8,195,1605198345
+RESULT,fallback,jungle:inmate-policy,core-once,7,3,1,8,176,1605198345
+RESULT,fallback,jungle:inmate-policy,heap-original,8,0,1,8,203,1605198345
+RESULT,fallback,jungle:inmate-policy,heap-once,8,1,1,8,156,1605198345
+RESULT,fallback,jungle:inmate-policy,core-original,8,2,1,8,137,1605198345
+RESULT,fallback,jungle:inmate-policy,core-once,8,3,1,8,137,1605198345
+RESULT,fallback,jungle:inmate-policy,heap-once,9,0,1,8,156,1605198345
+RESULT,fallback,jungle:inmate-policy,core-original,9,1,1,8,149,1605198345
+RESULT,fallback,jungle:inmate-policy,core-once,9,2,1,8,138,1605198345
+RESULT,fallback,jungle:inmate-policy,heap-original,9,3,1,8,189,1605198345
+RESULT,fallback,jungle:inmate-policy,core-original,10,0,1,8,135,1605198345
+RESULT,fallback,jungle:inmate-policy,core-once,10,1,1,8,134,1605198345
+RESULT,fallback,jungle:inmate-policy,heap-original,10,2,1,8,162,1605198345
+RESULT,fallback,jungle:inmate-policy,heap-once,10,3,1,8,163,1605198345
+RESULT,fallback,jungle:inmate-policy,core-once,11,0,1,8,165,1605198345
+RESULT,fallback,jungle:inmate-policy,heap-original,11,1,1,8,172,1605198345
+RESULT,fallback,jungle:inmate-policy,heap-once,11,2,1,8,158,1605198345
+RESULT,fallback,jungle:inmate-policy,core-original,11,3,1,8,134,1605198345
+CALLS,jungle:inmate-policy,heap-original,8,13,1605198345
+CALLS,jungle:inmate-policy,heap-once,8,13,1605198345
+CALLS,jungle:inmate-policy,core-original,8,13,1605198345
+CALLS,jungle:inmate-policy,core-once,8,13,1605198345
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/fallback/verified FallbackBench time sanpancho:guard-failure 12 150
+RESULT,fallback,sanpancho:guard-failure,heap-original,0,0,1,8,890,-1807454463
+RESULT,fallback,sanpancho:guard-failure,heap-once,0,1,1,8,370,-1807454463
+RESULT,fallback,sanpancho:guard-failure,core-original,0,2,1,8,609,-1807454463
+RESULT,fallback,sanpancho:guard-failure,core-once,0,3,1,8,307,-1807454463
+RESULT,fallback,sanpancho:guard-failure,heap-once,1,0,1,8,381,-1807454463
+RESULT,fallback,sanpancho:guard-failure,core-original,1,1,1,8,755,-1807454463
+RESULT,fallback,sanpancho:guard-failure,core-once,1,2,1,8,313,-1807454463
+RESULT,fallback,sanpancho:guard-failure,heap-original,1,3,1,8,884,-1807454463
+RESULT,fallback,sanpancho:guard-failure,core-original,2,0,1,8,701,-1807454463
+RESULT,fallback,sanpancho:guard-failure,core-once,2,1,1,8,344,-1807454463
+RESULT,fallback,sanpancho:guard-failure,heap-original,2,2,1,8,878,-1807454463
+RESULT,fallback,sanpancho:guard-failure,heap-once,2,3,1,8,387,-1807454463
+RESULT,fallback,sanpancho:guard-failure,core-once,3,0,1,8,316,-1807454463
+RESULT,fallback,sanpancho:guard-failure,heap-original,3,1,1,8,935,-1807454463
+RESULT,fallback,sanpancho:guard-failure,heap-once,3,2,1,8,439,-1807454463
+RESULT,fallback,sanpancho:guard-failure,core-original,3,3,1,8,615,-1807454463
+RESULT,fallback,sanpancho:guard-failure,core-once,4,0,1,8,313,-1807454463
+RESULT,fallback,sanpancho:guard-failure,core-original,4,1,1,8,635,-1807454463
+RESULT,fallback,sanpancho:guard-failure,heap-once,4,2,1,8,461,-1807454463
+RESULT,fallback,sanpancho:guard-failure,heap-original,4,3,1,8,908,-1807454463
+RESULT,fallback,sanpancho:guard-failure,heap-original,5,0,1,8,920,-1807454463
+RESULT,fallback,sanpancho:guard-failure,core-once,5,1,1,8,380,-1807454463
+RESULT,fallback,sanpancho:guard-failure,core-original,5,2,1,8,678,-1807454463
+RESULT,fallback,sanpancho:guard-failure,heap-once,5,3,1,8,465,-1807454463
+RESULT,fallback,sanpancho:guard-failure,heap-once,6,0,1,8,428,-1807454463
+RESULT,fallback,sanpancho:guard-failure,heap-original,6,1,1,8,882,-1807454463
+RESULT,fallback,sanpancho:guard-failure,core-once,6,2,1,8,387,-1807454463
+RESULT,fallback,sanpancho:guard-failure,core-original,6,3,1,8,767,-1807454463
+RESULT,fallback,sanpancho:guard-failure,core-original,7,0,1,8,796,-1807454463
+RESULT,fallback,sanpancho:guard-failure,heap-once,7,1,1,8,454,-1807454463
+RESULT,fallback,sanpancho:guard-failure,heap-original,7,2,1,8,737,-1807454463
+RESULT,fallback,sanpancho:guard-failure,core-once,7,3,1,8,307,-1807454463
+RESULT,fallback,sanpancho:guard-failure,heap-original,8,0,1,8,725,-1807454463
+RESULT,fallback,sanpancho:guard-failure,heap-once,8,1,1,8,466,-1807454463
+RESULT,fallback,sanpancho:guard-failure,core-original,8,2,1,8,753,-1807454463
+RESULT,fallback,sanpancho:guard-failure,core-once,8,3,1,8,364,-1807454463
+RESULT,fallback,sanpancho:guard-failure,heap-once,9,0,1,8,359,-1807454463
+RESULT,fallback,sanpancho:guard-failure,core-original,9,1,1,8,604,-1807454463
+RESULT,fallback,sanpancho:guard-failure,core-once,9,2,1,8,302,-1807454463
+RESULT,fallback,sanpancho:guard-failure,heap-original,9,3,1,8,932,-1807454463
+RESULT,fallback,sanpancho:guard-failure,core-original,10,0,1,8,770,-1807454463
+RESULT,fallback,sanpancho:guard-failure,core-once,10,1,1,8,308,-1807454463
+RESULT,fallback,sanpancho:guard-failure,heap-original,10,2,1,8,937,-1807454463
+RESULT,fallback,sanpancho:guard-failure,heap-once,10,3,1,8,473,-1807454463
+RESULT,fallback,sanpancho:guard-failure,core-once,11,0,1,8,315,-1807454463
+RESULT,fallback,sanpancho:guard-failure,heap-original,11,1,1,8,916,-1807454463
+RESULT,fallback,sanpancho:guard-failure,heap-once,11,2,1,8,469,-1807454463
+RESULT,fallback,sanpancho:guard-failure,core-original,11,3,1,8,610,-1807454463
+CALLS,sanpancho:guard-failure,heap-original,8,16,-1807454463
+CALLS,sanpancho:guard-failure,heap-once,8,8,-1807454463
+CALLS,sanpancho:guard-failure,core-original,8,16,-1807454463
+CALLS,sanpancho:guard-failure,core-once,8,8,-1807454463
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/fallback/verified FallbackBench time sanpancho:guard-success 12 150
+RESULT,fallback,sanpancho:guard-success,heap-original,0,0,1,8,122,153978140
+RESULT,fallback,sanpancho:guard-success,heap-once,0,1,1,8,143,153978140
+RESULT,fallback,sanpancho:guard-success,core-original,0,2,2,16,261,153978140
+RESULT,fallback,sanpancho:guard-success,core-once,0,3,2,16,253,153978140
+RESULT,fallback,sanpancho:guard-success,heap-once,1,0,1,8,161,153978140
+RESULT,fallback,sanpancho:guard-success,core-original,1,1,2,16,261,153978140
+RESULT,fallback,sanpancho:guard-success,core-once,1,2,2,16,260,153978140
+RESULT,fallback,sanpancho:guard-success,heap-original,1,3,1,8,121,153978140
+RESULT,fallback,sanpancho:guard-success,core-original,2,0,2,16,211,153978140
+RESULT,fallback,sanpancho:guard-success,core-once,2,1,2,16,203,153978140
+RESULT,fallback,sanpancho:guard-success,heap-original,2,2,1,8,131,153978140
+RESULT,fallback,sanpancho:guard-success,heap-once,2,3,1,8,149,153978140
+RESULT,fallback,sanpancho:guard-success,core-once,3,0,2,16,212,153978140
+RESULT,fallback,sanpancho:guard-success,heap-original,3,1,1,8,134,153978140
+RESULT,fallback,sanpancho:guard-success,heap-once,3,2,1,8,128,153978140
+RESULT,fallback,sanpancho:guard-success,core-original,3,3,2,16,213,153978140
+RESULT,fallback,sanpancho:guard-success,core-once,4,0,2,16,208,153978140
+RESULT,fallback,sanpancho:guard-success,core-original,4,1,2,16,211,153978140
+RESULT,fallback,sanpancho:guard-success,heap-once,4,2,1,8,151,153978140
+RESULT,fallback,sanpancho:guard-success,heap-original,4,3,1,8,123,153978140
+RESULT,fallback,sanpancho:guard-success,heap-original,5,0,1,8,122,153978140
+RESULT,fallback,sanpancho:guard-success,core-once,5,1,2,16,214,153978140
+RESULT,fallback,sanpancho:guard-success,core-original,5,2,2,16,210,153978140
+RESULT,fallback,sanpancho:guard-success,heap-once,5,3,1,8,123,153978140
+RESULT,fallback,sanpancho:guard-success,heap-once,6,0,1,8,126,153978140
+RESULT,fallback,sanpancho:guard-success,heap-original,6,1,1,8,124,153978140
+RESULT,fallback,sanpancho:guard-success,core-once,6,2,2,16,202,153978140
+RESULT,fallback,sanpancho:guard-success,core-original,6,3,2,16,203,153978140
+RESULT,fallback,sanpancho:guard-success,core-original,7,0,2,16,205,153978140
+RESULT,fallback,sanpancho:guard-success,heap-once,7,1,1,8,125,153978140
+RESULT,fallback,sanpancho:guard-success,heap-original,7,2,1,8,130,153978140
+RESULT,fallback,sanpancho:guard-success,core-once,7,3,2,16,208,153978140
+RESULT,fallback,sanpancho:guard-success,heap-original,8,0,1,8,121,153978140
+RESULT,fallback,sanpancho:guard-success,heap-once,8,1,1,8,120,153978140
+RESULT,fallback,sanpancho:guard-success,core-original,8,2,2,16,202,153978140
+RESULT,fallback,sanpancho:guard-success,core-once,8,3,2,16,241,153978140
+RESULT,fallback,sanpancho:guard-success,heap-once,9,0,1,8,154,153978140
+RESULT,fallback,sanpancho:guard-success,core-original,9,1,2,16,203,153978140
+RESULT,fallback,sanpancho:guard-success,core-once,9,2,2,16,203,153978140
+RESULT,fallback,sanpancho:guard-success,heap-original,9,3,1,8,120,153978140
+RESULT,fallback,sanpancho:guard-success,core-original,10,0,2,16,251,153978140
+RESULT,fallback,sanpancho:guard-success,core-once,10,1,2,16,203,153978140
+RESULT,fallback,sanpancho:guard-success,heap-original,10,2,1,8,155,153978140
+RESULT,fallback,sanpancho:guard-success,heap-once,10,3,1,8,144,153978140
+RESULT,fallback,sanpancho:guard-success,core-once,11,0,2,16,290,153978140
+RESULT,fallback,sanpancho:guard-success,heap-original,11,1,1,8,147,153978140
+RESULT,fallback,sanpancho:guard-success,heap-once,11,2,1,8,155,153978140
+RESULT,fallback,sanpancho:guard-success,core-original,11,3,2,16,225,153978140
+CALLS,sanpancho:guard-success,heap-original,8,8,153978140
+CALLS,sanpancho:guard-success,heap-once,8,8,153978140
+CALLS,sanpancho:guard-success,core-original,8,8,153978140
+CALLS,sanpancho:guard-success,core-once,8,8,153978140
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/fallback/verified FallbackBench time sanpancho:inmate-policy 12 150
+RESULT,fallback,sanpancho:inmate-policy,heap-original,0,0,1,8,280,153978140
+RESULT,fallback,sanpancho:inmate-policy,heap-once,0,1,1,8,301,153978140
+RESULT,fallback,sanpancho:inmate-policy,core-original,0,2,1,8,300,153978140
+RESULT,fallback,sanpancho:inmate-policy,core-once,0,3,1,8,250,153978140
+RESULT,fallback,sanpancho:inmate-policy,heap-once,1,0,1,8,347,153978140
+RESULT,fallback,sanpancho:inmate-policy,core-original,1,1,1,8,290,153978140
+RESULT,fallback,sanpancho:inmate-policy,core-once,1,2,1,8,300,153978140
+RESULT,fallback,sanpancho:inmate-policy,heap-original,1,3,1,8,280,153978140
+RESULT,fallback,sanpancho:inmate-policy,core-original,2,0,1,8,284,153978140
+RESULT,fallback,sanpancho:inmate-policy,core-once,2,1,1,8,265,153978140
+RESULT,fallback,sanpancho:inmate-policy,heap-original,2,2,1,8,362,153978140
+RESULT,fallback,sanpancho:inmate-policy,heap-once,2,3,1,8,368,153978140
+RESULT,fallback,sanpancho:inmate-policy,core-once,3,0,1,8,316,153978140
+RESULT,fallback,sanpancho:inmate-policy,heap-original,3,1,1,8,362,153978140
+RESULT,fallback,sanpancho:inmate-policy,heap-once,3,2,1,8,293,153978140
+RESULT,fallback,sanpancho:inmate-policy,core-original,3,3,1,8,301,153978140
+RESULT,fallback,sanpancho:inmate-policy,core-once,4,0,1,8,300,153978140
+RESULT,fallback,sanpancho:inmate-policy,core-original,4,1,1,8,268,153978140
+RESULT,fallback,sanpancho:inmate-policy,heap-once,4,2,1,8,285,153978140
+RESULT,fallback,sanpancho:inmate-policy,heap-original,4,3,1,8,288,153978140
+RESULT,fallback,sanpancho:inmate-policy,heap-original,5,0,1,8,289,153978140
+RESULT,fallback,sanpancho:inmate-policy,core-once,5,1,1,8,233,153978140
+RESULT,fallback,sanpancho:inmate-policy,core-original,5,2,1,8,233,153978140
+RESULT,fallback,sanpancho:inmate-policy,heap-once,5,3,1,8,359,153978140
+RESULT,fallback,sanpancho:inmate-policy,heap-once,6,0,1,8,339,153978140
+RESULT,fallback,sanpancho:inmate-policy,heap-original,6,1,1,8,351,153978140
+RESULT,fallback,sanpancho:inmate-policy,core-once,6,2,1,8,286,153978140
+RESULT,fallback,sanpancho:inmate-policy,core-original,6,3,1,8,234,153978140
+RESULT,fallback,sanpancho:inmate-policy,core-original,7,0,1,8,233,153978140
+RESULT,fallback,sanpancho:inmate-policy,heap-once,7,1,1,8,279,153978140
+RESULT,fallback,sanpancho:inmate-policy,heap-original,7,2,1,8,295,153978140
+RESULT,fallback,sanpancho:inmate-policy,core-once,7,3,1,8,291,153978140
+RESULT,fallback,sanpancho:inmate-policy,heap-original,8,0,1,8,347,153978140
+RESULT,fallback,sanpancho:inmate-policy,heap-once,8,1,1,8,366,153978140
+RESULT,fallback,sanpancho:inmate-policy,core-original,8,2,1,8,296,153978140
+RESULT,fallback,sanpancho:inmate-policy,core-once,8,3,1,8,291,153978140
+RESULT,fallback,sanpancho:inmate-policy,heap-once,9,0,1,8,352,153978140
+RESULT,fallback,sanpancho:inmate-policy,core-original,9,1,1,8,287,153978140
+RESULT,fallback,sanpancho:inmate-policy,core-once,9,2,1,8,291,153978140
+RESULT,fallback,sanpancho:inmate-policy,heap-original,9,3,1,8,276,153978140
+RESULT,fallback,sanpancho:inmate-policy,core-original,10,0,1,8,233,153978140
+RESULT,fallback,sanpancho:inmate-policy,core-once,10,1,1,8,235,153978140
+RESULT,fallback,sanpancho:inmate-policy,heap-original,10,2,1,8,355,153978140
+RESULT,fallback,sanpancho:inmate-policy,heap-once,10,3,1,8,356,153978140
+RESULT,fallback,sanpancho:inmate-policy,core-once,11,0,1,8,313,153978140
+RESULT,fallback,sanpancho:inmate-policy,heap-original,11,1,1,8,366,153978140
+RESULT,fallback,sanpancho:inmate-policy,heap-once,11,2,1,8,339,153978140
+RESULT,fallback,sanpancho:inmate-policy,core-original,11,3,1,8,293,153978140
+CALLS,sanpancho:inmate-policy,heap-original,8,12,153978140
+CALLS,sanpancho:inmate-policy,heap-once,8,12,153978140
+CALLS,sanpancho:inmate-policy,core-original,8,12,153978140
+CALLS,sanpancho:inmate-policy,core-once,8,12,153978140
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/fallback/verified FallbackBench time irongate:guard-failure 12 150
+RESULT,fallback,irongate:guard-failure,heap-original,0,0,1,8,463,-1807454463
+RESULT,fallback,irongate:guard-failure,heap-once,0,1,1,8,238,-1807454463
+RESULT,fallback,irongate:guard-failure,core-original,0,2,1,8,391,-1807454463
+RESULT,fallback,irongate:guard-failure,core-once,0,3,1,8,188,-1807454463
+RESULT,fallback,irongate:guard-failure,heap-once,1,0,1,8,193,-1807454463
+RESULT,fallback,irongate:guard-failure,core-original,1,1,1,8,378,-1807454463
+RESULT,fallback,irongate:guard-failure,core-once,1,2,1,8,160,-1807454463
+RESULT,fallback,irongate:guard-failure,heap-original,1,3,1,8,490,-1807454463
+RESULT,fallback,irongate:guard-failure,core-original,2,0,1,8,362,-1807454463
+RESULT,fallback,irongate:guard-failure,core-once,2,1,1,8,208,-1807454463
+RESULT,fallback,irongate:guard-failure,heap-original,2,2,1,8,476,-1807454463
+RESULT,fallback,irongate:guard-failure,heap-once,2,3,1,8,248,-1807454463
+RESULT,fallback,irongate:guard-failure,core-once,3,0,1,8,205,-1807454463
+RESULT,fallback,irongate:guard-failure,heap-original,3,1,1,8,469,-1807454463
+RESULT,fallback,irongate:guard-failure,heap-once,3,2,1,8,237,-1807454463
+RESULT,fallback,irongate:guard-failure,core-original,3,3,1,8,547,-1807454463
+RESULT,fallback,irongate:guard-failure,core-once,4,0,1,8,181,-1807454463
+RESULT,fallback,irongate:guard-failure,core-original,4,1,1,8,408,-1807454463
+RESULT,fallback,irongate:guard-failure,heap-once,4,2,1,8,246,-1807454463
+RESULT,fallback,irongate:guard-failure,heap-original,4,3,1,8,465,-1807454463
+RESULT,fallback,irongate:guard-failure,heap-original,5,0,1,8,376,-1807454463
+RESULT,fallback,irongate:guard-failure,core-once,5,1,1,8,162,-1807454463
+RESULT,fallback,irongate:guard-failure,core-original,5,2,1,8,418,-1807454463
+RESULT,fallback,irongate:guard-failure,heap-once,5,3,1,8,188,-1807454463
+RESULT,fallback,irongate:guard-failure,heap-once,6,0,1,8,188,-1807454463
+RESULT,fallback,irongate:guard-failure,heap-original,6,1,1,8,479,-1807454463
+RESULT,fallback,irongate:guard-failure,core-once,6,2,1,8,176,-1807454463
+RESULT,fallback,irongate:guard-failure,core-original,6,3,1,8,321,-1807454463
+RESULT,fallback,irongate:guard-failure,core-original,7,0,1,8,398,-1807454463
+RESULT,fallback,irongate:guard-failure,heap-once,7,1,1,8,187,-1807454463
+RESULT,fallback,irongate:guard-failure,heap-original,7,2,1,8,486,-1807454463
+RESULT,fallback,irongate:guard-failure,core-once,7,3,1,8,202,-1807454463
+RESULT,fallback,irongate:guard-failure,heap-original,8,0,1,8,494,-1807454463
+RESULT,fallback,irongate:guard-failure,heap-once,8,1,1,8,238,-1807454463
+RESULT,fallback,irongate:guard-failure,core-original,8,2,1,8,418,-1807454463
+RESULT,fallback,irongate:guard-failure,core-once,8,3,1,8,188,-1807454463
+RESULT,fallback,irongate:guard-failure,heap-once,9,0,1,8,236,-1807454463
+RESULT,fallback,irongate:guard-failure,core-original,9,1,1,8,408,-1807454463
+RESULT,fallback,irongate:guard-failure,core-once,9,2,1,8,205,-1807454463
+RESULT,fallback,irongate:guard-failure,heap-original,9,3,1,8,469,-1807454463
+RESULT,fallback,irongate:guard-failure,core-original,10,0,1,8,409,-1807454463
+RESULT,fallback,irongate:guard-failure,core-once,10,1,1,8,199,-1807454463
+RESULT,fallback,irongate:guard-failure,heap-original,10,2,1,8,376,-1807454463
+RESULT,fallback,irongate:guard-failure,heap-once,10,3,1,8,224,-1807454463
+RESULT,fallback,irongate:guard-failure,core-once,11,0,1,8,160,-1807454463
+RESULT,fallback,irongate:guard-failure,heap-original,11,1,1,8,471,-1807454463
+RESULT,fallback,irongate:guard-failure,heap-once,11,2,1,8,229,-1807454463
+RESULT,fallback,irongate:guard-failure,core-original,11,3,1,8,403,-1807454463
+CALLS,irongate:guard-failure,heap-original,8,16,-1807454463
+CALLS,irongate:guard-failure,heap-once,8,8,-1807454463
+CALLS,irongate:guard-failure,core-original,8,16,-1807454463
+CALLS,irongate:guard-failure,core-once,8,8,-1807454463
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/fallback/verified FallbackBench time irongate:guard-success 12 150
+RESULT,fallback,irongate:guard-success,heap-original,0,0,2,16,185,766809510
+RESULT,fallback,irongate:guard-success,heap-once,0,1,2,16,165,766809510
+RESULT,fallback,irongate:guard-success,core-original,0,2,2,16,160,766809510
+RESULT,fallback,irongate:guard-success,core-once,0,3,2,16,158,766809510
+RESULT,fallback,irongate:guard-success,heap-once,1,0,2,16,186,766809510
+RESULT,fallback,irongate:guard-success,core-original,1,1,2,16,170,766809510
+RESULT,fallback,irongate:guard-success,core-once,1,2,2,16,135,766809510
+RESULT,fallback,irongate:guard-success,heap-original,1,3,2,16,169,766809510
+RESULT,fallback,irongate:guard-success,core-original,2,0,2,16,133,766809510
+RESULT,fallback,irongate:guard-success,core-once,2,1,2,16,153,766809510
+RESULT,fallback,irongate:guard-success,heap-original,2,2,2,16,191,766809510
+RESULT,fallback,irongate:guard-success,heap-once,2,3,2,16,193,766809510
+RESULT,fallback,irongate:guard-success,core-once,3,0,2,16,125,766809510
+RESULT,fallback,irongate:guard-success,heap-original,3,1,2,16,147,766809510
+RESULT,fallback,irongate:guard-success,heap-once,3,2,2,16,146,766809510
+RESULT,fallback,irongate:guard-success,core-original,3,3,2,16,124,766809510
+RESULT,fallback,irongate:guard-success,core-once,4,0,2,16,124,766809510
+RESULT,fallback,irongate:guard-success,core-original,4,1,2,16,124,766809510
+RESULT,fallback,irongate:guard-success,heap-once,4,2,2,16,145,766809510
+RESULT,fallback,irongate:guard-success,heap-original,4,3,2,16,160,766809510
+RESULT,fallback,irongate:guard-success,heap-original,5,0,2,16,174,766809510
+RESULT,fallback,irongate:guard-success,core-once,5,1,2,16,153,766809510
+RESULT,fallback,irongate:guard-success,core-original,5,2,2,16,158,766809510
+RESULT,fallback,irongate:guard-success,heap-once,5,3,2,16,175,766809510
+RESULT,fallback,irongate:guard-success,heap-once,6,0,2,16,179,766809510
+RESULT,fallback,irongate:guard-success,heap-original,6,1,2,16,182,766809510
+RESULT,fallback,irongate:guard-success,core-once,6,2,2,16,150,766809510
+RESULT,fallback,irongate:guard-success,core-original,6,3,2,16,154,766809510
+RESULT,fallback,irongate:guard-success,core-original,7,0,2,16,155,766809510
+RESULT,fallback,irongate:guard-success,heap-once,7,1,2,16,149,766809510
+RESULT,fallback,irongate:guard-success,heap-original,7,2,2,16,152,766809510
+RESULT,fallback,irongate:guard-success,core-once,7,3,2,16,124,766809510
+RESULT,fallback,irongate:guard-success,heap-original,8,0,2,16,150,766809510
+RESULT,fallback,irongate:guard-success,heap-once,8,1,2,16,181,766809510
+RESULT,fallback,irongate:guard-success,core-original,8,2,2,16,153,766809510
+RESULT,fallback,irongate:guard-success,core-once,8,3,2,16,145,766809510
+RESULT,fallback,irongate:guard-success,heap-once,9,0,2,16,172,766809510
+RESULT,fallback,irongate:guard-success,core-original,9,1,2,16,150,766809510
+RESULT,fallback,irongate:guard-success,core-once,9,2,2,16,137,766809510
+RESULT,fallback,irongate:guard-success,heap-original,9,3,2,16,156,766809510
+RESULT,fallback,irongate:guard-success,core-original,10,0,2,16,158,766809510
+RESULT,fallback,irongate:guard-success,core-once,10,1,2,16,149,766809510
+RESULT,fallback,irongate:guard-success,heap-original,10,2,2,16,147,766809510
+RESULT,fallback,irongate:guard-success,heap-once,10,3,2,16,146,766809510
+RESULT,fallback,irongate:guard-success,core-once,11,0,2,16,124,766809510
+RESULT,fallback,irongate:guard-success,heap-original,11,1,2,16,166,766809510
+RESULT,fallback,irongate:guard-success,heap-once,11,2,2,16,168,766809510
+RESULT,fallback,irongate:guard-success,core-original,11,3,2,16,125,766809510
+CALLS,irongate:guard-success,heap-original,8,8,766809510
+CALLS,irongate:guard-success,heap-once,8,8,766809510
+CALLS,irongate:guard-success,core-original,8,8,766809510
+CALLS,irongate:guard-success,core-once,8,8,766809510
+
+$ <repo>/benchmarks/kvm/.work/glibc32/ld-2.13.so --library-path <repo>/benchmarks/kvm/.work/glibc32 <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/linux/kvm -heapsize 2M -classpath <repo>/benchmarks/kvm/.work/fallback/verified FallbackBench time irongate:inmate-policy 12 150
+RESULT,fallback,irongate:inmate-policy,heap-original,0,0,1,8,163,-1397292205
+RESULT,fallback,irongate:inmate-policy,heap-once,0,1,1,8,165,-1397292205
+RESULT,fallback,irongate:inmate-policy,core-original,0,2,2,16,292,-1397292205
+RESULT,fallback,irongate:inmate-policy,core-once,0,3,2,16,287,-1397292205
+RESULT,fallback,irongate:inmate-policy,heap-once,1,0,1,8,202,-1397292205
+RESULT,fallback,irongate:inmate-policy,core-original,1,1,2,16,352,-1397292205
+RESULT,fallback,irongate:inmate-policy,core-once,1,2,2,16,347,-1397292205
+RESULT,fallback,irongate:inmate-policy,heap-original,1,3,1,8,201,-1397292205
+RESULT,fallback,irongate:inmate-policy,core-original,2,0,2,16,354,-1397292205
+RESULT,fallback,irongate:inmate-policy,core-once,2,1,2,16,346,-1397292205
+RESULT,fallback,irongate:inmate-policy,heap-original,2,2,1,8,176,-1397292205
+RESULT,fallback,irongate:inmate-policy,heap-once,2,3,1,8,161,-1397292205
+RESULT,fallback,irongate:inmate-policy,core-once,3,0,2,16,275,-1397292205
+RESULT,fallback,irongate:inmate-policy,heap-original,3,1,1,8,164,-1397292205
+RESULT,fallback,irongate:inmate-policy,heap-once,3,2,1,8,165,-1397292205
+RESULT,fallback,irongate:inmate-policy,core-original,3,3,2,16,353,-1397292205
+RESULT,fallback,irongate:inmate-policy,core-once,4,0,2,16,354,-1397292205
+RESULT,fallback,irongate:inmate-policy,core-original,4,1,2,16,354,-1397292205
+RESULT,fallback,irongate:inmate-policy,heap-once,4,2,1,8,210,-1397292205
+RESULT,fallback,irongate:inmate-policy,heap-original,4,3,1,8,207,-1397292205
+RESULT,fallback,irongate:inmate-policy,heap-original,5,0,1,8,165,-1397292205
+RESULT,fallback,irongate:inmate-policy,core-once,5,1,2,16,286,-1397292205
+RESULT,fallback,irongate:inmate-policy,core-original,5,2,2,16,333,-1397292205
+RESULT,fallback,irongate:inmate-policy,heap-once,5,3,1,8,212,-1397292205
+RESULT,fallback,irongate:inmate-policy,heap-once,6,0,1,8,202,-1397292205
+RESULT,fallback,irongate:inmate-policy,heap-original,6,1,1,8,168,-1397292205
+RESULT,fallback,irongate:inmate-policy,core-once,6,2,2,16,336,-1397292205
+RESULT,fallback,irongate:inmate-policy,core-original,6,3,2,16,355,-1397292205
+RESULT,fallback,irongate:inmate-policy,core-original,7,0,2,16,276,-1397292205
+RESULT,fallback,irongate:inmate-policy,heap-once,7,1,1,8,162,-1397292205
+RESULT,fallback,irongate:inmate-policy,heap-original,7,2,1,8,207,-1397292205
+RESULT,fallback,irongate:inmate-policy,core-once,7,3,2,16,373,-1397292205
+RESULT,fallback,irongate:inmate-policy,heap-original,8,0,1,8,196,-1397292205
+RESULT,fallback,irongate:inmate-policy,heap-once,8,1,1,8,214,-1397292205
+RESULT,fallback,irongate:inmate-policy,core-original,8,2,2,16,355,-1397292205
+RESULT,fallback,irongate:inmate-policy,core-once,8,3,2,16,300,-1397292205
+RESULT,fallback,irongate:inmate-policy,heap-once,9,0,1,8,208,-1397292205
+RESULT,fallback,irongate:inmate-policy,core-original,9,1,2,16,337,-1397292205
+RESULT,fallback,irongate:inmate-policy,core-once,9,2,2,16,359,-1397292205
+RESULT,fallback,irongate:inmate-policy,heap-original,9,3,1,8,208,-1397292205
+RESULT,fallback,irongate:inmate-policy,core-original,10,0,2,16,278,-1397292205
+RESULT,fallback,irongate:inmate-policy,core-once,10,1,2,16,352,-1397292205
+RESULT,fallback,irongate:inmate-policy,heap-original,10,2,1,8,197,-1397292205
+RESULT,fallback,irongate:inmate-policy,heap-once,10,3,1,8,204,-1397292205
+RESULT,fallback,irongate:inmate-policy,core-once,11,0,2,16,355,-1397292205
+RESULT,fallback,irongate:inmate-policy,heap-original,11,1,1,8,212,-1397292205
+RESULT,fallback,irongate:inmate-policy,heap-once,11,2,1,8,201,-1397292205
+RESULT,fallback,irongate:inmate-policy,core-original,11,3,2,16,347,-1397292205
+CALLS,irongate:inmate-policy,heap-original,8,16,-1397292205
+CALLS,irongate:inmate-policy,heap-once,8,16,-1397292205
+CALLS,irongate:inmate-policy,core-original,8,16,-1397292205
+CALLS,irongate:inmate-policy,core-once,8,16,-1397292205

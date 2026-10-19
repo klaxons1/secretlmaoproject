@@ -1,0 +1,13 @@
+0004-discovery-heuristic.patch
+0005-diagonal-collision.patch
+0006-movement-cost-table.patch
+0007-heap-decrease-key.patch
+0008-passive-inmate-vision.patch
+0009-object-broad-phase.patch
+0010-zone-type-index.patch
+0011-npc-zone-memo.patch
+0012-packed-seat-lookup.patch
+0013-facing-only-movement.patch
+0014-tile-row-strides.patch
+0015-clip-invisible-tiles.patch
+0016-release-logging-off.patch

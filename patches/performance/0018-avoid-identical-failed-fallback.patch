@@ -1,0 +1,26 @@
+Skip an IDENTICAL repeated failed pathfind for non-inmates; true staff-door fallback retained
+Base-master: 0716b47205e297375d7a3848d923d5ce916eba6d
+Prerequisites: 0003; composable after 0004-0017; direct caller optimization, not a change to pathfinding
+Apply with git apply, NOT git am.
+
+diff --git a/src/NPC.java b/src/NPC.java
+--- a/src/NPC.java
++++ b/src/NPC.java
+@@ -1115,7 +1115,7 @@
+ 					nextRoamPos = false;
+ 					if (map.pathfind(x / TILE_SIZE, (y + 5) / TILE_SIZE, direction, pathX, pathY, inmate, path)
+ 							// fallback
+-							|| map.pathfind(x / TILE_SIZE, (y + 5) / TILE_SIZE, direction, pathX, pathY, false, path)) {
++							|| (inmate && map.pathfind(x / TILE_SIZE, (y + 5) / TILE_SIZE, direction, pathX, pathY, false, path))) {
+ 						correctPath = true;
+ 						pathStep = 0;
+ 					} else {
+@@ -1392,7 +1392,7 @@
+ 						nextRoamPos = false;
+ 						if (map.pathfind(x / TILE_SIZE, (y + 5) / TILE_SIZE, direction, pathX, pathY, inmate, path)
+ 								// fallback
+-								|| map.pathfind(x / TILE_SIZE, (y + 5) / TILE_SIZE, direction, pathX, pathY, false, path)) {
++								|| (inmate && map.pathfind(x / TILE_SIZE, (y + 5) / TILE_SIZE, direction, pathX, pathY, false, path))) {
+ 							correctPath = true;
+ 							pathStep = 0;
+ 						} else {

@@ -1,0 +1,13 @@
+desktop Java
+CHECKS,four-way-fallback-cases,432
+CHECKS,non-inmate-false-cases,160
+CHECKS,retained-control-cases,272
+CHECKS,forced-staff-fallback,4
+CHECKS,PASS
+
+original KVM 1.1
+CHECKS,four-way-fallback-cases,432
+CHECKS,non-inmate-false-cases,160
+CHECKS,retained-control-cases,272
+CHECKS,forced-staff-fallback,4
+CHECKS,PASS
