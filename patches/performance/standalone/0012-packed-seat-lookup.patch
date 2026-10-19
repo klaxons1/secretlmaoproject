@@ -1,0 +1,22 @@
+packed-seat-lookup
+Base-master: 0716b47205e297375d7a3848d923d5ce916eba6d
+Prerequisites: 0003 ONLY; do not combine with the cumulative copy of this patch
+Apply with git apply, NOT git am.
+
+diff --git a/src/Game.java b/src/Game.java
+--- a/src/Game.java
++++ b/src/Game.java
+@@ -5475,10 +5475,12 @@
+ 
+ 	int getSeatIndex(short[] positions, int x, int y) {
+ 		int n = positions[0];
++		if (((x | y) & ~0xFF) != 0) return -1;
++		int packed = x | (y << 8);
+ 		for (int i = 0; i < n; ++i) {
+ 			int idx = (i << 1) + 1;
+ 			int pos = positions[idx];
+-			if ((pos & 0xFF) == x && (pos >> 8 & 0xFF) == y) {
++			if ((pos & 0xFFFF) == packed) {
+ 				return idx;
+ 			}
+ 		}
