@@ -1,0 +1,288 @@
+{
+  "recorded_utc": "2026-10-16T21:09:05.936323+00:00",
+  "host": "Linux-6.1.158+-x86_64-with-glibc2.36",
+  "cpu": "Intel(R) Xeon(R) Processor @ 2.60GHz",
+  "logical_cpus": 2,
+  "affinity": [
+    0,
+    1
+  ],
+  "load_before": [
+    0.98095703125,
+    0.58251953125,
+    0.33251953125
+  ],
+  "git_head": "8a7dbe25805f323e2571599aece4be38636d1e8f",
+  "branch": "arena/a0d34468-secretlmaoproject",
+  "baseline": "785ef001798fad8e4e9f2e21426e4c6d65875d33",
+  "dependencies": {
+    "cldc": [
+      "klaxons1/j2me_cldc-1_1-fcs-src-winunix",
+      "d924b6425fae9fb39387882ab6a86ae555cdcc90",
+      "3b6ef960509c6e18718ae7ad11fea692059a8bc5f38c9b4238baae16f912849f"
+    ],
+    "suite": [
+      "klaxons1/LLM-J2ME-SUITE",
+      "c4799767bf43c9a94d327f6394ef51445a2be807",
+      "a61bc432db22fa456638bfc72b88b2a7e81075a393f91ac733f59c0ed62fa7de"
+    ],
+    "jdk8": [
+      "klaxons1/tools_linux_jdk8",
+      "7be76e541810614e3627d42c68759fab16055b7b",
+      "e197de355b091aab8b98b2e5da44f8c5371da8791a1b72e510958758b370044c"
+    ]
+  },
+  "kvm_sha256": "917b17f278023670b9a5472d7740d12a5c7b1c6e3718196f828d4bed5de82e66",
+  "kvm_version": "Version: 1.1\n",
+  "java_version": "openjdk version \"1.8.0_131-0-djytc\"\nOpenJDK Runtime Environment (build 1.8.0_131-0-djytc-11)\nOpenJDK 64-Bit Server VM (build 25.131-b11, mixed mode)\n",
+  "kvm_heap_bytes": 2097152,
+  "samples": 9,
+  "target_kvm_ms": 200,
+  "target_awt_ms": 100,
+  "source_hashes": {
+    "OriginalKernel": "3e7adb2c95fe8a09678c5698df70f0b9799edf8ffb25d034e94fd9986b46c12e",
+    "CountedOriginalKernel": "4bcd8dcfb3e39534f6b6f64b19f3f6185026be81ddc64441051548aa30e8c6e1",
+    "OptimizedKernel": "6902e2aad7e57964fad24949e721f2346f26e29ae729d2f3786795b515c2a64d",
+    "CountedOptimizedKernel": "06c87e11eb5b1a1907129d38712885016c25f3d8d3ba2b97a9af31bdd50b8573",
+    "Collision": "6571916564a5e8c3bcb848638d32b3248e01a2755bc0e30f42da4b3d3604d98e",
+    "baseline_Game.java": "830d95f65ecc8f96131e138285dccc408f71ccc68f38499fcd9b0d7528a10250",
+    "current_Game.java": "36d3062ea320a861bc0baa426208c2841219904bcde5f6a75f62ab955715b191",
+    "game-heap": "7dd4add6548ba0d9e8e0b48f50b7b65041ed570576105ebcd392c1e61c027779",
+    "game-tile-index": "fa230033d6b8af879108e5d34b8dee1c826973dc41ed9b9d1b5012dbbfb4455b",
+    "game-tile-cull": "8ba89276ef4c3a8287b1068003017d40887ee414f222a0c6679f7969cf745707",
+    "game-heap-tile-cull": "19e235b30d5a0e0d283d5f260350391ed1b321854a3b6a3ad0540863dcc47219",
+    "HeapKernel.java": "42ed3b9c4d7f2214bc6e03bf4f1e83ed0286090c35fe77bd67f17c7bb399c6d6",
+    "CountedHeapKernel.java": "2eab2df4e55550c4df36efa0c1959cf905c2b9a5a76a9df95a4442e3237d93ce",
+    "OriginalTiles.java": "2ea0151516b8087d04f747f0adc2656bd5640500ac9b2a4dd037854be43bfdb1",
+    "IndexedTiles.java": "467fa58c81812f2a306b46dac3eacf51b74a24b70f7e73cdad3fc630ff45ba4a",
+    "CulledTiles.java": "7c8f03dbc504531609806fb411f94913fde6a04028b2b5e2cdb6b529044292e5"
+  },
+  "input_source_hashes": {
+    "benchmarks/kvm/experiments/src/MapData.java": "6f11036ae2bd80e99b8c8eb7a4231c07b3346260d63d93540f50ed6c4c6480e2",
+    "benchmarks/kvm/experiments/src/TileKernel.java": "b8969160113f5f5a1464bcacdc267d0fd18afde0e3b22217fc68b3c8efc7a35f",
+    "benchmarks/kvm/experiments/src/ExperimentChecks.java": "b51dbad1e57d5c1f71cba72f1885a0e9f76d174033e10607878fe3d23986fa08",
+    "benchmarks/kvm/experiments/src/ExperimentBenchmark.java": "2a98628935862a83654b9a0a0425423b514494af7c615a46ca6ce71d76deaff8",
+    "benchmarks/kvm/experiments/src/ExperimentProfile.java": "e06460a8975ff28b78ce96cf3d760cb75c1367c1717341499642449201d08e06",
+    "benchmarks/kvm/experiments/src/MemoryProbe.java": "95f08398c707d998a9421afcce6ec9ac24eb98d31a8d108248202fef5f9426c1",
+    "benchmarks/kvm/experiments/desktop/RasterGraphics.java": "99ce46a9ae789ed7f0d61bc9f002ed8a9e7bf50114e643b9c8ab72ee6f5ba786",
+    "benchmarks/kvm/experiments/desktop/RasterChecks.java": "85eda43cacb8ca6de981d2832a5d087e79e4649310b459c5d87f0329eb46bf95",
+    "benchmarks/kvm/experiments/desktop/RasterBenchmark.java": "0fe542b4a70eb0e83f32eab3feeae85fc4131e6741ea88744ea17aa0acaa4de8",
+    "benchmarks/kvm/experiments/run_experiments.py": "4a7b9f3521a965a054710051cb594b3cb059240a7deee61c79cc4dd685cc5154",
+    "benchmarks/kvm/experiments/analyze.py": "5ef2efa25af99f171ddea83d9e536233fe9a9fd8b1ef3df445a179b5cdb09bcf",
+    "benchmarks/kvm/experiments/test_experiments.py": "e56e8d90715098c2eb763dede46a01bf40cdea07e1a17e098ff51f9e83eea432",
+    "benchmarks/kvm/experiments/HeapQueue.java.inc": "dbaac5e1294c93527e18a7091b5b79cf8e5e8ae2969819858b3408c1e165674f",
+    "benchmarks/kvm/experiments/TileLoop.java.inc": "d65fdfd4dfa4a6d20c4932708d74cc3945e87a04ef872895d6fea035a16dc827",
+    "benchmarks/kvm/src/Kernel.java": "e20b5a3e996dd9943cfea5165cf7934c2ac41353e51f98a2059f0d514577f805",
+    "benchmarks/kvm/src/Fixtures.java": "96b68ec3e3b6cfb091f91c214c58f2ca34e32d00aa9137ac28a2ccec6a721452",
+    "benchmarks/kvm/src/Checks.java": "8ff0e2fe3c9d3b0c0901c1140f6a68e767d6adb9cbb1745ac573f46f4fc3dafe",
+    "benchmarks/kvm/src/Benchmark.java": "66731f6271291f4b754d223e640a5dbd3b161c15dc47c54755829c53559ce54d",
+    "benchmarks/kvm/src/Profile.java": "14cb20adae32f9119ab6dfaa4ccc980b3f4a5e3c27816c9604bd60e5acadcc7f",
+    "benchmarks/kvm/run.py": "7ba899700d16253a727b4d1a14c5ce2cb72ace32d243268a7cdfe715408cd6ff",
+    "src/Game.java": "36d3062ea320a861bc0baa426208c2841219904bcde5f6a75f62ab955715b191",
+    "src/NPC.java": "cb356b58526e13d58e8de04d08c37ec694d8c7953930b6733a532164d42a70df",
+    "common/src/Constants.java": "2411c906bee1163597c132f1c6c72851322a8a63973c951e72dda6cba5220296",
+    "common/src/Objects.java": "05f9a7581298423bcf853d12e6e868dee6a62549a209050164fab397fea85236"
+  },
+  "resource_hashes": {
+    "ground_irongate.png": "6918707ba42c30c74cf622fc48282052b7d7e8da6405300bcd359041ca84f5b1",
+    "ground_jungle.png": "7bb573cfbd134492b5232f22f77bda0ea45f13054d2939108e4bbdd5417c79c6",
+    "ground_perks.png": "0098af5032b9209339196b6e3418177ee101343f339bb94a00903a0d3927f815",
+    "ground_sanpancho.png": "2963d3bea8115da700dd259fe04f4140d4ee53dba0694be709c4e000a8a2d74f",
+    "ground_shanktonstatepen.png": "0098af5032b9209339196b6e3418177ee101343f339bb94a00903a0d3927f815",
+    "ground_stalagflucht.png": "333901789fe4f3eba95e686a7862b750cba944c796e4a4ace88f73871538f4b2",
+    "irongate": "30a4e01c519682065864ff7f2a4d691d049abc80d230f6ab5aadfe1deffaaefe",
+    "jungle": "5dcbe62f52fb57ff67545fd1de5ac2b0c862352590db123bf696e543bd87eac3",
+    "perks": "5ed187fd779ba0480803477c8766144b6a686b02c99be3318557d5b8e021913a",
+    "sanpancho": "2054c4ffc54a5d841462887004fe7d886987a74337623754ae21dbb49a49f9b3",
+    "shadow.png": "f6491c7eac997078b94202821eaf42acec09085f7fbe31018842578073a714b7",
+    "shanktonstatepen": "e2b37756764eb8210e7f93faf19389acc84a92ac6b2bc85f32c403a4ce2be9a7",
+    "stalagflucht": "4358072e0274b94230184a8d2721455d894fc427268882cc49b5b64c859cf5b9",
+    "tiles_irongate.png": "20452f63f31b05f9528eb4e9e3ffd275efb45c34ca36dd6ecc74e06cdf00b024",
+    "tiles_jungle.png": "b48bfcad68a2609c23f32691d20cb872fedfe9c5df3fc2ca166102955bb392e0",
+    "tiles_perks.png": "ee46c10bead5c597eeb04555897e12da1d03864ef7f1c3dfaa25613b30f2f058",
+    "tiles_sanpancho.png": "c71a829487428177e4ff5e63ed8400d12ecec5e5022a08fe4e7fb86511fc7a57",
+    "tiles_shanktonstatepen.png": "582acbd3a77b83c0dc87713a53e5e70712533888cb6b38c3f301104fb6ed0f96",
+    "tiles_stalagflucht.png": "04d77ce8a7d91fe76f81fdee262f49a90562180fa3c50257e6e764a6066da645"
+  },
+  "footprints": {
+    "original": {
+      "game_class_bytes": 161858,
+      "all_class_bytes": 255332,
+      "game_class_sha256": "e95673f3cef33a034a02e96a4a47ab7c183bb95cf452ebd2e4d721e1db5ee851",
+      "major_version": 45,
+      "minor_version": 3,
+      "stackmap": true
+    },
+    "list": {
+      "game_class_bytes": 161990,
+      "all_class_bytes": 255464,
+      "game_class_sha256": "2da82dec8b6748389099cafcc881ab48d9d318f068163ca25aa263515dab9e94",
+      "major_version": 45,
+      "minor_version": 3,
+      "stackmap": true
+    },
+    "heap": {
+      "game_class_bytes": 162778,
+      "all_class_bytes": 256252,
+      "game_class_sha256": "737d54c2c21a0d1bf40485dff56739ad38649259af6f2550e88b529c1aade9a9",
+      "major_version": 45,
+      "minor_version": 3,
+      "stackmap": true
+    },
+    "tile-index": {
+      "game_class_bytes": 162284,
+      "all_class_bytes": 255758,
+      "game_class_sha256": "1c827fbd6b1d82c4f9a221a4ac9cc4fb9985fcf1674878d4b4fb750d8224d3d8",
+      "major_version": 45,
+      "minor_version": 3,
+      "stackmap": true
+    },
+    "tile-cull": {
+      "game_class_bytes": 162452,
+      "all_class_bytes": 255926,
+      "game_class_sha256": "da547ec6a004955007393a80fc99f4fbf4fdbc68abd7022bf474744967513462",
+      "major_version": 45,
+      "minor_version": 3,
+      "stackmap": true
+    },
+    "heap-tile-cull": {
+      "game_class_bytes": 163240,
+      "all_class_bytes": 256714,
+      "game_class_sha256": "ce942bb5ffff936d5e8e39714337cbfe25e0818b8be62a37b7981f8fdffef7d4",
+      "major_version": 45,
+      "minor_version": 3,
+      "stackmap": true
+    }
+  },
+  "flags": {
+    "TILE_SIZE": "16",
+    "DRAW_SHADOWS": "true",
+    "NOKIAUI_SHADOWS": "false",
+    "USE_TILED_LAYER": "false",
+    "USE_M3G": "true",
+    "DRAW_LIGHTS": "true"
+  },
+  "limitations": [
+    "Hosted x86 timing, not a physical phone",
+    "KVM graphics sink only clips/counts commands; no pixels or native MIDP",
+    "Desktop AWT reference is software ARGB on HotSpot, not MIDP or M3G",
+    "NPC endpoints are synthetic reachable spawn/waypoint fixtures, not a captured play session",
+    "No whole-game CPU-share, FPS or battery profiling",
+    "Compile-time-disabled NokiaUI/TiledLayer branches are not exercised"
+  ],
+  "memory_samples": [
+    {
+      "variant": "original",
+      "sample": "0",
+      "width": "96",
+      "height": "93",
+      "allocated_bytes": "134084"
+    },
+    {
+      "variant": "original",
+      "sample": "1",
+      "width": "96",
+      "height": "93",
+      "allocated_bytes": "134084"
+    },
+    {
+      "variant": "original",
+      "sample": "2",
+      "width": "96",
+      "height": "93",
+      "allocated_bytes": "134084"
+    },
+    {
+      "variant": "original",
+      "sample": "3",
+      "width": "96",
+      "height": "93",
+      "allocated_bytes": "134084"
+    },
+    {
+      "variant": "original",
+      "sample": "4",
+      "width": "96",
+      "height": "93",
+      "allocated_bytes": "134084"
+    },
+    {
+      "variant": "list",
+      "sample": "0",
+      "width": "96",
+      "height": "93",
+      "allocated_bytes": "134084"
+    },
+    {
+      "variant": "list",
+      "sample": "1",
+      "width": "96",
+      "height": "93",
+      "allocated_bytes": "134084"
+    },
+    {
+      "variant": "list",
+      "sample": "2",
+      "width": "96",
+      "height": "93",
+      "allocated_bytes": "134084"
+    },
+    {
+      "variant": "list",
+      "sample": "3",
+      "width": "96",
+      "height": "93",
+      "allocated_bytes": "134084"
+    },
+    {
+      "variant": "list",
+      "sample": "4",
+      "width": "96",
+      "height": "93",
+      "allocated_bytes": "134084"
+    },
+    {
+      "variant": "heap",
+      "sample": "0",
+      "width": "96",
+      "height": "93",
+      "allocated_bytes": "169812"
+    },
+    {
+      "variant": "heap",
+      "sample": "1",
+      "width": "96",
+      "height": "93",
+      "allocated_bytes": "169812"
+    },
+    {
+      "variant": "heap",
+      "sample": "2",
+      "width": "96",
+      "height": "93",
+      "allocated_bytes": "169812"
+    },
+    {
+      "variant": "heap",
+      "sample": "3",
+      "width": "96",
+      "height": "93",
+      "allocated_bytes": "169812"
+    },
+    {
+      "variant": "heap",
+      "sample": "4",
+      "width": "96",
+      "height": "93",
+      "allocated_bytes": "169812"
+    }
+  ],
+  "finished_utc": "2026-10-16T21:22:28.094400+00:00",
+  "load_after": [
+    1.1171875,
+    1.05908203125,
+    0.80078125
+  ],
+  "scenario_count": 96,
+  "interval_count": 2484
+}

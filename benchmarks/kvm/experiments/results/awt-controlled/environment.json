@@ -1,0 +1,54 @@
+{
+  "started_utc": "2026-10-16T21:26:14.024898+00:00",
+  "engine": "desktop-awt-reference",
+  "series": "long-interval-confirmatory",
+  "java_command": [
+    "/home/user/secretlmaoproject/benchmarks/kvm/.work/jdk8/bin/java",
+    "-Djava.awt.headless=true",
+    "-Xms512m",
+    "-Xmx512m",
+    "-XX:+UseSerialGC",
+    "-Xbatch",
+    "-XX:CICompilerCount=2",
+    "-cp",
+    "/home/user/secretlmaoproject/benchmarks/kvm/.work/experiments/desktop:/home/user/secretlmaoproject/benchmarks/kvm/.work/experiments/verified"
+  ],
+  "samples": 9,
+  "target_ms": 500,
+  "clock": "System.nanoTime (elapsed converted to integer ms)",
+  "warmup": "3 rounds x 256 batches x 8 phases per variant, all variants before calibration",
+  "primary_raw_sha256": "e8da9b31591e32dcef858c885ac7a9ef7e2c5318f656ef5f3c86e69d5cbd104d",
+  "generated_source_hashes": {
+    "OriginalKernel": "3e7adb2c95fe8a09678c5698df70f0b9799edf8ffb25d034e94fd9986b46c12e",
+    "CountedOriginalKernel": "4bcd8dcfb3e39534f6b6f64b19f3f6185026be81ddc64441051548aa30e8c6e1",
+    "OptimizedKernel": "6902e2aad7e57964fad24949e721f2346f26e29ae729d2f3786795b515c2a64d",
+    "CountedOptimizedKernel": "06c87e11eb5b1a1907129d38712885016c25f3d8d3ba2b97a9af31bdd50b8573",
+    "Collision": "6571916564a5e8c3bcb848638d32b3248e01a2755bc0e30f42da4b3d3604d98e",
+    "baseline_Game.java": "830d95f65ecc8f96131e138285dccc408f71ccc68f38499fcd9b0d7528a10250",
+    "current_Game.java": "36d3062ea320a861bc0baa426208c2841219904bcde5f6a75f62ab955715b191",
+    "game-heap": "7dd4add6548ba0d9e8e0b48f50b7b65041ed570576105ebcd392c1e61c027779",
+    "game-tile-index": "fa230033d6b8af879108e5d34b8dee1c826973dc41ed9b9d1b5012dbbfb4455b",
+    "game-tile-cull": "8ba89276ef4c3a8287b1068003017d40887ee414f222a0c6679f7969cf745707",
+    "game-heap-tile-cull": "19e235b30d5a0e0d283d5f260350391ed1b321854a3b6a3ad0540863dcc47219",
+    "HeapKernel.java": "42ed3b9c4d7f2214bc6e03bf4f1e83ed0286090c35fe77bd67f17c7bb399c6d6",
+    "CountedHeapKernel.java": "2eab2df4e55550c4df36efa0c1959cf905c2b9a5a76a9df95a4442e3237d93ce",
+    "OriginalTiles.java": "2ea0151516b8087d04f747f0adc2656bd5640500ac9b2a4dd037854be43bfdb1",
+    "IndexedTiles.java": "467fa58c81812f2a306b46dac3eacf51b74a24b70f7e73cdad3fc630ff45ba4a",
+    "CulledTiles.java": "7c8f03dbc504531609806fb411f94913fde6a04028b2b5e2cdb6b529044292e5"
+  },
+  "script_sha256": "9d1d835b6b2abfd0424bdfd58d06add293a0d2c56cb67ebe6aebca37b2c65538",
+  "controlled_java_sha256": "3035f0ef26124d7f6d0c07c46321082071cbfd21538c5f4f330b51f7481f888a",
+  "comparison": "same six maps, 240x320, bitmap shadows on; source kernels unchanged",
+  "load_before": [
+    0.6708984375,
+    0.6396484375,
+    0.66845703125
+  ],
+  "finished_utc": "2026-10-16T21:28:55.764559+00:00",
+  "load_after": [
+    0.998046875,
+    0.81103515625,
+    0.73583984375
+  ],
+  "interval_count": 162
+}

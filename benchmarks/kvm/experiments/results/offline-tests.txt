@@ -1,0 +1,30 @@
+$ python3 -m unittest discover -s benchmarks/kvm -p test_run.py -v
+test_paired_ratios_not_ratio_of_medians (test_run.CalculationTests.test_paired_ratios_not_ratio_of_medians) ... ok
+test_path_batch_normalization (test_run.CalculationTests.test_path_batch_normalization) ... ok
+test_reject_checksum_mismatch (test_run.CalculationTests.test_reject_checksum_mismatch) ... ok
+test_reject_empty_incomplete_and_duplicate (test_run.CalculationTests.test_reject_empty_incomplete_and_duplicate) ... ok
+test_reject_invalid_normalization_and_order (test_run.CalculationTests.test_reject_invalid_normalization_and_order) ... ok
+test_standalone_patches_and_both_application_orders (test_run.PatchTests.test_standalone_patches_and_both_application_orders) ... ok
+test_baseline_exists_and_extracts (test_run.SourceTests.test_baseline_exists_and_extracts) ... ok
+test_brace_matching_ignores_comments_and_literals (test_run.SourceTests.test_brace_matching_ignores_comments_and_literals) ... ok
+test_unbalanced_source_fails (test_run.SourceTests.test_unbalanced_source_fails) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.174s
+
+OK
+
+$ python3 -m unittest discover -s benchmarks/kvm/experiments -p test_*.py -v
+test_reanalysis_is_byte_identical (test_experiments.AnalysisTests.test_reanalysis_is_byte_identical) ... ok
+test_rejects_checksum_units_and_nonpositive_time (test_experiments.AnalysisTests.test_rejects_checksum_units_and_nonpositive_time) ... ok
+test_rejects_missing_duplicate_and_bad_order (test_experiments.AnalysisTests.test_rejects_missing_duplicate_and_bad_order) ... ok
+test_rejects_phone_claim_engine_or_mixed_schema (test_experiments.AnalysisTests.test_rejects_phone_claim_engine_or_mixed_schema) ... ok
+test_uses_median_of_paired_ratios (test_experiments.AnalysisTests.test_uses_median_of_paired_ratios) ... ok
+test_all_maps_and_separate_engines (test_experiments.SourceTests.test_all_maps_and_separate_engines) ... ok
+test_heap_changes_only_pathfinding_region (test_experiments.SourceTests.test_heap_changes_only_pathfinding_region) ... ok
+test_tiles_do_not_modify_objects_or_other_methods (test_experiments.SourceTests.test_tiles_do_not_modify_objects_or_other_methods) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.017s
+
+OK

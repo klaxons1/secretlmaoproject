@@ -1,0 +1,16 @@
+variant,sample,width,height,allocated_bytes
+original,0,96,93,134084
+original,1,96,93,134084
+original,2,96,93,134084
+original,3,96,93,134084
+original,4,96,93,134084
+list,0,96,93,134084
+list,1,96,93,134084
+list,2,96,93,134084
+list,3,96,93,134084
+list,4,96,93,134084
+heap,0,96,93,169812
+heap,1,96,93,169812
+heap,2,96,93,169812
+heap,3,96,93,169812
+heap,4,96,93,169812

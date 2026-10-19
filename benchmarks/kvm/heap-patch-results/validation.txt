@@ -1,0 +1,9 @@
+desktop Java
+CHECKS,heap-queue-states,20644
+CHECKS,three-way-exact-paths,656
+CHECKS,PASS
+
+original KVM 1.1
+CHECKS,heap-queue-states,20644
+CHECKS,three-way-exact-paths,656
+CHECKS,PASS

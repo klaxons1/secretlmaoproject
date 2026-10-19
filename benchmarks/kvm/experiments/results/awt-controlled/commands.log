@@ -1,0 +1,938 @@
+$ <repo>/benchmarks/kvm/.work/jdk8/bin/javac -source 1.3 -target 1.3 -Xlint:-options -bootclasspath <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/common/api/classes -d <repo>/benchmarks/kvm/.work/experiments/raw <repo>/benchmarks/kvm/src/Benchmark.java <repo>/benchmarks/kvm/src/Checks.java <repo>/benchmarks/kvm/src/Fixtures.java <repo>/benchmarks/kvm/src/Kernel.java <repo>/benchmarks/kvm/src/Profile.java <repo>/benchmarks/kvm/.work/generated/Collision.java <repo>/benchmarks/kvm/.work/generated/CountedOptimizedKernel.java <repo>/benchmarks/kvm/.work/generated/CountedOriginalKernel.java <repo>/benchmarks/kvm/.work/generated/OptimizedKernel.java <repo>/benchmarks/kvm/.work/generated/OriginalKernel.java <repo>/benchmarks/kvm/experiments/src/ExperimentBenchmark.java <repo>/benchmarks/kvm/experiments/src/ExperimentChecks.java <repo>/benchmarks/kvm/experiments/src/ExperimentProfile.java <repo>/benchmarks/kvm/experiments/src/MapData.java <repo>/benchmarks/kvm/experiments/src/MemoryProbe.java <repo>/benchmarks/kvm/experiments/src/TileKernel.java <repo>/benchmarks/kvm/.work/experiments/generated/CountedHeapKernel.java <repo>/benchmarks/kvm/.work/experiments/generated/CulledTiles.java <repo>/benchmarks/kvm/.work/experiments/generated/HeapKernel.java <repo>/benchmarks/kvm/.work/experiments/generated/IndexedTiles.java <repo>/benchmarks/kvm/.work/experiments/generated/OriginalTiles.java <repo>/common/src/Constants.java <repo>/common/src/Objects.java
+
+$ <repo>/benchmarks/kvm/.work/jdk8/bin/java -jar <repo>/benchmarks/kvm/.work/suite/libs/proguard.jar -injars <repo>/benchmarks/kvm/.work/experiments/raw -outjars <repo>/benchmarks/kvm/.work/experiments/verified -libraryjars <repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/common/api/classes -dontshrink -dontoptimize -dontobfuscate -microedition -target 1.1
+ProGuard, version 6.2.2
+Reading program directory [<repo>/benchmarks/kvm/.work/experiments/raw] (filtered)
+Reading library directory [<repo>/benchmarks/kvm/.work/cldc/j2me_cldc/bin/common/api/classes] (filtered)
+Preparing output directory [<repo>/benchmarks/kvm/.work/experiments/verified] (filtered)
+  Copying resources from program directory [<repo>/benchmarks/kvm/.work/experiments/raw] (filtered)
+
+$ <repo>/benchmarks/kvm/.work/jdk8/bin/javac -source 1.3 -target 1.3 -Xlint:-options -bootclasspath <repo>/benchmarks/kvm/.work/suite/uei/cldc11.jar -classpath <repo>/benchmarks/kvm/.work/suite/uei/midp21.jar:<repo>/benchmarks/kvm/.work/suite/uei/jsr135.jar:<repo>/benchmarks/kvm/.work/suite/uei/jsr184.jar:<repo>/benchmarks/kvm/.work/suite/uei/nokiaui.jar -d <repo>/benchmarks/kvm/.work/experiments/game-original/raw <repo>/src/NPC.java <repo>/src/Profiler.java <repo>/src/Sound.java <repo>/src/TE.java <repo>/src/Textures.java <repo>/common/src/Constants.java <repo>/common/src/Items.java <repo>/common/src/Objects.java <repo>/benchmarks/kvm/.work/experiments/game-original/source/Game.java
+
+$ <repo>/benchmarks/kvm/.work/jdk8/bin/java -jar <repo>/benchmarks/kvm/.work/suite/libs/proguard.jar -injars <repo>/benchmarks/kvm/.work/experiments/game-original/raw -outjars <repo>/benchmarks/kvm/.work/experiments/game-original/verified -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/cldc11.jar -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/midp21.jar -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/jsr135.jar -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/jsr184.jar -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/nokiaui.jar -dontshrink -dontoptimize -dontobfuscate -microedition -target 1.1
+ProGuard, version 6.2.2
+Reading program directory [<repo>/benchmarks/kvm/.work/experiments/game-original/raw] (filtered)
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/cldc11.jar] (filtered)
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/midp21.jar] (filtered)
+Note: duplicate definition of library class [java.lang.ArithmeticException]
+Note: duplicate definition of library class [java.lang.ArrayIndexOutOfBoundsException]
+Note: duplicate definition of library class [java.lang.ArrayStoreException]
+Note: duplicate definition of library class [java.lang.Boolean]
+Note: duplicate definition of library class [java.lang.Byte]
+Note: duplicate definition of library class [java.lang.Character]
+Note: duplicate definition of library class [java.lang.Class]
+Note: duplicate definition of library class [java.lang.ClassCastException]
+Note: duplicate definition of library class [java.lang.ClassNotFoundException]
+Note: duplicate definition of library class [java.lang.Double]
+Note: duplicate definition of library class [java.lang.Error]
+Note: duplicate definition of library class [java.lang.Exception]
+Note: duplicate definition of library class [java.lang.Float]
+Note: duplicate definition of library class [java.lang.IllegalAccessException]
+Note: duplicate definition of library class [java.lang.IllegalArgumentException]
+Note: duplicate definition of library class [java.lang.IllegalMonitorStateException]
+Note: duplicate definition of library class [java.lang.IllegalStateException]
+Note: duplicate definition of library class [java.lang.IllegalThreadStateException]
+Note: duplicate definition of library class [java.lang.IndexOutOfBoundsException]
+Note: duplicate definition of library class [java.lang.InstantiationException]
+Note: duplicate definition of library class [java.lang.Integer]
+Note: duplicate definition of library class [java.lang.InterruptedException]
+Note: duplicate definition of library class [java.lang.Long]
+Note: duplicate definition of library class [java.lang.Math]
+Note: duplicate definition of library class [java.lang.NegativeArraySizeException]
+Note: duplicate definition of library class [java.lang.NoClassDefFoundError]
+Note: duplicate definition of library class [java.lang.NullPointerException]
+Note: duplicate definition of library class [java.lang.NumberFormatException]
+Note: duplicate definition of library class [java.lang.Object]
+Note: duplicate definition of library class [java.lang.OutOfMemoryError]
+Note: duplicate definition of library class [java.lang.Runnable]
+Note: duplicate definition of library class [java.lang.Runtime]
+Note: duplicate definition of library class [java.lang.RuntimeException]
+Note: duplicate definition of library class [java.lang.SecurityException]
+Note: duplicate definition of library class [java.lang.Short]
+Note: duplicate definition of library class [java.lang.String]
+Note: duplicate definition of library class [java.lang.StringBuffer]
+Note: duplicate definition of library class [java.lang.StringIndexOutOfBoundsException]
+Note: duplicate definition of library class [java.lang.System]
+Note: duplicate definition of library class [java.lang.Thread]
+Note: duplicate definition of library class [java.lang.Throwable]
+Note: duplicate definition of library class [java.lang.UnsupportedOperationException]
+Note: duplicate definition of library class [java.lang.VirtualMachineError]
+Note: duplicate definition of library class [java.lang.ref.Reference]
+Note: duplicate definition of library class [java.lang.ref.WeakReference]
+Note: duplicate definition of library class [java.util.Calendar]
+Note: duplicate definition of library class [java.util.Date]
+Note: duplicate definition of library class [java.util.EmptyStackException]
+Note: duplicate definition of library class [java.util.Enumeration]
+Note: duplicate definition of library class [java.util.Hashtable]
+Note: duplicate definition of library class [java.util.NoSuchElementException]
+Note: duplicate definition of library class [java.util.Random]
+Note: duplicate definition of library class [java.util.Stack]
+Note: duplicate definition of library class [java.util.TimeZone]
+Note: duplicate definition of library class [java.util.Timer]
+Note: duplicate definition of library class [java.util.TimerTask]
+Note: duplicate definition of library class [java.util.Vector]
+Note: duplicate definition of library class [javax.microedition.io.CommConnection]
+Note: duplicate definition of library class [javax.microedition.io.Connection]
+Note: duplicate definition of library class [javax.microedition.io.ConnectionNotFoundException]
+Note: duplicate definition of library class [javax.microedition.io.Connector]
+Note: duplicate definition of library class [javax.microedition.io.ContentConnection]
+Note: duplicate definition of library class [javax.microedition.io.Datagram]
+Note: duplicate definition of library class [javax.microedition.io.DatagramConnection]
+Note: duplicate definition of library class [javax.microedition.io.HttpConnection]
+Note: duplicate definition of library class [javax.microedition.io.HttpsConnection]
+Note: duplicate definition of library class [javax.microedition.io.InputConnection]
+Note: duplicate definition of library class [javax.microedition.io.OutputConnection]
+Note: duplicate definition of library class [javax.microedition.io.PushRegistry]
+Note: duplicate definition of library class [javax.microedition.io.SecureConnection]
+Note: duplicate definition of library class [javax.microedition.io.SecurityInfo]
+Note: duplicate definition of library class [javax.microedition.io.ServerSocketConnection]
+Note: duplicate definition of library class [javax.microedition.io.SocketConnection]
+Note: duplicate definition of library class [javax.microedition.io.StreamConnection]
+Note: duplicate definition of library class [javax.microedition.io.StreamConnectionNotifier]
+Note: duplicate definition of library class [javax.microedition.io.UDPDatagramConnection]
+Note: duplicate definition of library class [javax.microedition.io.file.ConnectionClosedException]
+Note: duplicate definition of library class [javax.microedition.io.file.FileConnection]
+Note: duplicate definition of library class [javax.microedition.io.file.FileSystemListener]
+Note: duplicate definition of library class [javax.microedition.io.file.FileSystemRegistry]
+Note: duplicate definition of library class [javax.microedition.io.file.IllegalModeException]
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/jsr135.jar] (filtered)
+Note: duplicate definition of library class [javax.microedition.media.Control]
+Note: duplicate definition of library class [javax.microedition.media.Controllable]
+Note: duplicate definition of library class [javax.microedition.media.Manager]
+Note: duplicate definition of library class [javax.microedition.media.MediaException]
+Note: duplicate definition of library class [javax.microedition.media.Player]
+Note: duplicate definition of library class [javax.microedition.media.PlayerListener]
+Note: duplicate definition of library class [javax.microedition.media.TimeBase]
+Note: duplicate definition of library class [javax.microedition.media.control.FramePositioningControl]
+Note: duplicate definition of library class [javax.microedition.media.control.GUIControl]
+Note: duplicate definition of library class [javax.microedition.media.control.MIDIControl]
+Note: duplicate definition of library class [javax.microedition.media.control.MetaDataControl]
+Note: duplicate definition of library class [javax.microedition.media.control.PitchControl]
+Note: duplicate definition of library class [javax.microedition.media.control.RateControl]
+Note: duplicate definition of library class [javax.microedition.media.control.RecordControl]
+Note: duplicate definition of library class [javax.microedition.media.control.StopTimeControl]
+Note: duplicate definition of library class [javax.microedition.media.control.TempoControl]
+Note: duplicate definition of library class [javax.microedition.media.control.ToneControl]
+Note: duplicate definition of library class [javax.microedition.media.control.VideoControl]
+Note: duplicate definition of library class [javax.microedition.media.control.VolumeControl]
+Note: duplicate definition of library class [javax.microedition.media.protocol.ContentDescriptor]
+Note: duplicate definition of library class [javax.microedition.media.protocol.DataSource]
+Note: duplicate definition of library class [javax.microedition.media.protocol.SourceStream]
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/jsr184.jar] (filtered)
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/nokiaui.jar] (filtered)
+Note: there were 103 duplicate class definitions.
+      (http://proguard.sourceforge.net/manual/troubleshooting.html#duplicateclass)
+Note: Game: can't find dynamically referenced class com.pspkvm.system.Power
+Note: there were 1 unresolved dynamic references to classes or interfaces.
+      You should check if you need to specify additional program jars.
+      (http://proguard.sourceforge.net/manual/troubleshooting.html#dynamicalclass)
+Preparing output directory [<repo>/benchmarks/kvm/.work/experiments/game-original/verified] (filtered)
+  Copying resources from program directory [<repo>/benchmarks/kvm/.work/experiments/game-original/raw] (filtered)
+
+$ <repo>/benchmarks/kvm/.work/jdk8/bin/javac -source 1.3 -target 1.3 -Xlint:-options -bootclasspath <repo>/benchmarks/kvm/.work/suite/uei/cldc11.jar -classpath <repo>/benchmarks/kvm/.work/suite/uei/midp21.jar:<repo>/benchmarks/kvm/.work/suite/uei/jsr135.jar:<repo>/benchmarks/kvm/.work/suite/uei/jsr184.jar:<repo>/benchmarks/kvm/.work/suite/uei/nokiaui.jar -d <repo>/benchmarks/kvm/.work/experiments/game-list/raw <repo>/src/NPC.java <repo>/src/Profiler.java <repo>/src/Sound.java <repo>/src/TE.java <repo>/src/Textures.java <repo>/common/src/Constants.java <repo>/common/src/Items.java <repo>/common/src/Objects.java <repo>/benchmarks/kvm/.work/experiments/game-list/source/Game.java
+
+$ <repo>/benchmarks/kvm/.work/jdk8/bin/java -jar <repo>/benchmarks/kvm/.work/suite/libs/proguard.jar -injars <repo>/benchmarks/kvm/.work/experiments/game-list/raw -outjars <repo>/benchmarks/kvm/.work/experiments/game-list/verified -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/cldc11.jar -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/midp21.jar -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/jsr135.jar -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/jsr184.jar -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/nokiaui.jar -dontshrink -dontoptimize -dontobfuscate -microedition -target 1.1
+ProGuard, version 6.2.2
+Reading program directory [<repo>/benchmarks/kvm/.work/experiments/game-list/raw] (filtered)
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/cldc11.jar] (filtered)
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/midp21.jar] (filtered)
+Note: duplicate definition of library class [java.lang.ArithmeticException]
+Note: duplicate definition of library class [java.lang.ArrayIndexOutOfBoundsException]
+Note: duplicate definition of library class [java.lang.ArrayStoreException]
+Note: duplicate definition of library class [java.lang.Boolean]
+Note: duplicate definition of library class [java.lang.Byte]
+Note: duplicate definition of library class [java.lang.Character]
+Note: duplicate definition of library class [java.lang.Class]
+Note: duplicate definition of library class [java.lang.ClassCastException]
+Note: duplicate definition of library class [java.lang.ClassNotFoundException]
+Note: duplicate definition of library class [java.lang.Double]
+Note: duplicate definition of library class [java.lang.Error]
+Note: duplicate definition of library class [java.lang.Exception]
+Note: duplicate definition of library class [java.lang.Float]
+Note: duplicate definition of library class [java.lang.IllegalAccessException]
+Note: duplicate definition of library class [java.lang.IllegalArgumentException]
+Note: duplicate definition of library class [java.lang.IllegalMonitorStateException]
+Note: duplicate definition of library class [java.lang.IllegalStateException]
+Note: duplicate definition of library class [java.lang.IllegalThreadStateException]
+Note: duplicate definition of library class [java.lang.IndexOutOfBoundsException]
+Note: duplicate definition of library class [java.lang.InstantiationException]
+Note: duplicate definition of library class [java.lang.Integer]
+Note: duplicate definition of library class [java.lang.InterruptedException]
+Note: duplicate definition of library class [java.lang.Long]
+Note: duplicate definition of library class [java.lang.Math]
+Note: duplicate definition of library class [java.lang.NegativeArraySizeException]
+Note: duplicate definition of library class [java.lang.NoClassDefFoundError]
+Note: duplicate definition of library class [java.lang.NullPointerException]
+Note: duplicate definition of library class [java.lang.NumberFormatException]
+Note: duplicate definition of library class [java.lang.Object]
+Note: duplicate definition of library class [java.lang.OutOfMemoryError]
+Note: duplicate definition of library class [java.lang.Runnable]
+Note: duplicate definition of library class [java.lang.Runtime]
+Note: duplicate definition of library class [java.lang.RuntimeException]
+Note: duplicate definition of library class [java.lang.SecurityException]
+Note: duplicate definition of library class [java.lang.Short]
+Note: duplicate definition of library class [java.lang.String]
+Note: duplicate definition of library class [java.lang.StringBuffer]
+Note: duplicate definition of library class [java.lang.StringIndexOutOfBoundsException]
+Note: duplicate definition of library class [java.lang.System]
+Note: duplicate definition of library class [java.lang.Thread]
+Note: duplicate definition of library class [java.lang.Throwable]
+Note: duplicate definition of library class [java.lang.UnsupportedOperationException]
+Note: duplicate definition of library class [java.lang.VirtualMachineError]
+Note: duplicate definition of library class [java.lang.ref.Reference]
+Note: duplicate definition of library class [java.lang.ref.WeakReference]
+Note: duplicate definition of library class [java.util.Calendar]
+Note: duplicate definition of library class [java.util.Date]
+Note: duplicate definition of library class [java.util.EmptyStackException]
+Note: duplicate definition of library class [java.util.Enumeration]
+Note: duplicate definition of library class [java.util.Hashtable]
+Note: duplicate definition of library class [java.util.NoSuchElementException]
+Note: duplicate definition of library class [java.util.Random]
+Note: duplicate definition of library class [java.util.Stack]
+Note: duplicate definition of library class [java.util.TimeZone]
+Note: duplicate definition of library class [java.util.Timer]
+Note: duplicate definition of library class [java.util.TimerTask]
+Note: duplicate definition of library class [java.util.Vector]
+Note: duplicate definition of library class [javax.microedition.io.CommConnection]
+Note: duplicate definition of library class [javax.microedition.io.Connection]
+Note: duplicate definition of library class [javax.microedition.io.ConnectionNotFoundException]
+Note: duplicate definition of library class [javax.microedition.io.Connector]
+Note: duplicate definition of library class [javax.microedition.io.ContentConnection]
+Note: duplicate definition of library class [javax.microedition.io.Datagram]
+Note: duplicate definition of library class [javax.microedition.io.DatagramConnection]
+Note: duplicate definition of library class [javax.microedition.io.HttpConnection]
+Note: duplicate definition of library class [javax.microedition.io.HttpsConnection]
+Note: duplicate definition of library class [javax.microedition.io.InputConnection]
+Note: duplicate definition of library class [javax.microedition.io.OutputConnection]
+Note: duplicate definition of library class [javax.microedition.io.PushRegistry]
+Note: duplicate definition of library class [javax.microedition.io.SecureConnection]
+Note: duplicate definition of library class [javax.microedition.io.SecurityInfo]
+Note: duplicate definition of library class [javax.microedition.io.ServerSocketConnection]
+Note: duplicate definition of library class [javax.microedition.io.SocketConnection]
+Note: duplicate definition of library class [javax.microedition.io.StreamConnection]
+Note: duplicate definition of library class [javax.microedition.io.StreamConnectionNotifier]
+Note: duplicate definition of library class [javax.microedition.io.UDPDatagramConnection]
+Note: duplicate definition of library class [javax.microedition.io.file.ConnectionClosedException]
+Note: duplicate definition of library class [javax.microedition.io.file.FileConnection]
+Note: duplicate definition of library class [javax.microedition.io.file.FileSystemListener]
+Note: duplicate definition of library class [javax.microedition.io.file.FileSystemRegistry]
+Note: duplicate definition of library class [javax.microedition.io.file.IllegalModeException]
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/jsr135.jar] (filtered)
+Note: duplicate definition of library class [javax.microedition.media.Control]
+Note: duplicate definition of library class [javax.microedition.media.Controllable]
+Note: duplicate definition of library class [javax.microedition.media.Manager]
+Note: duplicate definition of library class [javax.microedition.media.MediaException]
+Note: duplicate definition of library class [javax.microedition.media.Player]
+Note: duplicate definition of library class [javax.microedition.media.PlayerListener]
+Note: duplicate definition of library class [javax.microedition.media.TimeBase]
+Note: duplicate definition of library class [javax.microedition.media.control.FramePositioningControl]
+Note: duplicate definition of library class [javax.microedition.media.control.GUIControl]
+Note: duplicate definition of library class [javax.microedition.media.control.MIDIControl]
+Note: duplicate definition of library class [javax.microedition.media.control.MetaDataControl]
+Note: duplicate definition of library class [javax.microedition.media.control.PitchControl]
+Note: duplicate definition of library class [javax.microedition.media.control.RateControl]
+Note: duplicate definition of library class [javax.microedition.media.control.RecordControl]
+Note: duplicate definition of library class [javax.microedition.media.control.StopTimeControl]
+Note: duplicate definition of library class [javax.microedition.media.control.TempoControl]
+Note: duplicate definition of library class [javax.microedition.media.control.ToneControl]
+Note: duplicate definition of library class [javax.microedition.media.control.VideoControl]
+Note: duplicate definition of library class [javax.microedition.media.control.VolumeControl]
+Note: duplicate definition of library class [javax.microedition.media.protocol.ContentDescriptor]
+Note: duplicate definition of library class [javax.microedition.media.protocol.DataSource]
+Note: duplicate definition of library class [javax.microedition.media.protocol.SourceStream]
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/jsr184.jar] (filtered)
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/nokiaui.jar] (filtered)
+Note: there were 103 duplicate class definitions.
+      (http://proguard.sourceforge.net/manual/troubleshooting.html#duplicateclass)
+Note: Game: can't find dynamically referenced class com.pspkvm.system.Power
+Note: there were 1 unresolved dynamic references to classes or interfaces.
+      You should check if you need to specify additional program jars.
+      (http://proguard.sourceforge.net/manual/troubleshooting.html#dynamicalclass)
+Preparing output directory [<repo>/benchmarks/kvm/.work/experiments/game-list/verified] (filtered)
+  Copying resources from program directory [<repo>/benchmarks/kvm/.work/experiments/game-list/raw] (filtered)
+
+$ <repo>/benchmarks/kvm/.work/jdk8/bin/javac -source 1.3 -target 1.3 -Xlint:-options -bootclasspath <repo>/benchmarks/kvm/.work/suite/uei/cldc11.jar -classpath <repo>/benchmarks/kvm/.work/suite/uei/midp21.jar:<repo>/benchmarks/kvm/.work/suite/uei/jsr135.jar:<repo>/benchmarks/kvm/.work/suite/uei/jsr184.jar:<repo>/benchmarks/kvm/.work/suite/uei/nokiaui.jar -d <repo>/benchmarks/kvm/.work/experiments/game-heap/raw <repo>/src/NPC.java <repo>/src/Profiler.java <repo>/src/Sound.java <repo>/src/TE.java <repo>/src/Textures.java <repo>/common/src/Constants.java <repo>/common/src/Items.java <repo>/common/src/Objects.java <repo>/benchmarks/kvm/.work/experiments/game-heap/source/Game.java
+
+$ <repo>/benchmarks/kvm/.work/jdk8/bin/java -jar <repo>/benchmarks/kvm/.work/suite/libs/proguard.jar -injars <repo>/benchmarks/kvm/.work/experiments/game-heap/raw -outjars <repo>/benchmarks/kvm/.work/experiments/game-heap/verified -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/cldc11.jar -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/midp21.jar -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/jsr135.jar -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/jsr184.jar -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/nokiaui.jar -dontshrink -dontoptimize -dontobfuscate -microedition -target 1.1
+ProGuard, version 6.2.2
+Reading program directory [<repo>/benchmarks/kvm/.work/experiments/game-heap/raw] (filtered)
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/cldc11.jar] (filtered)
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/midp21.jar] (filtered)
+Note: duplicate definition of library class [java.lang.ArithmeticException]
+Note: duplicate definition of library class [java.lang.ArrayIndexOutOfBoundsException]
+Note: duplicate definition of library class [java.lang.ArrayStoreException]
+Note: duplicate definition of library class [java.lang.Boolean]
+Note: duplicate definition of library class [java.lang.Byte]
+Note: duplicate definition of library class [java.lang.Character]
+Note: duplicate definition of library class [java.lang.Class]
+Note: duplicate definition of library class [java.lang.ClassCastException]
+Note: duplicate definition of library class [java.lang.ClassNotFoundException]
+Note: duplicate definition of library class [java.lang.Double]
+Note: duplicate definition of library class [java.lang.Error]
+Note: duplicate definition of library class [java.lang.Exception]
+Note: duplicate definition of library class [java.lang.Float]
+Note: duplicate definition of library class [java.lang.IllegalAccessException]
+Note: duplicate definition of library class [java.lang.IllegalArgumentException]
+Note: duplicate definition of library class [java.lang.IllegalMonitorStateException]
+Note: duplicate definition of library class [java.lang.IllegalStateException]
+Note: duplicate definition of library class [java.lang.IllegalThreadStateException]
+Note: duplicate definition of library class [java.lang.IndexOutOfBoundsException]
+Note: duplicate definition of library class [java.lang.InstantiationException]
+Note: duplicate definition of library class [java.lang.Integer]
+Note: duplicate definition of library class [java.lang.InterruptedException]
+Note: duplicate definition of library class [java.lang.Long]
+Note: duplicate definition of library class [java.lang.Math]
+Note: duplicate definition of library class [java.lang.NegativeArraySizeException]
+Note: duplicate definition of library class [java.lang.NoClassDefFoundError]
+Note: duplicate definition of library class [java.lang.NullPointerException]
+Note: duplicate definition of library class [java.lang.NumberFormatException]
+Note: duplicate definition of library class [java.lang.Object]
+Note: duplicate definition of library class [java.lang.OutOfMemoryError]
+Note: duplicate definition of library class [java.lang.Runnable]
+Note: duplicate definition of library class [java.lang.Runtime]
+Note: duplicate definition of library class [java.lang.RuntimeException]
+Note: duplicate definition of library class [java.lang.SecurityException]
+Note: duplicate definition of library class [java.lang.Short]
+Note: duplicate definition of library class [java.lang.String]
+Note: duplicate definition of library class [java.lang.StringBuffer]
+Note: duplicate definition of library class [java.lang.StringIndexOutOfBoundsException]
+Note: duplicate definition of library class [java.lang.System]
+Note: duplicate definition of library class [java.lang.Thread]
+Note: duplicate definition of library class [java.lang.Throwable]
+Note: duplicate definition of library class [java.lang.UnsupportedOperationException]
+Note: duplicate definition of library class [java.lang.VirtualMachineError]
+Note: duplicate definition of library class [java.lang.ref.Reference]
+Note: duplicate definition of library class [java.lang.ref.WeakReference]
+Note: duplicate definition of library class [java.util.Calendar]
+Note: duplicate definition of library class [java.util.Date]
+Note: duplicate definition of library class [java.util.EmptyStackException]
+Note: duplicate definition of library class [java.util.Enumeration]
+Note: duplicate definition of library class [java.util.Hashtable]
+Note: duplicate definition of library class [java.util.NoSuchElementException]
+Note: duplicate definition of library class [java.util.Random]
+Note: duplicate definition of library class [java.util.Stack]
+Note: duplicate definition of library class [java.util.TimeZone]
+Note: duplicate definition of library class [java.util.Timer]
+Note: duplicate definition of library class [java.util.TimerTask]
+Note: duplicate definition of library class [java.util.Vector]
+Note: duplicate definition of library class [javax.microedition.io.CommConnection]
+Note: duplicate definition of library class [javax.microedition.io.Connection]
+Note: duplicate definition of library class [javax.microedition.io.ConnectionNotFoundException]
+Note: duplicate definition of library class [javax.microedition.io.Connector]
+Note: duplicate definition of library class [javax.microedition.io.ContentConnection]
+Note: duplicate definition of library class [javax.microedition.io.Datagram]
+Note: duplicate definition of library class [javax.microedition.io.DatagramConnection]
+Note: duplicate definition of library class [javax.microedition.io.HttpConnection]
+Note: duplicate definition of library class [javax.microedition.io.HttpsConnection]
+Note: duplicate definition of library class [javax.microedition.io.InputConnection]
+Note: duplicate definition of library class [javax.microedition.io.OutputConnection]
+Note: duplicate definition of library class [javax.microedition.io.PushRegistry]
+Note: duplicate definition of library class [javax.microedition.io.SecureConnection]
+Note: duplicate definition of library class [javax.microedition.io.SecurityInfo]
+Note: duplicate definition of library class [javax.microedition.io.ServerSocketConnection]
+Note: duplicate definition of library class [javax.microedition.io.SocketConnection]
+Note: duplicate definition of library class [javax.microedition.io.StreamConnection]
+Note: duplicate definition of library class [javax.microedition.io.StreamConnectionNotifier]
+Note: duplicate definition of library class [javax.microedition.io.UDPDatagramConnection]
+Note: duplicate definition of library class [javax.microedition.io.file.ConnectionClosedException]
+Note: duplicate definition of library class [javax.microedition.io.file.FileConnection]
+Note: duplicate definition of library class [javax.microedition.io.file.FileSystemListener]
+Note: duplicate definition of library class [javax.microedition.io.file.FileSystemRegistry]
+Note: duplicate definition of library class [javax.microedition.io.file.IllegalModeException]
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/jsr135.jar] (filtered)
+Note: duplicate definition of library class [javax.microedition.media.Control]
+Note: duplicate definition of library class [javax.microedition.media.Controllable]
+Note: duplicate definition of library class [javax.microedition.media.Manager]
+Note: duplicate definition of library class [javax.microedition.media.MediaException]
+Note: duplicate definition of library class [javax.microedition.media.Player]
+Note: duplicate definition of library class [javax.microedition.media.PlayerListener]
+Note: duplicate definition of library class [javax.microedition.media.TimeBase]
+Note: duplicate definition of library class [javax.microedition.media.control.FramePositioningControl]
+Note: duplicate definition of library class [javax.microedition.media.control.GUIControl]
+Note: duplicate definition of library class [javax.microedition.media.control.MIDIControl]
+Note: duplicate definition of library class [javax.microedition.media.control.MetaDataControl]
+Note: duplicate definition of library class [javax.microedition.media.control.PitchControl]
+Note: duplicate definition of library class [javax.microedition.media.control.RateControl]
+Note: duplicate definition of library class [javax.microedition.media.control.RecordControl]
+Note: duplicate definition of library class [javax.microedition.media.control.StopTimeControl]
+Note: duplicate definition of library class [javax.microedition.media.control.TempoControl]
+Note: duplicate definition of library class [javax.microedition.media.control.ToneControl]
+Note: duplicate definition of library class [javax.microedition.media.control.VideoControl]
+Note: duplicate definition of library class [javax.microedition.media.control.VolumeControl]
+Note: duplicate definition of library class [javax.microedition.media.protocol.ContentDescriptor]
+Note: duplicate definition of library class [javax.microedition.media.protocol.DataSource]
+Note: duplicate definition of library class [javax.microedition.media.protocol.SourceStream]
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/jsr184.jar] (filtered)
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/nokiaui.jar] (filtered)
+Note: there were 103 duplicate class definitions.
+      (http://proguard.sourceforge.net/manual/troubleshooting.html#duplicateclass)
+Note: Game: can't find dynamically referenced class com.pspkvm.system.Power
+Note: there were 1 unresolved dynamic references to classes or interfaces.
+      You should check if you need to specify additional program jars.
+      (http://proguard.sourceforge.net/manual/troubleshooting.html#dynamicalclass)
+Preparing output directory [<repo>/benchmarks/kvm/.work/experiments/game-heap/verified] (filtered)
+  Copying resources from program directory [<repo>/benchmarks/kvm/.work/experiments/game-heap/raw] (filtered)
+
+$ <repo>/benchmarks/kvm/.work/jdk8/bin/javac -source 1.3 -target 1.3 -Xlint:-options -bootclasspath <repo>/benchmarks/kvm/.work/suite/uei/cldc11.jar -classpath <repo>/benchmarks/kvm/.work/suite/uei/midp21.jar:<repo>/benchmarks/kvm/.work/suite/uei/jsr135.jar:<repo>/benchmarks/kvm/.work/suite/uei/jsr184.jar:<repo>/benchmarks/kvm/.work/suite/uei/nokiaui.jar -d <repo>/benchmarks/kvm/.work/experiments/game-tile-index/raw <repo>/src/NPC.java <repo>/src/Profiler.java <repo>/src/Sound.java <repo>/src/TE.java <repo>/src/Textures.java <repo>/common/src/Constants.java <repo>/common/src/Items.java <repo>/common/src/Objects.java <repo>/benchmarks/kvm/.work/experiments/game-tile-index/source/Game.java
+
+$ <repo>/benchmarks/kvm/.work/jdk8/bin/java -jar <repo>/benchmarks/kvm/.work/suite/libs/proguard.jar -injars <repo>/benchmarks/kvm/.work/experiments/game-tile-index/raw -outjars <repo>/benchmarks/kvm/.work/experiments/game-tile-index/verified -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/cldc11.jar -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/midp21.jar -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/jsr135.jar -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/jsr184.jar -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/nokiaui.jar -dontshrink -dontoptimize -dontobfuscate -microedition -target 1.1
+ProGuard, version 6.2.2
+Reading program directory [<repo>/benchmarks/kvm/.work/experiments/game-tile-index/raw] (filtered)
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/cldc11.jar] (filtered)
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/midp21.jar] (filtered)
+Note: duplicate definition of library class [java.lang.ArithmeticException]
+Note: duplicate definition of library class [java.lang.ArrayIndexOutOfBoundsException]
+Note: duplicate definition of library class [java.lang.ArrayStoreException]
+Note: duplicate definition of library class [java.lang.Boolean]
+Note: duplicate definition of library class [java.lang.Byte]
+Note: duplicate definition of library class [java.lang.Character]
+Note: duplicate definition of library class [java.lang.Class]
+Note: duplicate definition of library class [java.lang.ClassCastException]
+Note: duplicate definition of library class [java.lang.ClassNotFoundException]
+Note: duplicate definition of library class [java.lang.Double]
+Note: duplicate definition of library class [java.lang.Error]
+Note: duplicate definition of library class [java.lang.Exception]
+Note: duplicate definition of library class [java.lang.Float]
+Note: duplicate definition of library class [java.lang.IllegalAccessException]
+Note: duplicate definition of library class [java.lang.IllegalArgumentException]
+Note: duplicate definition of library class [java.lang.IllegalMonitorStateException]
+Note: duplicate definition of library class [java.lang.IllegalStateException]
+Note: duplicate definition of library class [java.lang.IllegalThreadStateException]
+Note: duplicate definition of library class [java.lang.IndexOutOfBoundsException]
+Note: duplicate definition of library class [java.lang.InstantiationException]
+Note: duplicate definition of library class [java.lang.Integer]
+Note: duplicate definition of library class [java.lang.InterruptedException]
+Note: duplicate definition of library class [java.lang.Long]
+Note: duplicate definition of library class [java.lang.Math]
+Note: duplicate definition of library class [java.lang.NegativeArraySizeException]
+Note: duplicate definition of library class [java.lang.NoClassDefFoundError]
+Note: duplicate definition of library class [java.lang.NullPointerException]
+Note: duplicate definition of library class [java.lang.NumberFormatException]
+Note: duplicate definition of library class [java.lang.Object]
+Note: duplicate definition of library class [java.lang.OutOfMemoryError]
+Note: duplicate definition of library class [java.lang.Runnable]
+Note: duplicate definition of library class [java.lang.Runtime]
+Note: duplicate definition of library class [java.lang.RuntimeException]
+Note: duplicate definition of library class [java.lang.SecurityException]
+Note: duplicate definition of library class [java.lang.Short]
+Note: duplicate definition of library class [java.lang.String]
+Note: duplicate definition of library class [java.lang.StringBuffer]
+Note: duplicate definition of library class [java.lang.StringIndexOutOfBoundsException]
+Note: duplicate definition of library class [java.lang.System]
+Note: duplicate definition of library class [java.lang.Thread]
+Note: duplicate definition of library class [java.lang.Throwable]
+Note: duplicate definition of library class [java.lang.UnsupportedOperationException]
+Note: duplicate definition of library class [java.lang.VirtualMachineError]
+Note: duplicate definition of library class [java.lang.ref.Reference]
+Note: duplicate definition of library class [java.lang.ref.WeakReference]
+Note: duplicate definition of library class [java.util.Calendar]
+Note: duplicate definition of library class [java.util.Date]
+Note: duplicate definition of library class [java.util.EmptyStackException]
+Note: duplicate definition of library class [java.util.Enumeration]
+Note: duplicate definition of library class [java.util.Hashtable]
+Note: duplicate definition of library class [java.util.NoSuchElementException]
+Note: duplicate definition of library class [java.util.Random]
+Note: duplicate definition of library class [java.util.Stack]
+Note: duplicate definition of library class [java.util.TimeZone]
+Note: duplicate definition of library class [java.util.Timer]
+Note: duplicate definition of library class [java.util.TimerTask]
+Note: duplicate definition of library class [java.util.Vector]
+Note: duplicate definition of library class [javax.microedition.io.CommConnection]
+Note: duplicate definition of library class [javax.microedition.io.Connection]
+Note: duplicate definition of library class [javax.microedition.io.ConnectionNotFoundException]
+Note: duplicate definition of library class [javax.microedition.io.Connector]
+Note: duplicate definition of library class [javax.microedition.io.ContentConnection]
+Note: duplicate definition of library class [javax.microedition.io.Datagram]
+Note: duplicate definition of library class [javax.microedition.io.DatagramConnection]
+Note: duplicate definition of library class [javax.microedition.io.HttpConnection]
+Note: duplicate definition of library class [javax.microedition.io.HttpsConnection]
+Note: duplicate definition of library class [javax.microedition.io.InputConnection]
+Note: duplicate definition of library class [javax.microedition.io.OutputConnection]
+Note: duplicate definition of library class [javax.microedition.io.PushRegistry]
+Note: duplicate definition of library class [javax.microedition.io.SecureConnection]
+Note: duplicate definition of library class [javax.microedition.io.SecurityInfo]
+Note: duplicate definition of library class [javax.microedition.io.ServerSocketConnection]
+Note: duplicate definition of library class [javax.microedition.io.SocketConnection]
+Note: duplicate definition of library class [javax.microedition.io.StreamConnection]
+Note: duplicate definition of library class [javax.microedition.io.StreamConnectionNotifier]
+Note: duplicate definition of library class [javax.microedition.io.UDPDatagramConnection]
+Note: duplicate definition of library class [javax.microedition.io.file.ConnectionClosedException]
+Note: duplicate definition of library class [javax.microedition.io.file.FileConnection]
+Note: duplicate definition of library class [javax.microedition.io.file.FileSystemListener]
+Note: duplicate definition of library class [javax.microedition.io.file.FileSystemRegistry]
+Note: duplicate definition of library class [javax.microedition.io.file.IllegalModeException]
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/jsr135.jar] (filtered)
+Note: duplicate definition of library class [javax.microedition.media.Control]
+Note: duplicate definition of library class [javax.microedition.media.Controllable]
+Note: duplicate definition of library class [javax.microedition.media.Manager]
+Note: duplicate definition of library class [javax.microedition.media.MediaException]
+Note: duplicate definition of library class [javax.microedition.media.Player]
+Note: duplicate definition of library class [javax.microedition.media.PlayerListener]
+Note: duplicate definition of library class [javax.microedition.media.TimeBase]
+Note: duplicate definition of library class [javax.microedition.media.control.FramePositioningControl]
+Note: duplicate definition of library class [javax.microedition.media.control.GUIControl]
+Note: duplicate definition of library class [javax.microedition.media.control.MIDIControl]
+Note: duplicate definition of library class [javax.microedition.media.control.MetaDataControl]
+Note: duplicate definition of library class [javax.microedition.media.control.PitchControl]
+Note: duplicate definition of library class [javax.microedition.media.control.RateControl]
+Note: duplicate definition of library class [javax.microedition.media.control.RecordControl]
+Note: duplicate definition of library class [javax.microedition.media.control.StopTimeControl]
+Note: duplicate definition of library class [javax.microedition.media.control.TempoControl]
+Note: duplicate definition of library class [javax.microedition.media.control.ToneControl]
+Note: duplicate definition of library class [javax.microedition.media.control.VideoControl]
+Note: duplicate definition of library class [javax.microedition.media.control.VolumeControl]
+Note: duplicate definition of library class [javax.microedition.media.protocol.ContentDescriptor]
+Note: duplicate definition of library class [javax.microedition.media.protocol.DataSource]
+Note: duplicate definition of library class [javax.microedition.media.protocol.SourceStream]
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/jsr184.jar] (filtered)
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/nokiaui.jar] (filtered)
+Note: there were 103 duplicate class definitions.
+      (http://proguard.sourceforge.net/manual/troubleshooting.html#duplicateclass)
+Note: Game: can't find dynamically referenced class com.pspkvm.system.Power
+Note: there were 1 unresolved dynamic references to classes or interfaces.
+      You should check if you need to specify additional program jars.
+      (http://proguard.sourceforge.net/manual/troubleshooting.html#dynamicalclass)
+Preparing output directory [<repo>/benchmarks/kvm/.work/experiments/game-tile-index/verified] (filtered)
+  Copying resources from program directory [<repo>/benchmarks/kvm/.work/experiments/game-tile-index/raw] (filtered)
+
+$ <repo>/benchmarks/kvm/.work/jdk8/bin/javac -source 1.3 -target 1.3 -Xlint:-options -bootclasspath <repo>/benchmarks/kvm/.work/suite/uei/cldc11.jar -classpath <repo>/benchmarks/kvm/.work/suite/uei/midp21.jar:<repo>/benchmarks/kvm/.work/suite/uei/jsr135.jar:<repo>/benchmarks/kvm/.work/suite/uei/jsr184.jar:<repo>/benchmarks/kvm/.work/suite/uei/nokiaui.jar -d <repo>/benchmarks/kvm/.work/experiments/game-tile-cull/raw <repo>/src/NPC.java <repo>/src/Profiler.java <repo>/src/Sound.java <repo>/src/TE.java <repo>/src/Textures.java <repo>/common/src/Constants.java <repo>/common/src/Items.java <repo>/common/src/Objects.java <repo>/benchmarks/kvm/.work/experiments/game-tile-cull/source/Game.java
+
+$ <repo>/benchmarks/kvm/.work/jdk8/bin/java -jar <repo>/benchmarks/kvm/.work/suite/libs/proguard.jar -injars <repo>/benchmarks/kvm/.work/experiments/game-tile-cull/raw -outjars <repo>/benchmarks/kvm/.work/experiments/game-tile-cull/verified -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/cldc11.jar -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/midp21.jar -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/jsr135.jar -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/jsr184.jar -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/nokiaui.jar -dontshrink -dontoptimize -dontobfuscate -microedition -target 1.1
+ProGuard, version 6.2.2
+Reading program directory [<repo>/benchmarks/kvm/.work/experiments/game-tile-cull/raw] (filtered)
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/cldc11.jar] (filtered)
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/midp21.jar] (filtered)
+Note: duplicate definition of library class [java.lang.ArithmeticException]
+Note: duplicate definition of library class [java.lang.ArrayIndexOutOfBoundsException]
+Note: duplicate definition of library class [java.lang.ArrayStoreException]
+Note: duplicate definition of library class [java.lang.Boolean]
+Note: duplicate definition of library class [java.lang.Byte]
+Note: duplicate definition of library class [java.lang.Character]
+Note: duplicate definition of library class [java.lang.Class]
+Note: duplicate definition of library class [java.lang.ClassCastException]
+Note: duplicate definition of library class [java.lang.ClassNotFoundException]
+Note: duplicate definition of library class [java.lang.Double]
+Note: duplicate definition of library class [java.lang.Error]
+Note: duplicate definition of library class [java.lang.Exception]
+Note: duplicate definition of library class [java.lang.Float]
+Note: duplicate definition of library class [java.lang.IllegalAccessException]
+Note: duplicate definition of library class [java.lang.IllegalArgumentException]
+Note: duplicate definition of library class [java.lang.IllegalMonitorStateException]
+Note: duplicate definition of library class [java.lang.IllegalStateException]
+Note: duplicate definition of library class [java.lang.IllegalThreadStateException]
+Note: duplicate definition of library class [java.lang.IndexOutOfBoundsException]
+Note: duplicate definition of library class [java.lang.InstantiationException]
+Note: duplicate definition of library class [java.lang.Integer]
+Note: duplicate definition of library class [java.lang.InterruptedException]
+Note: duplicate definition of library class [java.lang.Long]
+Note: duplicate definition of library class [java.lang.Math]
+Note: duplicate definition of library class [java.lang.NegativeArraySizeException]
+Note: duplicate definition of library class [java.lang.NoClassDefFoundError]
+Note: duplicate definition of library class [java.lang.NullPointerException]
+Note: duplicate definition of library class [java.lang.NumberFormatException]
+Note: duplicate definition of library class [java.lang.Object]
+Note: duplicate definition of library class [java.lang.OutOfMemoryError]
+Note: duplicate definition of library class [java.lang.Runnable]
+Note: duplicate definition of library class [java.lang.Runtime]
+Note: duplicate definition of library class [java.lang.RuntimeException]
+Note: duplicate definition of library class [java.lang.SecurityException]
+Note: duplicate definition of library class [java.lang.Short]
+Note: duplicate definition of library class [java.lang.String]
+Note: duplicate definition of library class [java.lang.StringBuffer]
+Note: duplicate definition of library class [java.lang.StringIndexOutOfBoundsException]
+Note: duplicate definition of library class [java.lang.System]
+Note: duplicate definition of library class [java.lang.Thread]
+Note: duplicate definition of library class [java.lang.Throwable]
+Note: duplicate definition of library class [java.lang.UnsupportedOperationException]
+Note: duplicate definition of library class [java.lang.VirtualMachineError]
+Note: duplicate definition of library class [java.lang.ref.Reference]
+Note: duplicate definition of library class [java.lang.ref.WeakReference]
+Note: duplicate definition of library class [java.util.Calendar]
+Note: duplicate definition of library class [java.util.Date]
+Note: duplicate definition of library class [java.util.EmptyStackException]
+Note: duplicate definition of library class [java.util.Enumeration]
+Note: duplicate definition of library class [java.util.Hashtable]
+Note: duplicate definition of library class [java.util.NoSuchElementException]
+Note: duplicate definition of library class [java.util.Random]
+Note: duplicate definition of library class [java.util.Stack]
+Note: duplicate definition of library class [java.util.TimeZone]
+Note: duplicate definition of library class [java.util.Timer]
+Note: duplicate definition of library class [java.util.TimerTask]
+Note: duplicate definition of library class [java.util.Vector]
+Note: duplicate definition of library class [javax.microedition.io.CommConnection]
+Note: duplicate definition of library class [javax.microedition.io.Connection]
+Note: duplicate definition of library class [javax.microedition.io.ConnectionNotFoundException]
+Note: duplicate definition of library class [javax.microedition.io.Connector]
+Note: duplicate definition of library class [javax.microedition.io.ContentConnection]
+Note: duplicate definition of library class [javax.microedition.io.Datagram]
+Note: duplicate definition of library class [javax.microedition.io.DatagramConnection]
+Note: duplicate definition of library class [javax.microedition.io.HttpConnection]
+Note: duplicate definition of library class [javax.microedition.io.HttpsConnection]
+Note: duplicate definition of library class [javax.microedition.io.InputConnection]
+Note: duplicate definition of library class [javax.microedition.io.OutputConnection]
+Note: duplicate definition of library class [javax.microedition.io.PushRegistry]
+Note: duplicate definition of library class [javax.microedition.io.SecureConnection]
+Note: duplicate definition of library class [javax.microedition.io.SecurityInfo]
+Note: duplicate definition of library class [javax.microedition.io.ServerSocketConnection]
+Note: duplicate definition of library class [javax.microedition.io.SocketConnection]
+Note: duplicate definition of library class [javax.microedition.io.StreamConnection]
+Note: duplicate definition of library class [javax.microedition.io.StreamConnectionNotifier]
+Note: duplicate definition of library class [javax.microedition.io.UDPDatagramConnection]
+Note: duplicate definition of library class [javax.microedition.io.file.ConnectionClosedException]
+Note: duplicate definition of library class [javax.microedition.io.file.FileConnection]
+Note: duplicate definition of library class [javax.microedition.io.file.FileSystemListener]
+Note: duplicate definition of library class [javax.microedition.io.file.FileSystemRegistry]
+Note: duplicate definition of library class [javax.microedition.io.file.IllegalModeException]
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/jsr135.jar] (filtered)
+Note: duplicate definition of library class [javax.microedition.media.Control]
+Note: duplicate definition of library class [javax.microedition.media.Controllable]
+Note: duplicate definition of library class [javax.microedition.media.Manager]
+Note: duplicate definition of library class [javax.microedition.media.MediaException]
+Note: duplicate definition of library class [javax.microedition.media.Player]
+Note: duplicate definition of library class [javax.microedition.media.PlayerListener]
+Note: duplicate definition of library class [javax.microedition.media.TimeBase]
+Note: duplicate definition of library class [javax.microedition.media.control.FramePositioningControl]
+Note: duplicate definition of library class [javax.microedition.media.control.GUIControl]
+Note: duplicate definition of library class [javax.microedition.media.control.MIDIControl]
+Note: duplicate definition of library class [javax.microedition.media.control.MetaDataControl]
+Note: duplicate definition of library class [javax.microedition.media.control.PitchControl]
+Note: duplicate definition of library class [javax.microedition.media.control.RateControl]
+Note: duplicate definition of library class [javax.microedition.media.control.RecordControl]
+Note: duplicate definition of library class [javax.microedition.media.control.StopTimeControl]
+Note: duplicate definition of library class [javax.microedition.media.control.TempoControl]
+Note: duplicate definition of library class [javax.microedition.media.control.ToneControl]
+Note: duplicate definition of library class [javax.microedition.media.control.VideoControl]
+Note: duplicate definition of library class [javax.microedition.media.control.VolumeControl]
+Note: duplicate definition of library class [javax.microedition.media.protocol.ContentDescriptor]
+Note: duplicate definition of library class [javax.microedition.media.protocol.DataSource]
+Note: duplicate definition of library class [javax.microedition.media.protocol.SourceStream]
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/jsr184.jar] (filtered)
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/nokiaui.jar] (filtered)
+Note: there were 103 duplicate class definitions.
+      (http://proguard.sourceforge.net/manual/troubleshooting.html#duplicateclass)
+Note: Game: can't find dynamically referenced class com.pspkvm.system.Power
+Note: there were 1 unresolved dynamic references to classes or interfaces.
+      You should check if you need to specify additional program jars.
+      (http://proguard.sourceforge.net/manual/troubleshooting.html#dynamicalclass)
+Preparing output directory [<repo>/benchmarks/kvm/.work/experiments/game-tile-cull/verified] (filtered)
+  Copying resources from program directory [<repo>/benchmarks/kvm/.work/experiments/game-tile-cull/raw] (filtered)
+
+$ <repo>/benchmarks/kvm/.work/jdk8/bin/javac -source 1.3 -target 1.3 -Xlint:-options -bootclasspath <repo>/benchmarks/kvm/.work/suite/uei/cldc11.jar -classpath <repo>/benchmarks/kvm/.work/suite/uei/midp21.jar:<repo>/benchmarks/kvm/.work/suite/uei/jsr135.jar:<repo>/benchmarks/kvm/.work/suite/uei/jsr184.jar:<repo>/benchmarks/kvm/.work/suite/uei/nokiaui.jar -d <repo>/benchmarks/kvm/.work/experiments/game-heap-tile-cull/raw <repo>/src/NPC.java <repo>/src/Profiler.java <repo>/src/Sound.java <repo>/src/TE.java <repo>/src/Textures.java <repo>/common/src/Constants.java <repo>/common/src/Items.java <repo>/common/src/Objects.java <repo>/benchmarks/kvm/.work/experiments/game-heap-tile-cull/source/Game.java
+
+$ <repo>/benchmarks/kvm/.work/jdk8/bin/java -jar <repo>/benchmarks/kvm/.work/suite/libs/proguard.jar -injars <repo>/benchmarks/kvm/.work/experiments/game-heap-tile-cull/raw -outjars <repo>/benchmarks/kvm/.work/experiments/game-heap-tile-cull/verified -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/cldc11.jar -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/midp21.jar -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/jsr135.jar -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/jsr184.jar -libraryjars <repo>/benchmarks/kvm/.work/suite/uei/nokiaui.jar -dontshrink -dontoptimize -dontobfuscate -microedition -target 1.1
+ProGuard, version 6.2.2
+Reading program directory [<repo>/benchmarks/kvm/.work/experiments/game-heap-tile-cull/raw] (filtered)
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/cldc11.jar] (filtered)
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/midp21.jar] (filtered)
+Note: duplicate definition of library class [java.lang.ArithmeticException]
+Note: duplicate definition of library class [java.lang.ArrayIndexOutOfBoundsException]
+Note: duplicate definition of library class [java.lang.ArrayStoreException]
+Note: duplicate definition of library class [java.lang.Boolean]
+Note: duplicate definition of library class [java.lang.Byte]
+Note: duplicate definition of library class [java.lang.Character]
+Note: duplicate definition of library class [java.lang.Class]
+Note: duplicate definition of library class [java.lang.ClassCastException]
+Note: duplicate definition of library class [java.lang.ClassNotFoundException]
+Note: duplicate definition of library class [java.lang.Double]
+Note: duplicate definition of library class [java.lang.Error]
+Note: duplicate definition of library class [java.lang.Exception]
+Note: duplicate definition of library class [java.lang.Float]
+Note: duplicate definition of library class [java.lang.IllegalAccessException]
+Note: duplicate definition of library class [java.lang.IllegalArgumentException]
+Note: duplicate definition of library class [java.lang.IllegalMonitorStateException]
+Note: duplicate definition of library class [java.lang.IllegalStateException]
+Note: duplicate definition of library class [java.lang.IllegalThreadStateException]
+Note: duplicate definition of library class [java.lang.IndexOutOfBoundsException]
+Note: duplicate definition of library class [java.lang.InstantiationException]
+Note: duplicate definition of library class [java.lang.Integer]
+Note: duplicate definition of library class [java.lang.InterruptedException]
+Note: duplicate definition of library class [java.lang.Long]
+Note: duplicate definition of library class [java.lang.Math]
+Note: duplicate definition of library class [java.lang.NegativeArraySizeException]
+Note: duplicate definition of library class [java.lang.NoClassDefFoundError]
+Note: duplicate definition of library class [java.lang.NullPointerException]
+Note: duplicate definition of library class [java.lang.NumberFormatException]
+Note: duplicate definition of library class [java.lang.Object]
+Note: duplicate definition of library class [java.lang.OutOfMemoryError]
+Note: duplicate definition of library class [java.lang.Runnable]
+Note: duplicate definition of library class [java.lang.Runtime]
+Note: duplicate definition of library class [java.lang.RuntimeException]
+Note: duplicate definition of library class [java.lang.SecurityException]
+Note: duplicate definition of library class [java.lang.Short]
+Note: duplicate definition of library class [java.lang.String]
+Note: duplicate definition of library class [java.lang.StringBuffer]
+Note: duplicate definition of library class [java.lang.StringIndexOutOfBoundsException]
+Note: duplicate definition of library class [java.lang.System]
+Note: duplicate definition of library class [java.lang.Thread]
+Note: duplicate definition of library class [java.lang.Throwable]
+Note: duplicate definition of library class [java.lang.UnsupportedOperationException]
+Note: duplicate definition of library class [java.lang.VirtualMachineError]
+Note: duplicate definition of library class [java.lang.ref.Reference]
+Note: duplicate definition of library class [java.lang.ref.WeakReference]
+Note: duplicate definition of library class [java.util.Calendar]
+Note: duplicate definition of library class [java.util.Date]
+Note: duplicate definition of library class [java.util.EmptyStackException]
+Note: duplicate definition of library class [java.util.Enumeration]
+Note: duplicate definition of library class [java.util.Hashtable]
+Note: duplicate definition of library class [java.util.NoSuchElementException]
+Note: duplicate definition of library class [java.util.Random]
+Note: duplicate definition of library class [java.util.Stack]
+Note: duplicate definition of library class [java.util.TimeZone]
+Note: duplicate definition of library class [java.util.Timer]
+Note: duplicate definition of library class [java.util.TimerTask]
+Note: duplicate definition of library class [java.util.Vector]
+Note: duplicate definition of library class [javax.microedition.io.CommConnection]
+Note: duplicate definition of library class [javax.microedition.io.Connection]
+Note: duplicate definition of library class [javax.microedition.io.ConnectionNotFoundException]
+Note: duplicate definition of library class [javax.microedition.io.Connector]
+Note: duplicate definition of library class [javax.microedition.io.ContentConnection]
+Note: duplicate definition of library class [javax.microedition.io.Datagram]
+Note: duplicate definition of library class [javax.microedition.io.DatagramConnection]
+Note: duplicate definition of library class [javax.microedition.io.HttpConnection]
+Note: duplicate definition of library class [javax.microedition.io.HttpsConnection]
+Note: duplicate definition of library class [javax.microedition.io.InputConnection]
+Note: duplicate definition of library class [javax.microedition.io.OutputConnection]
+Note: duplicate definition of library class [javax.microedition.io.PushRegistry]
+Note: duplicate definition of library class [javax.microedition.io.SecureConnection]
+Note: duplicate definition of library class [javax.microedition.io.SecurityInfo]
+Note: duplicate definition of library class [javax.microedition.io.ServerSocketConnection]
+Note: duplicate definition of library class [javax.microedition.io.SocketConnection]
+Note: duplicate definition of library class [javax.microedition.io.StreamConnection]
+Note: duplicate definition of library class [javax.microedition.io.StreamConnectionNotifier]
+Note: duplicate definition of library class [javax.microedition.io.UDPDatagramConnection]
+Note: duplicate definition of library class [javax.microedition.io.file.ConnectionClosedException]
+Note: duplicate definition of library class [javax.microedition.io.file.FileConnection]
+Note: duplicate definition of library class [javax.microedition.io.file.FileSystemListener]
+Note: duplicate definition of library class [javax.microedition.io.file.FileSystemRegistry]
+Note: duplicate definition of library class [javax.microedition.io.file.IllegalModeException]
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/jsr135.jar] (filtered)
+Note: duplicate definition of library class [javax.microedition.media.Control]
+Note: duplicate definition of library class [javax.microedition.media.Controllable]
+Note: duplicate definition of library class [javax.microedition.media.Manager]
+Note: duplicate definition of library class [javax.microedition.media.MediaException]
+Note: duplicate definition of library class [javax.microedition.media.Player]
+Note: duplicate definition of library class [javax.microedition.media.PlayerListener]
+Note: duplicate definition of library class [javax.microedition.media.TimeBase]
+Note: duplicate definition of library class [javax.microedition.media.control.FramePositioningControl]
+Note: duplicate definition of library class [javax.microedition.media.control.GUIControl]
+Note: duplicate definition of library class [javax.microedition.media.control.MIDIControl]
+Note: duplicate definition of library class [javax.microedition.media.control.MetaDataControl]
+Note: duplicate definition of library class [javax.microedition.media.control.PitchControl]
+Note: duplicate definition of library class [javax.microedition.media.control.RateControl]
+Note: duplicate definition of library class [javax.microedition.media.control.RecordControl]
+Note: duplicate definition of library class [javax.microedition.media.control.StopTimeControl]
+Note: duplicate definition of library class [javax.microedition.media.control.TempoControl]
+Note: duplicate definition of library class [javax.microedition.media.control.ToneControl]
+Note: duplicate definition of library class [javax.microedition.media.control.VideoControl]
+Note: duplicate definition of library class [javax.microedition.media.control.VolumeControl]
+Note: duplicate definition of library class [javax.microedition.media.protocol.ContentDescriptor]
+Note: duplicate definition of library class [javax.microedition.media.protocol.DataSource]
+Note: duplicate definition of library class [javax.microedition.media.protocol.SourceStream]
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/jsr184.jar] (filtered)
+Reading library jar [<repo>/benchmarks/kvm/.work/suite/uei/nokiaui.jar] (filtered)
+Note: there were 103 duplicate class definitions.
+      (http://proguard.sourceforge.net/manual/troubleshooting.html#duplicateclass)
+Note: Game: can't find dynamically referenced class com.pspkvm.system.Power
+Note: there were 1 unresolved dynamic references to classes or interfaces.
+      You should check if you need to specify additional program jars.
+      (http://proguard.sourceforge.net/manual/troubleshooting.html#dynamicalclass)
+Preparing output directory [<repo>/benchmarks/kvm/.work/experiments/game-heap-tile-cull/verified] (filtered)
+  Copying resources from program directory [<repo>/benchmarks/kvm/.work/experiments/game-heap-tile-cull/raw] (filtered)
+
+$ <repo>/benchmarks/kvm/.work/jdk8/bin/javac -source 1.3 -target 1.3 -Xlint:-options -classpath <repo>/benchmarks/kvm/.work/experiments/verified -d <repo>/benchmarks/kvm/.work/experiments/desktop <repo>/benchmarks/kvm/experiments/desktop/ControlledRasterBenchmark.java <repo>/benchmarks/kvm/experiments/desktop/RasterBenchmark.java <repo>/benchmarks/kvm/experiments/desktop/RasterChecks.java <repo>/benchmarks/kvm/experiments/desktop/RasterGraphics.java
+
+$ <repo>/benchmarks/kvm/.work/jdk8/bin/java -Djava.awt.headless=true -Xms512m -Xmx512m -XX:+UseSerialGC -Xbatch -XX:CICompilerCount=2 -cp <repo>/benchmarks/kvm/.work/experiments/desktop:<repo>/benchmarks/kvm/.work/experiments/verified RasterChecks
+RASTER,three-way-exact-ARGB-frames,1920
+RASTER,PASS
+
+$ <repo>/benchmarks/kvm/.work/jdk8/bin/java -Djava.awt.headless=true -Xms512m -Xmx512m -XX:+UseSerialGC -Xbatch -XX:CICompilerCount=2 -cp <repo>/benchmarks/kvm/.work/experiments/desktop:<repo>/benchmarks/kvm/.work/experiments/verified ControlledRasterBenchmark perks:240x320:shadows 9 500
+CALIBRATE,tiles,perks:240x320:shadows,original,192
+CALIBRATE,tiles,perks:240x320:shadows,index,384
+CALIBRATE,tiles,perks:240x320:shadows,cull,256
+RESULT,tiles,perks:240x320:shadows,original,0,0,192,1536,501,1727703394
+RESULT,tiles,perks:240x320:shadows,index,0,1,384,3072,932,1727703394
+RESULT,tiles,perks:240x320:shadows,cull,0,2,256,2048,608,1727703394
+RESULT,tiles,perks:240x320:shadows,index,1,0,384,3072,1021,1727703394
+RESULT,tiles,perks:240x320:shadows,cull,1,1,256,2048,615,1727703394
+RESULT,tiles,perks:240x320:shadows,original,1,2,192,1536,465,1727703394
+RESULT,tiles,perks:240x320:shadows,cull,2,0,256,2048,616,1727703394
+RESULT,tiles,perks:240x320:shadows,original,2,1,192,1536,467,1727703394
+RESULT,tiles,perks:240x320:shadows,index,2,2,384,3072,973,1727703394
+RESULT,tiles,perks:240x320:shadows,cull,3,0,256,2048,606,1727703394
+RESULT,tiles,perks:240x320:shadows,index,3,1,384,3072,931,1727703394
+RESULT,tiles,perks:240x320:shadows,original,3,2,192,1536,470,1727703394
+RESULT,tiles,perks:240x320:shadows,index,4,0,384,3072,933,1727703394
+RESULT,tiles,perks:240x320:shadows,original,4,1,192,1536,496,1727703394
+RESULT,tiles,perks:240x320:shadows,cull,4,2,256,2048,619,1727703394
+RESULT,tiles,perks:240x320:shadows,original,5,0,192,1536,483,1727703394
+RESULT,tiles,perks:240x320:shadows,cull,5,1,256,2048,627,1727703394
+RESULT,tiles,perks:240x320:shadows,index,5,2,384,3072,1043,1727703394
+RESULT,tiles,perks:240x320:shadows,original,6,0,192,1536,604,1727703394
+RESULT,tiles,perks:240x320:shadows,index,6,1,384,3072,1064,1727703394
+RESULT,tiles,perks:240x320:shadows,cull,6,2,256,2048,612,1727703394
+RESULT,tiles,perks:240x320:shadows,index,7,0,384,3072,942,1727703394
+RESULT,tiles,perks:240x320:shadows,cull,7,1,256,2048,623,1727703394
+RESULT,tiles,perks:240x320:shadows,original,7,2,192,1536,478,1727703394
+RESULT,tiles,perks:240x320:shadows,cull,8,0,256,2048,619,1727703394
+RESULT,tiles,perks:240x320:shadows,original,8,1,192,1536,486,1727703394
+RESULT,tiles,perks:240x320:shadows,index,8,2,384,3072,992,1727703394
+
+$ <repo>/benchmarks/kvm/.work/jdk8/bin/java -Djava.awt.headless=true -Xms512m -Xmx512m -XX:+UseSerialGC -Xbatch -XX:CICompilerCount=2 -cp <repo>/benchmarks/kvm/.work/experiments/desktop:<repo>/benchmarks/kvm/.work/experiments/verified ControlledRasterBenchmark stalagflucht:240x320:shadows 9 500
+CALIBRATE,tiles,stalagflucht:240x320:shadows,original,192
+CALIBRATE,tiles,stalagflucht:240x320:shadows,index,192
+CALIBRATE,tiles,stalagflucht:240x320:shadows,cull,192
+RESULT,tiles,stalagflucht:240x320:shadows,original,0,0,192,1536,546,-167055817
+RESULT,tiles,stalagflucht:240x320:shadows,index,0,1,192,1536,513,-167055817
+RESULT,tiles,stalagflucht:240x320:shadows,cull,0,2,192,1536,497,-167055817
+RESULT,tiles,stalagflucht:240x320:shadows,index,1,0,192,1536,535,-167055817
+RESULT,tiles,stalagflucht:240x320:shadows,cull,1,1,192,1536,505,-167055817
+RESULT,tiles,stalagflucht:240x320:shadows,original,1,2,192,1536,523,-167055817
+RESULT,tiles,stalagflucht:240x320:shadows,cull,2,0,192,1536,505,-167055817
+RESULT,tiles,stalagflucht:240x320:shadows,original,2,1,192,1536,529,-167055817
+RESULT,tiles,stalagflucht:240x320:shadows,index,2,2,192,1536,505,-167055817
+RESULT,tiles,stalagflucht:240x320:shadows,cull,3,0,192,1536,493,-167055817
+RESULT,tiles,stalagflucht:240x320:shadows,index,3,1,192,1536,498,-167055817
+RESULT,tiles,stalagflucht:240x320:shadows,original,3,2,192,1536,496,-167055817
+RESULT,tiles,stalagflucht:240x320:shadows,index,4,0,192,1536,498,-167055817
+RESULT,tiles,stalagflucht:240x320:shadows,original,4,1,192,1536,497,-167055817
+RESULT,tiles,stalagflucht:240x320:shadows,cull,4,2,192,1536,574,-167055817
+RESULT,tiles,stalagflucht:240x320:shadows,original,5,0,192,1536,535,-167055817
+RESULT,tiles,stalagflucht:240x320:shadows,cull,5,1,192,1536,490,-167055817
+RESULT,tiles,stalagflucht:240x320:shadows,index,5,2,192,1536,499,-167055817
+RESULT,tiles,stalagflucht:240x320:shadows,original,6,0,192,1536,510,-167055817
+RESULT,tiles,stalagflucht:240x320:shadows,index,6,1,192,1536,502,-167055817
+RESULT,tiles,stalagflucht:240x320:shadows,cull,6,2,192,1536,523,-167055817
+RESULT,tiles,stalagflucht:240x320:shadows,index,7,0,192,1536,514,-167055817
+RESULT,tiles,stalagflucht:240x320:shadows,cull,7,1,192,1536,551,-167055817
+RESULT,tiles,stalagflucht:240x320:shadows,original,7,2,192,1536,538,-167055817
+RESULT,tiles,stalagflucht:240x320:shadows,cull,8,0,192,1536,504,-167055817
+RESULT,tiles,stalagflucht:240x320:shadows,original,8,1,192,1536,501,-167055817
+RESULT,tiles,stalagflucht:240x320:shadows,index,8,2,192,1536,512,-167055817
+
+$ <repo>/benchmarks/kvm/.work/jdk8/bin/java -Djava.awt.headless=true -Xms512m -Xmx512m -XX:+UseSerialGC -Xbatch -XX:CICompilerCount=2 -cp <repo>/benchmarks/kvm/.work/experiments/desktop:<repo>/benchmarks/kvm/.work/experiments/verified ControlledRasterBenchmark shanktonstatepen:240x320:shadows 9 500
+CALIBRATE,tiles,shanktonstatepen:240x320:shadows,original,192
+CALIBRATE,tiles,shanktonstatepen:240x320:shadows,index,192
+CALIBRATE,tiles,shanktonstatepen:240x320:shadows,cull,192
+RESULT,tiles,shanktonstatepen:240x320:shadows,original,0,0,192,1536,621,2127703885
+RESULT,tiles,shanktonstatepen:240x320:shadows,index,0,1,192,1536,613,2127703885
+RESULT,tiles,shanktonstatepen:240x320:shadows,cull,0,2,192,1536,594,2127703885
+RESULT,tiles,shanktonstatepen:240x320:shadows,index,1,0,192,1536,607,2127703885
+RESULT,tiles,shanktonstatepen:240x320:shadows,cull,1,1,192,1536,597,2127703885
+RESULT,tiles,shanktonstatepen:240x320:shadows,original,1,2,192,1536,679,2127703885
+RESULT,tiles,shanktonstatepen:240x320:shadows,cull,2,0,192,1536,604,2127703885
+RESULT,tiles,shanktonstatepen:240x320:shadows,original,2,1,192,1536,648,2127703885
+RESULT,tiles,shanktonstatepen:240x320:shadows,index,2,2,192,1536,665,2127703885
+RESULT,tiles,shanktonstatepen:240x320:shadows,cull,3,0,192,1536,631,2127703885
+RESULT,tiles,shanktonstatepen:240x320:shadows,index,3,1,192,1536,659,2127703885
+RESULT,tiles,shanktonstatepen:240x320:shadows,original,3,2,192,1536,708,2127703885
+RESULT,tiles,shanktonstatepen:240x320:shadows,index,4,0,192,1536,642,2127703885
+RESULT,tiles,shanktonstatepen:240x320:shadows,original,4,1,192,1536,621,2127703885
+RESULT,tiles,shanktonstatepen:240x320:shadows,cull,4,2,192,1536,617,2127703885
+RESULT,tiles,shanktonstatepen:240x320:shadows,original,5,0,192,1536,610,2127703885
+RESULT,tiles,shanktonstatepen:240x320:shadows,cull,5,1,192,1536,586,2127703885
+RESULT,tiles,shanktonstatepen:240x320:shadows,index,5,2,192,1536,601,2127703885
+RESULT,tiles,shanktonstatepen:240x320:shadows,original,6,0,192,1536,598,2127703885
+RESULT,tiles,shanktonstatepen:240x320:shadows,index,6,1,192,1536,611,2127703885
+RESULT,tiles,shanktonstatepen:240x320:shadows,cull,6,2,192,1536,605,2127703885
+RESULT,tiles,shanktonstatepen:240x320:shadows,index,7,0,192,1536,618,2127703885
+RESULT,tiles,shanktonstatepen:240x320:shadows,cull,7,1,192,1536,586,2127703885
+RESULT,tiles,shanktonstatepen:240x320:shadows,original,7,2,192,1536,614,2127703885
+RESULT,tiles,shanktonstatepen:240x320:shadows,cull,8,0,192,1536,585,2127703885
+RESULT,tiles,shanktonstatepen:240x320:shadows,original,8,1,192,1536,673,2127703885
+RESULT,tiles,shanktonstatepen:240x320:shadows,index,8,2,192,1536,701,2127703885
+
+$ <repo>/benchmarks/kvm/.work/jdk8/bin/java -Djava.awt.headless=true -Xms512m -Xmx512m -XX:+UseSerialGC -Xbatch -XX:CICompilerCount=2 -cp <repo>/benchmarks/kvm/.work/experiments/desktop:<repo>/benchmarks/kvm/.work/experiments/verified ControlledRasterBenchmark jungle:240x320:shadows 9 500
+CALIBRATE,tiles,jungle:240x320:shadows,original,192
+CALIBRATE,tiles,jungle:240x320:shadows,index,192
+CALIBRATE,tiles,jungle:240x320:shadows,cull,192
+RESULT,tiles,jungle:240x320:shadows,original,0,0,192,1536,557,-46784997
+RESULT,tiles,jungle:240x320:shadows,index,0,1,192,1536,582,-46784997
+RESULT,tiles,jungle:240x320:shadows,cull,0,2,192,1536,519,-46784997
+RESULT,tiles,jungle:240x320:shadows,index,1,0,192,1536,522,-46784997
+RESULT,tiles,jungle:240x320:shadows,cull,1,1,192,1536,519,-46784997
+RESULT,tiles,jungle:240x320:shadows,original,1,2,192,1536,524,-46784997
+RESULT,tiles,jungle:240x320:shadows,cull,2,0,192,1536,516,-46784997
+RESULT,tiles,jungle:240x320:shadows,original,2,1,192,1536,534,-46784997
+RESULT,tiles,jungle:240x320:shadows,index,2,2,192,1536,536,-46784997
+RESULT,tiles,jungle:240x320:shadows,cull,3,0,192,1536,565,-46784997
+RESULT,tiles,jungle:240x320:shadows,index,3,1,192,1536,523,-46784997
+RESULT,tiles,jungle:240x320:shadows,original,3,2,192,1536,608,-46784997
+RESULT,tiles,jungle:240x320:shadows,index,4,0,192,1536,536,-46784997
+RESULT,tiles,jungle:240x320:shadows,original,4,1,192,1536,572,-46784997
+RESULT,tiles,jungle:240x320:shadows,cull,4,2,192,1536,534,-46784997
+RESULT,tiles,jungle:240x320:shadows,original,5,0,192,1536,542,-46784997
+RESULT,tiles,jungle:240x320:shadows,cull,5,1,192,1536,525,-46784997
+RESULT,tiles,jungle:240x320:shadows,index,5,2,192,1536,580,-46784997
+RESULT,tiles,jungle:240x320:shadows,original,6,0,192,1536,523,-46784997
+RESULT,tiles,jungle:240x320:shadows,index,6,1,192,1536,535,-46784997
+RESULT,tiles,jungle:240x320:shadows,cull,6,2,192,1536,517,-46784997
+RESULT,tiles,jungle:240x320:shadows,index,7,0,192,1536,569,-46784997
+RESULT,tiles,jungle:240x320:shadows,cull,7,1,192,1536,517,-46784997
+RESULT,tiles,jungle:240x320:shadows,original,7,2,192,1536,530,-46784997
+RESULT,tiles,jungle:240x320:shadows,cull,8,0,192,1536,592,-46784997
+RESULT,tiles,jungle:240x320:shadows,original,8,1,192,1536,569,-46784997
+RESULT,tiles,jungle:240x320:shadows,index,8,2,192,1536,545,-46784997
+
+$ <repo>/benchmarks/kvm/.work/jdk8/bin/java -Djava.awt.headless=true -Xms512m -Xmx512m -XX:+UseSerialGC -Xbatch -XX:CICompilerCount=2 -cp <repo>/benchmarks/kvm/.work/experiments/desktop:<repo>/benchmarks/kvm/.work/experiments/verified ControlledRasterBenchmark sanpancho:240x320:shadows 9 500
+CALIBRATE,tiles,sanpancho:240x320:shadows,original,384
+CALIBRATE,tiles,sanpancho:240x320:shadows,index,256
+CALIBRATE,tiles,sanpancho:240x320:shadows,cull,256
+RESULT,tiles,sanpancho:240x320:shadows,original,0,0,384,3072,1087,-1962513510
+RESULT,tiles,sanpancho:240x320:shadows,index,0,1,256,2048,713,-1962513510
+RESULT,tiles,sanpancho:240x320:shadows,cull,0,2,256,2048,623,-1962513510
+RESULT,tiles,sanpancho:240x320:shadows,index,1,0,256,2048,661,-1962513510
+RESULT,tiles,sanpancho:240x320:shadows,cull,1,1,256,2048,649,-1962513510
+RESULT,tiles,sanpancho:240x320:shadows,original,1,2,384,3072,1000,-1962513510
+RESULT,tiles,sanpancho:240x320:shadows,cull,2,0,256,2048,752,-1962513510
+RESULT,tiles,sanpancho:240x320:shadows,original,2,1,384,3072,1023,-1962513510
+RESULT,tiles,sanpancho:240x320:shadows,index,2,2,256,2048,654,-1962513510
+RESULT,tiles,sanpancho:240x320:shadows,cull,3,0,256,2048,684,-1962513510
+RESULT,tiles,sanpancho:240x320:shadows,index,3,1,256,2048,724,-1962513510
+RESULT,tiles,sanpancho:240x320:shadows,original,3,2,384,3072,1019,-1962513510
+RESULT,tiles,sanpancho:240x320:shadows,index,4,0,256,2048,629,-1962513510
+RESULT,tiles,sanpancho:240x320:shadows,original,4,1,384,3072,964,-1962513510
+RESULT,tiles,sanpancho:240x320:shadows,cull,4,2,256,2048,665,-1962513510
+RESULT,tiles,sanpancho:240x320:shadows,original,5,0,384,3072,989,-1962513510
+RESULT,tiles,sanpancho:240x320:shadows,cull,5,1,256,2048,617,-1962513510
+RESULT,tiles,sanpancho:240x320:shadows,index,5,2,256,2048,627,-1962513510
+RESULT,tiles,sanpancho:240x320:shadows,original,6,0,384,3072,1041,-1962513510
+RESULT,tiles,sanpancho:240x320:shadows,index,6,1,256,2048,643,-1962513510
+RESULT,tiles,sanpancho:240x320:shadows,cull,6,2,256,2048,639,-1962513510
+RESULT,tiles,sanpancho:240x320:shadows,index,7,0,256,2048,645,-1962513510
+RESULT,tiles,sanpancho:240x320:shadows,cull,7,1,256,2048,803,-1962513510
+RESULT,tiles,sanpancho:240x320:shadows,original,7,2,384,3072,1029,-1962513510
+RESULT,tiles,sanpancho:240x320:shadows,cull,8,0,256,2048,642,-1962513510
+RESULT,tiles,sanpancho:240x320:shadows,original,8,1,384,3072,1214,-1962513510
+RESULT,tiles,sanpancho:240x320:shadows,index,8,2,256,2048,666,-1962513510
+
+$ <repo>/benchmarks/kvm/.work/jdk8/bin/java -Djava.awt.headless=true -Xms512m -Xmx512m -XX:+UseSerialGC -Xbatch -XX:CICompilerCount=2 -cp <repo>/benchmarks/kvm/.work/experiments/desktop:<repo>/benchmarks/kvm/.work/experiments/verified ControlledRasterBenchmark irongate:240x320:shadows 9 500
+CALIBRATE,tiles,irongate:240x320:shadows,original,192
+CALIBRATE,tiles,irongate:240x320:shadows,index,192
+CALIBRATE,tiles,irongate:240x320:shadows,cull,192
+RESULT,tiles,irongate:240x320:shadows,original,0,0,192,1536,573,-411336053
+RESULT,tiles,irongate:240x320:shadows,index,0,1,192,1536,556,-411336053
+RESULT,tiles,irongate:240x320:shadows,cull,0,2,192,1536,561,-411336053
+RESULT,tiles,irongate:240x320:shadows,index,1,0,192,1536,557,-411336053
+RESULT,tiles,irongate:240x320:shadows,cull,1,1,192,1536,625,-411336053
+RESULT,tiles,irongate:240x320:shadows,original,1,2,192,1536,566,-411336053
+RESULT,tiles,irongate:240x320:shadows,cull,2,0,192,1536,597,-411336053
+RESULT,tiles,irongate:240x320:shadows,original,2,1,192,1536,588,-411336053
+RESULT,tiles,irongate:240x320:shadows,index,2,2,192,1536,577,-411336053
+RESULT,tiles,irongate:240x320:shadows,cull,3,0,192,1536,561,-411336053
+RESULT,tiles,irongate:240x320:shadows,index,3,1,192,1536,574,-411336053
+RESULT,tiles,irongate:240x320:shadows,original,3,2,192,1536,573,-411336053
+RESULT,tiles,irongate:240x320:shadows,index,4,0,192,1536,571,-411336053
+RESULT,tiles,irongate:240x320:shadows,original,4,1,192,1536,601,-411336053
+RESULT,tiles,irongate:240x320:shadows,cull,4,2,192,1536,615,-411336053
+RESULT,tiles,irongate:240x320:shadows,original,5,0,192,1536,590,-411336053
+RESULT,tiles,irongate:240x320:shadows,cull,5,1,192,1536,644,-411336053
+RESULT,tiles,irongate:240x320:shadows,index,5,2,192,1536,646,-411336053
+RESULT,tiles,irongate:240x320:shadows,original,6,0,192,1536,604,-411336053
+RESULT,tiles,irongate:240x320:shadows,index,6,1,192,1536,615,-411336053
+RESULT,tiles,irongate:240x320:shadows,cull,6,2,192,1536,604,-411336053
+RESULT,tiles,irongate:240x320:shadows,index,7,0,192,1536,574,-411336053
+RESULT,tiles,irongate:240x320:shadows,cull,7,1,192,1536,564,-411336053
+RESULT,tiles,irongate:240x320:shadows,original,7,2,192,1536,567,-411336053
+RESULT,tiles,irongate:240x320:shadows,cull,8,0,192,1536,571,-411336053
+RESULT,tiles,irongate:240x320:shadows,original,8,1,192,1536,639,-411336053
+RESULT,tiles,irongate:240x320:shadows,index,8,2,192,1536,609,-411336053

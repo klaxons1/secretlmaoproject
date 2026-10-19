@@ -1,0 +1,30 @@
+{
+  "base_commit": "0716b47205e297375d7a3848d923d5ce916eba6d",
+  "comparison": "historical original / synchronized master / patched master",
+  "base_game_sha256": "f1d042561b1292898ff84f0a76af9984d30064179f4db7617333f0f12288d092",
+  "patched_game_sha256": "91b50cd8aee341d6c0350653b468a0e23c06d3b697287e8dff98c67bfc4ba107",
+  "kvm_sha256": "917b17f278023670b9a5472d7740d12a5c7b1c6e3718196f828d4bed5de82e66",
+  "footprints": {
+    "master": {
+      "game_class_bytes": 162948,
+      "game_class_sha256": "1cc102a95bfdccdc57b2b3592fb915ff292489813c03d96e9141a4b002f94321"
+    },
+    "heap": {
+      "game_class_bytes": 163754,
+      "game_class_sha256": "9c247374b310c260fd9f0254973438b2cad927f058384a5d06ac441be0dd4478"
+    }
+  },
+  "input_sha256": {
+    "benchmarks/kvm/heap_patch.py": "c75ac2e3e9d7e02c828104fa1e0805730979bf0d42497c4fea3360152b82d3a1",
+    "patches/0003-use-stable-heap-pathfinding.patch": "b36f21605f55b244e12ef7ee9c7cd43742af3b6a45639d0f545cb25e9f215910",
+    "benchmarks/kvm/experiments/HeapQueue.java.inc": "dbaac5e1294c93527e18a7091b5b79cf8e5e8ae2969819858b3408c1e165674f",
+    "benchmarks/kvm/src/Kernel.java": "e20b5a3e996dd9943cfea5165cf7934c2ac41353e51f98a2059f0d514577f805",
+    "benchmarks/kvm/src/Fixtures.java": "96b68ec3e3b6cfb091f91c214c58f2ca34e32d00aa9137ac28a2ccec6a721452",
+    "benchmarks/kvm/experiments/src/ExperimentChecks.java": "b51dbad1e57d5c1f71cba72f1885a0e9f76d174033e10607878fe3d23986fa08",
+    "benchmarks/kvm/experiments/src/MapData.java": "6f11036ae2bd80e99b8c8eb7a4231c07b3346260d63d93540f50ed6c4c6480e2",
+    "benchmarks/kvm/experiments/src/TileKernel.java": "b8969160113f5f5a1464bcacdc267d0fd18afde0e3b22217fc68b3c8efc7a35f"
+  },
+  "new_timing_run": false,
+  "pspkvm_tested_here": false,
+  "note": "Functional checks/builds only. No PSPKVM speedup is claimed for this patch."
+}

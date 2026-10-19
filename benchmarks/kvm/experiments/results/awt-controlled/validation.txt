@@ -1,0 +1,2 @@
+RASTER,three-way-exact-ARGB-frames,1920
+RASTER,PASS

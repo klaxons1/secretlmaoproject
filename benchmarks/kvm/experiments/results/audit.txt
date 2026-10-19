@@ -1,0 +1,502 @@
+PASS all 96 scenarios / 2484 primary intervals, 9 trials, checksums/rotation/units
+PASS primary summary.csv offline reanalysis is byte-identical
+PASS primary paired.csv offline reanalysis is byte-identical
+PASS primary calculations.md offline reanalysis is byte-identical
+PASS awt-controlled summary.csv offline reanalysis is byte-identical
+PASS awt-controlled paired.csv offline reanalysis is byte-identical
+PASS awt-controlled calculations.md offline reanalysis is byte-identical
+PASS controlled series did not replace primary timings
+PASS all six controlled raster scenarios / 162 intervals
+PASS unchanged measured source benchmarks/kvm/experiments/src/MapData.java
+PASS unchanged measured source benchmarks/kvm/experiments/src/TileKernel.java
+PASS unchanged measured source benchmarks/kvm/experiments/src/ExperimentChecks.java
+PASS unchanged measured source benchmarks/kvm/experiments/src/ExperimentBenchmark.java
+PASS unchanged measured source benchmarks/kvm/experiments/src/ExperimentProfile.java
+PASS unchanged measured source benchmarks/kvm/experiments/src/MemoryProbe.java
+PASS unchanged measured source benchmarks/kvm/experiments/desktop/RasterGraphics.java
+PASS unchanged measured source benchmarks/kvm/experiments/desktop/RasterChecks.java
+PASS unchanged measured source benchmarks/kvm/experiments/desktop/RasterBenchmark.java
+PASS unchanged measured source benchmarks/kvm/experiments/run_experiments.py
+PASS unchanged measured source benchmarks/kvm/experiments/analyze.py
+PASS unchanged measured source benchmarks/kvm/experiments/test_experiments.py
+PASS unchanged measured source benchmarks/kvm/experiments/HeapQueue.java.inc
+PASS unchanged measured source benchmarks/kvm/experiments/TileLoop.java.inc
+PASS unchanged measured source benchmarks/kvm/src/Kernel.java
+PASS unchanged measured source benchmarks/kvm/src/Fixtures.java
+PASS unchanged measured source benchmarks/kvm/src/Checks.java
+PASS unchanged measured source benchmarks/kvm/src/Benchmark.java
+PASS unchanged measured source benchmarks/kvm/src/Profile.java
+PASS unchanged measured source benchmarks/kvm/run.py
+PASS unchanged measured source src/Game.java
+PASS unchanged measured source src/NPC.java
+PASS unchanged measured source common/src/Constants.java
+PASS unchanged measured source common/src/Objects.java
+PASS original KVM binary unchanged
+PASS full CLDC Game.class reproducible: original
+PASS full CLDC Game.class reproducible: list
+PASS full CLDC Game.class reproducible: heap
+PASS full CLDC Game.class reproducible: tile-index
+PASS full CLDC Game.class reproducible: tile-cull
+PASS full CLDC Game.class reproducible: heap-tile-cull
+PASS 180 separate untimed metric rows
+PASS tiles/sanpancho:176x220:plain same visible_regions
+PASS tiles/sanpancho:176x220:plain same visible_rects
+PASS tiles/sanpancho:176x220:plain same checksum
+PASS tiles/sanpancho:176x220:plain index preserves all call counts
+PASS tiles/stalagflucht:640x480:plain same visible_regions
+PASS tiles/stalagflucht:640x480:plain same visible_rects
+PASS tiles/stalagflucht:640x480:plain same checksum
+PASS tiles/stalagflucht:640x480:plain index preserves all call counts
+PASS tiles/shanktonstatepen:176x220:plain same visible_regions
+PASS tiles/shanktonstatepen:176x220:plain same visible_rects
+PASS tiles/shanktonstatepen:176x220:plain same checksum
+PASS tiles/shanktonstatepen:176x220:plain index preserves all call counts
+PASS tiles/perks:640x480:plain same visible_regions
+PASS tiles/perks:640x480:plain same visible_rects
+PASS tiles/perks:640x480:plain same checksum
+PASS tiles/perks:640x480:plain index preserves all call counts
+PASS queue/mixed:16 all variants same operations
+PASS queue/mixed:16 all variants same queue_adds
+PASS queue/mixed:16 all variants same queue_removes
+PASS queue/mixed:16 all variants same expanded_nodes
+PASS queue/mixed:16 all variants same checksum
+PASS queue/mixed:16 all variants same found_queries
+PASS queue/mixed:16 all variants same result_nodes
+PASS queue/mixed:16 list scan counts unchanged
+PASS tiles/perks:240x320:plain same visible_regions
+PASS tiles/perks:240x320:plain same visible_rects
+PASS tiles/perks:240x320:plain same checksum
+PASS tiles/perks:240x320:plain index preserves all call counts
+PASS queue/mixed:64 all variants same operations
+PASS queue/mixed:64 all variants same queue_adds
+PASS queue/mixed:64 all variants same queue_removes
+PASS queue/mixed:64 all variants same expanded_nodes
+PASS queue/mixed:64 all variants same checksum
+PASS queue/mixed:64 all variants same found_queries
+PASS queue/mixed:64 all variants same result_nodes
+PASS queue/mixed:64 list scan counts unchanged
+PASS tiles/shanktonstatepen:240x320:plain same visible_regions
+PASS tiles/shanktonstatepen:240x320:plain same visible_rects
+PASS tiles/shanktonstatepen:240x320:plain same checksum
+PASS tiles/shanktonstatepen:240x320:plain index preserves all call counts
+PASS tiles/irongate:240x320:shadows same visible_regions
+PASS tiles/irongate:240x320:shadows same visible_rects
+PASS tiles/irongate:240x320:shadows same checksum
+PASS tiles/irongate:240x320:shadows index preserves all call counts
+PASS tiles/jungle:240x320:plain same visible_regions
+PASS tiles/jungle:240x320:plain same visible_rects
+PASS tiles/jungle:240x320:plain same checksum
+PASS tiles/jungle:240x320:plain index preserves all call counts
+PASS tiles/stalagflucht:176x220:plain same visible_regions
+PASS tiles/stalagflucht:176x220:plain same visible_rects
+PASS tiles/stalagflucht:176x220:plain same checksum
+PASS tiles/stalagflucht:176x220:plain index preserves all call counts
+PASS tiles/jungle:640x480:shadows same visible_regions
+PASS tiles/jungle:640x480:shadows same visible_rects
+PASS tiles/jungle:640x480:shadows same checksum
+PASS tiles/jungle:640x480:shadows index preserves all call counts
+PASS tiles/shanktonstatepen:240x320:shadows same visible_regions
+PASS tiles/shanktonstatepen:240x320:shadows same visible_rects
+PASS tiles/shanktonstatepen:240x320:shadows same checksum
+PASS tiles/shanktonstatepen:240x320:shadows index preserves all call counts
+PASS path/sanpancho:local all variants same operations
+PASS path/sanpancho:local all variants same queue_adds
+PASS path/sanpancho:local all variants same queue_removes
+PASS path/sanpancho:local all variants same expanded_nodes
+PASS path/sanpancho:local all variants same checksum
+PASS path/sanpancho:local all variants same found_queries
+PASS path/sanpancho:local all variants same result_nodes
+PASS path/sanpancho:local list scan counts unchanged
+PASS tiles/sanpancho:640x480:plain same visible_regions
+PASS tiles/sanpancho:640x480:plain same visible_rects
+PASS tiles/sanpancho:640x480:plain same checksum
+PASS tiles/sanpancho:640x480:plain index preserves all call counts
+PASS path/perks:local all variants same operations
+PASS path/perks:local all variants same queue_adds
+PASS path/perks:local all variants same queue_removes
+PASS path/perks:local all variants same expanded_nodes
+PASS path/perks:local all variants same checksum
+PASS path/perks:local all variants same found_queries
+PASS path/perks:local all variants same result_nodes
+PASS path/perks:local list scan counts unchanged
+PASS path/jungle:local all variants same operations
+PASS path/jungle:local all variants same queue_adds
+PASS path/jungle:local all variants same queue_removes
+PASS path/jungle:local all variants same expanded_nodes
+PASS path/jungle:local all variants same checksum
+PASS path/jungle:local all variants same found_queries
+PASS path/jungle:local all variants same result_nodes
+PASS path/jungle:local list scan counts unchanged
+PASS tiles/shanktonstatepen:640x480:shadows same visible_regions
+PASS tiles/shanktonstatepen:640x480:shadows same visible_rects
+PASS tiles/shanktonstatepen:640x480:shadows same checksum
+PASS tiles/shanktonstatepen:640x480:shadows index preserves all call counts
+PASS path/perks:spread all variants same operations
+PASS path/perks:spread all variants same queue_adds
+PASS path/perks:spread all variants same queue_removes
+PASS path/perks:spread all variants same expanded_nodes
+PASS path/perks:spread all variants same checksum
+PASS path/perks:spread all variants same found_queries
+PASS path/perks:spread all variants same result_nodes
+PASS path/perks:spread list scan counts unchanged
+PASS tiles/stalagflucht:240x320:shadows same visible_regions
+PASS tiles/stalagflucht:240x320:shadows same visible_rects
+PASS tiles/stalagflucht:240x320:shadows same checksum
+PASS tiles/stalagflucht:240x320:shadows index preserves all call counts
+PASS tiles/sanpancho:240x320:plain same visible_regions
+PASS tiles/sanpancho:240x320:plain same visible_rects
+PASS tiles/sanpancho:240x320:plain same checksum
+PASS tiles/sanpancho:240x320:plain index preserves all call counts
+PASS path/jungle:npc all variants same operations
+PASS path/jungle:npc all variants same queue_adds
+PASS path/jungle:npc all variants same queue_removes
+PASS path/jungle:npc all variants same expanded_nodes
+PASS path/jungle:npc all variants same checksum
+PASS path/jungle:npc all variants same found_queries
+PASS path/jungle:npc all variants same result_nodes
+PASS path/jungle:npc list scan counts unchanged
+PASS path/jungle:spread all variants same operations
+PASS path/jungle:spread all variants same queue_adds
+PASS path/jungle:spread all variants same queue_removes
+PASS path/jungle:spread all variants same expanded_nodes
+PASS path/jungle:spread all variants same checksum
+PASS path/jungle:spread all variants same found_queries
+PASS path/jungle:spread all variants same result_nodes
+PASS path/jungle:spread list scan counts unchanged
+PASS path/shanktonstatepen:spread all variants same operations
+PASS path/shanktonstatepen:spread all variants same queue_adds
+PASS path/shanktonstatepen:spread all variants same queue_removes
+PASS path/shanktonstatepen:spread all variants same expanded_nodes
+PASS path/shanktonstatepen:spread all variants same checksum
+PASS path/shanktonstatepen:spread all variants same found_queries
+PASS path/shanktonstatepen:spread all variants same result_nodes
+PASS path/shanktonstatepen:spread list scan counts unchanged
+PASS path/irongate:local all variants same operations
+PASS path/irongate:local all variants same queue_adds
+PASS path/irongate:local all variants same queue_removes
+PASS path/irongate:local all variants same expanded_nodes
+PASS path/irongate:local all variants same checksum
+PASS path/irongate:local all variants same found_queries
+PASS path/irongate:local all variants same result_nodes
+PASS path/irongate:local list scan counts unchanged
+PASS path/perks:npc all variants same operations
+PASS path/perks:npc all variants same queue_adds
+PASS path/perks:npc all variants same queue_removes
+PASS path/perks:npc all variants same expanded_nodes
+PASS path/perks:npc all variants same checksum
+PASS path/perks:npc all variants same found_queries
+PASS path/perks:npc all variants same result_nodes
+PASS path/perks:npc list scan counts unchanged
+PASS tiles/irongate:640x480:plain same visible_regions
+PASS tiles/irongate:640x480:plain same visible_rects
+PASS tiles/irongate:640x480:plain same checksum
+PASS tiles/irongate:640x480:plain index preserves all call counts
+PASS tiles/jungle:176x220:shadows same visible_regions
+PASS tiles/jungle:176x220:shadows same visible_rects
+PASS tiles/jungle:176x220:shadows same checksum
+PASS tiles/jungle:176x220:shadows index preserves all call counts
+PASS tiles/shanktonstatepen:176x220:shadows same visible_regions
+PASS tiles/shanktonstatepen:176x220:shadows same visible_rects
+PASS tiles/shanktonstatepen:176x220:shadows same checksum
+PASS tiles/shanktonstatepen:176x220:shadows index preserves all call counts
+PASS tiles/jungle:176x220:plain same visible_regions
+PASS tiles/jungle:176x220:plain same visible_rects
+PASS tiles/jungle:176x220:plain same checksum
+PASS tiles/jungle:176x220:plain index preserves all call counts
+PASS tiles/perks:640x480:shadows same visible_regions
+PASS tiles/perks:640x480:shadows same visible_rects
+PASS tiles/perks:640x480:shadows same checksum
+PASS tiles/perks:640x480:shadows index preserves all call counts
+PASS path/stalagflucht:local all variants same operations
+PASS path/stalagflucht:local all variants same queue_adds
+PASS path/stalagflucht:local all variants same queue_removes
+PASS path/stalagflucht:local all variants same expanded_nodes
+PASS path/stalagflucht:local all variants same checksum
+PASS path/stalagflucht:local all variants same found_queries
+PASS path/stalagflucht:local all variants same result_nodes
+PASS path/stalagflucht:local list scan counts unchanged
+PASS tiles/perks:240x320:shadows same visible_regions
+PASS tiles/perks:240x320:shadows same visible_rects
+PASS tiles/perks:240x320:shadows same checksum
+PASS tiles/perks:240x320:shadows index preserves all call counts
+PASS path/irongate:spread all variants same operations
+PASS path/irongate:spread all variants same queue_adds
+PASS path/irongate:spread all variants same queue_removes
+PASS path/irongate:spread all variants same expanded_nodes
+PASS path/irongate:spread all variants same checksum
+PASS path/irongate:spread all variants same found_queries
+PASS path/irongate:spread all variants same result_nodes
+PASS path/irongate:spread list scan counts unchanged
+PASS tiles/sanpancho:240x320:shadows same visible_regions
+PASS tiles/sanpancho:240x320:shadows same visible_rects
+PASS tiles/sanpancho:240x320:shadows same checksum
+PASS tiles/sanpancho:240x320:shadows index preserves all call counts
+PASS tiles/irongate:640x480:shadows same visible_regions
+PASS tiles/irongate:640x480:shadows same visible_rects
+PASS tiles/irongate:640x480:shadows same checksum
+PASS tiles/irongate:640x480:shadows index preserves all call counts
+PASS tiles/perks:176x220:plain same visible_regions
+PASS tiles/perks:176x220:plain same visible_rects
+PASS tiles/perks:176x220:plain same checksum
+PASS tiles/perks:176x220:plain index preserves all call counts
+PASS tiles/stalagflucht:176x220:shadows same visible_regions
+PASS tiles/stalagflucht:176x220:shadows same visible_rects
+PASS tiles/stalagflucht:176x220:shadows same checksum
+PASS tiles/stalagflucht:176x220:shadows index preserves all call counts
+PASS path/stalagflucht:npc all variants same operations
+PASS path/stalagflucht:npc all variants same queue_adds
+PASS path/stalagflucht:npc all variants same queue_removes
+PASS path/stalagflucht:npc all variants same expanded_nodes
+PASS path/stalagflucht:npc all variants same checksum
+PASS path/stalagflucht:npc all variants same found_queries
+PASS path/stalagflucht:npc all variants same result_nodes
+PASS path/stalagflucht:npc list scan counts unchanged
+PASS tiles/irongate:176x220:shadows same visible_regions
+PASS tiles/irongate:176x220:shadows same visible_rects
+PASS tiles/irongate:176x220:shadows same checksum
+PASS tiles/irongate:176x220:shadows index preserves all call counts
+PASS tiles/irongate:176x220:plain same visible_regions
+PASS tiles/irongate:176x220:plain same visible_rects
+PASS tiles/irongate:176x220:plain same checksum
+PASS tiles/irongate:176x220:plain index preserves all call counts
+PASS tiles/stalagflucht:240x320:plain same visible_regions
+PASS tiles/stalagflucht:240x320:plain same visible_rects
+PASS tiles/stalagflucht:240x320:plain same checksum
+PASS tiles/stalagflucht:240x320:plain index preserves all call counts
+PASS path/shanktonstatepen:npc all variants same operations
+PASS path/shanktonstatepen:npc all variants same queue_adds
+PASS path/shanktonstatepen:npc all variants same queue_removes
+PASS path/shanktonstatepen:npc all variants same expanded_nodes
+PASS path/shanktonstatepen:npc all variants same checksum
+PASS path/shanktonstatepen:npc all variants same found_queries
+PASS path/shanktonstatepen:npc all variants same result_nodes
+PASS path/shanktonstatepen:npc list scan counts unchanged
+PASS tiles/sanpancho:176x220:shadows same visible_regions
+PASS tiles/sanpancho:176x220:shadows same visible_rects
+PASS tiles/sanpancho:176x220:shadows same checksum
+PASS tiles/sanpancho:176x220:shadows index preserves all call counts
+PASS path/sanpancho:npc all variants same operations
+PASS path/sanpancho:npc all variants same queue_adds
+PASS path/sanpancho:npc all variants same queue_removes
+PASS path/sanpancho:npc all variants same expanded_nodes
+PASS path/sanpancho:npc all variants same checksum
+PASS path/sanpancho:npc all variants same found_queries
+PASS path/sanpancho:npc all variants same result_nodes
+PASS path/sanpancho:npc list scan counts unchanged
+PASS queue/ties:256 all variants same operations
+PASS queue/ties:256 all variants same queue_adds
+PASS queue/ties:256 all variants same queue_removes
+PASS queue/ties:256 all variants same expanded_nodes
+PASS queue/ties:256 all variants same checksum
+PASS queue/ties:256 all variants same found_queries
+PASS queue/ties:256 all variants same result_nodes
+PASS queue/ties:256 list scan counts unchanged
+PASS path/irongate:npc all variants same operations
+PASS path/irongate:npc all variants same queue_adds
+PASS path/irongate:npc all variants same queue_removes
+PASS path/irongate:npc all variants same expanded_nodes
+PASS path/irongate:npc all variants same checksum
+PASS path/irongate:npc all variants same found_queries
+PASS path/irongate:npc all variants same result_nodes
+PASS path/irongate:npc list scan counts unchanged
+PASS tiles/sanpancho:640x480:shadows same visible_regions
+PASS tiles/sanpancho:640x480:shadows same visible_rects
+PASS tiles/sanpancho:640x480:shadows same checksum
+PASS tiles/sanpancho:640x480:shadows index preserves all call counts
+PASS queue/mixed:256 all variants same operations
+PASS queue/mixed:256 all variants same queue_adds
+PASS queue/mixed:256 all variants same queue_removes
+PASS queue/mixed:256 all variants same expanded_nodes
+PASS queue/mixed:256 all variants same checksum
+PASS queue/mixed:256 all variants same found_queries
+PASS queue/mixed:256 all variants same result_nodes
+PASS queue/mixed:256 list scan counts unchanged
+PASS tiles/shanktonstatepen:640x480:plain same visible_regions
+PASS tiles/shanktonstatepen:640x480:plain same visible_rects
+PASS tiles/shanktonstatepen:640x480:plain same checksum
+PASS tiles/shanktonstatepen:640x480:plain index preserves all call counts
+PASS tiles/jungle:240x320:shadows same visible_regions
+PASS tiles/jungle:240x320:shadows same visible_rects
+PASS tiles/jungle:240x320:shadows same checksum
+PASS tiles/jungle:240x320:shadows index preserves all call counts
+PASS path/sanpancho:spread all variants same operations
+PASS path/sanpancho:spread all variants same queue_adds
+PASS path/sanpancho:spread all variants same queue_removes
+PASS path/sanpancho:spread all variants same expanded_nodes
+PASS path/sanpancho:spread all variants same checksum
+PASS path/sanpancho:spread all variants same found_queries
+PASS path/sanpancho:spread all variants same result_nodes
+PASS path/sanpancho:spread list scan counts unchanged
+PASS path/shanktonstatepen:local all variants same operations
+PASS path/shanktonstatepen:local all variants same queue_adds
+PASS path/shanktonstatepen:local all variants same queue_removes
+PASS path/shanktonstatepen:local all variants same expanded_nodes
+PASS path/shanktonstatepen:local all variants same checksum
+PASS path/shanktonstatepen:local all variants same found_queries
+PASS path/shanktonstatepen:local all variants same result_nodes
+PASS path/shanktonstatepen:local list scan counts unchanged
+PASS tiles/irongate:240x320:plain same visible_regions
+PASS tiles/irongate:240x320:plain same visible_rects
+PASS tiles/irongate:240x320:plain same checksum
+PASS tiles/irongate:240x320:plain index preserves all call counts
+PASS queue/head:16 all variants same operations
+PASS queue/head:16 all variants same queue_adds
+PASS queue/head:16 all variants same queue_removes
+PASS queue/head:16 all variants same expanded_nodes
+PASS queue/head:16 all variants same checksum
+PASS queue/head:16 all variants same found_queries
+PASS queue/head:16 all variants same result_nodes
+PASS queue/head:16 list scan counts unchanged
+PASS path/stalagflucht:spread all variants same operations
+PASS path/stalagflucht:spread all variants same queue_adds
+PASS path/stalagflucht:spread all variants same queue_removes
+PASS path/stalagflucht:spread all variants same expanded_nodes
+PASS path/stalagflucht:spread all variants same checksum
+PASS path/stalagflucht:spread all variants same found_queries
+PASS path/stalagflucht:spread all variants same result_nodes
+PASS path/stalagflucht:spread list scan counts unchanged
+PASS tiles/stalagflucht:640x480:shadows same visible_regions
+PASS tiles/stalagflucht:640x480:shadows same visible_rects
+PASS tiles/stalagflucht:640x480:shadows same checksum
+PASS tiles/stalagflucht:640x480:shadows index preserves all call counts
+PASS tiles/jungle:640x480:plain same visible_regions
+PASS tiles/jungle:640x480:plain same visible_rects
+PASS tiles/jungle:640x480:plain same checksum
+PASS tiles/jungle:640x480:plain index preserves all call counts
+PASS tiles/perks:176x220:shadows same visible_regions
+PASS tiles/perks:176x220:shadows same visible_rects
+PASS tiles/perks:176x220:shadows same checksum
+PASS tiles/perks:176x220:shadows index preserves all call counts
+PASS queue/ties:64 all variants same operations
+PASS queue/ties:64 all variants same queue_adds
+PASS queue/ties:64 all variants same queue_removes
+PASS queue/ties:64 all variants same expanded_nodes
+PASS queue/ties:64 all variants same checksum
+PASS queue/ties:64 all variants same found_queries
+PASS queue/ties:64 all variants same result_nodes
+PASS queue/ties:64 list scan counts unchanged
+PASS all 240 timed path queries / 18 datasets saved
+PASS perks:spread per-query queue_adds agrees with batch
+PASS perks:spread per-query expanded_nodes agrees with batch
+PASS perks:spread per-query result_nodes agrees with batch
+PASS perks:spread per-query priority comparisons agree
+PASS perks:spread peak frontier agrees
+PASS perks:spread found count agrees
+PASS perks:npc per-query queue_adds agrees with batch
+PASS perks:npc per-query expanded_nodes agrees with batch
+PASS perks:npc per-query result_nodes agrees with batch
+PASS perks:npc per-query priority comparisons agree
+PASS perks:npc peak frontier agrees
+PASS perks:npc found count agrees
+PASS perks:npc reachable fixture always found
+PASS perks:local per-query queue_adds agrees with batch
+PASS perks:local per-query expanded_nodes agrees with batch
+PASS perks:local per-query result_nodes agrees with batch
+PASS perks:local per-query priority comparisons agree
+PASS perks:local peak frontier agrees
+PASS perks:local found count agrees
+PASS perks:local reachable fixture always found
+PASS stalagflucht:spread per-query queue_adds agrees with batch
+PASS stalagflucht:spread per-query expanded_nodes agrees with batch
+PASS stalagflucht:spread per-query result_nodes agrees with batch
+PASS stalagflucht:spread per-query priority comparisons agree
+PASS stalagflucht:spread peak frontier agrees
+PASS stalagflucht:spread found count agrees
+PASS stalagflucht:npc per-query queue_adds agrees with batch
+PASS stalagflucht:npc per-query expanded_nodes agrees with batch
+PASS stalagflucht:npc per-query result_nodes agrees with batch
+PASS stalagflucht:npc per-query priority comparisons agree
+PASS stalagflucht:npc peak frontier agrees
+PASS stalagflucht:npc found count agrees
+PASS stalagflucht:npc reachable fixture always found
+PASS stalagflucht:local per-query queue_adds agrees with batch
+PASS stalagflucht:local per-query expanded_nodes agrees with batch
+PASS stalagflucht:local per-query result_nodes agrees with batch
+PASS stalagflucht:local per-query priority comparisons agree
+PASS stalagflucht:local peak frontier agrees
+PASS stalagflucht:local found count agrees
+PASS stalagflucht:local reachable fixture always found
+PASS shanktonstatepen:spread per-query queue_adds agrees with batch
+PASS shanktonstatepen:spread per-query expanded_nodes agrees with batch
+PASS shanktonstatepen:spread per-query result_nodes agrees with batch
+PASS shanktonstatepen:spread per-query priority comparisons agree
+PASS shanktonstatepen:spread peak frontier agrees
+PASS shanktonstatepen:spread found count agrees
+PASS shanktonstatepen:npc per-query queue_adds agrees with batch
+PASS shanktonstatepen:npc per-query expanded_nodes agrees with batch
+PASS shanktonstatepen:npc per-query result_nodes agrees with batch
+PASS shanktonstatepen:npc per-query priority comparisons agree
+PASS shanktonstatepen:npc peak frontier agrees
+PASS shanktonstatepen:npc found count agrees
+PASS shanktonstatepen:npc reachable fixture always found
+PASS shanktonstatepen:local per-query queue_adds agrees with batch
+PASS shanktonstatepen:local per-query expanded_nodes agrees with batch
+PASS shanktonstatepen:local per-query result_nodes agrees with batch
+PASS shanktonstatepen:local per-query priority comparisons agree
+PASS shanktonstatepen:local peak frontier agrees
+PASS shanktonstatepen:local found count agrees
+PASS shanktonstatepen:local reachable fixture always found
+PASS jungle:spread per-query queue_adds agrees with batch
+PASS jungle:spread per-query expanded_nodes agrees with batch
+PASS jungle:spread per-query result_nodes agrees with batch
+PASS jungle:spread per-query priority comparisons agree
+PASS jungle:spread peak frontier agrees
+PASS jungle:spread found count agrees
+PASS jungle:npc per-query queue_adds agrees with batch
+PASS jungle:npc per-query expanded_nodes agrees with batch
+PASS jungle:npc per-query result_nodes agrees with batch
+PASS jungle:npc per-query priority comparisons agree
+PASS jungle:npc peak frontier agrees
+PASS jungle:npc found count agrees
+PASS jungle:npc reachable fixture always found
+PASS jungle:local per-query queue_adds agrees with batch
+PASS jungle:local per-query expanded_nodes agrees with batch
+PASS jungle:local per-query result_nodes agrees with batch
+PASS jungle:local per-query priority comparisons agree
+PASS jungle:local peak frontier agrees
+PASS jungle:local found count agrees
+PASS jungle:local reachable fixture always found
+PASS sanpancho:spread per-query queue_adds agrees with batch
+PASS sanpancho:spread per-query expanded_nodes agrees with batch
+PASS sanpancho:spread per-query result_nodes agrees with batch
+PASS sanpancho:spread per-query priority comparisons agree
+PASS sanpancho:spread peak frontier agrees
+PASS sanpancho:spread found count agrees
+PASS sanpancho:npc per-query queue_adds agrees with batch
+PASS sanpancho:npc per-query expanded_nodes agrees with batch
+PASS sanpancho:npc per-query result_nodes agrees with batch
+PASS sanpancho:npc per-query priority comparisons agree
+PASS sanpancho:npc peak frontier agrees
+PASS sanpancho:npc found count agrees
+PASS sanpancho:npc reachable fixture always found
+PASS sanpancho:local per-query queue_adds agrees with batch
+PASS sanpancho:local per-query expanded_nodes agrees with batch
+PASS sanpancho:local per-query result_nodes agrees with batch
+PASS sanpancho:local per-query priority comparisons agree
+PASS sanpancho:local peak frontier agrees
+PASS sanpancho:local found count agrees
+PASS sanpancho:local reachable fixture always found
+PASS irongate:spread per-query queue_adds agrees with batch
+PASS irongate:spread per-query expanded_nodes agrees with batch
+PASS irongate:spread per-query result_nodes agrees with batch
+PASS irongate:spread per-query priority comparisons agree
+PASS irongate:spread peak frontier agrees
+PASS irongate:spread found count agrees
+PASS irongate:npc per-query queue_adds agrees with batch
+PASS irongate:npc per-query expanded_nodes agrees with batch
+PASS irongate:npc per-query result_nodes agrees with batch
+PASS irongate:npc per-query priority comparisons agree
+PASS irongate:npc peak frontier agrees
+PASS irongate:npc found count agrees
+PASS irongate:npc reachable fixture always found
+PASS irongate:local per-query queue_adds agrees with batch
+PASS irongate:local per-query expanded_nodes agrees with batch
+PASS irongate:local per-query result_nodes agrees with batch
+PASS irongate:local per-query priority comparisons agree
+PASS irongate:local peak frontier agrees
+PASS irongate:local found count agrees
+PASS irongate:local reachable fixture always found
+PASS all 15 KVM array-memory samples stable; delta 35728 bytes
+PASS HEAD unchanged; no commit
+PASS session branch unchanged
+PASS all previously tracked files and real Git index unchanged
