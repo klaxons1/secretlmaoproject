@@ -1,0 +1,30 @@
+clip-invisible-tiles
+Base-master: 0716b47205e297375d7a3848d923d5ce916eba6d
+Prerequisites: 0003 ONLY; do not combine with the cumulative copy of this patch
+Apply with git apply, NOT git am.
+
+diff --git a/src/Game.java b/src/Game.java
+--- a/src/Game.java
++++ b/src/Game.java
+@@ -4050,12 +4050,19 @@
+ 			int viewy = viewY - yr;
+ 			int xoff = viewx / TILE_SIZE, yoff = viewy / TILE_SIZE;
+ 
++			if (!NOKIAUI_SHADOWS) {
++				int cols = (viewWidth + xr + TILE_SIZE - 1) / TILE_SIZE;
++				int rows = (viewHeight + yr + TILE_SIZE - 1) / TILE_SIZE;
++				if (viewCols > cols) viewCols = cols;
++				if (viewRows > rows) viewRows = rows;
++			}
++
+ 			Image tilesImg = tilesTexture;
+ 
+ 			// background
+ 			if (layer == LAYER_GROUND || layer == LAYER_UNDERGROUND) {
+-				int y0 = viewHeight / (TILE_SIZE * 3) + 1;
+-				for (int x = viewWidth / (TILE_SIZE * 3) + 1; x >= 0; --x) {
++				int y0 = (viewHeight + yr + TILE_SIZE * 3 - 1) / (TILE_SIZE * 3) - 1;
++				for (int x = (viewWidth + xr + TILE_SIZE * 3 - 1) / (TILE_SIZE * 3) - 1; x >= 0; --x) {
+ 					for (int y = y0; y >= 0; --y) {
+ 						g.drawRegion(groundTexture, layer == LAYER_UNDERGROUND ? (TILE_SIZE * 3) : 0, 0,
+ 								TILE_SIZE * 3, TILE_SIZE * 3, 0, -xr + x * TILE_SIZE * 3, -yr + y * 48, 0);
