@@ -70,6 +70,12 @@ Tested heap usage is about 700 KB and 1 MB of image memory. (strongly depends on
 
 See [Builds.md](/Builds.md)
 
+## KVM performance benchmarks
+
+See [benchmarks/kvm](benchmarks/kvm/README.md) for reproducible before/after
+measurements of render sorting and pathfinding on the original KVM 1.1,
+including raw samples, calculations, correctness checks, and limitations.
+
 ## Tested devices
 
 Main testing and target devices:

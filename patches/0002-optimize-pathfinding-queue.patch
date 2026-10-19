@@ -1,0 +1,94 @@
+Subject: [PATCH] Reduce KVM interpreter work in the pathfinding queue
+
+Cache array references and neighbor indices in openAdd/openRemove.
+Preserve the linked list, search costs and equal-cost FIFO tie-breaking.
+
+Base: 785ef001798fad8e4e9f2e21426e4c6d65875d33
+Applies independently of the other optimization patch.
+
+diff --git a/src/Game.java b/src/Game.java
+index aad7997d653c8b66c715e4e5fcd1ba23831371c1..8a9e31b27416058e595b04a09c731d8ae063456c 100644
+--- a/src/Game.java
++++ b/src/Game.java
+@@ -9059,46 +9059,48 @@
+ 			return;
+ 		}
+ 
+-		int f1 = nodeG[n] + nodeH[n];
+-		while (i != -1) {
+-			int f2 = nodeG[i] + nodeH[i];
+-			if (f1 < f2) {
+-				// insert to next
+-				if (openNodePrev[i] == -1) {
+-					// last
+-					sortedNode = n;
+-				} else {
+-					openNodeNext[openNodePrev[i]] = (short) n;
+-				}
+-
+-				openNodePrev[n] = openNodePrev[i];
+-				openNodeNext[n] = (short) i;
+-				openNodePrev[i] = (short) n;
+-				return;
+-			} else if (openNodeNext[i] == -1) {
+-				// insert to previous
+-				openNodeNext[i] = (short) n;
+-				openNodePrev[n] = (short) i;
+-				return;
+-			}
+-			// continue
+-			i = openNodeNext[i];
++		// Keep array references in locals while scanning the list on the KVM.
++		short[] nodeG = this.nodeG;
++		short[] nodeH = this.nodeH;
++		short[] next = openNodeNext;
++		short[] prev = openNodePrev;
++		int f = nodeG[n] + nodeH[n];
++		int p = -1;
++		// Insert AFTER equal-cost nodes to preserve the existing path tie-break.
++		while (i != -1 && f >= nodeG[i] + nodeH[i]) {
++			p = i;
++			i = next[i];
++		}
++
++		if (p == -1) {
++			sortedNode = n;
++		} else {
++			next[p] = (short) n;
++		}
++		prev[n] = (short) p;
++		next[n] = (short) i;
++		if (i != -1) {
++			prev[i] = (short) n;
+ 		}
+ 	}
+ 
+ 	void openRemove(int n) {
+-		if (openNodeNext[n] != -1) {
+-			openNodePrev[openNodeNext[n]] = openNodePrev[n];
++		short[] next = openNodeNext;
++		short[] prev = openNodePrev;
++		short nextNode = next[n];
++		short prevNode = prev[n];
++		if (nextNode != -1) {
++			prev[nextNode] = prevNode;
+ 		}
+ 
+ 		if (sortedNode == n) {
+-			sortedNode = openNodeNext[n];
+-		} else if (openNodePrev[n] != -1) {
+-			openNodeNext[openNodePrev[n]] = openNodeNext[n];
+-		}
+-
+-		openNodePrev[n] = -1;
+-		openNodeNext[n] = -1;
++			sortedNode = nextNode;
++		} else if (prevNode != -1) {
++			next[prevNode] = nextNode;
++		}
++
++		prev[n] = -1;
++		next[n] = -1;
+ 	}
+ 
+ 	// endregion Pathfinding
