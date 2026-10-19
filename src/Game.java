@@ -90,6 +90,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 	int canvasWidth, canvasHeight;
 
 	int fps, tps;
+	int lag;
 	long globalCounter;
 
 	boolean paused;
@@ -537,6 +538,9 @@ public class Game extends GameCanvas implements Runnable, Constants {
 				drawNumber(g, fps, fontImg, 0, 9, 5, 7, 0, 55);
 				// tps
 				drawNumber(g, tps, fontImg, 0, 9, 5, 7, 5*3, 55);
+				if (lag != 0) {
+					drawNumber(g, lag, fontImg, 0, 16, 5, 7, 5*6, 55);
+				}
 				// used heap
 				Runtime r = Runtime.getRuntime();
 				drawNumber(g, (int) (r.totalMemory() - r.freeMemory()) / 1024, fontImg, 0, 9, 5, 7, 0, 55+8);
@@ -704,16 +708,36 @@ public class Game extends GameCanvas implements Runnable, Constants {
 			if (saveDialog) {
 				pausedOverlay = true;
 
+				int nw = 165;
+				int nh = 60;
+				int nx = (w - nw) >> 1;
+				int ny = (h - nh) >> 1;
+
+				g.setColor(0x333333);
+				g.fillRect(nx, ny, nw, nh);
+				g.setColor(0);
+				g.drawRect(nx, ny, nw - 1, nh - 1);
+
 				// TODO
 				fontColor = FONT_COLOR_WHITE;
 				String t = "Would you like to sleep until morning";
-				drawText(g, t, (w - textWidth(t, FONT_REGULAR)) >> 1, (h >> 1) - 5, FONT_REGULAR);
+				drawText(g, t, (w - textWidth(t, FONT_REGULAR)) >> 1, (h >> 1) - 20, FONT_REGULAR);
 				t = "and save your current progress?";
-				drawText(g, t, (w - textWidth(t, FONT_REGULAR)) >> 1, (h >> 1) + 5, FONT_REGULAR);
+				drawText(g, t, (w - textWidth(t, FONT_REGULAR)) >> 1, (h >> 1) - 10, FONT_REGULAR);
 				t = "Left soft: Ok, Right soft: Cancel";
-				drawText(g, t, (w - textWidth(t, FONT_REGULAR)) >> 1, (h >> 1) + 20, FONT_REGULAR);
+				drawText(g, t, (w - textWidth(t, FONT_REGULAR)) >> 1, (h >> 1) + 10, FONT_REGULAR);
 			} else if (saveProblem) {
 				pausedOverlay = true;
+
+				int nw = 165;
+				int nh = 60;
+				int nx = (w - nw) >> 1;
+				int ny = (h - nh) >> 1;
+
+				g.setColor(0x333333);
+				g.fillRect(nx, ny, nw, nh);
+				g.setColor(0);
+				g.drawRect(nx, ny, nw - 1, nh - 1);
 
 				// TODO
 				fontColor = FONT_COLOR_WHITE;
@@ -1750,14 +1774,12 @@ public class Game extends GameCanvas implements Runnable, Constants {
 							}
 							if (profileTab == 0 && !profileOpen.ai) {
 								if (selectedSlot == 0) {
-									if (player.outfitItem != Items.ITEM_NULL) {
-										player.addItem(player.outfitItem, true);
+									if (player.outfitItem != Items.ITEM_NULL && player.addItem(player.outfitItem, true)) {
 										player.outfitItem = Items.ITEM_NULL;
 										player.outfitId = -1;
 									}
 								} else if (selectedSlot == 1) {
-									if (player.weapon != Items.ITEM_NULL) {
-										player.addItem(player.weapon, true);
+									if (player.weapon != Items.ITEM_NULL && player.addItem(player.weapon, true)) {
 										player.weapon = Items.ITEM_NULL;
 									}
 								}
@@ -2286,6 +2308,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 			drawScreen();
 
 			long lastFrameTime = System.currentTimeMillis();
+			long lastLagCounterTime = lastFrameTime;
 			long lastCounterTime = lastFrameTime;
 			float passedTime = 0;
 			int frames = 0, ticksC = 0;
@@ -2474,6 +2497,10 @@ public class Game extends GameCanvas implements Runnable, Constants {
 					lastCounterTime += 1000L;
 					frames = 0;
 					ticksC = 0;
+				}
+				if (now >= lastLagCounterTime + 5000L) {
+					lastLagCounterTime += 5000L;
+					lag = 0;
 				}
 
 				Profiler.endFrame();
@@ -3241,23 +3268,28 @@ public class Game extends GameCanvas implements Runnable, Constants {
 				for (int i = 0; i < n; ++i) {
 					int idx = i << 2;
 					byte s;
-					if ((s = getObjectCollision(objects[idx + 1])) == COLL_NONE) {
+					int obj = objects[idx + 1];
+					if ((s = getObjectCollision(obj)) == COLL_NONE) {
 						continue;
 					}
 
 					short x = objects[idx + 3], y = objects[idx + 4];
 
-					if (objects[idx + 1] == Objects.STASH && day == 0) {
+					if (obj == Objects.STASH && day == 0) {
 						if (NPC.rng.nextInt(10) != 0) {
 							// delete object
 							objects[idx + 1] = -Objects.STASH;
 							objects[idx + 2] |= 1 << 12;
 							s = COLL_NONE;
 						}
-					} else if (initSeats && objects[idx + 1] == Objects.CHAIR && isInZone(x * TILE_SIZE, y * TILE_SIZE, ZONE_CANTEEN)) {
+					} else if (initSeats && obj == Objects.CHAIR && isInZone(x * TILE_SIZE, y * TILE_SIZE, ZONE_CANTEEN)) {
 						int p = ((canteenSeatsPositions[0]++) << 1) + 1;
 						canteenSeatsPositions[p] = (short) ((x & 0xFF) | ((y & 0xFF) << 8));
 						canteenSeatsPositions[p + 1] = -1;
+					} else if (obj == Objects.PLAYER_BED) {
+						while ((objects[idx + 2] & 0xFF) > 160) objects[idx + 2]--;
+					} else if (obj == Objects.BED) {
+						while ((objects[idx + 2] & 0xFF) > 163) objects[idx + 2]--;
 					}
 
 					short sprite = objects[idx + 2];
@@ -3422,6 +3454,18 @@ public class Game extends GameCanvas implements Runnable, Constants {
 								}
 							}
 							if (res != null) {
+								if (res.desk != 0) {
+									dx = x - res.bedX;
+									dy = y - res.bedY;
+
+									objIdx = containers[res.desk];
+									x = objects[objIdx + 3];
+									y = objects[objIdx + 4];
+									int dx2 = x - npc.bedX, dy2 = y - res.bedY;
+									if (dx * dx + dy * dy > dx2 * dx2 + dy2 * dy2) {
+										continue;
+									}
+								}
 								containers[idx - 1] = res.id;
 								res.desk = idx - 2;
 								break;
@@ -3447,14 +3491,17 @@ public class Game extends GameCanvas implements Runnable, Constants {
 			n = npcNum;
 			for (int i = 1; i < n; ++i) {
 				NPC npc = chars[i];
-				if (npc == null || !npc.inmate || npc.job != 0) continue;
+				if (npc == null || !npc.inmate) continue;
 
-				for (int k = 1; k < COUNT_JOBS; ++k) {
-					if ((jobs[k] & JOB_EXISTING_BIT) == 0 || (jobs[k] & JOB_OCCUPIED_BIT) != 0)
-						continue;
-					npc.job = k;
-					jobs[k] |= JOB_OCCUPIED_BIT;
-					break;
+				npc.updateItems();
+				if (npc.job == 0) {
+					for (int k = 1; k < COUNT_JOBS; ++k) {
+						if ((jobs[k] & JOB_EXISTING_BIT) == 0 || (jobs[k] & JOB_OCCUPIED_BIT) != 0)
+							continue;
+						npc.job = k;
+						jobs[k] |= JOB_OCCUPIED_BIT;
+						break;
+					}
 				}
 			}
 
@@ -3769,7 +3816,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 					if (time % 60 == 0) {
 						updateDoors();
 					}
-					if (guardsDown >= 4) {
+					if (guardsDown >= (guards * 4) / 5) {
 						if (!entranceOpen) {
 							entranceOpen = true;
 							updateDoors();
@@ -3825,6 +3872,8 @@ public class Game extends GameCanvas implements Runnable, Constants {
 		int tick = tickCounter;
 		player.tickPlayer(tick);
 
+		long l = System.currentTimeMillis();
+
 		NPC[] chars = this.chars;
 		int n = chars.length;
 		for (int i = 0; i < n; ++i) {
@@ -3833,23 +3882,12 @@ public class Game extends GameCanvas implements Runnable, Constants {
 			chars[i].tick();
 		}
 
+		l = (System.currentTimeMillis() - l);
+		if (l > lag) lag = (int) l;
+
 		// sort characters for rendering, so that southern will be rendered on top
 
-		if ((tick & 3) == 0) {
-			NPC[] sortedChars = this.renderChars;
-
-			for (int i = 0; i < n - 1; ++i) {
-				for (int j = 0; j < n - i - 1; ++j) {
-					if (sortedChars[j] != null && sortedChars[j + 1] != null
-							&& ((sortedChars[j].y - ((sortedChars[j].animation == NPC.ANIM_STUNNED || sortedChars[j].animation == NPC.ANIM_LYING) ? 10000 : 0)) >
-							(sortedChars[j + 1].y - ((sortedChars[j + 1].animation == NPC.ANIM_STUNNED || sortedChars[j + 1].animation == NPC.ANIM_LYING) ? 10000 : 0)))) {
-						NPC t = sortedChars[j];
-						sortedChars[j] = sortedChars[j + 1];
-						sortedChars[j + 1] = t;
-					}
-				}
-			}
-		}
+		if ((tick & 7) == 0) sortRenderChars(renderChars);
 
 		if (lockdown && tick % TPS == 0) {
 			if (lockdownTimer == 0) {
@@ -3873,6 +3911,26 @@ public class Game extends GameCanvas implements Runnable, Constants {
 			// welcome note
 			note = NOTE_WELCOME;
 			Sound.playEffect(Sound.SFX_OPEN);
+		}
+	}
+
+	private static void sortRenderChars(NPC[] sortedChars) {
+		int n = sortedChars.length;
+		for (int i = 1; i < n; ++i) {
+			NPC npc = sortedChars[i];
+			if (npc == null) continue;
+
+			int y = npc.y - ((npc.animation == NPC.ANIM_STUNNED || npc.animation == NPC.ANIM_LYING) ? 10000 : 0);
+			int j = i;
+			while (j > 0) {
+				NPC t = sortedChars[j - 1];
+				if (t == null) break;
+				if (t.y - ((t.animation == NPC.ANIM_STUNNED || t.animation == NPC.ANIM_LYING) ? 10000 : 0) <= y)
+					break;
+
+				sortedChars[j--] = t;
+			}
+			sortedChars[j] = npc;
 		}
 	}
 
@@ -3970,7 +4028,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 			if (i == -1) break;
 			objects[LAYER_GROUND][i + 2] |= 1 << 12;
 			solid[LAYER_GROUND][objects[LAYER_GROUND][i + 3] + objects[LAYER_GROUND][i + 4] * width] = COLL_NONE;
-			++i;
+			i += 4;
 		}
 
 		checkpointOpen = true;
@@ -4955,8 +5013,9 @@ public class Game extends GameCanvas implements Runnable, Constants {
 			if (npc == null || npc.layer != layer || !npc.visible) continue;
 
 			int x = (int) npc.x - viewX, y = (int) npc.y - viewY;
-			if (npc.selling && (((ticks + npc.id * 3) >> 5) & 1) == 0) {
-				g.drawRegion(markersImg, 0, 0, 7, 8, 0, x + 4, y - 8, 0);
+			if ((((ticks + npc.id * 3) >> 5) & 1) == 0) {
+				if (npc.selling) g.drawRegion(markersImg, 0, 0, 7, 8, 0, x + 4, y - 8, 0);
+				else if (npc.asking) g.drawRegion(markersImg, 7, 0, 4, 9, 0, x + 6, y - 8, 0);
 			}
 			if (npc.dialog != null) {
 				String[] r = npc.dialogRender;
@@ -5551,6 +5610,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 		case 9:
 		case 13:
 		case 69:
+		case 88:
 		case 92:
 			return true;
 		}
@@ -5666,7 +5726,6 @@ public class Game extends GameCanvas implements Runnable, Constants {
 		case Objects.TRAINING_BOOKSHELF:
 		case Objects.VISITATION_GUEST_SEAT:
 		case Objects.VISITATION_PLAYER_SEAT:
-		case Objects.MEDICAL_SUPPLIES:
 		case Objects.JOB_MAILROOM_FILE:
 		case Objects.JOB_METAL_TOOLS:
 		case Objects.JOB_DELIVERIES_BLUE_BOX:
@@ -5687,6 +5746,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 		case Objects.JOB_CLEANING_SUPPLIES:
 		case Objects.JOB_FABRIC_CHEST:
 		case Objects.JOB_CLOTHING_STORAGE:
+		case Objects.MEDICAL_SUPPLIES:
 			return Game.COLL_CHEST;
 		case Objects.VENT_SLATS:
 		case Objects.DOOR_JUNGLE_ENTRANCE:
@@ -6364,6 +6424,7 @@ public class Game extends GameCanvas implements Runnable, Constants {
 		case Items.PAPER_MACHE:
 		case Items.SOCK_MACE:
 		case Items.SUPER_SOCK_MACE:
+		case Items.CUP_OF_MOLTEN_CHOCOLATE:
 		case Items.NUNCHUKS:
 		case Items.COMB_SHIV:
 		case Items.WHIP:
@@ -6544,8 +6605,8 @@ public class Game extends GameCanvas implements Runnable, Constants {
 				s[1] = s[0];
 				s[0] = t;
 			} else if (s[1] == -1 || s[1] > t) {
-				s[1] = t;
 				s[2] = s[1];
+				s[1] = t;
 			} else {
 				s[2] = t;
 			}
@@ -9059,31 +9120,26 @@ public class Game extends GameCanvas implements Runnable, Constants {
 			return;
 		}
 
-		int f1 = nodeG[n] + nodeH[n];
-		while (i != -1) {
-			int f2 = nodeG[i] + nodeH[i];
-			if (f1 < f2) {
-				// insert to next
-				if (openNodePrev[i] == -1) {
-					// last
-					sortedNode = n;
-				} else {
-					openNodeNext[openNodePrev[i]] = (short) n;
-				}
+		short[] nodeG = this.nodeG;
+		short[] nodeH = this.nodeH;
+		short[] openNodePrev = this.openNodePrev;
+		short[] openNodeNext = this.openNodeNext;
 
-				openNodePrev[n] = openNodePrev[i];
-				openNodeNext[n] = (short) i;
-				openNodePrev[i] = (short) n;
-				return;
-			} else if (openNodeNext[i] == -1) {
-				// insert to previous
-				openNodeNext[i] = (short) n;
-				openNodePrev[n] = (short) i;
-				return;
-			}
-			// continue
+		int f = nodeG[n] + nodeH[n];
+		int p = -1;
+		while (i != -1 && f >= nodeG[i] + nodeH[i]) {
+			p = i;
 			i = openNodeNext[i];
 		}
+
+		if (p == -1) {
+			sortedNode = n;
+		} else {
+			openNodeNext[p] = (short) n;
+		}
+		openNodePrev[n] = (short) p;
+		openNodeNext[n] = (short) i;
+		if (i != -1) openNodePrev[i] = (short) n;
 	}
 
 	void openRemove(int n) {

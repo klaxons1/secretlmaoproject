@@ -136,6 +136,7 @@ class NPC implements Constants {
 	int animationFrame;
 	int desk;
 	boolean selling;
+	boolean asking;
 	int[] sell;
 	boolean talked;
 
@@ -520,14 +521,13 @@ class NPC implements Constants {
 			animationFrame = 0;
 
 		if (fighting != 0) --fighting;
-		if (stealing != 0) --stealing;
 		if (health <= 0) {
 			// stunned
 			health = 0;
 			if (wakeupTimer == -1) {
 				if (guard) {
 					map.guardsDown++;
-					if (map.guardsDown >= 3 && !map.lockdown) {
+					if (map.guardsDown >= (map.guards * 2) / 5 && !map.lockdown) {
 						map.startLockdown();
 					}
 				}
@@ -551,21 +551,25 @@ class NPC implements Constants {
 			} else if (layer == LAYER_GROUND && --wakeupTimer == 0) {
 				if (guard) {
 					map.guardsDown--;
-					boolean hasKey = false;
-					loop: for (int i = 0; i < 6; ++i) {
-						switch (inventory[i] & Items.ITEM_ID_MASK) {
-						case Items.CELL_KEY:
-						case Items.STAFF_KEY:
-						case Items.ENTRANCE_KEY:
-						case Items.UTILITY_KEY:
-						case Items.WORK_KEY:
-							hasKey = true;
-							break loop;
+
+					if (typedId < 5) {
+						boolean hasKey = false;
+						loop: for (int i = 0; i < 6; ++i) {
+							if (i == Items.ITEM_NULL) continue;
+							switch (inventory[i] & Items.ITEM_ID_MASK) {
+							case Items.CELL_KEY:
+							case Items.STAFF_KEY:
+							case Items.ENTRANCE_KEY:
+							case Items.UTILITY_KEY:
+							case Items.WORK_KEY:
+								hasKey = true;
+								break loop;
+							}
 						}
-					}
-					if (!hasKey) {
-						map.note = NOTE_SOLITARY;
-						map.solitaryReason = REASON_KEY;
+						if (!hasKey) {
+							map.note = NOTE_SOLITARY;
+							map.solitaryReason = REASON_KEY;
+						}
 					}
 				}
 				wakeupTimer = -1;
@@ -657,7 +661,8 @@ class NPC implements Constants {
 			} else if (guard && (map.prevSchedule == SC_MORNING_ROLLCALL
 					|| map.prevSchedule == SC_AFTERNOON_ROLLCALL
 					|| map.prevSchedule == SC_EVENING_ROLLCALL)
-					&& ((typedId == 3 && map.shakedown1 != null) || (typedId == 4 && map.shakedown2 != null))) {
+					&& ((typedId == 3 && map.shakedown1 != null && map.shakedown1.desk != 0)
+					|| (typedId == 4 && map.shakedown2 != null && map.shakedown2.desk != 0))) {
 				aiState = AI_SHAKEDOWN;
 				correctPath = false;
 			}
@@ -917,7 +922,9 @@ class NPC implements Constants {
 						aiWaitTimer = 0;
 						map.playerSeenByGuards = true;
 
-						heat("Oi, " + player.name + '!',
+						StringBuffer sb = Game.stringBuffer;
+						sb.setLength(0);
+						heat(sb.append("Oi, ").append(player.name).append('!').toString(),
 								map.action == ACT_CHIPPING || map.action == ACT_CUTTING
 								|| map.action == ACT_CUTTING_VENT || map.action == ACT_UNSCREWING ? 99 : 30);
 						if (map.lockdown && map.guardsDown < 3) {
@@ -944,9 +951,13 @@ class NPC implements Constants {
 								&& player.job != JOB_MAILMAN && player.job != JOB_LIBRARY) {
 							// TODO this check still doesn't work well
 							// guard warns player if they're in wrong cell
-							heat("Get out of that cell " + player.name + '!', 10);
+							StringBuffer sb = Game.stringBuffer;
+							sb.setLength(0);
+							heat(sb.append("Get out of that cell ").append(player.name).append('!').toString(), 10);
 						} else if (player.outfitItem == Items.ITEM_NULL) {
-							heat("Get some clothes on " + player.name + '!', 10);
+							StringBuffer sb = Game.stringBuffer;
+							sb.setLength(0);
+							heat(sb.append("Get some clothes on ").append(player.name).append('!').toString(), 10);
 						} else if (map.scheduleHeatCooldown == 0) {
 							// hurry up the player to scheduled place
 							onPlace: {
@@ -1003,7 +1014,9 @@ class NPC implements Constants {
 											break onJob;
 										}
 
-										heat("Get to work  " + player.name + '!', 10);
+										StringBuffer sb = Game.stringBuffer;
+										sb.setLength(0);
+										heat(sb.append("Get to work  ").append(player.name).append('!').toString(), 10);
 									}
 									break onPlace;
 								}
@@ -1011,7 +1024,9 @@ class NPC implements Constants {
 									break onPlace;
 								}
 
-								heat("Move it " + player.name, 10);
+								StringBuffer sb = Game.stringBuffer;
+								sb.setLength(0);
+								heat(sb.append("Move it ").append(player.name).toString(), 10);
 							}
 						}
 					}
@@ -1042,7 +1057,9 @@ class NPC implements Constants {
 						aiState = AI_ATTACK;
 						chaseTarget = other;
 						aiWaitTimer = 0;
-						heat("Oi! " + other.name, 0);
+						StringBuffer sb = Game.stringBuffer;
+						sb.setLength(0);
+						heat(sb.append("Oi! ").append(other.name).toString(), 0);
 						break;
 					}
 				} else if (inmate && other.inmate) {
@@ -1546,26 +1563,21 @@ class NPC implements Constants {
 						npc = map.shakedown1;
 						map.shakedown1 = null;
 					}
-					if (npc == null) break desk;
+					if (npc == null || npc.desk == 0) break desk;
 					int obj = map.containers[aiWorkState = npc.desk];
 					if (obj == -1) break desk;
 
 					int x = map.objects[LAYER_GROUND][obj + 3];
 					int y = map.objects[LAYER_GROUND][obj + 4];
 
-					try {
-						for (int n = 0; n < 4; ++n) {
-							int ox = Game.PATH_DIR_POSITIONS[(3 - n) << 1];
-							int oy = Game.PATH_DIR_POSITIONS[((3 - n) << 1) + 1];
-							// FIXME aioob
-							if (map.solid[LAYER_GROUND][x + ox + (y + oy) * map.width] == 0) {
-								x += ox;
-								y += oy;
-								break;
-							}
+					for (int n = 0; n < 4; ++n) {
+						int ox = Game.PATH_DIR_POSITIONS[(3 - n) << 1];
+						int oy = Game.PATH_DIR_POSITIONS[((3 - n) << 1) + 1];
+						if (map.solid[LAYER_GROUND][x + ox + (y + oy) * map.width] == 0) {
+							x += ox;
+							y += oy;
+							break;
 						}
-					} catch (Exception e) {
-						break desk;
 					}
 
 					if (map.pathfind(this.x / TILE_SIZE, (this.y + 5) / TILE_SIZE, direction, pathX = x, pathY = y, false, path)) {
@@ -1574,6 +1586,10 @@ class NPC implements Constants {
 					} else if (LOGGING) {
 						Profiler.log(debugName() + " cannot pathfind to desk " + npc);
 					}
+				}
+
+				if (!correctPath) {
+					aiState = AI_RESET;
 				}
 			} else if (targetReached) {
 				if (map.removeIllegalItems(aiWorkState) && aiWorkState == map.getContainerByOwner(0)) {
@@ -2200,9 +2216,8 @@ class NPC implements Constants {
 		if (statStrength < 10) {
 			statStrength = 10;
 		}
-		if (fighting != 0) {
-			fighting--;
-		}
+		if (fighting != 0) --fighting;
+		if (stealing != 0) --stealing;
 		if (map.lockdown) {
 			map.heat = 100;
 		} else if (map.heat != 0) {
@@ -2362,7 +2377,7 @@ class NPC implements Constants {
 				&& (layer == LAYER_ROOF || (layer == LAYER_GROUND && getCollision(x, y, true) == COLL_NONE
 				&& !Game.isFloor(map.tiles[LAYER_GROUND][(x / TILE_SIZE) + ((y + 5) / TILE_SIZE) * map.width])))) {
 			if (map.heat >= 90 || ((layer == LAYER_ROOF || map.mapType == MAP_TYPE_INSIDE_ONLY
-					|| (map.mapType == MAP_TYPE_INSIDE && !isInZone(ZONE_SAFE) && (map.time >= 10 * 60 && map.time < 22 * 60)))
+					|| (map.mapType == MAP_TYPE_INSIDE && !isInZone(ZONE_SAFE) && (map.time < 10 * 60 || map.time > 22 * 60)))
 					&& outfitId != Textures.OUTFIT_GUARD)
 					|| map.action == ACT_CHIPPING || map.action == ACT_DIGGING || map.action == ACT_CUTTING) {
 				if (map.heat < 99) {
@@ -2981,6 +2996,39 @@ class NPC implements Constants {
 		byte b = getCollision(x, y, true);
 		x = (this.x + x) / TILE_SIZE;
 		y = (this.y + y) / TILE_SIZE;
+
+		if (b == COLL_SOLID_INTERACT) {
+			int idx = map.getObjectIdxAt(x, y, layer);
+			switch (map.objects[layer][idx + 1]) {
+			case Objects.PLAYER_BED:
+				if (map.bedDummyPlaced) {
+					if (!addItem(Items.BED_DUMMY | Items.ITEM_DEFAULT_DURABILITY, true)) return;
+					map.bedDummyPlaced = false;
+					return;
+				}
+				if (item == Items.BED_DUMMY) {
+					map.bedDummyPlaced = true;
+					inventory[slot] = Items.ITEM_NULL;
+					Sound.playEffect(SFX_THROW);
+					return;
+				}
+				xFloat = this.x = bedX * TILE_SIZE;
+				yFloat = this.y = bedY * TILE_SIZE + 2;
+				animation = ANIM_LYING;
+				if (map.schedule == SC_LIGHTSOUT && (map.time < 5 * 60 || map.time >= 20 * 60)) {
+					map.saveDialog = true;
+					Sound.playEffect(SFX_OPEN);
+				}
+				break;
+			case Objects.MEDICAL_BED:
+			case Objects.SUN_LOUNGER:
+				xFloat = this.x = map.objects[layer][idx + 3] * TILE_SIZE;
+				yFloat = this.y = (map.objects[layer][idx + 4] - 1) * TILE_SIZE + 2;
+				animation = ANIM_LYING;
+				return;
+			}
+		}
+
 		if (item != -1) {
 			if (item == Items.CUP_OF_MOLTEN_CHOCOLATE
 					&& map.interactNPC != null && (map.interactNPC.inmate || map.interactNPC.guard)) {
@@ -2992,6 +3040,8 @@ class NPC implements Constants {
 					Sound.playEffect(Constants.SFX_ENHIT);
 					npc.health = 0;
 					npc.statOpinion = 0;
+					fighting = 4;
+					inventory[slot] = Items.ITEM_NULL;
 					return;
 				}
 			}
@@ -3196,9 +3246,13 @@ class NPC implements Constants {
 				case Items.WALL_BLOCK:
 					int pos = x + y * map.width;
 					// TODO check collision
-					if (item == Items.WALL_BLOCK) {
+					if (item == Items.WALL_BLOCK || item == Items.FAKE_FENCE) {
 						// put wall back
-						if (t != -21 && t != -25) return;
+						if (item == Items.WALL_BLOCK) {
+							if (t != -21 && t != -25) return;
+						} else /*if (item == Items.FAKE_FENCE)*/ {
+							if (t != -77 && t != -81) return;
+						}
 						map.setBreakProgress(x, y, layer, 90);
 						map.tiles[layer][pos] = (byte) -t;
 						map.solid[layer][pos] = COLL_SOLID;
@@ -3207,11 +3261,7 @@ class NPC implements Constants {
 						}
 					} else {
 						// put poster
-						if (item == Items.POSTER || item == Items.FAKE_WALL_BLOCK) {
-							if (t != -21 && t != -25) return;
-						} else /*if (item == Items.FAKE_FENCE)*/ {
-							if (t != -77 && t != -81) return;
-						}
+						if (t != -21 && t != -25) return;
 						map.setBreakProgress(x, y, layer, item == Items.POSTER ? 101 : 102);
 						map.solid[layer][pos] = COLL_POSTER;
 						if (item != Items.POSTER) {
@@ -3242,6 +3292,7 @@ class NPC implements Constants {
 				if (dist < NPC_VIEW_DISTANCE) return;
 
 				npc.dialogTimer = TPS * 3;
+				npc.aiWaitTimer = 10;
 				if (item == Items.ID_PAPERS) {
 					map.openCheckpoint();
 					npc.dialog = "Seeya tomorrow!";
@@ -3285,12 +3336,13 @@ class NPC implements Constants {
 			map.objects[layer][objIdx + 3] = -1;
 			map.objects[layer][objIdx + 4] = -1;
 			map.solid[layer][y * map.width + x] = COLL_NONE;
+			Sound.playEffect(SFX_PICKUP);
 			return;
 		}
 		if (map.carryingObject != -1) {
 			int objIdx = map.carryingObject;
 			if (b != COLL_NONE) {
-				Sound.playEffect(Constants.SFX_LOSE);
+				Sound.playEffect(SFX_LOSE);
 				return;
 			}
 			map.carryingObject = -1;
@@ -3298,6 +3350,7 @@ class NPC implements Constants {
 			map.objects[layer][objIdx + 3] = (short) x;
 			map.objects[layer][objIdx + 4] = (short) y;
 			map.solid[layer][y * map.width + x] = COLL_DESK;
+			Sound.playEffect(SFX_THROW);
 			return;
 		}
 		if (map.interactNPC != null) {
@@ -3415,7 +3468,8 @@ class NPC implements Constants {
 				return;
 			}
 		}
-		if (b == COLL_NONE && item == -1) {
+
+		if (item == -1) {
 			int peekItem = map.peekItem(x, y, layer);
 			if (peekItem != -1 && peekItem != Items.ITEM_NULL) {
 				if (addItem(peekItem, true)) {
@@ -3426,20 +3480,22 @@ class NPC implements Constants {
 				}
 				return;
 			}
-			if (layer == LAYER_GROUND && map.getBreakProgress(x, y, layer) == 100) {
-				layer = LAYER_UNDERGROUND;
-				xFloat = this.x = x * TILE_SIZE;
-				yFloat = this.y = y * TILE_SIZE;
-				map.resetCamera = true;
-				return;
-			}
-			if (layer == LAYER_UNDERGROUND && map.getBreakProgress(x, y, LAYER_GROUND) == 100
-					&& map.getObjectIdxAt(x, y, LAYER_GROUND) == -1) {
-				layer = LAYER_GROUND;
-				xFloat = this.x = x * TILE_SIZE;
-				yFloat = this.y = y * TILE_SIZE;
-				map.resetCamera = true;
-				return;
+			if (b == COLL_NONE) {
+				if (layer == LAYER_GROUND && map.getBreakProgress(x, y, layer) == 100) {
+					layer = LAYER_UNDERGROUND;
+					xFloat = this.x = x * TILE_SIZE;
+					yFloat = this.y = y * TILE_SIZE;
+					map.resetCamera = true;
+					return;
+				}
+				if (layer == LAYER_UNDERGROUND && map.getBreakProgress(x, y, LAYER_GROUND) == 100
+						&& map.getObjectIdxAt(x, y, LAYER_GROUND) == -1) {
+					layer = LAYER_GROUND;
+					xFloat = this.x = x * TILE_SIZE;
+					yFloat = this.y = y * TILE_SIZE;
+					map.resetCamera = true;
+					return;
+				}
 			}
 		}
 
@@ -3468,7 +3524,7 @@ class NPC implements Constants {
 		x = (x + this.x) / TILE_SIZE;
 		y = (y + this.y) / TILE_SIZE;
 
-		if (b == COLL_NONE && item == -1) {
+		if (item == -1) {
 			// pickup item
 			int peekItem = map.peekItem(x, y, layer);
 			if (peekItem != -1 && peekItem != Items.ITEM_NULL) {
@@ -3480,19 +3536,21 @@ class NPC implements Constants {
 				}
 				return;
 			}
-			if (layer == LAYER_GROUND && map.getBreakProgress(x, y, layer) == 100) {
-				layer = LAYER_UNDERGROUND;
-				xFloat = this.x = x * TILE_SIZE;
-				yFloat = this.y = y * TILE_SIZE;
-				map.resetCamera = true;
-				return;
-			}
-			if (layer == LAYER_UNDERGROUND && map.getBreakProgress(x, y, LAYER_GROUND) == 100) {
-				layer = LAYER_GROUND;
-				xFloat = this.x = x * TILE_SIZE;
-				yFloat = this.y = y * TILE_SIZE;
-				map.resetCamera = true;
-				return;
+			if (b == COLL_NONE) {
+				if (layer == LAYER_GROUND && map.getBreakProgress(x, y, layer) == 100) {
+					layer = LAYER_UNDERGROUND;
+					xFloat = this.x = x * TILE_SIZE;
+					yFloat = this.y = y * TILE_SIZE;
+					map.resetCamera = true;
+					return;
+				}
+				if (layer == LAYER_UNDERGROUND && map.getBreakProgress(x, y, LAYER_GROUND) == 100) {
+					layer = LAYER_GROUND;
+					xFloat = this.x = x * TILE_SIZE;
+					yFloat = this.y = y * TILE_SIZE;
+					map.resetCamera = true;
+					return;
+				}
 			}
 		}
 
@@ -3555,32 +3613,31 @@ class NPC implements Constants {
 					return;
 				case Objects.PLAYER_BED:
 					if (map.bedDummyPlaced) {
-						if (!addItem(Items.BED_DUMMY | Items.ITEM_DEFAULT_DURABILITY, true)) return;
+						if (!addItem(Items.BED_DUMMY | Items.ITEM_DEFAULT_DURABILITY, true))
+							return;
 						map.bedDummyPlaced = false;
 						return;
 					}
-					if (item == Items.BED_DUMMY) {
-						map.bedDummyPlaced = true;
-						inventory[slot] = Items.ITEM_NULL;
-						return;
-					}
-					xFloat = this.x = bedX * TILE_SIZE;
-					yFloat = this.y = bedY * TILE_SIZE + 2;
-					animation = ANIM_LYING;
-					if (map.schedule == SC_LIGHTSOUT && (map.time < 5 * 60 || map.time >= 20 * 60)) {
-						map.saveDialog = true;
-						Sound.playEffect(SFX_OPEN);
+					if ((map.objects[layer][idx + 2] & 0xFF) == 160) {
+						if (!addItem(Items.BED_SHEET, true))
+							return;
+						map.objects[layer][idx + 2]++;
+					} else if ((map.objects[layer][idx + 2] & 0xFF) == 161) {
+						if (!addItem(Items.PILLOW, true))
+							return;
+						map.objects[layer][idx + 2]++;
 					}
 					return;
-				case Objects.MEDICAL_BED:
-					xFloat = this.x = map.objects[layer][idx + 3] * TILE_SIZE;
-					yFloat = this.y = (map.objects[layer][idx + 4] - 1) * TILE_SIZE + 2;
-					animation = ANIM_LYING;
-					return;
-				case Objects.SUN_LOUNGER:
-					xFloat = this.x = map.objects[layer][idx + 3] * TILE_SIZE;
-					yFloat = this.y = (map.objects[layer][idx + 4] - 1) * TILE_SIZE + 2;
-					animation = ANIM_LYING;
+				case Objects.BED:
+					if ((map.objects[layer][idx + 2] & 0xFF) == 163) {
+						if (!addItem(Items.BED_SHEET, true))
+							return;
+						map.objects[layer][idx + 2]++;
+					} else if ((map.objects[layer][idx + 2] & 0xFF) == 164) {
+						if (!addItem(Items.PILLOW, true))
+							return;
+						map.objects[layer][idx + 2]++;
+					}
 					return;
 				case Objects.CHAIR:
 					// sit
@@ -3876,10 +3933,10 @@ class NPC implements Constants {
 							dialogTimer = TPS * 2;
 							return;
 						}
-					} else if (!addItem(Items.FAKE_FENCE | Items.ITEM_DEFAULT_DURABILITY, true)) {
-						dialog = "Inventory full";
-						dialogTimer = TPS * 2;
-						return;
+//					} else if (!addItem(Items.FAKE_FENCE | Items.ITEM_DEFAULT_DURABILITY, true)) {
+//						dialog = "Inventory full";
+//						dialogTimer = TPS * 2;
+//						return;
 					}
 					map.tiles[layer][pos] = (byte) -t;
 				}

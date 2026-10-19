@@ -29,6 +29,7 @@ public class MapCompiler implements Constants {
 
 	public static void main(String[] args) {
 		if (args.length < 2) {
+			System.out.println("The Escapists J2ME map compiler");
 			System.out.println("Parameters: <input path> <output path>");
 			return;
 		}
@@ -167,8 +168,7 @@ public class MapCompiler implements Constants {
 							case Objects.TOILET:
 								checkLayer("toilet", objectId, x, y, layer, LAYER_GROUND);
 								containers.add(new int[] { objects[LAYER_GROUND].size(), objectId, 3 });
-								// rotate toilet depending on walls placement
-								sprite = getTileCollision(tiles[layer][x + 1 + y * width]) != COLL_NONE ? 17 : 16;
+								sprite = -1; // rotated
 								break;
 							case Objects.CABLE_TV:
 								checkLayer("cable tv", objectId, x, y, layer, LAYER_GROUND);
@@ -281,13 +281,7 @@ public class MapCompiler implements Constants {
 								break;
 							case Objects.VENT_SLATS:
 								checkLayer("vent slats", objectId, x, y, layer, LAYER_VENT);
-								// rotate vent depending on walls placement
-								if (getTileCollision(tiles[layer][x + 1 + y * width]) != COLL_NONE) {
-									sprite = 83;
-								} else {
-									sprite = 109;
-									h++;
-								}
+								sprite = -1; // rotated
 								break;
 							case Objects.PLAYER_BED:
 								checkLayer("player bed", objectId, x, y, layer, LAYER_GROUND);
@@ -496,13 +490,7 @@ public class MapCompiler implements Constants {
 							}
 							case Objects.CONTRABAND_DETECTOR: {
 								checkLayer("detector", objectId, x, y, layer, LAYER_GROUND);
-								// rotate metal detector depending on walls placement
-								if (getTileCollision(tiles[layer][x + (y - 1) * width]) != COLL_NONE) {
-									sprite = 106;
-									h++;
-								} else {
-									sprite = 14;
-								}
+								sprite = -1; // rotated
 
 								topObjects.add(objects[LAYER_GROUND].size());
 								break;
@@ -588,7 +576,7 @@ public class MapCompiler implements Constants {
 								break object;
 							}
 							case Objects.JUNGLE_CHECKPOINT_GUARD: {
-								npc.add(new int[] { objectId, x, y + 1 });
+								npc.add(new int[] { objectId, x, y });
 								break object;
 							}
 							case Objects.DOOR_JUNGLE_ENTRANCE: {
@@ -811,7 +799,42 @@ public class MapCompiler implements Constants {
 			}
 		}
 
-		// TODO need to backpatch objects rotation since objects section comes before tiles in custom maps
+		for (int layer = 0; layer < 4; ++layer) {
+			for (int[] obj: objects[layer]) {
+				int h = obj[3];
+				int x = obj[4];
+				int y = obj[5];
+
+				object: {
+					int sprite;
+					switch (obj[0]) {
+					case Objects.VENT_SLATS:
+						if (getTileCollision(tiles[layer][x + 1 + y * width]) != COLL_NONE) {
+							sprite = 83;
+						} else {
+							sprite = 109;
+							h++;
+						}
+						break;
+					case Objects.TOILET:
+						sprite = getTileCollision(tiles[layer][x + 1 + y * width]) != COLL_NONE ? 17 : 16;
+						break;
+					case Objects.CONTRABAND_DETECTOR:
+						if (getTileCollision(tiles[layer][x + (y - 1) * width]) != COLL_NONE) {
+							sprite = 106;
+							h++;
+						} else {
+							sprite = 14;
+						}
+						break;
+					default:
+						break object;
+					}
+					obj[1] = sprite;
+					obj[3] = h;
+				}
+			}
+		}
 
 		// checks
 

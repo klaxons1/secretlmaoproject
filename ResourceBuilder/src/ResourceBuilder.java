@@ -51,7 +51,8 @@ public class ResourceBuilder implements Constants {
 	
 	public static void main(String[] args) {
 		if (args.length < 2) {
-			System.out.println("Parameters: <output res dir> <decompiled dir> <game dir> <map>");
+			System.out.println("The Escapists J2ME resource builder");
+			System.out.println("Parameters: <output res dir> <decompiled dir> <game dir>");
 			return;
 		}
 
