@@ -1,0 +1,35 @@
+npc-zone-memo
+Base-master: 0716b47205e297375d7a3848d923d5ce916eba6d
+Prerequisites: 0003 and preceding numbered performance patches
+Apply with git apply, NOT git am.
+
+diff --git a/src/NPC.java b/src/NPC.java
+--- a/src/NPC.java
++++ b/src/NPC.java
+@@ -292,8 +292,25 @@
+ 		}
+ 	}
+ 	
++	// Membership bits belong to one exact position and one immutable zone array.
++	private int zoneCacheX, zoneCacheY, zoneCacheChecked, zoneCacheFound;
++	private int[] zoneCacheData;
++
+ 	boolean isInZone(int zone) {
+-		return map.isInZone((int) x + 7, (int) y + 7, zone);
++		int px = x + 7, py = y + 7;
++		if (zone < 0 || zone > ZONE_SAFE) return map.isInZone(px, py, zone);
++		if (zoneCacheData != map.zones || zoneCacheX != px || zoneCacheY != py) {
++			zoneCacheData = map.zones;
++			zoneCacheX = px;
++			zoneCacheY = py;
++			zoneCacheChecked = zoneCacheFound = 0;
++		}
++		int bit = 1 << zone;
++		if ((zoneCacheChecked & bit) == 0) {
++			if (map.isInZone(px, py, zone)) zoneCacheFound |= bit;
++			zoneCacheChecked |= bit;
++		}
++		return (zoneCacheFound & bit) != 0;
+ 	}
+ 
+ 	void tick() {
