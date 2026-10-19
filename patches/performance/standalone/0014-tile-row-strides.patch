@@ -1,0 +1,180 @@
+tile-row-strides
+Base-master: 0716b47205e297375d7a3848d923d5ce916eba6d
+Prerequisites: 0003 ONLY; do not combine with the cumulative copy of this patch
+Apply with git apply, NOT git am.
+
+diff --git a/src/Game.java b/src/Game.java
+--- a/src/Game.java
++++ b/src/Game.java
+@@ -4093,93 +4093,101 @@
+ 				tiledLayer[layer].paint(g);
+ 			}
+ 
+-			// tiles
+-			int y = -yr;
++			// Hoist map bounds and row strides out of the per-tile path.
++			// CULL_LIMITS is replaced only in the separately tested clip variant.
++			int firstCol = xoff < 0 ? -xoff : 0;
++			int firstRow = yoff < 0 ? -yoff : 0;
++			int lastCol = viewCols;
++			int lastRow = viewRows;
++			// CULL_LIMITS
++			if (lastCol > width - xoff) lastCol = width - xoff;
++			if (lastRow > height - yoff) lastRow = height - yoff;
+ 			byte[] tiles = this.tiles[layer];
+-			for (int i = 0; i < viewRows; ++i) {
+-				int x = -xr;
+-				y: {
+-					if (i + yoff < 0 || i + yoff >= height) break y;
+-					for (int j = 0; j < viewCols; ++j) {
+-						int pos = j + xoff + (i + yoff) * width;
+-						x: {
+-							if (j + xoff < 0 || j + xoff >= width) break x;
+-
++			int rowPos = (yoff + firstRow) * width + xoff + firstCol;
++			int y = firstRow * TILE_SIZE - yr;
++			int mapY = yoff + firstRow;
++			for (int i = firstRow; i < lastRow; ++i) {
++				int x = firstCol * TILE_SIZE - xr;
++				int pos = rowPos;
++				int mapX = xoff + firstCol;
++				for (int j = firstCol; j < lastCol; ++j) {
+ //							if (layer == LAYER_VENT) {
+ //								g.drawRegion(shadowsTexture, 0, 0, TILE_SIZE, TILE_SIZE, 0, x, y, 0);
+ //							}
+ 
+-							if (!USE_TILED_LAYER) {
+-								byte tile = tiles[pos];
+-								if (tile != 0) {
+-									if (tile < 0) {
+-										g.setColor(0);
++					if (!USE_TILED_LAYER) {
++						byte tile = tiles[pos];
++						if (tile != 0) {
++							if (tile < 0) {
++								g.setColor(0);
++								g.fillRect(x, y, TILE_SIZE, TILE_SIZE);
++							} else if (tile != 100 && tile != 96 && tile != 92) {
++								--tile;
++								g.drawRegion(tilesImg, (tile & 3) * TILE_SIZE, (tile >> 2) * TILE_SIZE, TILE_SIZE, TILE_SIZE, 0, x, y, 0);
++							}
++						}
++					}
++
++					// wall shadows
++					if (drawShadows && mapY > 1 && mapX > 1) {
++						byte s = solid[pos];
++						if (s != COLL_SOLID && s != COLL_SOLID_TRANSPARENT) {
++							byte t = solid[pos - width];
++							byte l = solid[pos - 1];
++							byte tl = solid[pos - width - 1];
++							if (NOKIAUI_SHADOWS) {
++								if ((t & COLL_BIT_CAST_SHADOW) != 0) {
++									if ((tl & COLL_BIT_CAST_SHADOW) == 0) {
++										g.fillTriangle(x, y, x + TILE_SIZE, y, x + TILE_SIZE, y + TILE_SIZE);
++									} else {
+ 										g.fillRect(x, y, TILE_SIZE, TILE_SIZE);
+-									} else if (tile != 100 && tile != 96 && tile != 92) {
+-										--tile;
+-										g.drawRegion(tilesImg, (tile % 4) * TILE_SIZE, (tile / 4) * TILE_SIZE, TILE_SIZE, TILE_SIZE, 0, x, y, 0);
+ 									}
++								} else if ((l & COLL_BIT_CAST_SHADOW) != 0) {
++									if ((tl & COLL_BIT_CAST_SHADOW) == 0) {
++										g.fillTriangle(x, y, x, y + TILE_SIZE, x + TILE_SIZE, y + TILE_SIZE);
++									} else {
++										g.fillRect(x, y, TILE_SIZE, TILE_SIZE);
++									}
++								} else if ((tl & COLL_BIT_CAST_SHADOW) != 0) {
++									g.fillRect(x, y, TILE_SIZE, TILE_SIZE);
++								}
++							} else {
++								if ((t & COLL_BIT_CAST_SHADOW) != 0) {
++									if ((tl & COLL_BIT_CAST_SHADOW) == 0) {
++										g.drawRegion(shadowImg, TILE_SIZE * 2, 0, TILE_SIZE, TILE_SIZE, 0, x, y, 0);
++									} else {
++										g.drawRegion(shadowImg, 0, 0, TILE_SIZE, TILE_SIZE, 0, x, y, 0);
++									}
++								} else if ((l & COLL_BIT_CAST_SHADOW) != 0) {
++									if ((tl & COLL_BIT_CAST_SHADOW) == 0) {
++										g.drawRegion(shadowImg, TILE_SIZE, 0, TILE_SIZE, TILE_SIZE, 0, x, y, 0);
++									} else {
++										g.drawRegion(shadowImg, 0, 0, TILE_SIZE, TILE_SIZE, 0, x, y, 0);
++									}
++								} else if ((tl & COLL_BIT_CAST_SHADOW) != 0) {
++									g.drawRegion(shadowImg, 0, 0, TILE_SIZE, TILE_SIZE, 0, x, y, 0);
+ 								}
+ 							}
+-
+-							// wall shadows
+-							if (drawShadows && i + yoff > 1 && j + xoff > 1) {
+-								byte s = solid[pos];
+-								if (s != COLL_SOLID && s != COLL_SOLID_TRANSPARENT) {
+-									byte t = solid[j + xoff + (i + yoff - 1) * width];
+-									byte l = solid[j + xoff - 1 + (i + yoff) * width];
+-									byte tl = solid[j + xoff - 1 + (i + yoff - 1) * width];
+-									if (NOKIAUI_SHADOWS) {
+-										if ((t & COLL_BIT_CAST_SHADOW) != 0) {
+-											if ((tl & COLL_BIT_CAST_SHADOW) == 0) {
+-												g.fillTriangle(x, y, x + TILE_SIZE, y, x + TILE_SIZE, y + TILE_SIZE);
+-											} else {
+-												g.fillRect(x, y, TILE_SIZE, TILE_SIZE);
+-											}
+-										} else if ((l & COLL_BIT_CAST_SHADOW) != 0) {
+-											if ((tl & COLL_BIT_CAST_SHADOW) == 0) {
+-												g.fillTriangle(x, y, x, y + TILE_SIZE, x + TILE_SIZE, y + TILE_SIZE);
+-											} else {
+-												g.fillRect(x, y, TILE_SIZE, TILE_SIZE);
+-											}
+-										} else if ((tl & COLL_BIT_CAST_SHADOW) != 0) {
+-											g.fillRect(x, y, TILE_SIZE, TILE_SIZE);
+-										}
+-									} else {
+-										if ((t & COLL_BIT_CAST_SHADOW) != 0) {
+-											if ((tl & COLL_BIT_CAST_SHADOW) == 0) {
+-												g.drawRegion(shadowImg, TILE_SIZE * 2, 0, TILE_SIZE, TILE_SIZE, 0, x, y, 0);
+-											} else {
+-												g.drawRegion(shadowImg, 0, 0, TILE_SIZE, TILE_SIZE, 0, x, y, 0);
+-											}
+-										} else if ((l & COLL_BIT_CAST_SHADOW) != 0) {
+-											if ((tl & COLL_BIT_CAST_SHADOW) == 0) {
+-												g.drawRegion(shadowImg, TILE_SIZE, 0, TILE_SIZE, TILE_SIZE, 0, x, y, 0);
+-											} else {
+-												g.drawRegion(shadowImg, 0, 0, TILE_SIZE, TILE_SIZE, 0, x, y, 0);
+-											}
+-										} else if ((tl & COLL_BIT_CAST_SHADOW) != 0) {
+-											g.drawRegion(shadowImg, 0, 0, TILE_SIZE, TILE_SIZE, 0, x, y, 0);
+-										}
+-									}
+-								}
+-							}
+-
+-							// collision debug
++						}
++					}
++
++					// collision debug
+ //							if (solid[pos] != 0) {
+ //								g.setColor(0x00FF00);
+ //								g.drawRect(x, y, TILE_SIZE - 1, TILE_SIZE - 1);
+ //							}
+-							// tiles id debug
++					// tiles id debug
+ //							if (layer == 0) {
+ //								g.setColor(0xFFFFFF);
+ //								g.drawString(Integer.toString(tiles[pos]), x, y, 0);
+ //							}
+-						}
+-
+-						x += TILE_SIZE;
+-					}
+-				}
++
++					++pos;
++					++mapX;
++					x += TILE_SIZE;
++				}
++				rowPos += width;
++				++mapY;
+ 				y += TILE_SIZE;
+ 			}
+ 		}
