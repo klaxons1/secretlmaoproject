@@ -1,0 +1,27 @@
+object-broad-phase
+Base-master: 0716b47205e297375d7a3848d923d5ce916eba6d
+Prerequisites: 0003 and preceding numbered performance patches
+Apply with git apply, NOT git am.
+
+diff --git a/src/Game.java b/src/Game.java
+--- a/src/Game.java
++++ b/src/Game.java
+@@ -5448,13 +5448,13 @@
+ 			int n = objects[0] << 2;
+ 			for (int idx = 0; idx < n; idx += 4) {
+ 				int ox = objects[idx + 3], oy = objects[idx + 4];
++				// Reject outside the anchor's left/bottom half-planes before decoding.
++				if (x < ox || y > oy) continue;
++				// Anchor hits must work even for zero-sized/disabled sprites.
++				if (x == ox && y == oy) return idx;
+ 				short sprite = objects[idx + 2];
+ 				int w = (sprite & (3 << 8)) >> 8, h = (sprite & (3 << 10)) >> 10;
+-				if ((x == ox && y == oy)
+-						// check dimensions of non-single tile objects
+-						|| (x >= ox && x < ox + w && y > oy - h && y <= oy)) {
+-					return idx;
+-				}
++				if (x < ox + w && y > oy - h) return idx;
+ 			}
+ 		}
+ 		return -1;
