@@ -1,0 +1,38 @@
+facing-only-movement
+Base-master: 0716b47205e297375d7a3848d923d5ce916eba6d
+Prerequisites: 0003 ONLY; do not combine with the cumulative copy of this patch
+Apply with git apply, NOT git am.
+
+diff --git a/src/NPC.java b/src/NPC.java
+--- a/src/NPC.java
++++ b/src/NPC.java
+@@ -1728,14 +1728,22 @@
+ 
+ 		float dx = tx - xFloat;
+ 		float dy = ty - yFloat;
+-		float distance = (float) Math.sqrt(dx * dx + dy * dy);
+-
+-		if (distance <= speed) {
+-			xFloat = tx;
+-			yFloat = ty;
++		float distanceSquared = dx * dx + dy * dy;
++		if (speed == 0f && distanceSquared > 0f
++				&& distanceSquared < Float.POSITIVE_INFINITY) {
++			// Turning only: the normalized vector times zero is signed zero.
++			xFloat += dx < 0f ? -speed : speed;
++			yFloat += dy < 0f ? -speed : speed;
+ 		} else {
+-			xFloat += (dx / distance) * speed;
+-			yFloat += (dy / distance) * speed;
++			float distance = (float) Math.sqrt(distanceSquared);
++
++			if (distance <= speed) {
++				xFloat = tx;
++				yFloat = ty;
++			} else {
++				xFloat += (dx / distance) * speed;
++				yFloat += (dy / distance) * speed;
++			}
+ 		}
+ 
+ 		this.x = (int) xFloat;
